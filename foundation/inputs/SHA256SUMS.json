@@ -1,0 +1,67 @@
+{
+  "DOCUMENT_TYPE": "SHA256_MANIFEST",
+  "PACKAGE_ID": "WS-PFBOOT-20260917-01",
+  "DATE": "2026-09-17",
+  "FILES": [
+    {
+      "path": "README.md",
+      "sha256": "4505ef71be20bb8f5514c267bf7e2a173b3be795511a46d9c6a8b2894a49e281",
+      "bytes": 623
+    },
+    {
+      "path": "WindowSafe_Current_Repository_Baseline_WS-RB-20260917-01.json",
+      "sha256": "9089b01742c29d496e6ba9b2f339ae18c592db8c113752372d692d7f175f1b40",
+      "bytes": 1141
+    },
+    {
+      "path": "WindowSafe_Execution_Authorization_WS-EA-20260917-01.json",
+      "sha256": "1bf8db7bf47c46806951e31801747b37b4d37653cb46aa2ee8b2ef5bd21e79f8",
+      "bytes": 8185
+    },
+    {
+      "path": "WindowSafe_Project_Foundation_Agent_Start_Handoff_WS-PFBOOT-20260917-01.md",
+      "sha256": "15701c717061773d9017cf3c884a7eb0cebcb0d66b67a93dc13e41acb7d98774",
+      "bytes": 6284
+    },
+    {
+      "path": "WindowSafe_Project_Foundation_Agent_Start_Prompt_WS-PFBOOT-20260917-01.txt",
+      "sha256": "674c366efb26f7fb58ef7c487ea4544ec1a7a9e750ba483fa0cbb57fe0a5e583",
+      "bytes": 1743
+    },
+    {
+      "path": "inputs/WS-TFPR-20260917-04.json",
+      "sha256": "6121620284e78cee45d670565a9eadf67506fef5d09afbbe33afb1526fa26d6d",
+      "bytes": 10138
+    },
+    {
+      "path": "inputs/WindowSafe_Approval_Record_WS-PD-20260917-01.json",
+      "sha256": "a655d1fb0a594997e1f6da00c7e8a36bb6c5807ac844ce9fbf04ccb7d1afd4a5",
+      "bytes": 3673
+    },
+    {
+      "path": "inputs/WindowSafe_Last_CPU_Decision_WS-T05-R2-20260917-01.md",
+      "sha256": "8d2b565beb28ca47e63df59b5d7d9236dd99c6f1967dba1190553c0a66b5800c",
+      "bytes": 5409
+    },
+    {
+      "path": "inputs/WindowSafe_Preparation_Binding_WS-TFP-20260917-01_READY_FOR_AGENT.json",
+      "sha256": "08f5c24402b4deaabb5fd3b3b0b1025daea0905b66e52795c1b4b0513e3b87b8",
+      "bytes": 3334
+    },
+    {
+      "path": "inputs/WindowSafe_Product_Definition_WS-PD-20260917-01.md",
+      "sha256": "fff235b7591f483b9b31c945911a6b5950d29fac931b9136438ae5586c756900",
+      "bytes": 23779
+    },
+    {
+      "path": "inputs/WindowSafe_Technical_Decisions_WS-TD-20260917-03.json",
+      "sha256": "36bc4954a4aa9046be381a3095bc3f3574cb6ef2527e7bd060be15eda925f2e3",
+      "bytes": 3749
+    },
+    {
+      "path": "inputs/WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r6.md",
+      "sha256": "c461c45c5bd20f12dcffb400acd6f7d5c0f0de0a75616eef3eb1d78dd175dcb6",
+      "bytes": 61347
+    }
+  ]
+}

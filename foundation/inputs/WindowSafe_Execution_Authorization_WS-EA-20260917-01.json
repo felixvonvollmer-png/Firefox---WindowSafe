@@ -1,0 +1,150 @@
+{
+  "DOCUMENT_TYPE": "PROJECT_FOUNDATION_EXECUTION_AUTHORIZATION",
+  "AUTHORIZATION_ID": "WS-EA-20260917-01",
+  "STATUS": "AUTHORIZED",
+  "DATE": "2026-09-17",
+  "PROJECT": "WindowSafe",
+  "AUTHORITY": "USER",
+  "USER_AUTHORIZATION_REFERENCE": {
+    "VERBATIM_MESSAGE": "frei",
+    "CONTEXT": "Immediate reply after the project LLM stated that the next V6 step is the separate authorization and preparation of the first Coding-Agent run for the Project Foundation.",
+    "INTERPRETATION": "Authorizes the first V6 Coding-Agent execution for PROJECT_FOUNDATION_ONLY and the repository mutations required for that bootstrap within the boundaries below.",
+    "LIMITATION": "Does not authorize normal product-feature implementation, real Firefox profile testing, add-on publication/signing, production, new paid providers, new secrets, or materially broader data disclosure."
+  },
+  "EXACT_BOUND_INPUTS": {
+    "PRODUCT_DEFINITION": {
+      "filename": "WindowSafe_Product_Definition_WS-PD-20260917-01.md",
+      "sha256": "fff235b7591f483b9b31c945911a6b5950d29fac931b9136438ae5586c756900",
+      "bytes": 23779
+    },
+    "PRODUCT_APPROVAL": {
+      "filename": "WindowSafe_Approval_Record_WS-PD-20260917-01.json",
+      "sha256": "a655d1fb0a594997e1f6da00c7e8a36bb6c5807ac844ce9fbf04ccb7d1afd4a5",
+      "bytes": 3673
+    },
+    "TECHNICAL_FOUNDATION_PREPARATION_R6": {
+      "filename": "WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r6.md",
+      "sha256": "c461c45c5bd20f12dcffb400acd6f7d5c0f0de0a75616eef3eb1d78dd175dcb6",
+      "bytes": 61347
+    },
+    "TECHNICAL_DECISIONS_WS_TD_03": {
+      "filename": "WindowSafe_Technical_Decisions_WS-TD-20260917-03.json",
+      "sha256": "36bc4954a4aa9046be381a3095bc3f3574cb6ef2527e7bd060be15eda925f2e3",
+      "bytes": 3749
+    },
+    "T05_R2_DECISION_SUBJECT": {
+      "filename": "WindowSafe_Last_CPU_Decision_WS-T05-R2-20260917-01.md",
+      "sha256": "8d2b565beb28ca47e63df59b5d7d9236dd99c6f1967dba1190553c0a66b5800c",
+      "bytes": 5409
+    },
+    "TECHNICAL_PREPARATION_PASS_04": {
+      "filename": "WS-TFPR-20260917-04.json",
+      "sha256": "6121620284e78cee45d670565a9eadf67506fef5d09afbbe33afb1526fa26d6d",
+      "bytes": 10138
+    },
+    "READY_FOR_AGENT_BINDING": {
+      "filename": "WindowSafe_Preparation_Binding_WS-TFP-20260917-01_READY_FOR_AGENT.json",
+      "sha256": "08f5c24402b4deaabb5fd3b3b0b1025daea0905b66e52795c1b4b0513e3b87b8",
+      "bytes": 3334
+    },
+    "FOUNDATION_1_GIT_BLOB": "3b139a7dfd70da3ae6c83bbdfa703cb98ef94193",
+    "FOUNDATION_2_GIT_BLOB": "ff49e56aba09881e9e4a22dc8225949fbc4b54f6"
+  },
+  "TARGET_REPOSITORY": {
+    "FULL_NAME": "felixvonvollmer-png/Firefox---WindowSafe",
+    "REPOSITORY_ID": 1374094477,
+    "VISIBILITY_POLICY": "REMAIN_PUBLIC",
+    "BASELINE_OBSERVATION": {
+      "filename": "WindowSafe_Current_Repository_Baseline_WS-RB-20260917-01.json",
+      "sha256": "9089b01742c29d496e6ba9b2f339ae18c592db8c113752372d692d7f175f1b40",
+      "bytes": 1141
+    },
+    "EXPECTED_START_STATE": "EMPTY_REPOSITORY_NO_BRANCH_OR_COMMIT",
+    "RECHECK_BEFORE_FIRST_WRITE": true,
+    "ON_BASELINE_MISMATCH": "STOP_BEFORE_MUTATION_AND_REPORT_FOR_REBIND_OR_EXPLICIT_DISPOSITION"
+  },
+  "AUTHORIZED_RUN_SCOPE": {
+    "MODE": "V6_GREENFIELD_PROJECT_FOUNDATION_BOOTSTRAP_ONLY",
+    "END_STATE": "PROJECT_FOUNDATION_READY_FOR_REVIEW",
+    "NORMAL_PRODUCT_FEATURE_IMPLEMENTATION": "PROHIBITED_IN_THIS_RUN",
+    "EPIC_FEATURE_WORK": "PROHIBITED_IN_THIS_RUN",
+    "FOUNDATION_2_SECTION_8_DIRECTION": "AUTHORIZED",
+    "FOUNDATION_CAPABILITIES_TO_MATERIALIZE_OR_JUSTIFY_NOT_REQUIRED": [
+      "HUMAN_ENTRYPOINT",
+      "AGENT_RULES_AND_CONTEXT_ROUTING",
+      "PRODUCT_TRUTH",
+      "BOUND_PROJECT_TECHNICAL_FOUNDATION_CONTEXT",
+      "ARCHITECTURE_AND_DECISIONS",
+      "ENGINEERING_GIT_AND_CHANGE_RULES",
+      "REVIEW_AND_RISK_RULES",
+      "EVIDENCE_SCHEMA",
+      "PROJECT_FOUNDATION_AND_FEATURE_REVIEW_RESULT_CHANNEL",
+      "EPIC_PREPARATION_LOCATOR_AND_EPIC_REVIEW_RESULT_CHANNEL",
+      "DEVELOPMENT_AND_VERIFICATION_COMMANDS",
+      "AGENT_ENVIRONMENT_AND_MODEL_ROUTING_BOUNDARIES_WHERE_RELEVANT",
+      "INITIAL_EPIC_MAP_WITHOUT_STARTING_PRODUCT_FEATURE",
+      "INTERNAL_FOUNDATION_REVIEW"
+    ]
+  },
+  "ALLOWED_REPOSITORY_MUTATIONS": {
+    "INITIALIZE_EMPTY_REPOSITORY_AND_ESTABLISH_FIRST_COMMIT_OR_MAIN_BASELINE": "YES_AS_NEEDED_FOR_FOUNDATION_BOOTSTRAP",
+    "CREATE_UPDATE_PROJECT_FOUNDATION_FILES": "YES",
+    "CREATE_SHORT_LIVED_BRANCHES_COMMITS_AND_PULL_REQUESTS": "YES",
+    "CREATE_CI_WORKFLOWS_AND_MECHANICAL_GUARDS": "YES_WITHIN_PROJECT_FOUNDATION_SCOPE",
+    "CREATE_ISSUES_OR_REVIEW_LOCATORS": "YES_IF_USEFUL_WITHIN_FOUNDATION_SCOPE",
+    "INTEGRATE_PROJECT_FOUNDATION_TO_DEVELOPMENT_MAIN": "ALLOWED_IF_AGENT_DETERMINES_NEEDED_FOR_PROJECT_FOUNDATION_READY_FOR_REVIEW; MERGE_DOES_NOT_EQUAL_ACCEPTANCE_OR_RELEASE",
+    "FORCE_PUSH_HISTORY_REWRITE_OR_DELETE_FOREIGN_WORK": "NO",
+    "RENAME_DELETE_OR_CHANGE_VISIBILITY_OF_REPOSITORY": "NO",
+    "ADMIN_OR_SECRET_MUTATION": "NO"
+  },
+  "DATA_CREDENTIAL_PROVIDER_COST_BOUNDARIES": {
+    "REAL_USER_BROWSER_SESSION_DATA": "PROHIBITED",
+    "REAL_FIREFOX_PROFILE_MUTATION_OR_TESTING": "PROHIBITED",
+    "SYNTHETIC_STATIC_FIXTURES_AND_NON_BROWSER_UNIT_TESTS": "ALLOWED",
+    "SECRETS_IN_REPOSITORY_ISSUES_LOGS_OR_REPORTS": "PROHIBITED",
+    "NEW_SECRET_OR_HIGH_PRIVILEGE_CREDENTIAL": "PROHIBITED",
+    "NEW_PAID_PROVIDER_CONTRACT_OR_MATERIAL_COST": "PROHIBITED_WITHOUT_NEW_USER_DECISION",
+    "CROSS_PROVIDER_MODEL_ROUTING": "NOT_AUTHORIZED",
+    "CURRENT_AUTHORIZED_AGENT_ENVIRONMENT_MODELS_REASONING": "MAY_BE_USED_ADAPTIVELY_IF_ACTUALLY_AVAILABLE_AND_NO_NEW_PROVIDER_COST_OR_DATA_BOUNDARY_RESULTS",
+    "AMO_SIGNING_OR_UPLOAD": "PROHIBITED",
+    "PRODUCTION_OR_PUBLIC_ADDON_RELEASE": "PROHIBITED"
+  },
+  "PREIMPLEMENTATION_GATES_PRESERVED": [
+    "Do not implement product capture/recovery features before the bound platform/recognition qualification required by Technical Foundation §7.1.",
+    "Do not implement affected product functionality before the concrete performance measurement method/environment required by §§9.1/9.3 is bound.",
+    "The Project Foundation bootstrap may materialize those stop-gates and evidence mechanisms but may not bypass them."
+  ],
+  "AGENT_REQUIRED_PREFLIGHT": [
+    "Verify all local package input hashes.",
+    "Load Foundation 2 by exact Git blob ff49e56aba09881e9e4a22dc8225949fbc4b54f6 and verify identity.",
+    "Recheck repository identity, visibility, branches/commits and working baseline immediately before first mutation.",
+    "Verify actual available agent tools/model controls and do not claim unavailable capabilities.",
+    "Stop before mutation on any baseline mismatch or material authorization conflict."
+  ],
+  "STOP_AND_ESCALATE_IF": [
+    "A material product, high-level architecture, security/trust, sensitive-data, provider, cost, irreversible migration or production decision is required.",
+    "The target repository is no longer empty at first-write preflight.",
+    "Any exact input hash or Foundation blob identity fails.",
+    "The run would need normal product-feature implementation to proceed.",
+    "Required repository write capability is unavailable or ambiguous."
+  ],
+  "POST_RUN_REQUIRED_OUTPUT": [
+    "PROJECT_FOUNDATION_READY_FOR_REVIEW marker only when genuinely satisfied.",
+    "Exact repository end SHA or immutable equivalent.",
+    "Summary of foundation capabilities materialized and any justified NOT_APPLICABLE items.",
+    "Verification/test/CI evidence with evidence class distinctions.",
+    "Open findings by severity and material deviations/decisions.",
+    "Canonical Project Foundation Review subject/evidence/result-channel locator prepared for an independent reviewer.",
+    "No claim of PROJECT_FOUNDATION_REVIEW PASS."
+  ],
+  "NOT_AUTHORIZED": [
+    "NORMAL_PRODUCT_FEATURE_IMPLEMENTATION",
+    "FIRST_EPIC_START",
+    "FEATURE_ACCEPTANCE",
+    "REAL_FIREFOX_PROFILE_TESTING",
+    "MOZILLA_AMO_UPLOAD_OR_SIGNING",
+    "PRODUCTION_OR_RELEASE",
+    "NEW_MATERIAL_PROVIDER_COST_DATA_OR_SECRET_BOUNDARY"
+  ],
+  "NOTE": "This authorization is execution context, not additional Product Truth and not an external review verdict."
+}

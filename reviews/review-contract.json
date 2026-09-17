@@ -1,0 +1,100 @@
+{
+  "contract_version": 1,
+  "format": "WINDOWSAFE_REVIEW_CONTRACT_V1",
+  "result_channel": "reviews/results/<REVIEW_ID>.json",
+  "required_fields": [
+    "schema_version",
+    "review_id",
+    "review_type",
+    "reviewer",
+    "provenance",
+    "subject",
+    "verdict",
+    "findings",
+    "reviewed_evidence",
+    "result_reference"
+  ],
+  "review_types": [
+    "PROJECT_FOUNDATION_REVIEW",
+    "EPIC_PREPARATION_REVIEW",
+    "FEATURE_ACCEPTANCE_REVIEW"
+  ],
+  "verdicts": [
+    "PASS",
+    "CORRECTION_REQUIRED",
+    "BLOCKED"
+  ],
+  "severities": [
+    "CRITICAL",
+    "BLOCKING",
+    "MAJOR",
+    "MINOR",
+    "NIT_OR_SUGGESTION"
+  ],
+  "finding_statuses": [
+    "OPEN",
+    "RESOLVED"
+  ],
+  "reviewer_fields": [
+    "authority",
+    "identity",
+    "run_reference",
+    "independence"
+  ],
+  "provenance_fields": [
+    "source_reference",
+    "transport"
+  ],
+  "subject_fields": [
+    "id",
+    "path",
+    "end_sha"
+  ],
+  "evidence_fields": [
+    "path",
+    "sha256"
+  ],
+  "finding_fields": [
+    "id",
+    "severity",
+    "status",
+    "description",
+    "disposition"
+  ],
+  "authorities": {
+    "PROJECT_FOUNDATION_REVIEW": "INDEPENDENT_PROJECT_LLM",
+    "EPIC_PREPARATION_REVIEW": "INDEPENDENT_EPIC_PREPARATION_REVIEWER",
+    "FEATURE_ACCEPTANCE_REVIEW": "INDEPENDENT_ACCEPTANCE_REVIEWER"
+  },
+  "independence": "FRESH_OR_SUFFICIENTLY_ISOLATED",
+  "transport": [
+    "DIRECT_CANONICAL_WRITE",
+    "EXACT_AUTHORIZED_TRANSFER"
+  ],
+  "rules": [
+    "ALL_FIELDS_REQUIRED_NO_ADDITIONAL_FIELDS",
+    "NONEMPTY_STRINGS",
+    "EXACT_SUBJECT_COMMIT_AND_PATH",
+    "EVIDENCE_BYTES_AT_SUBJECT_COMMIT",
+    "REVIEWER_DIFFERS_FROM_SUBJECT_IMPLEMENTER",
+    "ROLE_MATCHES_REVIEW_TYPE",
+    "RESULT_FILENAME_MATCHES_ID",
+    "PASS_HAS_NO_OPEN_CRITICAL_BLOCKING_MAJOR",
+    "MINOR_OPEN_HAS_NONBLOCKING_DISPOSITION",
+    "APPEND_ONLY_HISTORY_NO_COUNT_LIMIT",
+    "SCHEMA_PREFLIGHT_EXACT_CONTRACT_EQUALITY",
+    "PROVENANCE_REQUIRES_EXTERNAL_AUTHENTICATION"
+  ],
+  "semantic_minimum_mapping": {
+    "REVIEW_ID": "review_id",
+    "REVIEW_TYPE": "review_type",
+    "REVIEWER_OR_REVIEW_AUTHORITY": "reviewer",
+    "RESULT_PROVENANCE": "provenance",
+    "SUBJECT_ID_OR_EQUIVALENT_STABLE_SUBJECT_REFERENCE": "subject.id",
+    "SUBJECT_END_SHA_OR_EQUIVALENT_IMMUTABLE_END_STATE": "subject.end_sha",
+    "VERDICT": "verdict",
+    "FINDINGS": "findings",
+    "REVIEWED_EVIDENCE_REFERENCE": "reviewed_evidence",
+    "REVIEW_RESULT_REFERENCE": "result_reference"
+  }
+}

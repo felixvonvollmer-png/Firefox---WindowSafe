@@ -1,0 +1,74 @@
+{
+  "SCHEMA_VERSION": 1,
+  "REVIEW_ID": "WS-TFPR-20260917-04",
+  "REVIEW_TYPE": "TECHNICAL_FOUNDATION_PREPARATION_REVIEW",
+  "REVIEWER_OR_REVIEW_AUTHORITY": "FRESH_OR_SUFFICIENTLY_ISOLATED_INDEPENDENT_PREPARATION_REVIEWER",
+  "RESULT_PROVENANCE": "User-issued read-only formal-delta rereview executed from the attached package and only its exactly bound V6 GitHub Foundation blobs 3b139a7dfd70da3ae6c83bbdfa703cb98ef94193 and ff49e56aba09881e9e4a22dc8225949fbc4b54f6. No repository, subject, binding, implementation, Firefox profile, coding-agent, publication, or production mutation was performed.",
+  "INDEPENDENCE_STATUS": "FRESH_OR_SUFFICIENTLY_ISOLATED",
+  "PREPARATION_SUBJECT_REFERENCE": "WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r6.md@sha256:c461c45c5bd20f12dcffb400acd6f7d5c0f0de0a75616eef3eb1d78dd175dcb6",
+  "PRODUCT_DEFINITION_REFERENCE": "product/WindowSafe_Product_Definition_WS-PD-20260917-01.md@sha256:fff235b7591f483b9b31c945911a6b5950d29fac931b9136438ae5586c756900",
+  "PRODUCT_APPROVAL_REFERENCE": "product/WindowSafe_Approval_Record_WS-PD-20260917-01.json@sha256:a655d1fb0a594997e1f6da00c7e8a36bb6c5807ac844ce9fbf04ccb7d1afd4a5",
+  "MATERIAL_DECISIONS_REFERENCE": "WindowSafe_Technical_Decisions_WS-TD-20260917-03.json@sha256:36bc4954a4aa9046be381a3095bc3f3574cb6ef2527e7bd060be15eda925f2e3",
+  "PRIOR_REVIEW_RESULT_REFERENCE": "results/WS-TFPR-20260917-03.json@sha256:49a4584f35bfb100c1c074caa96330b3007675b83334762a038b8d407e9bc783",
+  "SUBJECT_INTEGRITY_STATUS": "VERIFIED",
+  "VERDICT": "PASS",
+  "FINDINGS": [],
+  "PRIOR_FINDINGS_DISPOSITION": [
+    {
+      "ID": "WS-TFPR-20260917-01-F01",
+      "STATUS": "CLOSED_PRESERVED",
+      "RATIONALE": "Closed by WS-TFPR-20260917-02 and preserved by WS-TFPR-20260917-03 = PASS. The r5->r6 delta does not modify the reviewed technical sections or reopen T05-R2."
+    },
+    {
+      "ID": "WS-TFPR-20260917-01-F02",
+      "STATUS": "CLOSED_PRESERVED",
+      "RATIONALE": "Closed by WS-TFPR-20260917-02 and preserved by WS-TFPR-20260917-03 = PASS. No new delta evidence affects the previously reviewed technical correction."
+    },
+    {
+      "ID": "WS-TFPR-20260917-02-F01",
+      "STATUS": "CLOSED_PRESERVED",
+      "RATIONALE": "Closed by the exact historical WS-TFPR-20260917-03 PASS for r5 + WS-TD-20260917-02. Revision 6 preserves that closure and only propagates the later formal machine-field correction and lifecycle status."
+    }
+  ],
+  "MINOR_FINDINGS_DISPOSITION": [],
+  "OPEN_MATERIAL_USER_DECISIONS": [],
+  "REVIEWED_EVIDENCE_REFERENCE": [
+    {
+      "REFERENCE": "Attached WindowSafe_Independent_Rereview_Package_WS-TFPR-20260917-04.zip; observed outer SHA-256 ff9d4598adb2b4eb96e3fe9f97e6f135bf68964b6bc403a8bee633339f2f655a; SHA256SUMS.json; WindowSafe_Independent_Rereview_Handoff_WS-TFPR-20260917-04.md@sha256:08accb70dbb9a0543c2539862a9c21bad729be5acf8bc116319f47cf50913636",
+      "CHECK_PERFORMED": "Verified safe relative archive paths, no duplicate entries, no symlink entries, CRC-readable contents, exact manifest-listed file presence, and every manifest-listed file SHA-256 and byte count. Verified the handoff target Subject, Decision Record, Binding and prior-result hashes against the actual package bytes.",
+      "LIMITATION": "No external expected SHA-256 for the outer ZIP was provided in the handoff; the outer SHA is therefore recorded as observed provenance, while internal content integrity is verified against the package manifest and immutable references."
+    },
+    {
+      "REFERENCE": "WindowSafe_Preparation_Rereview_Result.schema.json@sha256:d1ef0b27ff8bdf76c68ec9675be8d591467aa85f58f8ebf093d3c6b16144ca18",
+      "CHECK_PERFORMED": "Validated the schema as JSON Schema Draft 2020-12 and checked its fixed review ID/type and immutable Subject/Product/Approval/Decision/Prior-Review references, PASS integrity constraint, and result locator against the handoff.",
+      "LIMITATION": "Schema validity constrains result structure but does not determine the review verdict."
+    },
+    {
+      "REFERENCE": "felixvonvollmer-png/projektbeschreibung-und-geruest: Foundation 1 blob 3b139a7dfd70da3ae6c83bbdfa703cb98ef94193; Foundation 2 blob ff49e56aba09881e9e4a22dc8225949fbc4b54f6",
+      "CHECK_PERFORMED": "Loaded both exact Git blobs read-only. Checked the r6 preparation/binding/review flow against Foundation-1 separation of Subject vs Binding, independent review and append-only history, and against Foundation-2 execution-authorization, risk/evidence and no-self-authorization boundaries. The formal delta does not cross the LLM/Coding-Agent role boundary or authorize execution.",
+      "LIMITATION": "This is not a new Foundation pair review or freeze review; unchanged Foundation technical content is not reopened."
+    },
+    {
+      "REFERENCE": "WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r6.md@sha256:c461c45c5bd20f12dcffb400acd6f7d5c0f0de0a75616eef3eb1d78dd175dcb6; history/WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r5.md@sha256:74b324e63f5368b47b7b301ffd9761dd9060c70f8c6e1c8189d91792f8138bd6; evidence/revision_5_to_6.diff@sha256:a8a3a455649c9f16c06377d0df912a32770bc6e09668c01c5d72dfbf18b73af5",
+      "CHECK_PERFORMED": "Applied the supplied r5->r6 diff in scratch and verified it reconstructs r6 byte-for-byte. Sections 2 through 11 of r5 and r6 are byte-identical, including the complete T05-R2 technical section. All actual delta hunks are confined to revision/review metadata, immutable Decision-Record propagation, lifecycle/status prose, and references; no technical threshold, product rule, platform gate or safety invariant changes.",
+      "LIMITATION": "Unchanged technical content is accepted as historical evidence under the handoff's delta-review rule and the exact WS-TFPR-20260917-03 PASS."
+    },
+    {
+      "REFERENCE": "WindowSafe_Last_CPU_Decision_WS-T05-R2-20260917-01.md@sha256:8d2b565beb28ca47e63df59b5d7d9236dd99c6f1967dba1190553c0a66b5800c; history/WindowSafe_Technical_Decisions_WS-TD-20260917-02.json@sha256:b56978b1458e1e91e225be97bffb687f9d29aa38e1fd31b981d759af5ccef7de; WindowSafe_Technical_Decisions_WS-TD-20260917-03.json@sha256:36bc4954a4aa9046be381a3095bc3f3574cb6ef2527e7bd060be15eda925f2e3",
+      "CHECK_PERFORMED": "Verified the immutable T05-R2 decision subject still states R500 no valid run >15% and R2000 no valid run >30%, so exactly 15%/30% are allowed. Normalizing only the two WS-TD-02 MAX_EXCLUSIVE keys to MAX_INCLUSIVE makes the T05_R2 payload equal to WS-TD-03 apart from the added verbatim-equivalent SINGLE_RUN_RULE_TEXT. T05-R2 status, decision-subject reference, all numeric hard limits, soft targets, measurement direction, safety/persistence preservation, user-decision provenance and non-authorization list are unchanged.",
+      "LIMITATION": "No CPU measurement or implementation is performed; this review assesses representation and preparation semantics only."
+    },
+    {
+      "REFERENCE": "WindowSafe_Preparation_Binding_WS-TFP-20260917-01_r6.json@sha256:608c74349d03e7791efd4646ed365abdb58aa5c94fd7bd4652da43dabdbd6e60; WindowSafe_Formal_Residual_Correction_WS-FR-20260917-01.json@sha256:14e184e49a3ef79743adb9b9c668c458d7a4ba625e06e876d9b6e2fc5f36f0cf; WindowSafe_Formal_Residual_Disposition_WS-FR-20260917-01.json@sha256:29dc62787f9e2d47132cb3f25bb5543b84226c63a5cbe20548b944e65ba85623; WindowSafe_V6_Immutable_Propagation_Assessment_WS-FR-20260917-01.md@sha256:6456e19cf271edb71cc82f8eab395988e23e38a6ab8c2a3ddee1bf7cad8845d2; results/WS-TFPR-20260917-03.json@sha256:49a4584f35bfb100c1c074caa96330b3007675b83334762a038b8d407e9bc783",
+      "CHECK_PERFORMED": "Verified the new Binding is REVIEW_REQUIRED for exact r6 + WS-TD-03, preserves the historical WS-TFPR-03 PASS only for the exact r5 + WS-TD-02 tuple, binds Product Truth and material decisions by immutable hashes, has no open material decision before rereview, and keeps READY_FOR_AGENT, CODING_AGENT_START, implementation, repository mutation, real-profile testing and publication/production authorization false. The post-PASS rule requires a separate new immutable READY_FOR_AGENT binding rather than in-place mutation.",
+      "LIMITATION": "This PASS does not itself create or authorize the post-review READY_FOR_AGENT binding."
+    },
+    {
+      "REFERENCE": "product/WindowSafe_Product_Definition_WS-PD-20260917-01.md@sha256:fff235b7591f483b9b31c945911a6b5950d29fac931b9136438ae5586c756900; product/WindowSafe_Approval_Record_WS-PD-20260917-01.json@sha256:a655d1fb0a594997e1f6da00c7e8a36bb6c5807ac844ce9fbf04ccb7d1afd4a5",
+      "CHECK_PERFORMED": "Verified the Product Definition and Approval bytes match the same immutable references used by the prior PASS and the r6 Binding. The r5->r6 delta contains no Product Truth change and the formal correction records explicitly require no new material user decision.",
+      "LIMITATION": "Historical user-approval provenance is taken from the package-bound approval record and is not independently re-authenticated."
+    }
+  ],
+  "REVIEW_RESULT_REFERENCE": "results/WS-TFPR-20260917-04.json",
+  "RATIONALE": "All required integrity and schema preflight checks passed. The accepted T05-R2 subject is unchanged and still has inclusive single-run caps: R500 permits exactly 15% and rejects >15%; R2000 permits exactly 30% and rejects >30%. WS-TD-20260917-03 corrects the two machine-readable field names from MAX_EXCLUSIVE to MAX_INCLUSIVE without changing the T05-R2 status, numeric limits, soft targets, measurement direction, safety/persistence rule, provenance or authorization boundary. The supplied r5->r6 diff reconstructs the exact r6 Subject, while the complete technical core (Sections 2-11, including T05-R2) remains byte-identical; only immutable-reference and lifecycle/review-status propagation changes. The new Binding is correctly REVIEW_REQUIRED and remains READY_FOR_AGENT=false before this rereview. Product Definition, Product Approval, T05-R2 decision subject and historical WS-TFPR-20260917-03 PASS are preserved unchanged for their exact prior tuple. No open CRITICAL, BLOCKING or MAJOR finding and no new material user decision remains for this corrected immutable tuple."
+}

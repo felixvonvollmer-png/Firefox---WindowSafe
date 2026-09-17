@@ -1,0 +1,77 @@
+{
+  "DOCUMENT_TYPE": "PRODUCT_DEFINITION_APPROVAL_RECORD",
+  "APPROVAL_RECORD_ID": "WS-PD-APPROVAL-20260917-01",
+  "STATUS": "APPROVED",
+  "PROJECT": "WindowSafe",
+  "APPROVAL_SUBJECT_ID": "WS-PD-20260917-01",
+  "SUBJECT_REVISION": 1,
+  "APPROVED_SUBJECT_IMMUTABLE_REFERENCE": {
+    "TYPE": "CONTENT_ADDRESSED_CONVERSATION_ATTACHMENT",
+    "FILENAME": "WindowSafe_Product_Definition_WS-PD-20260917-01.md",
+    "CONVERSATION_FILE_ID": "file_00000000945c81f4abb181bd23305c22",
+    "HASH_ALGORITHM": "SHA-256",
+    "SHA256": "fff235b7591f483b9b31c945911a6b5950d29fac931b9136438ae5586c756900",
+    "BYTES": 23779,
+    "GIT_REFERENCE": null
+  },
+  "USER_APPROVAL_REFERENCE": {
+    "SOURCE": "CURRENT_CONVERSATION_EXPLICIT_USER_MESSAGE",
+    "VERBATIM_MESSAGE": "frei",
+    "CONTEXT_LOCATOR": "Unmittelbare Nutzernachricht nach der Vorstellung des Subjects WS-PD-20260917-01, Revision 1, einschließlich P01–P04, mit der Aufforderung zur exakten Produktfreigabe.",
+    "INTERPRETATION": "Freigabe des gesamten vorgelegten Subjects einschließlich WS-P01, WS-P02, WS-P03 und WS-P04; keine Einschränkung oder Textänderung erklärt.",
+    "DATE_FROM_CONVERSATION_CONTEXT": "2026-09-17",
+    "TIMEZONE": "Europe/Berlin",
+    "PLATFORM_MESSAGE_ID": null,
+    "EXACT_MESSAGE_TIMESTAMP": null,
+    "PROVENANCE_LIMITATION": "Eine stabile Plattform-Nachrichten-ID und ein genauer Nachrichtenzeitstempel sind hier nicht verfügbar. Die Provenienz wird deshalb durch den wörtlichen Nutzertext und den eindeutigen unmittelbar vorangehenden Freigabekontext beschrieben; es wird keine Nachrichten-ID erfunden."
+  },
+  "APPROVAL_AUTHORITY": "USER",
+  "RECORDED_BY": "PROJECT_LLM",
+  "APPROVED_CLARIFICATIONS": [
+    "WS-P01",
+    "WS-P02",
+    "WS-P03",
+    "WS-P04"
+  ],
+  "PRE_APPROVAL_REVIEW_BINDING_REFERENCE": {
+    "FILENAME": "WindowSafe_Review_Binding_WS-PD-20260917-01.json",
+    "CONVERSATION_FILE_ID": "file_000000002fc881f4b46c52be64194a5c",
+    "HASH_ALGORITHM": "SHA-256",
+    "SHA256": "51552dbbbec52bb87d3e16a686116a5c1d2bfcf84b06f611e0072c297a14c01e"
+  },
+  "INTEGRITY_VERIFICATION": {
+    "SUBJECT_SHA256_MATCHES_PRESENTED_BINDING": true,
+    "SUBJECT_BYTE_COUNT_MATCHES_PRESENTED_BINDING": true,
+    "SUBJECT_MODIFIED": false,
+    "PRE_APPROVAL_REVIEW_BINDING_MODIFIED": false,
+    "PROVENANCE": "LOCAL_CONTAINER_BYTE_VERIFICATION",
+    "NOTE": "Die historischen Statusfelder im Subject und im Review Binding bleiben unverändert. Dieser separate Approval Record dokumentiert die spätere Nutzerfreigabe. Dies ist weder ein unabhängiges Review noch eine Git-Verifikation."
+  },
+  "METHOD_REFERENCE": {
+    "FOUNDATION": "V6 Foundation 1, Abschnitt 8",
+    "REPOSITORY": "felixvonvollmer-png/projektbeschreibung-und-geruest",
+    "FOUNDATION_BLOB": "3b139a7dfd70da3ae6c83bbdfa703cb98ef94193"
+  },
+  "LIFECYCLE": {
+    "PRODUCT_DEFINITION_STATUS": "APPROVED",
+    "NEXT_PHASE": "TECHNICAL_FOUNDATION_PREPARATION",
+    "TECHNICAL_FOUNDATION_PREPARATION_STATUS": "NOT_STARTED",
+    "TECHNICAL_FOUNDATION_REVIEW_STATUS": "NOT_PERFORMED",
+    "CODING_AGENT_START_AUTHORIZED": false,
+    "IMPLEMENTATION_AUTHORIZED": false,
+    "REPOSITORY_MUTATIONS_AUTHORIZED_BY_THIS_APPROVAL": false,
+    "REAL_FIREFOX_PROFILE_TESTING_AUTHORIZED": false,
+    "PUBLICATION_AUTHORIZED": false,
+    "PRODUCTION_AUTHORIZED": false,
+    "GITHUB_MUTATIONS_PERFORMED": false
+  },
+  "OPEN_LATER": {
+    "SUBJECT_ANCHORS": [
+      "WS-OL-01",
+      "WS-OL-02",
+      "WS-OL-03",
+      "WS-OL-04"
+    ],
+    "DISPOSITION": "Die im freigegebenen Subject festgelegten Klärungstrigger und Entscheidungsgrenzen bleiben bestehen. Die Produktfreigabe löst diese Folgefragen nicht stillschweigend."
+  }
+}

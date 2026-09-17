@@ -1,0 +1,25 @@
+{
+  "subject_id": "WS-PFBOOT-20260917-01",
+  "review_type": "PROJECT_FOUNDATION_REVIEW",
+  "status": "PROJECT_FOUNDATION_READY_FOR_REVIEW",
+  "end_state_binding": "EXACT_COMMIT_SUPPLIED_BY_REVIEW_REQUEST_NO_SELF_REFERENTIAL_SHA",
+  "implementer": "CODING_AGENT_WS_PFBOOT_20260917_01",
+  "evidence_paths": [
+    "foundation/evidence/preflight.json",
+    "foundation/evidence/internal-review.md",
+    "foundation/context.md",
+    "foundation/architecture.md",
+    "foundation/engineering.md",
+    "epics/README.md",
+    "reviews/README.md",
+    "reviews/review-contract.json",
+    "foundation/inputs/SHA256SUMS.json"
+  ],
+  "product_features_started": false,
+  "epic_started": false,
+  "independent_review_status": "PENDING",
+  "platform_qualification": "REQUIRED_BEFORE_AFFECTED_PRODUCT_IMPLEMENTATION",
+  "performance_method_binding": "REQUIRED_BEFORE_AFFECTED_PRODUCT_IMPLEMENTATION",
+  "runtime_evidence": "NOT_EXECUTED",
+  "operations_policy": "NOT_APPLICABLE_NOT_ACTIVATED"
+}

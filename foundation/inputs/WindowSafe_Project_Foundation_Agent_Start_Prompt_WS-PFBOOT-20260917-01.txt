@@ -1,0 +1,16 @@
+Führe jetzt den autorisierten V6 Greenfield `PROJECT_FOUNDATION_BOOTSTRAP` für WindowSafe als Coding-Agent aus.
+
+Nutze das beigefügte Paket `WindowSafe_Project_Foundation_Agent_Start_Package_WS-PFBOOT-20260917-01.zip`.
+
+Lade daraus zuerst exakt `WindowSafe_Project_Foundation_Agent_Start_Handoff_WS-PFBOOT-20260917-01.md` und verifiziere SHA-256 `15701c717061773d9017cf3c884a7eb0cebcb0d66b67a93dc13e41acb7d98774`. Verifiziere anschließend `SHA256SUMS.json` und alle dort gebundenen Inputs.
+
+Lade aus `felixvonvollmer-png/projektbeschreibung-und-geruest` die V6 Foundation 2 ausschließlich über den exakten Git-Blob `ff49e56aba09881e9e4a22dc8225949fbc4b54f6` und beachte die dortige Coding-Agent-Rolle. Foundation 1 ist über Blob `3b139a7dfd70da3ae6c83bbdfa703cb98ef94193` als Rollen-/Lifecycle-Grenze gebunden.
+
+Wichtig:
+- Rechecke `felixvonvollmer-png/Firefox---WindowSafe` unmittelbar vor dem ersten Write. Der gebundene Startzustand ist `EMPTY_REPOSITORY_NO_BRANCH_OR_COMMIT`. Bei Abweichung vor Mutation stoppen und den neuen Zustand melden.
+- Dieser Lauf ist ausschließlich `PROJECT_FOUNDATION_ONLY`. Keine normalen WindowSafe-Produktfeatures implementieren.
+- Repository-/Git-/CI-Mutationen sind nur innerhalb des gebundenen Execution Envelopes autorisiert.
+- Keine realen Firefox-Profile oder Browser-/Sitzungsdaten, keine AMO-Veröffentlichung/Signierung, keine Production-Aktion, keine neuen Provider/Kosten/Secrets/Data-Boundaries.
+- Stoppe nach internem Foundation Review bei `PROJECT_FOUNDATION_READY_FOR_REVIEW`. Erzeuge keinen unabhängigen `PROJECT_FOUNDATION_REVIEW: PASS` selbst.
+
+Gib am Ende den exakten Repository-End-SHA, Foundation-Evidence und den kanonischen `PROJECT_FOUNDATION_REVIEW`-Locator/Handoff zurück.

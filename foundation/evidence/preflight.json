@@ -1,0 +1,14 @@
+{
+  "observed_at_utc": "2026-09-17T16:59:58.896116+00:00",
+  "repository": "felixvonvollmer-png/Firefox---WindowSafe",
+  "repository_id": 1374094477,
+  "visibility": "public",
+  "configured_default_branch": "main",
+  "branches": [],
+  "advertised_refs": [],
+  "commits_api_status": 409,
+  "baseline": "EMPTY_REPOSITORY_NO_BRANCH_OR_COMMIT",
+  "workspace_entries": [],
+  "push_permission": true,
+  "evidence_class": "REPOSITORY_OR_REMOTE_VERIFIED"
+}

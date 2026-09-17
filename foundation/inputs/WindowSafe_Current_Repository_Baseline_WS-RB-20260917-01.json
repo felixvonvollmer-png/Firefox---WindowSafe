@@ -1,0 +1,21 @@
+{
+  "DOCUMENT_TYPE": "REPOSITORY_BASELINE_OBSERVATION",
+  "BASELINE_ID": "WS-RB-20260917-01",
+  "DATE": "2026-09-17",
+  "PROJECT": "WindowSafe",
+  "TARGET_REPOSITORY": "felixvonvollmer-png/Firefox---WindowSafe",
+  "TARGET_REPOSITORY_ID": 1374094477,
+  "OBSERVATION_MODE": "READ_ONLY_GITHUB_REPOSITORY_AND_BRANCHES_GET",
+  "REPOSITORY_VISIBILITY": "public",
+  "CONFIGURED_DEFAULT_BRANCH_NAME": "main",
+  "RETURNED_BRANCHES": [],
+  "BINDABLE_COMMIT_SHA": null,
+  "BASELINE_KIND": "EMPTY_REPOSITORY_NO_BRANCH_OR_COMMIT",
+  "RECHECK_IMMEDIATELY_BEFORE_FIRST_MUTATION": "REQUIRED",
+  "BASELINE_MISMATCH_RULE": "If any branch or commit exists at coding-agent preflight, do not overwrite or assume ownership. Stop before mutation and report the exact new repository state for rebinding or explicit disposition.",
+  "SOURCE_REFERENCES": [
+    "https://api.github.com/repos/felixvonvollmer-png/Firefox---WindowSafe",
+    "https://api.github.com/repos/felixvonvollmer-png/Firefox---WindowSafe/branches?per_page=100"
+  ],
+  "NOTE": "This observation is not a Git commit baseline because the repository is empty. It authorizes no mutation by itself."
+}

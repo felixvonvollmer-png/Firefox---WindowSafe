@@ -1,0 +1,3 @@
+* text=auto eol=lf
+foundation/inputs/** -text
+foundation/sources/** -text

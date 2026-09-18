@@ -1,19 +1,28 @@
 {
-  "subject_id": "WS-PFBOOT-20260917-01",
+  "subject_id": "WS-HC-20260917-01",
   "review_type": "PROJECT_FOUNDATION_REVIEW",
   "status": "PROJECT_FOUNDATION_READY_FOR_REVIEW",
   "end_state_binding": "EXACT_COMMIT_SUPPLIED_BY_REVIEW_REQUEST_NO_SELF_REFERENTIAL_SHA",
-  "implementer": "CODING_AGENT_WS_PFBOOT_20260917_01",
+  "implementer": "CODING_AGENT_WS_HC_20260917_01",
   "evidence_paths": [
-    "foundation/evidence/preflight.json",
-    "foundation/evidence/internal-review.md",
+    "foundation/evidence/harness-correction.md",
+    "foundation/evidence/harness-preflight.json",
+    "foundation/evidence/harness-inputs.json",
+    "foundation/evidence/harness-authorization.json",
+    "foundation/evidence/harness-handoff.md",
+    "foundation/evidence/harness-draft.md",
+    "foundation/evidence/harness-residual.json",
+    "foundation/evidence/harness-return.json",
+    "foundation/evidence/harness-transfer.json",
+    "reviews/results/WS-PFR-20260917-01.json",
     "foundation/context.md",
-    "foundation/architecture.md",
     "foundation/engineering.md",
-    "epics/README.md",
     "reviews/README.md",
     "reviews/review-contract.json",
-    "foundation/inputs/SHA256SUMS.json"
+    "tools/foundation.py",
+    "tests/test_foundation.py",
+    "tests/test_harness_correction.py",
+    ".github/workflows/foundation.yml"
   ],
   "product_features_started": false,
   "epic_started": false,
@@ -21,5 +30,10 @@
   "platform_qualification": "REQUIRED_BEFORE_AFFECTED_PRODUCT_IMPLEMENTATION",
   "performance_method_binding": "REQUIRED_BEFORE_AFFECTED_PRODUCT_IMPLEMENTATION",
   "runtime_evidence": "NOT_EXECUTED",
-  "operations_policy": "NOT_APPLICABLE_NOT_ACTIVATED"
+  "operations_policy": "NOT_APPLICABLE_NOT_ACTIVATED",
+  "start_baseline_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+  "work_branch": "fix/ws-hc-20260917-01",
+  "risk": "ELEVATED",
+  "integration_authorized": false,
+  "external_finding_confirmation": "PENDING_INDEPENDENT_DELTA_REVIEW"
 }

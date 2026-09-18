@@ -1,6 +1,6 @@
 {
-  "contract_version": 1,
-  "format": "WINDOWSAFE_REVIEW_CONTRACT_V1",
+  "contract_version": 2,
+  "format": "WINDOWSAFE_REVIEW_CONTRACT_V2",
   "result_channel": "reviews/results/<REVIEW_ID>.json",
   "required_fields": [
     "schema_version",
@@ -96,5 +96,12 @@
     "FINDINGS": "findings",
     "REVIEWED_EVIDENCE_REFERENCE": "reviewed_evidence",
     "REVIEW_RESULT_REFERENCE": "result_reference"
+  },
+  "minor_open_disposition": {
+    "prefix": "EXPLICIT_NONBLOCKING_FOLLOW_UP: ",
+    "rationale": "NONEMPTY_TEXT_WITHOUT_ADDITIONAL_DISPOSITION_MARKERS",
+    "applies_to": "ALL_OPEN_MINOR_FINDINGS_REGARDLESS_OF_VERDICT",
+    "legacy_v1": "ENFORCE_EXPLICIT_NONBLOCKING_SEMANTICS_WITH_SAME_MARKER_NO_ID_EXEMPTIONS",
+    "limitation": "MARKER_IS_NOT_PROOF_OF_AUTHENTICITY_OR_SEMANTIC_NONBLOCKING"
   }
 }

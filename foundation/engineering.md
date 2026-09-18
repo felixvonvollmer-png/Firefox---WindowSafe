@@ -39,13 +39,36 @@ Keine Produktdependencies, keine neuen Provider oder bezahlten Dienste.
 ## Git und Integration
 
 Vor jedem Write Root/Remote/Zielref/HEAD/Worktree/untracked/Index prüfen.
-Vor dem allerersten Write zusätzlich Repository-ID 1374094477, public und
+Historisch vor dem allerersten Bootstrap-Write zusätzlich Repository-ID 1374094477, public und
 EMPTY_REPOSITORY_NO_BRANCH_OR_COMMIT; siehe `foundation/evidence/preflight.json`.
 Bei Konflikten mit fremder Arbeit stoppen statt löschen/stashen/resetten.
 Nur geprüfte benannte Pfade stagen; tatsächlichen staged Diff vor Commit prüfen.
 Keine Force-Pushes, History-Rewrites, Repo-/Sichtbarkeits-/Admin-/Secretänderungen.
 Vor Push Remote erneut prüfen; danach SHA-Gleichheit lokal/tracking/remote belegen.
 Eigener Push ist keine unabhängige Acceptance.
+
+Für **WS-HC-20260917-01** gilt die neue WS-EA-20260917-02: Start an
+`4ba2c473fe4d90c85d94ee2b2f5cc5777d115109`, ausschließlich
+`fix/ws-hc-20260917-01`, kein main-Write und kein Merge/Auto-Merge. Remote-main,
+Branch-/Pfadkollisionen, sauberer Index/Worktree und Ausgabe-Linkfreiheit wurden
+unmittelbar vor Mutation geprüft. Korrekturevidence unter `foundation/evidence/harness-*`.
+Mindestens ELEVATED, unabhängige Delta-Prüfung vor Integration; spätere
+Integrationsfreigabe bleibt erforderlich.
+
+CI checkt auf PRs ausdrücklich den PR-Head aus (kein synthetischer Merge-Commit).
+Beim ersten Push eines neuen nichtleeren Korrekturbranches ist `event.before` null;
+dann dient der im commitgebundenen Subject deklarierte `start_baseline_sha` als
+Historybasis. Ancestorprüfung und vollständiger Append-only-Abgleich bleiben aktiv.
+Bei Folgeschüben wird der tatsächliche vorherige Push-SHA benutzt, bei PRs der Base-SHA.
+
+Der Inventar-Writer öffnet Root/Ausgabeordner/Blatt mit No-follow und relativen
+Directory-FDs, prüft den geöffneten Dateityp/Linkcount vor dem Trunkieren und
+folgt nach Öffnung keinem Pfad mehr. Es gibt keine automatische Linklöschung.
+Qualifiziert sind die lokale Linux-Umgebung und Ubuntu-CI mit Python 3.14.4;
+fehlende POSIX/dir_fd/No-follow-Fähigkeiten blockieren vor Ausgabe-Mutation.
+Kein Windows-/Reparse-Point-Nachweis oder Schutz gegen feindliche Umbenennung
+bereits geöffneter Verzeichnis-Inodes behauptet. Buildausgabe ist regenerierbar,
+nicht atomar/crash-durable; Schreibfehler sind kein Erfolg.
 
 `main` ist Development, ohne Deployment. Initialer Root-Commit darf direkt nach
 lokalen Gates und internem Review integriert werden; CI-Verifikation folgt am

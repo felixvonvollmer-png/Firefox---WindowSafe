@@ -58,14 +58,27 @@ werden nicht umgeschrieben. Kein neuer Foundation-Pair-Review.
 
 ## Aktueller Lifecycle
 
-Product APPROVED → Technical Preparation PASS + READY binding → separat
-autorisierter PROJECT_FOUNDATION_BOOTSTRAP → interner Foundation Review →
-PROJECT_FOUNDATION_READY_FOR_REVIEW → **STOP**.
+Der historische Bootstrap-Subject am SHA
+`4ba2c473fe4d90c85d94ee2b2f5cc5777d115109` erhielt WS-PFR-20260917-01 PASS mit
+offenem nichtblockierendem MINOR. Vollständiger unveränderter Rücklauf:
+`reviews/results/WS-PFR-20260917-01.json`. Das PASS gilt ausschließlich für den
+alten Subject. Der separate Validator-Residual ist kein nachträgliches Finding
+dieses Reviews. Beide historischen Befunde werden nicht vom Coding-Agenten geschlossen.
 
-Danach unabhängiger PROJECT_FOUNDATION_REVIEW; erst nach PASS folgt externer
-Projektkontext-Sync oder begründetes NOT_APPLICABLE, dann FIRST_EPIC_PREPARATION.
-Featurestart braucht unabhängig geprüfte und exakt gebundene Epic Preparation
-plus hinreichende neue Ausführungsautorisierung und erfüllte Vorab-Gates.
+Aktuell autorisiert: **WS-HC-20260917-01** durch **WS-EA-20260917-02** für exakten
+Reviewtransfer und engen Harness-Fix auf `fix/ws-hc-20260917-01`. Originalbytes
+der neuen Autorisierung und des gebundenen Draftumfangs, Handoff, Residual und
+Rücklauf stehen separat unter `foundation/evidence/harness-*.json` beziehungsweise
+`.md`; genaue Paketpfad-/Hashzuordnung: `foundation/evidence/harness-inputs.json`.
+Die alten Inputs/Quellen/Manifeste bleiben unverändert. Historische Statuswörter
+im Draft werden durch die spätere separate Autorisierung eingeordnet, nicht editiert.
+
+Korrektur → lokale Pflichtchecks/CI → PROJECT_FOUNDATION_READY_FOR_REVIEW auf
+exaktem **ungemergtem** Branch-/PR-Head → **STOP** → unabhängiger gezielter
+PROJECT_FOUNDATION_REVIEW → separate Integrationsfreigabe. Auch ein späterer PASS
+autorisiert hier keinen Merge. Erst nach angenommener und autorisierter Integration
+folgen Kontext-Sync/NOT_APPLICABLE und FIRST_EPIC_PREPARATION. Keine Epic-/Feature-
+oder Browserarbeit in diesem Lauf; alle bestehenden Vorab-Gates bleiben bestehen.
 
 Ein externer installierter ChatGPT-Projektkanal ist hier nicht gebunden.
 Der Review läuft über Git-Locators: externer Text-Sync ist für diesen Bootstrap

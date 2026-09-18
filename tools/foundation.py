@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import re
+import stat
 import subprocess
 import sys
 
@@ -39,6 +40,21 @@ AUTHORITIES = {
 }
 ID_PATTERN = r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}"
 SHA_PATTERN = r"[0-9a-f]{40}"
+NONBLOCKING_PREFIX = "EXPLICIT_NONBLOCKING_FOLLOW_UP: "
+MINOR_DISPOSITION_CONTRACT = {
+    "prefix": NONBLOCKING_PREFIX,
+    "rationale": "NONEMPTY_TEXT_WITHOUT_ADDITIONAL_DISPOSITION_MARKERS",
+    "applies_to": "ALL_OPEN_MINOR_FINDINGS_REGARDLESS_OF_VERDICT",
+    "legacy_v1": "ENFORCE_EXPLICIT_NONBLOCKING_SEMANTICS_WITH_SAME_MARKER_NO_ID_EXEMPTIONS",
+    "limitation": "MARKER_IS_NOT_PROOF_OF_AUTHENTICITY_OR_SEMANTIC_NONBLOCKING",
+}
+CORRECTION_INPUTS = {
+    "foundation/evidence/harness-authorization.json": "25f0ee35f9cafe89230f47e218d31a43c2aecb57f4f67446008c4a8c4eb3e0ab",
+    "foundation/evidence/harness-handoff.md": "f7957cf9e9643616c78b49d8ffa5912e6d49a9bc155fae95a41192d4c90e0e46",
+    "foundation/evidence/harness-draft.md": "83fee934ec31863b808af771481fcda6d65954b74e62628c1b73e8e24d61bffe",
+    "foundation/evidence/harness-residual.json": "694ac89f40e9246ee8eb4c79b4a5f5712e0079270258fdc90529abe95d223a18",
+    "foundation/evidence/harness-return.json": "c9af93124931e13442e38b40ee476f0a738b8f16b6f0a67f10dfa94a2aaf0e12",
+}
 
 
 class Invalid(ValueError):
@@ -106,14 +122,21 @@ def at(sha, path):
 
 
 def validate_contract(c):
-    fields(c, {
+    require(isinstance(c, dict), "contract object required")
+    version = c.get("contract_version")
+    require(type(version) is int and version in {1, 2}, "contract version")
+    expected_fields = {
         "contract_version", "format", "result_channel", "required_fields", "review_types",
         "verdicts", "severities", "finding_statuses", "reviewer_fields", "provenance_fields",
         "subject_fields", "evidence_fields", "finding_fields", "authorities", "independence",
         "transport", "rules", "semantic_minimum_mapping",
-    })
-    require(type(c["contract_version"]) is int and c["contract_version"] == 1, "contract version")
-    require(c["format"] == "WINDOWSAFE_REVIEW_CONTRACT_V1", "contract format")
+    }
+    if version == 2:
+        expected_fields.add("minor_open_disposition")
+    fields(c, expected_fields)
+    require(c["format"] == "WINDOWSAFE_REVIEW_CONTRACT_V" + str(version), "contract format")
+    if version == 2:
+        require(c["minor_open_disposition"] == MINOR_DISPOSITION_CONTRACT, "minor disposition contract drift")
     require(c["result_channel"] == "reviews/results/<REVIEW_ID>.json", "result channel")
     require(c["semantic_minimum_mapping"] == SEMANTIC_MAPPING, "semantic minimum mismatch")
     require(c["authorities"] == AUTHORITIES, "review authorities mismatch")
@@ -169,6 +192,7 @@ def request(sha, path="foundation/subject.json"):
     require(len(s["evidence_paths"]) == len(set(s["evidence_paths"])), "duplicate evidence")
     evidence = [{"path": safe_path(p), "sha256": sha256(at(sha, p))} for p in s["evidence_paths"]]
     return {
+        "schema_version": c["contract_version"],
         "review_type": kind,
         "subject": {"id": s["subject_id"], "path": path, "end_sha": sha},
         "implementer": s["implementer"], "required_authority": c["authorities"][kind],
@@ -180,7 +204,7 @@ def request(sha, path="foundation/subject.json"):
 def validate_result(result, req, c, filename):
     validate_contract(c)
     fields(result, c["required_fields"])
-    require(type(result["schema_version"]) is int and result["schema_version"] == 1, "schema version")
+    require(type(result["schema_version"]) is int and result["schema_version"] == c["contract_version"], "schema version")
     identifier(result["review_id"])
     require(filename == result["review_id"] + ".json", "ID/filename mismatch")
     require(result["result_reference"] == "reviews/results/" + filename, "result locator mismatch")
@@ -216,6 +240,13 @@ def validate_result(result, req, c, filename):
         require(finding["status"] in c["finding_statuses"], "finding status")
         text(finding["description"])
         text(finding["disposition"])
+        if finding["status"] == "OPEN" and finding["severity"] == "MINOR":
+            # Also enforce the original V1 semantic rule, without rewriting its contract.
+            disposition = finding["disposition"]
+            require(disposition.startswith(NONBLOCKING_PREFIX), "explicit nonblocking marker required")
+            rationale = disposition[len(NONBLOCKING_PREFIX):]
+            text(rationale)
+            require(not re.search(r"\b(?:EXPLICIT_[A-Z_]+|BLOCKING|NONBLOCKING)\s*:", rationale, re.IGNORECASE), "ambiguous disposition markers")
         if result["verdict"] == "PASS":
             require(not (finding["status"] == "OPEN" and finding["severity"] in {"CRITICAL", "BLOCKING", "MAJOR"}), "PASS with blocking finding")
 
@@ -274,6 +305,8 @@ def scope(path):
 def check(root=ROOT):
     require(sys.version_info[:3] == (3, 14, 4), "Python 3.14.4 required")
     input_integrity(root)
+    for path, digest in CORRECTION_INPUTS.items():
+        require(sha256((root / path).read_bytes()) == digest, "correction input drift")
     validate_contract(parse((root / CONTRACT_PATH).read_bytes()))
     subject = parse((root / "foundation/subject.json").read_bytes())
     require(subject["product_features_started"] is False and subject["epic_started"] is False, "product start prohibited")
@@ -324,8 +357,48 @@ def build_bytes(root):
     return (json.dumps({"artifact": "FOUNDATION_INVENTORY_NOT_ADDON", "files": inventory}, indent=2) + "\n").encode()
 
 
+def write_inventory(root, data):
+    """No-follow, descriptor-relative writer for qualified POSIX environments.
+
+    Never unlinks/replaces a preexisting link. The output is regenerable, not an
+    atomic/durable store. Hostile mutation of opened inode ancestry is outside
+    the trusted local workspace model; no Windows/reparse-point claim is made.
+    """
+    require(os.name == "posix" and os.open in os.supports_dir_fd
+            and os.mkdir in os.supports_dir_fd
+            and all(hasattr(os, flag) for flag in ("O_NOFOLLOW", "O_DIRECTORY", "O_NONBLOCK")),
+            "qualified no-follow writer unavailable")
+    directory_flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    root_fd = os.open(root, directory_flags)
+    try:
+        try:
+            os.mkdir("build", mode=0o700, dir_fd=root_fd)
+        except FileExistsError:
+            pass  # The following open, not this observation, enforces no-follow.
+        directory_fd = os.open("build", directory_flags, dir_fd=root_fd)
+        try:
+            flags = os.O_WRONLY | os.O_CREAT | os.O_NOFOLLOW | os.O_NONBLOCK
+            output_fd = os.open("foundation-inventory.json", flags, 0o600, dir_fd=directory_fd)
+            try:
+                info = os.fstat(output_fd)
+                require(stat.S_ISREG(info.st_mode) and info.st_nlink == 1, "output must be a single-link regular file")
+                # No path lookup after validation; do not truncate before fstat.
+                os.ftruncate(output_fd, 0)
+                remaining = memoryview(data)
+                while remaining:
+                    written = os.write(output_fd, remaining)
+                    require(written > 0, "output write made no progress")
+                    remaining = remaining[written:]
+            finally:
+                os.close(output_fd)
+        finally:
+            os.close(directory_fd)
+    finally:
+        os.close(root_fd)
+
+
 def protected(path):
-    return path.startswith(("foundation/inputs/", "foundation/sources/", "reviews/results/"))
+    return path in CORRECTION_INPUTS or path.startswith(("foundation/inputs/", "foundation/sources/", "reviews/results/"))
 
 
 def check_history_maps(before, after):
@@ -371,9 +444,7 @@ def main():
         result = build_bytes(ROOT)
         if args.verify_repeat:
             require(result == build_bytes(ROOT), "nondeterministic build")
-        require(not (ROOT / "build").is_symlink(), "build symlink prohibited")
-        (ROOT / "build").mkdir(exist_ok=True)
-        (ROOT / "build/foundation-inventory.json").write_bytes(result)
+        write_inventory(ROOT, result)
         print("FOUNDATION_INVENTORY_SHA256", sha256(result))
     elif args.command == "request":
         print(json.dumps(request(args.sha, args.subject), indent=2))
@@ -387,6 +458,11 @@ def main():
     elif args.command == "history":
         base = os.environ.get("FOUNDATION_EVENT_BASE") if args.event_base else args.base
         require(args.event_base or args.base is not None, "explicit history baseline required")
+        if args.event_base and base == "0" * 40:
+            # A first push of this non-root correction branch has no event.before.
+            # Use its explicitly bound start SHA, never skip the history check.
+            subject = parse(at(commit("HEAD"), "foundation/subject.json"))
+            base = subject.get("start_baseline_sha", base)
         history(base)
     print(args.command.upper() + " OK (mechanical evidence only)")
 

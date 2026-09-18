@@ -25,7 +25,7 @@ class ReviewContractTests(unittest.TestCase):
             "reviewed_evidence": [{"path": "foundation/evidence/synthetic.md", "sha256": "b" * 64}],
         }
         self.result = {
-            "schema_version": 1, "review_id": "SYNTHETIC-R1",
+            "schema_version": self.contract["contract_version"], "review_id": "SYNTHETIC-R1",
             "review_type": self.request["review_type"],
             "reviewer": {"authority": "INDEPENDENT_PROJECT_LLM", "identity": "synthetic-reviewer", "run_reference": "synthetic-run", "independence": "FRESH_OR_SUFFICIENTLY_ISOLATED"},
             "provenance": {"source_reference": "SYNTHETIC_TEST_ONLY_NOT_A_REAL_REVIEW", "transport": "EXACT_AUTHORIZED_TRANSFER"},
@@ -109,7 +109,7 @@ class ReviewContractTests(unittest.TestCase):
         self.result["findings"] = [{"id": "F1", "severity": "MINOR", "status": "OPEN", "description": "synthetic", "disposition": ""}]
         with self.assertRaises(f.Invalid):
             self.validate()
-        self.result["findings"][0]["disposition"] = "nonblocking follow-up with next-review trigger"
+        self.result["findings"][0]["disposition"] = "EXPLICIT_NONBLOCKING_FOLLOW_UP: nonblocking follow-up with next-review trigger"
         self.validate()
 
     def test_duplicate_findings_rejected(self):
@@ -249,7 +249,7 @@ class FoundationGuardsTests(unittest.TestCase):
                 first = f.request("HEAD")
                 f.history("0" * 40)
                 result = {
-                    "schema_version": 1, "review_id": "SYNTHETIC-INTEGRATION",
+                    "schema_version": first["schema_version"], "review_id": "SYNTHETIC-INTEGRATION",
                     "review_type": first["review_type"], "subject": first["subject"],
                     "reviewer": {"authority": first["required_authority"], "identity": "synthetic-independent", "run_reference": "synthetic-run", "independence": "FRESH_OR_SUFFICIENTLY_ISOLATED"},
                     "provenance": {"source_reference": "SYNTHETIC_ONLY", "transport": "EXACT_AUTHORIZED_TRANSFER"},

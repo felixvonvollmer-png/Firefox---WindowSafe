@@ -1,0 +1,62 @@
+{
+  "evidence_class": "LOCAL_AGENT_REPORTED",
+  "zip_sha256_observed": "6289a2df4ef1adadd15ebccdc33f73811558f3521b200480399c447c4cc94f8b",
+  "all_outer_manifest_entries_verified": 15,
+  "all_return_manifest_entries_verified": 7,
+  "originals": [
+    {
+      "package_path": "WindowSafe_Execution_Authorization_WS-EA-20260918-01.json",
+      "repository_path": "foundation/evidence/followup-authorization.json",
+      "sha256": "f3f0c51070e51974bfc6979e5db4ead2cdfa131315c0654ebad8773e467320ed",
+      "bytes": 11429
+    },
+    {
+      "package_path": "WindowSafe_Harness_Followup_Handoff_WS-HC-20260918-01.md",
+      "repository_path": "foundation/evidence/followup-handoff.md",
+      "sha256": "17461e12b7a8ff3fcd8fcf5924e506147a471c44a28e626df184dbc91120bb61",
+      "bytes": 7445
+    },
+    {
+      "package_path": "return/WindowSafe_Harness_Followup_WS-HC-20260918-01_DRAFT.md",
+      "repository_path": "foundation/evidence/followup-draft.md",
+      "sha256": "77f91ef8333959c6e69c2af510600101fc3fcd241fd5b5be49eee475967582f7",
+      "bytes": 7941
+    },
+    {
+      "package_path": "WindowSafe_Reviewer_Environment_WS-REVENV-20260918-01_AUTHORIZED_PREPARATION.md",
+      "repository_path": "foundation/evidence/followup-environment-authorization.md",
+      "sha256": "263a209c0a8233e72fec5020fe5cdb2716f9a4d07c2b3c3b862d104e62a5428d",
+      "bytes": 4453
+    },
+    {
+      "package_path": "return/WindowSafe_Reviewer_Environment_WS-REVENV-20260918-01_DRAFT.md",
+      "repository_path": "foundation/evidence/followup-environment-draft.md",
+      "sha256": "40d65217da93528afddd5f469884bc4571dfc548c36af445ab92dd3066bebbf4",
+      "bytes": 3621
+    },
+    {
+      "package_path": "return/WindowSafe_Review_Return_Record_WS-PFRRETURN-20260918-01.json",
+      "repository_path": "foundation/evidence/followup-return.json",
+      "sha256": "55036d0f3845321f7b66dc8b4cac0f45e57222d6f32816420035c4dbcfcf12ed",
+      "bytes": 14987
+    },
+    {
+      "package_path": "WindowSafe_Current_Repository_Baseline_WS-RB-20260918-01.json",
+      "repository_path": "foundation/evidence/followup-baseline.json",
+      "sha256": "ca79ad0e6433281341215e98eaff763397d7886966238e743440a8c5d2186d4c",
+      "bytes": 3345
+    },
+    {
+      "package_path": "SHA256SUMS.json",
+      "repository_path": "foundation/evidence/followup-manifest.json",
+      "sha256": "85e15f981b0b1c134234759ddd072d63c7521351c14b84c23138081e6b56950b",
+      "bytes": 2910
+    },
+    {
+      "package_path": "return/SHA256SUMS.json",
+      "repository_path": "foundation/evidence/followup-return-manifest.json",
+      "sha256": "486f0fc704a75b52ed5fa8761ef8c271f5d9cfa6181174dd638a08fc48b8a4fe",
+      "bytes": 1339
+    }
+  ]
+}

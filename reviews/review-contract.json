@@ -1,6 +1,6 @@
 {
-  "contract_version": 2,
-  "format": "WINDOWSAFE_REVIEW_CONTRACT_V2",
+  "contract_version": 3,
+  "format": "WINDOWSAFE_REVIEW_CONTRACT_V3",
   "result_channel": "reviews/results/<REVIEW_ID>.json",
   "required_fields": [
     "schema_version",
@@ -101,7 +101,39 @@
     "prefix": "EXPLICIT_NONBLOCKING_FOLLOW_UP: ",
     "rationale": "NONEMPTY_TEXT_WITHOUT_ADDITIONAL_DISPOSITION_MARKERS",
     "applies_to": "ALL_OPEN_MINOR_FINDINGS_REGARDLESS_OF_VERDICT",
-    "legacy_v1": "ENFORCE_EXPLICIT_NONBLOCKING_SEMANTICS_WITH_SAME_MARKER_NO_ID_EXEMPTIONS",
+    "legacy_v1": "HISTORICAL_SEMANTICS_WITH_BOUND_SEPARATE_DISPOSITION_WHEN_UNCLEAR",
     "limitation": "MARKER_IS_NOT_PROOF_OF_AUTHENTICITY_OR_SEMANTIC_NONBLOCKING"
+  },
+  "legacy_v1_disposition": {
+    "recognized_v1_text": "nonblocking follow-up with next-review trigger",
+    "explicit_marker_also_supported": "EXPLICIT_NONBLOCKING_FOLLOW_UP: ",
+    "otherwise": "V1_SEMANTIC_DISPOSITION_REQUIRED_NOT_V2_SYNTAX_ERROR",
+    "sidecar": "reviews/dispositions/<REVIEW_ID>.json",
+    "binding_fields": [
+      "result_sha256",
+      "subject",
+      "reviewed_evidence",
+      "original_provenance"
+    ],
+    "required_fields": [
+      "result_sha256",
+      "subject",
+      "reviewed_evidence",
+      "original_provenance",
+      "reviewer",
+      "provenance",
+      "decisions"
+    ],
+    "decision_fields": [
+      "finding_id",
+      "original_disposition_sha256",
+      "decision",
+      "rationale",
+      "follow_up",
+      "trigger"
+    ],
+    "decision": "NONBLOCKING_FOLLOW_UP",
+    "authority": "SAME_ROLE_AND_INDEPENDENCE_REQUIREMENTS_AS_BOUND_REVIEW",
+    "limits": "V1_ONLY_NO_EMPTY_OR_EXPLICIT_BLOCKING_OVERRIDE_EXTERNAL_AUTHENTICATION_REQUIRED"
   }
 }

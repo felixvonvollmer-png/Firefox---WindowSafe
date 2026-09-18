@@ -1,0 +1,71 @@
+{
+  "document_type": "REPOSITORY_CONTINUATION_BASELINE_OBSERVATION",
+  "record_id": "WS-RB-20260918-01",
+  "date": "2026-09-18",
+  "timezone": "Europe/Berlin",
+  "observer_role": "PROJECT_LLM_EXECUTION_HANDOFF_PREPARER",
+  "evidence_class": "REPOSITORY_OR_REMOTE_VERIFIED",
+  "repository": "felixvonvollmer-png/Firefox---WindowSafe",
+  "repository_id": 1374094477,
+  "observed": {
+    "pr_number": 1,
+    "pr_state": "open",
+    "pr_draft": true,
+    "pr_merged": false,
+    "pr_head_branch": "fix/ws-hc-20260917-01",
+    "pr_head_sha": "9b6dd621deec1193bfdfbdfa730e8f9349c73fd6",
+    "pr_base_branch": "main",
+    "pr_base_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+    "remote_branch_sha": "9b6dd621deec1193bfdfbdfa730e8f9349c73fd6",
+    "remote_main_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+    "repository_visibility": "public"
+  },
+  "immutable_expected_context": {
+    "continuation_tree": "7646240206f1b389333f4153c2fb9208f0bbebe2",
+    "cumulative_base_tree": "2cdf2d0484463c9639d924f0aa239499637e941b",
+    "original_review_transfer_commit": "48224840e68da6c66c0f129f0564fcaad9c1ad8e"
+  },
+  "baseline_purposes": {
+    "run_start_head_sha": "9b6dd621deec1193bfdfbdfa730e8f9349c73fd6",
+    "cumulative_review_and_history_base_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+    "main_must_remain_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+    "note": "Die neue Laufbaseline ersetzt nicht die bisher unakzeptierte kumulative Strecke ab dem ursprünglichen main."
+  },
+  "sources": [
+    {
+      "tool": "GitHub.get_pr_info",
+      "repository": "felixvonvollmer-png/Firefox---WindowSafe",
+      "pr_number": 1,
+      "response_reference": "/response/turn88",
+      "read_scope": "PR state, draft, merged, repository ID, head/base identities"
+    },
+    {
+      "tool": "GitHub.fetch",
+      "url": "https://api.github.com/repos/felixvonvollmer-png/Firefox---WindowSafe/branches?per_page=100",
+      "response_reference": "/response/turn89",
+      "read_scope": "Beide sichtbaren Branchidentitäten"
+    },
+    {
+      "tool": "GitHub.fetch",
+      "url": "https://api.github.com/repos/felixvonvollmer-png/Firefox---WindowSafe/pulls/1",
+      "response_reference": "/response/turn90",
+      "read_scope": "Öffentliche Repositoryidentität in PR-Metadaten; keine Mutationen"
+    }
+  ],
+  "limitations": [
+    "Kein Zugriff auf den lokalen Codex-Worktree, Index oder seine Credentials.",
+    "Keine eigene Ausführung von Repository-Tests, request, schema-preflight oder validate-result in dieser Paketvorbereitung.",
+    "Kein aktueller CI-Rerun; historische CI-Claims bleiben den früheren Evidence-Dateien zugeordnet.",
+    "auto_merge wurde in der aktuell zugänglichen Antwort nicht unabhängig als null bestätigt; vor Writes separat prüfen.",
+    "Tree-Identitäten hier aus dem gebundenen Vorlauf übernommen, nicht erneut vollständig lokal nachgehasht."
+  ],
+  "mandatory_recheck_before_agent_write": [
+    "repository identity and public visibility",
+    "PR open/unmerged/draft and auto_merge null",
+    "branch and main exact SHAs",
+    "HEAD, remote, working tree, untracked files, index and foreign work",
+    "expected commit/tree identities and input hashes"
+  ],
+  "on_mismatch": "STOP_BEFORE_AFFECTED_MUTATION__NO_RESET_STASH_FORCE_OR_SILENT_REBASE",
+  "repository_mutations_performed": false
+}

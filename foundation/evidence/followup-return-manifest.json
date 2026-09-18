@@ -1,0 +1,43 @@
+{
+  "format": "SHA256_FILE_MANIFEST",
+  "excludes": [
+    "SHA256SUMS.json"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2357,
+      "sha256": "a8e3cedcd0d5d75a762fe6c7430299d9390d436697a20b4a1986e645d52d7e36"
+    },
+    {
+      "path": "WindowSafe_Harness_Followup_WS-HC-20260918-01_DRAFT.md",
+      "bytes": 7941,
+      "sha256": "77f91ef8333959c6e69c2af510600101fc3fcd241fd5b5be49eee475967582f7"
+    },
+    {
+      "path": "WindowSafe_Review_Return_Record_WS-PFRRETURN-20260918-01.json",
+      "bytes": 14987,
+      "sha256": "55036d0f3845321f7b66dc8b4cac0f45e57222d6f32816420035c4dbcfcf12ed"
+    },
+    {
+      "path": "WindowSafe_Reviewer_Environment_WS-REVENV-20260918-01_DRAFT.md",
+      "bytes": 3621,
+      "sha256": "40d65217da93528afddd5f469884bc4571dfc548c36af445ab92dd3066bebbf4"
+    },
+    {
+      "path": "reference/review-contract-at-9b6dd621.json",
+      "bytes": 2858,
+      "sha256": "3f5bbc1768d74ba61aa03537f0244fb3e5bf4bac1ebbbac26a1ec9fe493b486d"
+    },
+    {
+      "path": "reference/subject-at-9b6dd621.json",
+      "bytes": 1645,
+      "sha256": "80f8bf8195a6ce6bf06247ab6a9e8ae3e3d429a54588827e3074e690ef3bdc25"
+    },
+    {
+      "path": "results/WS-PFR-20260918-01.json",
+      "bytes": 12581,
+      "sha256": "0275bfcbad98bd727b861bd5b972af635139cc0986ef99eed1965331eda5f6b2"
+    }
+  ]
+}

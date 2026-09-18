@@ -1,0 +1,84 @@
+{
+  "format": "SHA256_FILE_MANIFEST",
+  "package_id": "WS-HCSTART-20260918-01",
+  "excludes": [
+    "SHA256SUMS.json"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "2ea8b44354f05a43fc043c76804ed7d21786c27b70373aea2e18e53c1a63857f",
+      "bytes": 2425
+    },
+    {
+      "path": "WindowSafe_Codex_Startprompt_WS-HC-20260918-01.txt",
+      "sha256": "0caa0c77f5b90061d879b77f3badafcfbcccacd6723db44c4e2c2b3dfb722938",
+      "bytes": 1705
+    },
+    {
+      "path": "WindowSafe_Current_Repository_Baseline_WS-RB-20260918-01.json",
+      "sha256": "ca79ad0e6433281341215e98eaff763397d7886966238e743440a8c5d2186d4c",
+      "bytes": 3345
+    },
+    {
+      "path": "WindowSafe_Execution_Authorization_WS-EA-20260918-01.json",
+      "sha256": "f3f0c51070e51974bfc6979e5db4ead2cdfa131315c0654ebad8773e467320ed",
+      "bytes": 11429
+    },
+    {
+      "path": "WindowSafe_Harness_Followup_Handoff_WS-HC-20260918-01.md",
+      "sha256": "17461e12b7a8ff3fcd8fcf5924e506147a471c44a28e626df184dbc91120bb61",
+      "bytes": 7445
+    },
+    {
+      "path": "WindowSafe_Reviewer_Environment_WS-REVENV-20260918-01_AUTHORIZED_PREPARATION.md",
+      "sha256": "263a209c0a8233e72fec5020fe5cdb2716f9a4d07c2b3c3b862d104e62a5428d",
+      "bytes": 4453
+    },
+    {
+      "path": "WindowSafe_Start_Package_Verification_WS-HCSTART-20260918-01.json",
+      "sha256": "8040cc9f939480a97c63e7bd2b528763c1534b11e83b2ba975d2f05460daaa8a",
+      "bytes": 2659
+    },
+    {
+      "path": "return/README.md",
+      "sha256": "a8e3cedcd0d5d75a762fe6c7430299d9390d436697a20b4a1986e645d52d7e36",
+      "bytes": 2357
+    },
+    {
+      "path": "return/SHA256SUMS.json",
+      "sha256": "486f0fc704a75b52ed5fa8761ef8c271f5d9cfa6181174dd638a08fc48b8a4fe",
+      "bytes": 1339
+    },
+    {
+      "path": "return/WindowSafe_Harness_Followup_WS-HC-20260918-01_DRAFT.md",
+      "sha256": "77f91ef8333959c6e69c2af510600101fc3fcd241fd5b5be49eee475967582f7",
+      "bytes": 7941
+    },
+    {
+      "path": "return/WindowSafe_Review_Return_Record_WS-PFRRETURN-20260918-01.json",
+      "sha256": "55036d0f3845321f7b66dc8b4cac0f45e57222d6f32816420035c4dbcfcf12ed",
+      "bytes": 14987
+    },
+    {
+      "path": "return/WindowSafe_Reviewer_Environment_WS-REVENV-20260918-01_DRAFT.md",
+      "sha256": "40d65217da93528afddd5f469884bc4571dfc548c36af445ab92dd3066bebbf4",
+      "bytes": 3621
+    },
+    {
+      "path": "return/reference/review-contract-at-9b6dd621.json",
+      "sha256": "3f5bbc1768d74ba61aa03537f0244fb3e5bf4bac1ebbbac26a1ec9fe493b486d",
+      "bytes": 2858
+    },
+    {
+      "path": "return/reference/subject-at-9b6dd621.json",
+      "sha256": "80f8bf8195a6ce6bf06247ab6a9e8ae3e3d429a54588827e3074e690ef3bdc25",
+      "bytes": 1645
+    },
+    {
+      "path": "return/results/WS-PFR-20260918-01.json",
+      "sha256": "0275bfcbad98bd727b861bd5b972af635139cc0986ef99eed1965331eda5f6b2",
+      "bytes": 12581
+    }
+  ]
+}

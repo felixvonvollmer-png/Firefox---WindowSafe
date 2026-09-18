@@ -4,16 +4,18 @@ WindowSafe soll lokale Firefox-Fenster und Sitzungen sichern und nach einer
 Nutzeraktion wiederherstellen. Dieses Repository enthält derzeit ausschließlich
 die **Project Foundation**, keine installierbare Erweiterung oder Produktfunktion.
 
-Aktuell: Harness-Korrektur **WS-HC-20260917-01** auf ungemergtem Arbeitsbranch,
+Aktuell: Harness-Korrektur **WS-HC-20260918-01** auf ungemergtem Arbeitsbranch,
 Ziel `PROJECT_FOUNDATION_READY_FOR_REVIEW`. Der historische Foundation-PASS gilt
 nur für den Bootstrap-SHA; der neue Korrekturstand braucht einen unabhängigen
-Delta-Review. Kein Merge oder Auto-Merge in diesem Auftrag.
+Delta-Review nach dem erhaltenen BLOCKED-Rücklauf. F02 bleibt offen.
+Kein Merge oder Auto-Merge in diesem Auftrag.
 
 - [Kontext und unveränderte Product Truth](foundation/context.md)
 - [Architektur, Entscheidungen und offene Vorab-Gates](foundation/architecture.md)
 - [Engineering, Git, Risiko und Entwicklungsbefehle](foundation/engineering.md)
 - [Kanonischer Reviewvertrag und Reviewer-Handoff](reviews/README.md)
-- [Korrektur-Subject](foundation/subject.json) und [Evidence](foundation/evidence/harness-correction.md)
+- [Korrektur-Subject](foundation/subject.json) und [Evidence](foundation/evidence/followup-correction.md)
+- [Vorbereitete Reviewer-Umgebung](foundation/reviewer-environment.md)
 - [Initiale Epic-Karte und Preparation-Locators](epics/README.md)
 
 ## Lokal prüfen

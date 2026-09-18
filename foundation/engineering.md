@@ -47,19 +47,26 @@ Keine Force-Pushes, History-Rewrites, Repo-/Sichtbarkeits-/Admin-/Secretänderun
 Vor Push Remote erneut prüfen; danach SHA-Gleichheit lokal/tracking/remote belegen.
 Eigener Push ist keine unabhängige Acceptance.
 
-Für **WS-HC-20260917-01** gilt die neue WS-EA-20260917-02: Start an
-`4ba2c473fe4d90c85d94ee2b2f5cc5777d115109`, ausschließlich
-`fix/ws-hc-20260917-01`, kein main-Write und kein Merge/Auto-Merge. Remote-main,
-Branch-/Pfadkollisionen, sauberer Index/Worktree und Ausgabe-Linkfreiheit wurden
-unmittelbar vor Mutation geprüft. Korrekturevidence unter `foundation/evidence/harness-*`.
-Mindestens ELEVATED, unabhängige Delta-Prüfung vor Integration; spätere
-Integrationsfreigabe bleibt erforderlich.
+Für **WS-HC-20260918-01** gilt WS-EA-20260918-01: Fortsetzung ab
+`9b6dd621deec1193bfdfbdfa730e8f9349c73fd6`, kumulative Review-/Historybasis
+`4ba2c473fe4d90c85d94ee2b2f5cc5777d115109`, nur `fix/ws-hc-20260917-01`.
+Kein main-Write, Merge/Auto-Merge oder unabhängiges Selbst-PASS. Mindestens ELEVATED;
+Delta-Review und spätere Integrationsfreigabe bleiben getrennt. Evidence unter
+`foundation/evidence/followup-*`; Vorbereitung: [Reviewer-Umgebung](reviewer-environment.md).
 
-CI checkt auf PRs ausdrücklich den PR-Head aus (kein synthetischer Merge-Commit).
-Beim ersten Push eines neuen nichtleeren Korrekturbranches ist `event.before` null;
-dann dient der im commitgebundenen Subject deklarierte `start_baseline_sha` als
-Historybasis. Ancestorprüfung und vollständiger Append-only-Abgleich bleiben aktiv.
-Bei Folgeschüben wird der tatsächliche vorherige Push-SHA benutzt, bei PRs der Base-SHA.
+CI checkt den PR-Head aus. `history --event-base` liest den echten vorherigen
+Push-SHA beziehungsweise PR-Base-SHA. Bei 40 Nullzeichen stammt der Fallback aus
+dem separat SHA-256-gepinnten Original `followup-authorization.json`, nicht aus
+dem aktuellen Subject. Commit-/Tree-Bindungen und strikte Ancestors werden geprüft.
+Subject und Worktree müssen die gleiche Autorisierung, kumulative und Laufbasis
+nennen. HEAD, fremde oder nicht autorisierte Zwischen-Ancestors sind keine Basis.
+Auch bei legitimen späteren Pushbasen bleiben kumulative Basis und Laufstart im
+Abgleich. Alle Commits der unakzeptierten linearen Strecke werden auf Append-only
+geprüft; auch spätere Reverts verstecken keine frühere Historyänderung.
+Root-Bootstrap ohne Eltern bleibt strukturell zulässig, ohne festen Historycount.
+Neue Phasen brauchen eigene explizite Bindung; diese enge Fortsetzung ist kein
+allgemeiner automatisch erweiterter Lifecycle. Evidenceoriginale und separate
+semantische Dispositionen sind ebenfalls append-only.
 
 Der Inventar-Writer öffnet Root/Ausgabeordner/Blatt mit No-follow und relativen
 Directory-FDs, prüft den geöffneten Dateityp/Linkcount vor dem Trunkieren und

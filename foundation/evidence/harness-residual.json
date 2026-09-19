@@ -1,0 +1,52 @@
+{
+  "document_type": "POST_REVIEW_RESIDUAL_RECORD_NOT_AMENDMENT_OF_REVIEW",
+  "id": "WS-HARNESS-RESIDUAL-20260917-01",
+  "date": "2026-09-17",
+  "source": "Separately reported by user after WS-PFR-20260917-01, confirmed by return processor source reading and synthetic component probes.",
+  "affected_commit": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+  "affected_files": {
+    "tools/foundation.py": "067d1752f25c15c1aa5b65e6e7572d5026424b77",
+    "foundation/subject.json": "497eaab9cd0737ed29efe23c4b7e61479c70043d",
+    "reviews/review-contract.json": "dd18e82eb9c44f3ec339b39efbe46e39a5449693"
+  },
+  "rule": "MINOR_OPEN_HAS_NONBLOCKING_DISPOSITION",
+  "observation": "Canonical validator requires only a nonempty disposition string for every finding. No branch checks OPEN/MINOR for an explicit nonblocking disposition. The existing test covers empty and one nonblocking positive value, not arbitrary or explicitly blocking text.",
+  "reproduction": {
+    "validator_cases": 24,
+    "review_types_tested": [
+      "PROJECT_FOUNDATION_REVIEW",
+      "EPIC_PREPARATION_REVIEW",
+      "FEATURE_ACCEPTANCE_REVIEW"
+    ],
+    "unexpected_accepted_minor_texts": [
+      "später",
+      "BLOCKING: Nicht freigeben, Korrektur zwingend vor Annahme."
+    ],
+    "canonical_tool_blob": "067d1752f25c15c1aa5b65e6e7572d5026424b77",
+    "test_source_blob": "4edac67a012a756e75a288ed9ec64b93b1dbb913",
+    "evidence": {
+      "path": "evidence/component_checks.json",
+      "sha256": "d7c2ab4cc429eac7c5bdf0fc16f9aaa1491a2e53d1f4b369abbad77540e11032",
+      "bytes": 9030
+    }
+  },
+  "impact": "A structurally valid PASS with OPEN MINOR and no nonblocking disposition can be accepted mechanically; the documented general gate is not fully enforced.",
+  "assessment_severity": "MAJOR_FOR_GENERAL_GATE_ENFORCEMENT",
+  "assessment_author": "PROJECT_LLM_RETURN_PROCESSOR; not the original independent reviewer and not a new external verdict.",
+  "status": "CONFIRMED_OPEN",
+  "original_review_effect": "NONE; exact WS-PFR-20260917-01 remains PASS and its explicit nonblocking OPEN MINOR remains unchanged. Do not insert this residual into the original findings array.",
+  "containment": "Do not use generic validator success alone to advance later review gates. The concrete returned payload has additionally been checked for explicit nonblocking meaning; this does not waive the general contract or authorize future exceptions.",
+  "correction_direction": "Specify a deterministic, explicit nonblocking representation at the canonical contract/validator interface and enforce it consistently across review types. Add negative/positive/regression tests. Keep semantic justification and authentic reviewer authority as separate checks; parsing a marker is not proof that a risk is actually nonblocking.",
+  "do_not_do": [
+    "Do not weaken/remove the rule.",
+    "Do not grandfather arbitrary historical MINOR texts as nonblocking.",
+    "Do not modify original review bytes, verdict or severity.",
+    "Do not reopen Product Definition, T01–T05-R2, or preimplementation gates.",
+    "Do not issue independent closure from implementing agent or return processor."
+  ],
+  "recommended_next_increment": "WS-HC-20260917-01, together with the existing output-symlink MINOR follow-up.",
+  "correction_risk_assessment": "At least ELEVATED for the proposed patch because it enforces trust/review gating and changes a potentially destructive output path; requires independent technical coverage before integration, without retroactively reclassifying the initial bootstrap.",
+  "material_user_decision_required": false,
+  "separate_execution_authorization_required": true,
+  "closure_condition": "New exact correction commit with CI and regression evidence; independent targeted foundation/harness delta review confirms both correction and compatibility. No automatic closure from these observations."
+}

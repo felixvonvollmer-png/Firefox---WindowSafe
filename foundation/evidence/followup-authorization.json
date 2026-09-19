@@ -1,0 +1,212 @@
+{
+  "document_type": "BOUNDED_HARNESS_FOLLOWUP_EXECUTION_AUTHORIZATION",
+  "authorization_id": "WS-EA-20260918-01",
+  "status": "AUTHORIZED_CONDITIONALLY_ON_PREFLIGHT",
+  "date": "2026-09-18",
+  "timezone": "Europe/Berlin",
+  "project": "WindowSafe",
+  "authority": "USER",
+  "user_authorization": {
+    "verbatim_message": "frei",
+    "immediate_context": "Antwort auf die Vorlage: WS-HC-20260918-01 einschließlich unverändertem Review-Transfer nach erfolgreicher Konsumprüfung, zwei Harness-Korrekturen und Vorbereitung der Reviewer-Umgebung; ohne Merge, Produkt- oder Browserarbeit.",
+    "interpretation": "Freigabe genau dieses begrenzten Folgeumfangs in der bereits gewählten Codex-Umgebung.",
+    "limitation": "Keine erweiterte wörtliche Nutzererklärung oder unabhängige Plattformauthentifizierung behauptet. Kein Merge oder neuer unabhängiger Review durch diese Freigabe."
+  },
+  "role": "CODING_AGENT_EXISTING_HARNESS_FOLLOWUP_ONLY",
+  "handoff_id": "WS-HC-20260918-01",
+  "prior_execution_reference": {
+    "id": "WS-EA-20260917-02",
+    "repository_path": "foundation/evidence/harness-authorization.json",
+    "commit": "9b6dd621deec1193bfdfbdfa730e8f9349c73fd6",
+    "sha256": "25f0ee35f9cafe89230f47e218d31a43c2aecb57f4f67446008c4a8c4eb3e0ab",
+    "relationship": "Vorheriger Lauf beendet; neuer Record autorisiert nur diese Fortsetzung. Alter Record bleibt unverändert."
+  },
+  "exact_package_inputs": {
+    "review_return": {
+      "path": "return/results/WS-PFR-20260918-01.json",
+      "sha256": "0275bfcbad98bd727b861bd5b972af635139cc0986ef99eed1965331eda5f6b2",
+      "bytes": 12581
+    },
+    "followup_scope_draft": {
+      "path": "return/WindowSafe_Harness_Followup_WS-HC-20260918-01_DRAFT.md",
+      "sha256": "77f91ef8333959c6e69c2af510600101fc3fcd241fd5b5be49eee475967582f7",
+      "bytes": 7941
+    },
+    "reviewer_environment_draft": {
+      "path": "return/WindowSafe_Reviewer_Environment_WS-REVENV-20260918-01_DRAFT.md",
+      "sha256": "40d65217da93528afddd5f469884bc4571dfc548c36af445ab92dd3066bebbf4",
+      "bytes": 3621
+    },
+    "prior_return_processing_record": {
+      "path": "return/WindowSafe_Review_Return_Record_WS-PFRRETURN-20260918-01.json",
+      "sha256": "55036d0f3845321f7b66dc8b4cac0f45e57222d6f32816420035c4dbcfcf12ed",
+      "bytes": 14987
+    },
+    "old_subject_copy": {
+      "path": "return/reference/subject-at-9b6dd621.json",
+      "sha256": "80f8bf8195a6ce6bf06247ab6a9e8ae3e3d429a54588827e3074e690ef3bdc25",
+      "bytes": 1645
+    },
+    "old_v2_contract_copy": {
+      "path": "return/reference/review-contract-at-9b6dd621.json",
+      "sha256": "3f5bbc1768d74ba61aa03537f0244fb3e5bf4bac1ebbbac26a1ec9fe493b486d",
+      "bytes": 2858
+    },
+    "current_repository_observation": {
+      "path": "WindowSafe_Current_Repository_Baseline_WS-RB-20260918-01.json",
+      "sha256": "ca79ad0e6433281341215e98eaff763397d7886966238e743440a8c5d2186d4c",
+      "bytes": 3345
+    },
+    "authorized_reviewer_environment_preparation": {
+      "path": "WindowSafe_Reviewer_Environment_WS-REVENV-20260918-01_AUTHORIZED_PREPARATION.md",
+      "sha256": "263a209c0a8233e72fec5020fe5cdb2716f9a4d07c2b3c3b862d104e62a5428d",
+      "bytes": 4453
+    }
+  },
+  "source_return_package": {
+    "filename": "WindowSafe_Review_Return_WS-PFR-20260918-01.zip",
+    "sha256": "b8431a239a9ec7223e1b70dd85df942a0f545dd2585a3a95caf3c908ce10762a",
+    "bytes": 21777,
+    "treatment": "Alle acht Archivdateien bytegleich unter return/ erhalten; eigenes altes Manifest bleibt unverändert."
+  },
+  "repository_binding": {
+    "full_name": "felixvonvollmer-png/Firefox---WindowSafe",
+    "repository_id": 1374094477,
+    "visibility_policy": "REMAIN_PUBLIC",
+    "working_branch": "fix/ws-hc-20260917-01",
+    "pull_request_number": 1,
+    "run_start_head_sha": "9b6dd621deec1193bfdfbdfa730e8f9349c73fd6",
+    "run_start_tree_sha": "7646240206f1b389333f4153c2fb9208f0bbebe2",
+    "expected_main_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+    "cumulative_review_and_history_base_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+    "cumulative_base_tree_sha": "2cdf2d0484463c9639d924f0aa239499637e941b",
+    "pr_must_remain_draft": true,
+    "pr_must_remain_unmerged": true,
+    "auto_merge_must_be_null": true,
+    "main_writes_authorized": false,
+    "ref_recheck_before_first_mutation": true,
+    "on_unexpected_external_drift": "STOP_BEFORE_AFFECTED_WRITE_AND_REPORT_FOR_EXPLICIT_REBIND",
+    "own_new_commits": "Fast-forward descendants of the bound run start on the same branch; record expected predecessor before each subsequent write/push. No bypass for unknown intervening work.",
+    "history_rule": "Run start 9b6dd621... und kumulativer Review-/Historybeginn 4ba2c473... bleiben getrennt; neuer Run darf unakzeptierten alten Delta nicht aus dem Prüfbereich entfernen."
+  },
+  "authorized_actions": {
+    "verify_and_clone_exact_public_git_context": true,
+    "verify_all_package_hashes_and_original_review_consumption": true,
+    "transport_exact_blocked_result_to_working_branch_after_consumption_pass": true,
+    "fix_v1_v2_disposition_compatibility_with_regressions": true,
+    "fix_independently_bound_first_push_history_baseline_with_regressions": true,
+    "preserve_existing_writer_fix_and_qualified_regressions": true,
+    "prepare_isolated_reviewer_runtime_and_git_access": true,
+    "add_required_evidence_authorization_context_and_new_subject": true,
+    "update_only_affected_harness_tests_contract_routing_and_ci": true,
+    "commit_and_non_force_push_to_existing_working_branch": true,
+    "update_existing_draft_pr_body_and_run_existing_scope_ci": true,
+    "new_material_dependency_or_cost_boundary": false,
+    "merge_or_enable_auto_merge": false,
+    "produce_independent_verdict_or_close_external_findings": false
+  },
+  "review_transport_contract": {
+    "source": {
+      "path": "return/results/WS-PFR-20260918-01.json",
+      "sha256": "0275bfcbad98bd727b861bd5b972af635139cc0986ef99eed1965331eda5f6b2",
+      "bytes": 12581
+    },
+    "target_path": "reviews/results/WS-PFR-20260918-01.json",
+    "original_review_subject_sha": "9b6dd621deec1193bfdfbdfa730e8f9349c73fd6",
+    "original_schema_version": 2,
+    "original_verdict": "BLOCKED",
+    "before_transfer": [
+      "Use pinned CPython 3.14.4 and actual exact Git objects in isolated scratch.",
+      "Read exact original subject, V2 contract, canonical validator and all 18 evidence files.",
+      "Verify evidence hashes, subject/type/authority/provenance/result locator and external user-supplied provenance.",
+      "Execute original request/schema-preflight/validate-result against the bound old subject before transfer; record commands, exits and scope.",
+      "Do not modify payload or consumer merely to make this transfer pass."
+    ],
+    "after_transfer": "Verify byte identity in Git; preserve every original field and whitespace. Separate actual transfer and consumption record.",
+    "existing_target_policy": "IDENTICAL_BYTES_IDEMPOTENT__DIFFERENT_BYTES_STOP_NO_OVERWRITE",
+    "consumption_success_is_not_review_pass": true,
+    "consumer_execution_does_not_retroactively_close_reviewer_F02": true
+  },
+  "findings_scope": [
+    {
+      "id": "WS-HARNESS-RESIDUAL-20260917-01",
+      "received_severity": "MAJOR",
+      "received_status": "OPEN",
+      "action": "Versionenbewusste Korrektur, keine rückwirkende V2-Syntaxpflicht für V1."
+    },
+    {
+      "id": "WS-PFR-20260918-01-F01",
+      "received_severity": "MAJOR",
+      "received_status": "OPEN",
+      "action": "Null-before-Fallback unabhängig an Autorisierung/Historybaseline binden."
+    },
+    {
+      "id": "WS-PFR-20260918-01-F02",
+      "received_severity": "BLOCKING",
+      "received_status": "OPEN",
+      "action": "Reviewer-Umgebung vorbereiten; Closure erst durch tatsächlichen neuen unabhängigen Ablauf."
+    },
+    {
+      "id": "WS-PFR-20260917-01-F01",
+      "received_severity": "MINOR",
+      "received_status": "RESOLVED",
+      "action": "Status im neuen Rücklauf für begrenzten POSIX/Linux-Scope erhalten; altes Reviewpayload mit OPEN unverändert lassen; keine unnötige Writer-Neuentwicklung."
+    }
+  ],
+  "protected_truth": [
+    "Product Definition and Approval",
+    "Technical Foundation r6 and READY binding",
+    "T01–T05-R2 including all CPU limits and nonblocking soft targets",
+    "Foundation 1/2 original bytes",
+    "All existing foundation/inputs and foundation/sources originals",
+    "Existing correction authorization/handoff/residual/return originals",
+    "All historical result bytes and historical commit identities",
+    "Product safety/platform/measurement gates"
+  ],
+  "contract_change_policy": "Necessary prospective version/contract/consumer clarifications are allowed with compatibility tests. No in-place rewrite of historical commits/results and no gate weakening or ID/SHA exemption.",
+  "environment": {
+    "agent": "EXISTING_USER_SELECTED_CODEX_ENVIRONMENT__VERIFY_ACTUAL_CAPABILITIES",
+    "pinned_python": "3.14.4",
+    "reviewer_preparation": {
+      "path": "WindowSafe_Reviewer_Environment_WS-REVENV-20260918-01_AUTHORIZED_PREPARATION.md",
+      "sha256": "263a209c0a8233e72fec5020fe5cdb2716f9a4d07c2b3c3b862d104e62a5428d",
+      "bytes": 4453
+    },
+    "qualification_status": "NOT_YET_EXECUTED_OR_VERIFIED_IN_THIS_HANDOFF",
+    "permitted_runtime_setup": "Existing runtime preferred; isolated local official-source provisioning without new cost/provider/admin/system mutation only.",
+    "git_transport": "Read-only clone/fetch of approved public repositories; no presumed access and no manual reconstruction as execution substitute.",
+    "reviewer_independence": "FRESH_OR_SUFFICIENTLY_ISOLATED_NON_IMPLEMENTER__FUTURE_SEPARATE_REVIEW_REQUEST",
+    "models_and_reasoning": "Available sufficient configuration in the existing authorized environment only; no provider router or new billing/data boundary."
+  },
+  "prohibited": [
+    "MERGE",
+    "AUTO_MERGE",
+    "DIRECT_MAIN_WRITE",
+    "FORCE_PUSH_OR_HISTORY_REWRITE",
+    "DELETE_RESET_OR_STASH_FOREIGN_WORK",
+    "REPOSITORY_ADMIN_VISIBILITY_SECRET_MUTATION",
+    "EXTERNAL_FINDING_RECLASSIFICATION_OR_SELF_PASS",
+    "NEW_EPIC_OR_PRODUCT_FEATURE",
+    "REAL_OR_SYNTHETIC_FIREFOX_BROWSER_PROFILE_PROBE",
+    "AMO_SIGNING_UPLOAD_OR_PUBLIC_RELEASE",
+    "PRODUCTION",
+    "NEW_PAID_PROVIDER_OR_MATERIAL_COST",
+    "NEW_SECRET_OR_CROSS_PROVIDER_ROUTING",
+    "WEAKEN_PIN_PREFLIGHT_OR_REVIEW_GATES"
+  ],
+  "risk_floor": "ELEVATED",
+  "end_state": {
+    "target": "PROJECT_FOUNDATION_READY_FOR_REVIEW__UNMERGED_CORRECTED_CANDIDATE",
+    "requirements": [
+      "Actual pinned checks/tests/build/history/contract-version compatibility with exact new-head CI.",
+      "Bound current subject/evidence and cumulative baseline plus run baseline.",
+      "Reviewer execution context provided and own setup checks honestly classified.",
+      "Report new head/tree, PR, actual changed scope, commands/exits/CI, open findings, limitations and exact locators."
+    ],
+    "environment_failure": "Report ENVIRONMENT_BLOCKED and exact missing capabilities; do not claim all readiness requirements satisfied.",
+    "stop_after_report": true,
+    "independent_review_started_by_this_authorization": false,
+    "integration_authorized_even_after_future_pass": false
+  },
+  "effect": "Execution context only, not Product Truth, review verdict, integration permission or assertion of completed work."
+}

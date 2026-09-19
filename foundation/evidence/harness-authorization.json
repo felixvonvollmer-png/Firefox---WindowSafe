@@ -1,0 +1,137 @@
+{
+  "document_type": "SCOPED_HARNESS_CORRECTION_AND_REVIEW_TRANSFER_EXECUTION_AUTHORIZATION",
+  "authorization_id": "WS-EA-20260917-02",
+  "status": "AUTHORIZED",
+  "work_item_id": "WS-HC-20260917-01",
+  "date_from_conversation": "2026-09-17",
+  "authority": "USER",
+  "recorded_by": "PROJECT_LLM",
+  "user_authorization": {
+    "verbatim_message": "frei",
+    "context": "Immediate reply to the proposed separate approval of exact WS-PFR-20260917-01 review transfer and WS-HC-20260917-01 harness correction up to a tested, independently review-ready correction state, without automatic merge or feature start.",
+    "interpretation": "Approval of that limited execution scope; not a new product decision or an independent verdict.",
+    "platform_message_id": null,
+    "exact_message_timestamp": null,
+    "provenance_limitation": "Visible user message and immediate context; no fabricated expanded quote, digital signature, platform ID or exact timestamp."
+  },
+  "authorized_executor": {
+    "environment": "The user-selected Codex coding-agent environment already used for WindowSafe.",
+    "role": "CODING_AGENT_FOR_SCOPED_EXISTING_FOUNDATION_CORRECTION",
+    "actual_tools_and_model_controls": "Discover and record available shell/Git/GitHub/test tools and current authorized configuration at preflight. No invented capabilities.",
+    "model_policy": "Use sufficient available configurations inside this authorized environment. No cross-provider switch, new paid service or material cost increase is authorized.",
+    "preparing_project_llm_executes_harness_patch": false
+  },
+  "exact_scope_reference": {
+    "path": "review-return/WindowSafe_Harness_Correction_Handoff_WS-HC-20260917-01_DRAFT.md",
+    "sha256": "83fee934ec31863b808af771481fcda6d65954b74e62628c1b73e8e24d61bffe",
+    "bytes": 8751
+  },
+  "approved_review_transfer_source": {
+    "path": "review-return/results/WS-PFR-20260917-01.json",
+    "sha256": "c4c908eb70c99252f185ee89d077919ecc9598cc2842b2f0b1209734f115c19f",
+    "bytes": 10136
+  },
+  "review_transfer_target": "reviews/results/WS-PFR-20260917-01.json",
+  "residual_reference": {
+    "path": "review-return/WindowSafe_Harness_Residual_WS-HARNESS-RESIDUAL-20260917-01.json",
+    "sha256": "694ac89f40e9246ee8eb4c79b4a5f5712e0079270258fdc90529abe95d223a18",
+    "bytes": 3889
+  },
+  "return_and_transport_provenance_reference": {
+    "path": "review-return/WindowSafe_Review_Return_WS-PFRRETURN-20260917-01.json",
+    "sha256": "c9af93124931e13442e38b40ee476f0a738b8f16b6f0a67f10dfa94a2aaf0e12",
+    "bytes": 5886
+  },
+  "repository_baseline_reference": {
+    "path": "WindowSafe_Repository_Baseline_WS-RB-20260917-02.json",
+    "sha256": "75806b568a05ed140a4aab272016806860d9202efadc514bf516f8e395d79183",
+    "bytes": 1599
+  },
+  "repository": {
+    "full_name": "felixvonvollmer-png/Firefox---WindowSafe",
+    "repository_id": 1374094477,
+    "visibility_policy": "REMAIN_PUBLIC",
+    "base_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+    "base_tree": "2cdf2d0484463c9639d924f0aa239499637e941b",
+    "work_branch": "fix/ws-hc-20260917-01",
+    "pull_request_base": "main"
+  },
+  "allowed_execution": {
+    "read_and_verify_canonical_inputs": true,
+    "create_isolated_work_branch_from_bound_baseline": true,
+    "copy_complete_review_result_byte_for_byte_to_work_branch": true,
+    "add_bound_authorization_transfer_residual_and_correction_evidence": true,
+    "fix_output_writer_link_following_and_minor_disposition_validation": true,
+    "add_corresponding_tests_and_narrow_contract_or_documentation_clarifications": true,
+    "update_correction_subject_and_its_evidence_at_new_commit": true,
+    "commit_and_push_scoped_work_branch_and_open_update_pr": true,
+    "run_local_non_browser_checks_and_existing_ci_on_exact_candidate": true,
+    "permission_note": "Only required Foundation/harness/contract/test/evidence changes. The read-only CI permissions, immutable inputs, safety rules and product boundaries are not weakened."
+  },
+  "transport_integrity": {
+    "exact_review_bytes_required": true,
+    "result_verdict_findings_and_provenance_unchanged": true,
+    "already_existing_identical_target": "Verify exact bytes and record an idempotent transfer; do not recreate or modify.",
+    "already_existing_different_target": "STOP before overwrite. No replacement, invented ID or reclassification.",
+    "historical_chat_escapes": "Already decoded once in the supplied bound payload; do not decode, reserialize or reword it again.",
+    "separate_sidecar_required": "Record actual transport branch/commit/hash and authorization separately from the review JSON.",
+    "canonical_main_transfer": "Not performed by preparation and not authorized as a direct main write. Main inclusion remains pending separate integration authorization."
+  },
+  "preflight": [
+    "Verify package manifest, authorization, exact draft, result, residual and return-provenance bytes.",
+    "Read AGENTS.md and canonical context/engineering/reviews at the exact base commit; verify Foundation 1 and 2 blobs.",
+    "Immediately before mutation verify repository identity/visibility/remote, remote-main, local HEAD/worktree/index/untracked files and work-branch ownership.",
+    "Start from the bound nonempty baseline, not from the old EMPTY_REPOSITORY bootstrap condition. Stop for drift or unrelated work; no reset/stash/deletion of foreign changes.",
+    "Check collisions for the result path and new branch. Resume only demonstrably same-authorized work descended from this baseline; otherwise stop.",
+    "Before using any unfixed writer verify link-free output directory and leaf. Never clean up a foreign link automatically.",
+    "Use the pinned Python/test environment; do not bypass version/CI/contract gates or present component checks as full checks."
+  ],
+  "protected_boundaries": [
+    "All existing foundation/inputs and foundation/sources files remain byte-identical; do not extend/rewrite the original bootstrap input manifest.",
+    "Persist this new authorization/provenance separately under appropriate Foundation evidence paths; keep an explicit mapping to package inputs instead of dumping historical source copies into the live repository.",
+    "Original WS-PFR-20260917-01 PASS remains bound only to its old commit. Its OPEN MINOR is not edited to RESOLVED.",
+    "The separately recorded validator residual is not added retrospectively to that review.",
+    "Product Definition/Approval, TFP r6, READY binding, T01-T05-R2, CPU thresholds and platform/performance preimplementation gates do not change.",
+    "A new correction subject and exact candidate SHA do not inherit old PASS. A fresh independent targeted review is required."
+  ],
+  "risk_and_integration": {
+    "minimum_increment_risk": "ELEVATED",
+    "required_before_integration": "Independent technical coverage of the exact correction candidate, tests and history compatibility.",
+    "review_path": "Targeted independent PROJECT_FOUNDATION_REVIEW of the new commit may also supply the technical pre-integration coverage; no duplicated identical full review.",
+    "implementer_independent_verdict_authority": false,
+    "main_write_authorized": false,
+    "merge_authorized": false,
+    "auto_merge_authorized": false,
+    "later_pass_automatically_authorizes_merge": false
+  },
+  "completion": {
+    "status": "PROJECT_FOUNDATION_READY_FOR_REVIEW",
+    "qualification": "WS-HC-20260917-01 corrected Foundation/harness on exact unmerged branch/PR head, not accepted or merged.",
+    "required_outputs": [
+      "Branch, PR URL, exact candidate SHA and base SHA; local/tracking/remote comparison.",
+      "Full review-transfer target/hash and immutable original result preservation.",
+      "Changed-file/delta overview, original and new tests, lint/guards, deterministic build, schema-preflight, history and consumer compatibility evidence.",
+      "CI URL, actual head_sha and status for the candidate; explicit limitations on missing native/pinned checks.",
+      "New subject and evidence/result-contract locators, risk assessment and still pending independent finding confirmation.",
+      "STOP confirmation: no merge/main write, no epic/feature, no browser/profile, no publication/production."
+    ]
+  },
+  "not_authorized": [
+    "DIRECT_MAIN_PUSH_OR_COMMIT",
+    "MERGE_OR_AUTO_MERGE",
+    "FORCE_PUSH_OR_HISTORY_REWRITE",
+    "DELETION_STASH_OR_RESET_OF_FOREIGN_WORK",
+    "REPOSITORY_ADMIN_OR_VISIBILITY_CHANGE",
+    "NEW_SECRETS_OR_HIGH_PRIVILEGE_CREDENTIALS",
+    "NORMAL_PRODUCT_FEATURE_IMPLEMENTATION",
+    "EPIC_START_OR_EXECUTION",
+    "BROWSER_OR_PROFILE_PROBES",
+    "REAL_USER_DATA_ACCESS",
+    "AMO_UPLOAD_OR_SIGNING",
+    "ADDON_RELEASE_OR_PRODUCTION",
+    "NEW_PROVIDER_OR_MATERIAL_COST",
+    "SELF_ISSUED_INDEPENDENT_PASS_OR_FINDING_CLOSURE"
+  ],
+  "relation_to_previous_authorization": "New scoped authorization on the existing baseline. WS-EA-20260917-01 remains immutable historical bootstrap authorization; its empty-repository start condition is not reused.",
+  "execution_performed_by_this_record": false
+}

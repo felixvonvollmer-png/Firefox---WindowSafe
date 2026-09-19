@@ -1,0 +1,94 @@
+{
+  "document_type": "PROJECT_FOUNDATION_REVIEW_RETURN_CONSUMPTION_RECORD",
+  "id": "WS-PFRRETURN-20260917-01",
+  "date_from_conversation": "2026-09-17",
+  "role": "PROJECT_LLM_RETURN_PROCESSOR_NOT_INDEPENDENT_REVIEWER",
+  "source_authority": "Current user supplied the independent review and separately reported the residual.",
+  "review_id": "WS-PFR-20260917-01",
+  "review_result": {
+    "path": "results/WS-PFR-20260917-01.json",
+    "sha256": "c4c908eb70c99252f185ee89d077919ecc9598cc2842b2f0b1209734f115c19f",
+    "bytes": 10136
+  },
+  "review_verdict_preserved": "PASS",
+  "subject": {
+    "repository": "felixvonvollmer-png/Firefox---WindowSafe",
+    "id": "WS-PFBOOT-20260917-01",
+    "path": "foundation/subject.json",
+    "end_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+    "tree": "2cdf2d0484463c9639d924f0aa239499637e941b"
+  },
+  "reviewed_commit_pass_is_not_unconditional_current_or_future_readiness": true,
+  "result_transport": {
+    "received_representation": {
+      "path": "received/WS-PFR-20260917-01_visible_payload.txt",
+      "sha256": "004a64974bc4c75951efa2297cb5fff0801811309c9f32edad21742a2a67c2ca",
+      "bytes": 9962
+    },
+    "source_kind": "USER_INLINE_VISIBLE_JSON_WITH_MARKDOWN_ESCAPES",
+    "archive_limitation": "UTF-8 transcription of the visible JSON body, not independently available raw composer/message bytes. No transport-byte identity, stable message ID, signature or exact original file hash is claimed.",
+    "decoding": "Remove exactly 41 markdown backslashes before underscore and 1 before the dot in internal-review.md, preserve valid JSON escapes such as \\n, parse with duplicate-key rejection, serialize UTF-8 indent=2 plus newline. Object roundtrip equality checked.",
+    "payload_fields_or_verdict_edited": false,
+    "review_source_reference_not_annotated_or_shortened": true,
+    "original_invisible_transport_bytes_available": false,
+    "canonical_target_path": "reviews/results/WS-PFR-20260917-01.json",
+    "canonical_github_transfer_performed": false,
+    "canonical_result_path_absent_at_checked_commit": true,
+    "future_transfer": "Explicitly authorized writer must transfer this hash-bound complete JSON unchanged, preserving the original review meaning and current nonblocking MINOR. Recheck current remote/baseline and result-path collision immediately before writing."
+  },
+  "verification": {
+    "current_remote_main_observed": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+    "exact_contract_and_tool_git_blobs": {
+      "tools/foundation.py": "067d1752f25c15c1aa5b65e6e7572d5026424b77",
+      "foundation/subject.json": "497eaab9cd0737ed29efe23c4b7e61479c70043d",
+      "reviews/review-contract.json": "dd18e82eb9c44f3ec339b39efbe46e39a5449693"
+    },
+    "evidence_hashes_verified": 9,
+    "method": "Reconstruct received object; verify exact source-blob identities and evidence SHA-256; derive equivalent request from bound subject; call unchanged validate_contract/schema_preflight/validate_result; separately read the actual MINOR rationale.",
+    "actual_open_minor_nonblocking_semantics": "EXPLICIT_NONBLOCKING_FOLLOW_UP: contains exact-subject justification, interim link-free-output restriction, pre-reuse trigger and separate-authorized-increment boundary.",
+    "component_evidence": {
+      "path": "evidence/component_checks.json",
+      "sha256": "d7c2ab4cc429eac7c5bdf0fc16f9aaa1491a2e53d1f4b369abbad77540e11032",
+      "bytes": 9030
+    },
+    "derived_request": {
+      "path": "evidence/derived_review_request.json",
+      "sha256": "7fe21ed1e0337d9edda69e8dfa75bb4c6f1c4933c60ab985b380662abc435c2b",
+      "bytes": 1688
+    },
+    "original_full_cli_request_or_validate_result_executed": false,
+    "full_pinned_build_and_23_test_suite_executed": false,
+    "reason": "Git clone failed due container DNS; Python 3.13.5 rather than pinned 3.14.4. Only unchanged component functions and isolated exact writer statements were exercised; no gate bypass or runtime claim.",
+    "historical_ci_and_82_reviewer_checks": "Preserved reviewer provenance, not re-executed in this step.",
+    "reviewer_authentication": "Provided by the user as an independent result, explicit reviewer/run/authority provenance checked for consistency. No external cryptographic or platform-run authentication is available or claimed."
+  },
+  "finding_disposition": {
+    "WS-PFR-20260917-01-F01": {
+      "severity": "MINOR",
+      "status": "OPEN",
+      "nonblocking_for_original_subject": true,
+      "closed_by_processor": false,
+      "follow_up": "Output leaf-link safety before writer reuse in nonfresh contexts; currently use only an explicitly verified link-free output location."
+    },
+    "WS-HARNESS-RESIDUAL-20260917-01": {
+      "status": "CONFIRMED_OPEN_SEPARATE_FROM_REVIEW_RESULT",
+      "scope": "General review-contract enforcement, not invalidation of this received PASS."
+    }
+  },
+  "external_context_sync": {
+    "disposition": "NOT_APPLICABLE_FOR_BOUND_BOOTSTRAP",
+    "basis": "foundation/context.md at exact subject and independent result; no installed external project text channel is bound. No installation or synchronization is claimed."
+  },
+  "lifecycle": {
+    "original_subject_review": "PASS_WITH_ONE_EXPLICIT_NONBLOCKING_OPEN_MINOR",
+    "return_intake": "VERIFIED_LOCALLY_PENDING_CANONICAL_TRANSFER",
+    "new_residual_readiness": "NO_RELIANCE_ON_GENERIC_VALIDATOR_SUCCESS_ALONE",
+    "next_scoped_work": "SEPARATELY_AUTHORIZE_HARNESS_CORRECTION_AND_EXACT_RESULT_TRANSFER",
+    "first_epic_preparation": "NOT_STARTED; recommended after the scoped harness correction and independently accepted delta are integrated.",
+    "product_feature_start": "NOT_AUTHORIZED",
+    "new_coding_agent_start": "NOT_AUTHORIZED_OR_PERFORMED_BY_THIS_RECORD",
+    "repository_mutation": "NONE",
+    "new_review_verdict_issued": false,
+    "product_or_preparation_reapproval_required": false
+  }
+}

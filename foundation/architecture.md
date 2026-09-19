@@ -72,9 +72,17 @@ offen; materielle Funktionsabstriche verlangen Nutzerentscheidung und Rebinding.
 
 Das spätere Produkt hat mindestens Elevated Risk wegen sensibler Metadaten,
 Concurrency, Recovery und destruktiver Bereinigung; spezialisierte Reviews werden
-risikobezogen fällig. Das aktuelle Inkrement ist LOW_RISK: ausschließlich
+risikobezogen fällig. Das initiale Bootstrap-Inkrement am SHA
+`4ba2c473fe4d90c85d94ee2b2f5cc5777d115109` war als LOW_RISK eingestuft: ausschließlich
 Dokumente und offline arbeitender Repository-Harness, kein Browserzugriff, keine
 Datenspeicherung/-löschung im Produkt und keine externe Runtimewirkung.
 Policy und Inputintegrität werden mechanisch geprüft, Verdict-Autorität bleibt
 außerhalb des implementierenden Agenten. Diese Einstufung gilt nicht für spätere
 Produktfeatures und senkt deren Risikofloor nicht.
+
+**WS-HC-20260917-01 ist mindestens ELEVATED:** Ausgabe-Schreibpfad und allgemeine
+Review-Gate-Durchsetzung. Die Korrektur implementiert descriptor-relative No-follow-
+Writes in qualifizierter POSIX-Umgebung und einen deterministischen MINOR-Marker
+im versionierten Reviewvertrag. Unabhängiger gezielter Foundation-/Harness-Delta-
+Review ist vor Integration nötig; der aktuelle Auftrag autorisiert keinen Merge,
+auch nicht nach späterem PASS. Details/Grenzen: `foundation/evidence/harness-correction.md`.

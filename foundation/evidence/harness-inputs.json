@@ -1,0 +1,40 @@
+{
+  "work_item_id": "WS-HC-20260917-01",
+  "zip_sha256": "12942363cb86e2318d23edd0f97010ceeee6aa1758ccae1324d8d3c1b98d2020",
+  "manifest_sha256": "432929d628ac10423835381c54ed70a2718e70065eb8f847dea0f9176c429b93",
+  "package_manifest_entries_verified": 27,
+  "nested_manifest_entries_verified": 21,
+  "copied_inputs": [
+    {
+      "package_path": "WindowSafe_Execution_Authorization_WS-EA-20260917-02.json",
+      "repository_path": "foundation/evidence/harness-authorization.json",
+      "sha256": "25f0ee35f9cafe89230f47e218d31a43c2aecb57f4f67446008c4a8c4eb3e0ab",
+      "bytes": 9054
+    },
+    {
+      "package_path": "WindowSafe_Harness_Correction_Handoff_WS-HC-20260917-01_AUTHORIZED.md",
+      "repository_path": "foundation/evidence/harness-handoff.md",
+      "sha256": "f7957cf9e9643616c78b49d8ffa5912e6d49a9bc155fae95a41192d4c90e0e46",
+      "bytes": 6070
+    },
+    {
+      "package_path": "review-return/WindowSafe_Harness_Correction_Handoff_WS-HC-20260917-01_DRAFT.md",
+      "repository_path": "foundation/evidence/harness-draft.md",
+      "sha256": "83fee934ec31863b808af771481fcda6d65954b74e62628c1b73e8e24d61bffe",
+      "bytes": 8751
+    },
+    {
+      "package_path": "review-return/WindowSafe_Harness_Residual_WS-HARNESS-RESIDUAL-20260917-01.json",
+      "repository_path": "foundation/evidence/harness-residual.json",
+      "sha256": "694ac89f40e9246ee8eb4c79b4a5f5712e0079270258fdc90529abe95d223a18",
+      "bytes": 3889
+    },
+    {
+      "package_path": "review-return/WindowSafe_Review_Return_WS-PFRRETURN-20260917-01.json",
+      "repository_path": "foundation/evidence/harness-return.json",
+      "sha256": "c9af93124931e13442e38b40ee476f0a738b8f16b6f0a67f10dfa94a2aaf0e12",
+      "bytes": 5886
+    }
+  ],
+  "omitted_files": "Historical component probes/source copies remain in the hash-bound supplied ZIP; not copied into the active foundation. No original input manifest changed."
+}

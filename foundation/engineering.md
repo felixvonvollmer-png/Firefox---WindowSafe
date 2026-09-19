@@ -39,13 +39,43 @@ Keine Produktdependencies, keine neuen Provider oder bezahlten Dienste.
 ## Git und Integration
 
 Vor jedem Write Root/Remote/Zielref/HEAD/Worktree/untracked/Index prüfen.
-Vor dem allerersten Write zusätzlich Repository-ID 1374094477, public und
+Historisch vor dem allerersten Bootstrap-Write zusätzlich Repository-ID 1374094477, public und
 EMPTY_REPOSITORY_NO_BRANCH_OR_COMMIT; siehe `foundation/evidence/preflight.json`.
 Bei Konflikten mit fremder Arbeit stoppen statt löschen/stashen/resetten.
 Nur geprüfte benannte Pfade stagen; tatsächlichen staged Diff vor Commit prüfen.
 Keine Force-Pushes, History-Rewrites, Repo-/Sichtbarkeits-/Admin-/Secretänderungen.
 Vor Push Remote erneut prüfen; danach SHA-Gleichheit lokal/tracking/remote belegen.
 Eigener Push ist keine unabhängige Acceptance.
+
+Für **WS-HC-20260918-01** gilt WS-EA-20260918-01: Fortsetzung ab
+`9b6dd621deec1193bfdfbdfa730e8f9349c73fd6`, kumulative Review-/Historybasis
+`4ba2c473fe4d90c85d94ee2b2f5cc5777d115109`, nur `fix/ws-hc-20260917-01`.
+Kein main-Write, Merge/Auto-Merge oder unabhängiges Selbst-PASS. Mindestens ELEVATED;
+Delta-Review und spätere Integrationsfreigabe bleiben getrennt. Evidence unter
+`foundation/evidence/followup-*`; Vorbereitung: [Reviewer-Umgebung](reviewer-environment.md).
+
+CI checkt den PR-Head aus. `history --event-base` liest den echten vorherigen
+Push-SHA beziehungsweise PR-Base-SHA. Bei 40 Nullzeichen stammt der Fallback aus
+dem separat SHA-256-gepinnten Original `followup-authorization.json`, nicht aus
+dem aktuellen Subject. Commit-/Tree-Bindungen und strikte Ancestors werden geprüft.
+Subject und Worktree müssen die gleiche Autorisierung, kumulative und Laufbasis
+nennen. HEAD, fremde oder nicht autorisierte Zwischen-Ancestors sind keine Basis.
+Auch bei legitimen späteren Pushbasen bleiben kumulative Basis und Laufstart im
+Abgleich. Alle Commits der unakzeptierten linearen Strecke werden auf Append-only
+geprüft; auch spätere Reverts verstecken keine frühere Historyänderung.
+Root-Bootstrap ohne Eltern bleibt strukturell zulässig, ohne festen Historycount.
+Neue Phasen brauchen eigene explizite Bindung; diese enge Fortsetzung ist kein
+allgemeiner automatisch erweiterter Lifecycle. Evidenceoriginale und separate
+semantische Dispositionen sind ebenfalls append-only.
+
+Der Inventar-Writer öffnet Root/Ausgabeordner/Blatt mit No-follow und relativen
+Directory-FDs, prüft den geöffneten Dateityp/Linkcount vor dem Trunkieren und
+folgt nach Öffnung keinem Pfad mehr. Es gibt keine automatische Linklöschung.
+Qualifiziert sind die lokale Linux-Umgebung und Ubuntu-CI mit Python 3.14.4;
+fehlende POSIX/dir_fd/No-follow-Fähigkeiten blockieren vor Ausgabe-Mutation.
+Kein Windows-/Reparse-Point-Nachweis oder Schutz gegen feindliche Umbenennung
+bereits geöffneter Verzeichnis-Inodes behauptet. Buildausgabe ist regenerierbar,
+nicht atomar/crash-durable; Schreibfehler sind kein Erfolg.
 
 `main` ist Development, ohne Deployment. Initialer Root-Commit darf direkt nach
 lokalen Gates und internem Review integriert werden; CI-Verifikation folgt am

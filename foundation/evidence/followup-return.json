@@ -1,0 +1,217 @@
+{
+  "document_type": "PROJECT_FOUNDATION_REVIEW_RETURN_PROCESSING_RECORD",
+  "record_id": "WS-PFRRETURN-20260918-01",
+  "date": "2026-09-18",
+  "role": "PROJECT_LLM_RETURN_PROCESSOR_NOT_INDEPENDENT_REVIEWER",
+  "processing_status": "ORIGINAL_ARCHIVED__BLOCKED_PRESERVED__FOLLOWUP_DRAFT_PREPARED",
+  "received_result": {
+    "path": "results/WS-PFR-20260918-01.json",
+    "uploaded_filename": "Eingefügter Text(20260918-173420).txt",
+    "sha256": "0275bfcbad98bd727b861bd5b972af635139cc0986ef99eed1965331eda5f6b2",
+    "bytes": 12581,
+    "review_id": "WS-PFR-20260918-01",
+    "verdict": "BLOCKED",
+    "byte_transformations": "NONE; the uploaded UTF-8 JSON is copied byte-for-byte.",
+    "duplicate_uploads": [
+      {
+        "filename": "Eingefügter Text(9).txt",
+        "byte_identical": true
+      },
+      {
+        "filename": "Eingefügter Text(10).txt",
+        "byte_identical": true
+      }
+    ],
+    "identity_limit": "Source is the user-uploaded review return. No hidden platform-run ID, signature or independent identity authentication is inferred."
+  },
+  "subject": {
+    "repository": "felixvonvollmer-png/Firefox---WindowSafe",
+    "repository_id": 1374094477,
+    "id": "WS-HC-20260917-01",
+    "head_sha": "9b6dd621deec1193bfdfbdfa730e8f9349c73fd6",
+    "tree_sha": "7646240206f1b389333f4153c2fb9208f0bbebe2",
+    "baseline_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+    "branch": "fix/ws-hc-20260917-01",
+    "pr": 1
+  },
+  "remote_intake": {
+    "method": "READ_ONLY_GITHUB_CONNECTOR",
+    "pr_open": true,
+    "pr_draft": true,
+    "pr_merged": false,
+    "pr_head_sha": "9b6dd621deec1193bfdfbdfa730e8f9349c73fd6",
+    "pr_base_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+    "new_result_absent_at_exact_head": true,
+    "pr_auto_merge_rechecked_in_this_return": false,
+    "observation_is_not_a_ref_lock": true
+  },
+  "checks": {
+    "strict_json_no_duplicate_or_nonfinite_values": "OK",
+    "exact_V2_top_level_and_nested_shapes": "OK",
+    "subject_authority_locator_and_version_consistency": "OK",
+    "evidence_path_set": "18 unique paths equal subject evidence_paths",
+    "finding_cardinality": "4 entries: 1 MINOR RESOLVED, 2 MAJOR OPEN, 1 BLOCKING OPEN",
+    "reference_copy_git_blobs": "Contract and subject copies match exact-head Git blob IDs",
+    "evidence_sha256_crosschecks": [
+      {
+        "path": "reviews/review-contract.json",
+        "sha256": "3f5bbc1768d74ba61aa03537f0244fb3e5bf4bac1ebbbac26a1ec9fe493b486d",
+        "git_blob": "1371d0db2ad99eb6442efc59e030e0e14bf4712f",
+        "bytes": 2858,
+        "source": "prior delta-start package/reference/review-contract.json",
+        "method": "Local bytes rehashed; Git blob identity equals current exact-head connector response."
+      },
+      {
+        "path": "reviews/results/WS-PFR-20260917-01.json",
+        "sha256": "c4c908eb70c99252f185ee89d077919ecc9598cc2842b2f0b1209734f115c19f",
+        "git_blob": "7c1824ed8004fe6d397e110cb66c7c332a24660c",
+        "bytes": 10136,
+        "source": "mounted previously approved historical result",
+        "method": "Local bytes rehashed; Git blob identity equals current exact-head connector response."
+      },
+      {
+        "path": "foundation/evidence/harness-authorization.json",
+        "sha256": "25f0ee35f9cafe89230f47e218d31a43c2aecb57f4f67446008c4a8c4eb3e0ab",
+        "git_blob": "b792b8ac78cf91fdc0035ef334e5603614fe4c46",
+        "bytes": 9054,
+        "source": "prior correction-start package/WindowSafe_Execution_Authorization_WS-EA-20260917-02.json",
+        "method": "Local bytes rehashed; Git blob identity equals current exact-head connector response."
+      },
+      {
+        "path": "foundation/evidence/harness-handoff.md",
+        "sha256": "f7957cf9e9643616c78b49d8ffa5912e6d49a9bc155fae95a41192d4c90e0e46",
+        "git_blob": "a21a2bd9a627b31e7e749c41657310705410085d",
+        "bytes": 6070,
+        "source": "prior correction-start package/WindowSafe_Harness_Correction_Handoff_WS-HC-20260917-01_AUTHORIZED.md",
+        "method": "Local bytes rehashed; Git blob identity equals current exact-head connector response."
+      },
+      {
+        "path": "foundation/evidence/harness-draft.md",
+        "sha256": "83fee934ec31863b808af771481fcda6d65954b74e62628c1b73e8e24d61bffe",
+        "git_blob": "bd7ace90360fed6191b639eda3136a7e1cc65756",
+        "bytes": 8751,
+        "source": "prior correction-start package/review-return/WindowSafe_Harness_Correction_Handoff_WS-HC-20260917-01_DRAFT.md",
+        "method": "Local bytes rehashed; Git blob identity equals current exact-head connector response."
+      },
+      {
+        "path": "foundation/evidence/harness-residual.json",
+        "sha256": "694ac89f40e9246ee8eb4c79b4a5f5712e0079270258fdc90529abe95d223a18",
+        "git_blob": "7fbd19e4fe97cdfc0b10c25cbce92b39a68bc4bc",
+        "bytes": 3889,
+        "source": "prior correction-start package/review-return/WindowSafe_Harness_Residual_WS-HARNESS-RESIDUAL-20260917-01.json",
+        "method": "Local bytes rehashed; Git blob identity equals current exact-head connector response."
+      },
+      {
+        "path": "foundation/evidence/harness-return.json",
+        "sha256": "c9af93124931e13442e38b40ee476f0a738b8f16b6f0a67f10dfa94a2aaf0e12",
+        "git_blob": "a846a354a1245b2211e2af2c32e4b15497350c48",
+        "bytes": 5886,
+        "source": "prior correction-start package/review-return/WindowSafe_Review_Return_WS-PFRRETURN-20260917-01.json",
+        "method": "Local bytes rehashed; Git blob identity equals current exact-head connector response."
+      }
+    ],
+    "evidence_not_rehashed_here": [
+      "foundation/evidence/harness-correction.md",
+      "foundation/evidence/harness-preflight.json",
+      "foundation/evidence/harness-inputs.json",
+      "foundation/evidence/harness-transfer.json",
+      "foundation/context.md",
+      "foundation/engineering.md",
+      "reviews/README.md",
+      "tools/foundation.py",
+      "tests/test_foundation.py",
+      "tests/test_harness_correction.py",
+      ".github/workflows/foundation.yml"
+    ],
+    "canonical_request_execution": "NOT_EXECUTED",
+    "canonical_schema_preflight_execution": "NOT_EXECUTED",
+    "canonical_validate_result_execution": "NOT_EXECUTED",
+    "original_42_test_suite": "NOT_EXECUTED",
+    "new_CI_execution": "NONE"
+  },
+  "limits": {
+    "local_python": "3.13.5",
+    "project_python": "3.14.4",
+    "direct_github_dns": "socket.getaddrinfo failed with temporary name resolution failure; connector GETs worked.",
+    "full_canonical_consumption_completed": false,
+    "custom_intake_checks_are_not_canonical_preflight": true,
+    "all_18_evidence_bytes_rehashed": false,
+    "previous_CI_not_reexecuted_or_reauthenticated_here": true
+  },
+  "findings_as_received": [
+    {
+      "id": "WS-PFR-20260917-01-F01",
+      "severity": "MINOR",
+      "status": "RESOLVED",
+      "description": "Der historische Writer-Linkschutzbefund ist am neuen Head technisch behoben: Root und build werden descriptor-relativ mit O_DIRECTORY/O_NOFOLLOW geöffnet, das Blatt mit O_NOFOLLOW/O_NONBLOCK ohne O_TRUNC, vor Trunkierung werden regulärer Typ und Linkcount geprüft, und nach der Öffnung erfolgen keine Pfad-Lookups mehr. Die Tests decken vorhandene und dangling Blattlinks, verlinkte Ordner, Pfadersetzung vor/nach Öffnung, Hardlinks, falsche Zieltypen, Berechtigungs-, Short-write- und I/O-Fehler sowie deterministische Wiederholung ab.",
+      "disposition": "Am exakten Head 9b6dd621deec1193bfdfbdfa730e8f9349c73fd6 für die dokumentierte POSIX/Linux-Qualifikation bestätigt. Fremde Links/Ziele werden nicht entfernt. Fehlende deklarierte Fähigkeiten führen vor der Writer-Ausgabe zum Fehler. Nicht behauptet werden Windows-/Reparse-Point-Schutz, atomare oder crash-durable Ausgabe oder Schutz gegen einen gleichberechtigten feindlichen Prozess außerhalb des dokumentierten Workspace-Vertrauensmodells. Der historische Finding-Record bleibt unverändert."
+    },
+    {
+      "id": "WS-HARNESS-RESIDUAL-20260917-01",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "description": "Die Korrektur schließt den ursprünglichen allgemeinen Dispositions-Residual nicht vollständig kompatibel. V2 erzwingt den neuen Marker korrekt, und das konkrete historische WS-PFR-20260917-01 validiert unverändert, weil es den Marker bereits enthält. Der aktuelle Validator wendet den V2-Präfix jedoch auch auf V1 an. Der unveränderte V1-Vertrag schrieb diesen Präfix nicht vor; sein damaliger positiver Test akzeptierte ausdrücklich die markerlose nichtblockierende Disposition 'nonblocking follow-up with next-review trigger'. Damit wird eine neue V2-Darstellungsvorschrift rückwirkend zur V1-Repräsentationspflicht und kann unter V1 gebundene, semantisch nichtblockierende Altresultate zurückweisen. Die geforderte Legacy-Kompatibilität ist deshalb nicht bestätigt.",
+      "disposition": "Vor Integration versionenbewusst korrigieren: V2 darf den exakten Marker deterministisch erzwingen; V1 muss gegen seinen unveränderten gebundenen Vertrag und dessen damalige Semantik konsumiert werden, ohne aus dem neuen V2-Feld legacy_v1 rückwirkend eine nicht vorhandene V1-Syntaxpflicht abzuleiten. Das konkrete historische Resultat darf weder geändert noch als Sonder-ID/SHA-Ausnahme behandelt werden. Regressionstests müssen mindestens den damaligen markerlosen positiven V1-Fall und das unveränderte echte Resultat abdecken."
+    },
+    {
+      "id": "WS-PFR-20260918-01-F01",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "description": "Der neue Null-before-Pfad der Historyprüfung vertraut start_baseline_sha aus foundation/subject.json am aktuellen HEAD, prüft diesen Wert aber nicht gegen die autorisierte Startbaseline in der gebundenen Korrekturautorisierung. Auf einem ersten Branch-Push kann derselbe Changeset daher start_baseline_sha auf HEAD umstellen; history() akzeptiert HEAD als eigenen Ancestor und vergleicht geschützte Dateien dann gegen denselben Endstand. Das widerspricht dem dokumentierten Versprechen, beim Null-before-Fall die Append-only-History nicht zu überspringen. Der konkrete Kandidat enthält zwar den richtigen Wert 4ba2c473fe4d90c85d94ee2b2f5cc5777d115109, die allgemeine Guard-Eigenschaft ist aber nicht fail-closed.",
+      "disposition": "Vor Integration den first-push-Fallback an eine unabhängig vom aktuellen Subject-Endstand verifizierte Startbaseline binden, zum Beispiel durch Abgleich mit der hashgeschützten Autorisierungs-/Handoff-Bindung, und negative Tests ergänzen, die eine auf HEAD oder eine andere nicht autorisierte Ancestor-Baseline manipulierte subject.start_baseline_sha zurückweisen. Der PR-Basislauf am aktuellen Kandidaten mindert den konkreten Branch-Blast-Radius, ersetzt aber die behauptete allgemeine Null-before-Guard-Eigenschaft nicht."
+    },
+    {
+      "id": "WS-PFR-20260918-01-F02",
+      "severity": "BLOCKING",
+      "status": "OPEN",
+      "description": "Der vom Reviewauftrag verpflichtend verlangte unabhängige kanonische mechanische Preflight konnte in der aktuellen Reviewer-Scratch-Umgebung nicht als Originalausführung durchgeführt werden: lokaler Git-Zugriff auf die exakten GitHub-Objekte ist dort wegen fehlender GitHub-DNS-Konnektivität nicht verfügbar, und die lokale Python-Version ist 3.13.5 statt des Projektpins 3.14.4. Die vorhandenen CI-Läufe führen Schema-Preflight und Altresultatvalidierung erfolgreich aus, sind aber ausdrücklich keine eigene lokale Wiederholung des unabhängigen Reviewers. Ebenso konnte das fertige Resultat hier nicht mit dem kanonischen validate-result gegen den exakten Git-Subject erneut ausgeführt werden.",
+      "disposition": "Reviewgate offen lassen und den unabhängigen Review in einer read-only Scratch-Umgebung mit Zugriff auf die exakten Git-Objekte und der vorgesehenen gepinnten Runtime erneut mechanisch preflighten; anschließend das unveränderte beziehungsweise fachlich aktualisierte Resultat mit dem kanonischen validate-result prüfen. Keine CI-Evidence, manuelle Rekonstruktion oder modifizierte Validator-Kopie als eigene Originalausführung umdeuten."
+    }
+  ],
+  "processing_dispositions": [
+    {
+      "id": "WS-PFR-20260917-01-F01",
+      "action": "Preserve reviewer-reported RESOLVED for exact POSIX/Linux scope; do not edit old MINOR/OPEN result and do not infer full gate PASS from this blocked return."
+    },
+    {
+      "id": "WS-HARNESS-RESIDUAL-20260917-01",
+      "action": "Keep MAJOR OPEN; version-aware V1 semantic compatibility and V2 explicit-marker correction with negative/positive regressions."
+    },
+    {
+      "id": "WS-PFR-20260918-01-F01",
+      "action": "Keep MAJOR OPEN; independently authorized start-baseline binding for zero-before history fallback, plus adversarial tests."
+    },
+    {
+      "id": "WS-PFR-20260918-01-F02",
+      "action": "Keep BLOCKING OPEN; rebind/qualify independent execution environment and perform original mechanical preflight before renewed substantive review. Return processor cannot retrospectively cure reviewer execution."
+    }
+  ],
+  "v6_propagation": {
+    "historical_reviews_and_product_preparation_decisions": "UNCHANGED",
+    "new_product_or_T05_decision_required": false,
+    "new_TFP_preparation_required_for_described_delta": false,
+    "proposed_followup_id": "WS-HC-20260918-01",
+    "execution_authorization": "DRAFT_ONLY_NOT_ISSUED; previous run ended at review-ready stop",
+    "next_candidate": "New exact correction commit/subject/evidence, preserving previous commits",
+    "next_review": "New review ID and exact subject/contract/evidence binding after successful environment preflight; do not overwrite this BLOCKED result",
+    "integration": "Still prohibited without independent acceptance and separate authorization"
+  },
+  "authorization_effects": {
+    "git_transfer_performed": false,
+    "repository_mutation_performed": false,
+    "coding_agent_started": false,
+    "new_correction_execution_authorized": false,
+    "merge_authorized": false,
+    "epic_or_feature_start_authorized": false,
+    "browser_profile_or_production_action": false
+  },
+  "source_references": [
+    "User upload Eingefügter Text(20260918-173420).txt",
+    "https://api.github.com/repos/felixvonvollmer-png/Firefox---WindowSafe/pulls/1",
+    "https://api.github.com/repos/felixvonvollmer-png/Firefox---WindowSafe/git/trees/7646240206f1b389333f4153c2fb9208f0bbebe2?recursive=1",
+    "https://github.com/felixvonvollmer-png/Firefox---WindowSafe/blob/9b6dd621deec1193bfdfbdfa730e8f9349c73fd6/foundation/subject.json",
+    "https://github.com/felixvonvollmer-png/Firefox---WindowSafe/blob/9b6dd621deec1193bfdfbdfa730e8f9349c73fd6/reviews/review-contract.json",
+    "https://github.com/felixvonvollmer-png/Firefox---WindowSafe/blob/9b6dd621deec1193bfdfbdfa730e8f9349c73fd6/tools/foundation.py",
+    "https://github.com/felixvonvollmer-png/Firefox---WindowSafe/blob/9b6dd621deec1193bfdfbdfa730e8f9349c73fd6/foundation/sources/foundation-2.md"
+  ]
+}

@@ -2,21 +2,30 @@
 
 ## Nächster Auftrag: PROJECT_FOUNDATION_REVIEW
 
-Subject-ID **WS-PFBOOT-20260917-01**. Subject-Locator: `foundation/subject.json`
+Subject-ID **WS-HC-20260918-01**. Subject-Locator: `foundation/subject.json`
 an dem **vollständigen End-SHA aus dem Coding-Agent-Handoff**. Den SHA einmal
-read-only gegen Remote-main verifizieren, danach ausschließlich diesen Commit
+read-only gegen `fix/ws-hc-20260917-01` und PR-Head verifizieren; `main` muss weiter
+auf `4ba2c473fe4d90c85d94ee2b2f5cc5777d115109` liegen. Danach ausschließlich diesen Commit
 reviewen. Der Subject enthält bewusst keinen selbstreferenziellen Commit-Hash.
 
 Kontext: `foundation/context.md`, exakte Product-/Approval-/Preparation-/Binding-
 und Execution-Inputs, `foundation/sources/foundation-2.md` und Foundation 1.
-Evidence: `foundation/evidence/internal-review.md`, Preflight und die im Subject
-genannten Dateien; Tests/Guards selbst prüfen. CI-Run für exakt diesen head_sha
+Evidence: `foundation/evidence/followup-correction.md`, Originalkonsumbeleg,
+Followup-Inputs und die im Subject genannten Dateien; Tests/Guards selbst prüfen. CI-Run für exakt diesen head_sha
 über GitHub Actions lesen. Keine Browserprofile, Produktimplementation oder
 Subjectänderung während des Reviews. Das ist ein Reviewauftrag, kein Verdict.
 
 Der unabhängige Reviewer prüft Product Fidelity, harte Invarianten, Architektur,
 Harness, Traceability, reproduzierbare lokale/CI-Evidence, Scope, Security,
 Reviewvertrag und langlebigen Kontext. Agentenclaims nicht ungeprüft übernehmen.
+Der gezielte Review prüft V1-/V2-/V3-Verträglichkeit, den History-Fallback,
+Originaltransfer, Umgebungsfähigkeit und Tests/CI am neuen Head. Laufstart bleibt
+9b6dd621..., die gesamte unakzeptierte Strecke ab 4ba2c473... ist im Prüfbereich.
+Der erhaltene Rücklauf bleibt BLOCKED. Die Vorbereitung schließt F02 nicht.
+Vor fachlichem Review muss der Reviewer den [Umgebungspreflight](../foundation/reviewer-environment.md)
+selbst erfolgreich ausführen; nach dem Review muss er sein Originalresultat selbst
+mit dem kanonischen Verbraucher validieren. Unveränderte Bereiche dürfen über
+den historischen PASS referenziert werden. Externe Finding-Closure ist noch offen.
 PASS erfordert keine offenen Critical/Blocking/Major; BLOCKED benötigt passende
 Rebindung statt verdecktem Korrekturloop. Findingsfreiheit wird nicht vorgegeben.
 
@@ -26,7 +35,8 @@ Autoritativer vollständiger Outputvertrag ist `reviews/review-contract.json` am
 Subject-SHA. Er ist ein expliziter WindowSafe-Vertrag, **kein JSON-Schema-Dialekt**.
 Das Feld `semantic_minimum_mapping` bindet alle Mindestfelder aus Foundation 2 §32.
 Alle Objekte haben genau die dort angegebenen Felder; zusätzliche Felder sind
-unzulässig. `schema_version` ist die Ganzzahl 1, SHA ist ein voller Git-SHA-1,
+unzulässig. Neue Resultate verwenden `schema_version: 3` passend zu
+`contract_version: 3` / `WINDOWSAFE_REVIEW_CONTRACT_V3`. SHA ist ein voller Git-SHA-1,
 Evidencehash ein SHA-256. IDs enthalten nur Buchstaben, Ziffern, `_` oder `-`.
 Alle sonstigen Textfelder sind nichtleer, `findings` darf leer sein.
 
@@ -52,6 +62,50 @@ oder Findingsbeschreibung; keine nicht geprüfte Evidence als geprüft ausgeben.
 Jedes Finding bindet ID, Severity, OPEN/RESOLVED, Beschreibung und Disposition.
 Offene Minor-Findings benötigen explizite nichtblockierende Disposition.
 
+Für **jedes V2-/V3-OPEN/MINOR**, unabhängig vom Verdict und Reviewtyp, gilt exakt:
+`EXPLICIT_NONBLOCKING_FOLLOW_UP: <nichtleere Begründung>`. Großschreibung und das
+Leerzeichen nach dem Doppelpunkt sind verbindlich. Kein führender Text/Whitespace,
+kein bloßer Follow-up-Satz, keine leere/Whitespace-Begründung. Zusätzliche
+`EXPLICIT_...:`, `BLOCKING:` oder `NONBLOCKING:`-Marker in der Begründung werden
+als mehrdeutig abgewiesen (auch bei anderer Großschreibung). Textliche Widersprüche
+ohne Maschinenmarker und die sachliche Begründung muss der Reviewer inhaltlich
+prüfen. Der Marker beweist weder authentische Autorität noch echte Nichtblockierung.
+OPEN/MAJOR, BLOCKING oder CRITICAL bleiben bei PASS auch mit Marker unzulässig.
+
+Historische V1-/V2-Subjects werden mit dem **jeweiligen unveränderten Vertrag am
+alten SHA** konsumiert. V1 benötigt tatsächliche Nichtblockierungssemantik, keine
+rückwirkende V2-Syntax. Der historische Text
+`nonblocking follow-up with next-review trigger` ist ohne Marker zulässig; ebenso
+der explizite Marker mit nichtleerer eindeutiger Begründung. Dies sind Textregeln,
+keine Review-ID-/SHA-Ausnahmen. Das reale alte PASS bleibt unverändert gültig.
+
+Andere nichtleere V1-Freitexte öffnen **V1_SEMANTIC_DISPOSITION_REQUIRED**. Der CLI
+liefert einen gebundenen offenen Dispositionsrequest (Originalbytehash, Subject,
+Evidence, Originalprovenienz, Reviewerrolle), Exit 1. Das ist weder ein V2-Syntaxfehler
+noch ein akzeptierter beliebiger Freitext. Es gibt keine NLP-/Providerabhängigkeit.
+Ein separat autorisierter unabhängiger Reviewer kann seine inhaltliche Beurteilung
+in `reviews/dispositions/<REVIEW_ID>.json` oder einer extern zurückgegebenen Datei
+liefern. Der V3-Vertragsabschnitt `legacy_v1_disposition` enthält die vollständigen
+Felder. Die separate Datei bindet den SHA-256 der **Originalresultatbytes**, Subject,
+Evidence und ursprüngliche Provenienz. `reviewer` und `provenance` haben dieselben
+Felder/Rollen-/Unabhängigkeitsregeln wie der Reviewvertrag. Jede Entscheidung bindet
+Finding-ID, SHA-256 des unveränderten UTF-8-Dispositionstextes, Entscheidung
+`NONBLOCKING_FOLLOW_UP`, nichtleere Begründung, konkretes Follow-up und Trigger.
+Genau alle unklaren OPEN/MINOR-Findings müssen einmal enthalten sein.
+
+```sh
+python3 tools/foundation.py validate-result --file /path/to/REVIEW_ID.json --semantic-disposition /path/to/separate-disposition.json
+```
+
+Leere Texte oder explizit blockierende/mehrdeutige Marker sind nicht durch den
+Sidecar übersteuerbar, ebenso wenig V2-/V3-Regeln oder PASS mit offenen höheren
+Severities. Für Repositoryresultate wird der kanonische Sidecar automatisch
+mitgeprüft; verwaiste oder überflüssige Dispositionen sind unzulässig. Originale
+werden nie editiert. Auch ein technisch gültiger Sidecar beweist keine Authentizität
+oder sachliche Richtigkeit; Originalprovenienz und unabhängige Beurteilung sind
+extern zu bestätigen. In diesem Lauf wurde **kein realer Sidecar** erfunden.
+V1, V2 und V3 dürfen beim Schema-Preflight nicht gleichgesetzt werden.
+
 ## Ergebnislocator, Konsum und Transport
 
 Für alle drei Typen: **`reviews/results/<REVIEW_ID>.json`**. Foundation, Epic
@@ -62,7 +116,7 @@ keine Dummyresultate oder von diesem Coding-Agenten erzeugten PASS-Dateien.
 
 ```sh
 python3 tools/foundation.py validate-result --file /path/to/REVIEW_ID.json
-python3 tools/foundation.py history --base <PREVIOUS_CANONICAL_SHA>
+python3 tools/foundation.py history --base 4ba2c473fe4d90c85d94ee2b2f5cc5777d115109
 ```
 
 Der Validator lädt Subject, vollständigen Vertrag und Evidence erneut aus dem
@@ -81,6 +135,7 @@ Vor Konsum erneut validieren. Bei Mismatch vor Konsum/Mutation stoppen, nicht de
 Kanal passend abschwächen. Originalbytes und historische Resultate bleiben
 append-only; Korrekturen bekommen neue IDs und neue genaue Subjectbindungen.
 
-Nach unabhängiger Foundation-PASS: Kontext-Sync oder begründetes NOT_APPLICABLE,
-danach FIRST_EPIC_PREPARATION. Weder ein syntaktisch gültiges Resultat noch main-
-Integration starten automatisch ein Feature, einen Browserlauf oder Production.
+Für WS-HC endet der Coding-Auftrag am ungemergten reviewbereiten Head. Danach
+unabhängiger Delta-Review und **separate Integrationsfreigabe**; PASS allein startet
+keinen Merge. Erst nach autorisierter Integration folgen Kontext-Sync oder
+NOT_APPLICABLE und FIRST_EPIC_PREPARATION mit seinen getrennten Gates.

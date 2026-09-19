@@ -1,0 +1,17 @@
+{
+  "work_item_id": "WS-HC-20260917-01",
+  "authorization_reference": "foundation/evidence/harness-authorization.json",
+  "authorization_sha256": "25f0ee35f9cafe89230f47e218d31a43c2aecb57f4f67446008c4a8c4eb3e0ab",
+  "target": "reviews/results/WS-PFR-20260917-01.json",
+  "sha256": "c4c908eb70c99252f185ee89d077919ecc9598cc2842b2f0b1209734f115c19f",
+  "bytes": 10136,
+  "transfer_branch": "fix/ws-hc-20260917-01",
+  "transfer_commit": "48224840e68da6c66c0f129f0564fcaad9c1ad8e",
+  "review_subject_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+  "method": "Exact byte copy from bound ZIP, no decoding or serialization; original consumer validation succeeded before transport commit.",
+  "main_integration": "NOT_AUTHORIZED_NOT_PERFORMED",
+  "historical_verdict": "PASS",
+  "historical_minor_status": "OPEN_UNCHANGED",
+  "external_closure": "NOT_ISSUED",
+  "provenance_limit": "User-supplied review provenance preserved; no platform signature or independent reauthentication claimed."
+}

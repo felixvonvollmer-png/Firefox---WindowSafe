@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "review_id": "WS-PFR-20260917-01",
+  "review_type": "PROJECT_FOUNDATION_REVIEW",
+  "reviewer": {
+    "authority": "INDEPENDENT_PROJECT_LLM",
+    "identity": "ChatGPT als unabhängiger Reviewer dieses Nutzerauftrags, nicht Implementierer oder vorbereitender Projekt-LLM",
+    "run_reference": "Diese Konversation: read-only PROJECT_FOUNDATION_REVIEW WS-PFR-20260917-01 nach dem Upload von Eingefügter Text(7).txt und dem zugehörigen Startpaket; keine separate Plattform-Run-ID verfügbar",
+    "independence": "FRESH_OR_SUFFICIENTLY_ISOLATED"
+  },
+  "provenance": {
+    "source_reference": "Dieses Resultat stammt aus dem aktuellen, ausdrücklich read-only autorisierten Reviewauftrag WS-PFR-20260917-01 in dieser Konversation. Der Reviewer ist weder CODING_AGENT_WS_PFBOOT_20260917_01 noch der vorbereitende Projekt-LLM; die frühere Beteiligung in dieser Konversation war ausschließlich ein unabhängiger Preparation-Rereview. Die aktuelle Foundation wurde anhand der gebundenen Repositoryquellen und eigener Prüfungen beurteilt, nicht durch Übernahme des internen Self-Reviews. Es wird keine Plattform-Run-ID, digitale Signatur oder darüber hinausgehende Identitätsauthentifizierung behauptet. Kein Git-Transfer wurde durchgeführt oder autorisiert. EXACT_AUTHORIZED_TRANSFER bezeichnet ausschließlich das zurückgegebene Originalpayload für eine gegebenenfalls später separat autorisierte, unveränderte Übernahme. Keine Repository-, Subject-, Produkt-, Browserprofil-, Epic-, Kontextinstallations- oder Production-Mutation und kein Coding-Agentenstart. Auftragsgrundlage: Eingefügter Text(7).txt. \n\nIntegrität und Preflight: Repository-ID 1374094477, öffentliches Zielrepository, einmalig Remote-main, Root-Commit 4ba2c473fe4d90c85d94ee2b2f5cc5777d115109 und Tree 2cdf2d0484463c9639d924f0aa239499637e941b stimmen überein; der Ergebnislocator ist im vollständig gelesenen Subject-Tree unbelegt. Handoff-Blob de1cd4b03187b2e1d836b1db4a98bb976e6fa478 und Subject-Blob 497eaab9cd0737ed29efe23c4b7e61479c70043d stimmen. Das beigefügte Startpaket und sein internes Manifest wurden geprüft. Der kanonische WINDOWSAFE_REVIEW_CONTRACT_V1 hat Blob dd18e82eb9c44f3ec339b39efbe46e39a5449693, SHA-256 eeefff513ad07e03d1ae8ac51667b5c7b5d08f02b54e84d648b5781baa11197c und 2460 Bytes. Sein vollständiger semantischer Mindestvertrag nach Foundation 2 §32 und seine projektspezifischen Regeln wurden geprüft. In einer isolierten, teilweise materialisierten Git-Lesekopie wurden der ursprüngliche Commit und die benötigten Git-Objekte über ihre Hashes verifiziert; request, git show des Vertrags und schema-preflight wurden mit dem unveränderten kanonischen Werkzeug tatsächlich erfolgreich ausgeführt. Alle neun unten aufgeführten Evidence-Dateien wurden selbst gelesen und ihre SHA-256-Werte aus den tatsächlich gebundenen Bytes berechnet. \n\nInput- und Umfangsprüfung: Alle zwölf Manifestinputs sowie die separaten Handoff-, Approval-, PASS-, READY- und Execution-Bindungen wurden inhaltlich geprüft. Product Definition, Approval, r6, WS-TD-03 und T05-R2 wurden zusätzlich lokal nach SHA-256 und Bytelänge geprüft; dafür verwendete bereits vorhandene Bytes wurden zuerst gegen die Git-Blob-Identitäten des aktuellen Subject-Trees abgeglichen. Die vollständige Hash-/Längenprüfung aller zwölf Inputs und der beiden V6-Originalquellen ist zusätzlich durch den selbst geprüften CI-Lauf mit dem gelesenen fail-closed input_integrity-Code belegt; eine zusätzliche lokale Wiederholung dieses vollständigen Checks wird nicht behauptet. Die geladenen V6-Quellen entsprechen den Blobs 3b139a7dfd70da3ae6c83bbdfa703cb98ef94193 und ff49e56aba09881e9e4a22dc8225949fbc4b54f6. Nicht enthaltene historische Entscheidungs-/Reviewdateien und Größenproben wurden nicht erneut als geprüfte Evidence ausgegeben. Historische Nutzerfreigaben wurden anhand ihrer gebundenen Records geprüft, nicht unabhängig digital reauthentifiziert.\n\nCI_VERIFIED: Run https://github.com/felixvonvollmer-png/Firefox---WindowSafe/actions/runs/35251357728 und Job https://github.com/felixvonvollmer-png/Firefox---WindowSafe/actions/runs/35251357728/job/105304229413 wurden einschließlich Status, Steps und vollständigem Joblog selbst gelesen. head_sha entspricht exakt dem Subject. CPython 3.14.4, Lint/Guards, 23 erfolgreiche Regressionstests, deterministischer Foundation-Inventar-Build, Append-only-History und saubere getrackte CI-Arbeitskopie sind bestätigt. Inventar-SHA-256: e200bc63b0b6cfd69b0a7f05cbb1be23908e9f199552695bdb80e7f1bdf15270. Die Node-Deprecation-Warnungen verhindern diesen erfolgreichen Lauf nicht. \n\nZusätzliche lokale Reviewerprüfung: Unter Python 3.13.5 bestanden 82 eigene Komponentenprüfungen gegen das unveränderte tools/foundation.py, insbesondere vollständiger Vertrags-Preflight, positive und negative Subject-/Evidence-/Authority-/Resultatbindungen, Findingregeln, Pfad-/Scope-Prüfungen, 37 synthetische additive Historyeinträge, Änderungs-/Löschablehnung, Root-History und Inventardeterminismus. Das ist keine lokale Wiederholung der originalen 23-Test-Suite. Der vollständige gepinnte check/build wurde lokal nicht wiederholt und das Python-Pin-Gate nicht verändert oder umgangen. Ein gesonderter synthetischer Komponentenversuch mit den unveränderten Ausgabestatements bestätigte Finding WS-PFR-20260917-01-F01; er war kein vollständiger Buildlauf. Keine Firefox-, Profil-, Restart-, CPU- oder RAM-Prüfung wurde ausgeführt.\n\nFachliches Ergebnis: Der vollständige initiale Changeset wahrt Product Truth, Preparation r6, T01–T04/G01/T05-R2, I01–I10 und PROJECT_FOUNDATION_ONLY. Insbesondere bleiben die 15-/30-Prozent-Einzellaufcaps inklusiv und die 5-/10-Prozent-Softziele nichtblockierend. Routing, Architektur, Traceability, unabhängige Verdict-Autorität, Konsumprüfung und append-only History sind für den Bootstrap tragfähig. LOW_RISK gilt begründet nur für diesen Foundation-Stand; spätere sensible Produktpfade behalten ihren Risikofloor. Die Plattform-/Erkennungs- und Messmethodengates bleiben vor betroffener Produktimplementierung fällig; native Acceptance-Evidence kommt zusätzlich später. Add-on-Build, Produkt-Typecheck/Packaging, Browserprüfungen, Operations und externer Projekttext-Sync sind für diesen Stand nachvollziehbar NOT_APPLICABLE, nicht als erledigt behauptet. Keine neue materielle Entscheidung oder verdeckte Provider-/Kosten-/Daten-/Secret-/Production-Freigabe wurde festgestellt. Historische Preparation-PASS-Resultate bleiben ausschließlich an ihre bisherigen Tuples gebunden. PASS gilt für diesen exakten Foundation-Subject mit einem ausdrücklich nichtblockierenden offenen Minor-Finding, nicht als Freigabe weiterer Arbeit.",
+    "transport": "EXACT_AUTHORIZED_TRANSFER"
+  },
+  "subject": {
+    "id": "WS-PFBOOT-20260917-01",
+    "path": "foundation/subject.json",
+    "end_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109"
+  },
+  "verdict": "PASS",
+  "findings": [
+    {
+      "id": "WS-PFR-20260917-01-F01",
+      "severity": "MINOR",
+      "status": "OPEN",
+      "description": "Der Foundation-Inventar-Writer schützt den Ausgabeordner, aber nicht eine bereits vorhandene symbolisch verknüpfte Ausgabedatei. tools/foundation.py:374–376 prüft nur ROOT/build auf is_symlink(); write_bytes folgt einem vorhandenen Symlink build/foundation-inventory.json. files() überspringt build-Inhalte, und .gitignore ignoriert /build/. Ein ausschließlich synthetischer Komponentenversuch mit den exakten Ausgabestatements des Blobs 067d1752f25c15c1aa5b65e6e7572d5026424b77 überschrieb dadurch eine synthetische Datei außerhalb des synthetischen Repositoryordners. Der vorhandene allgemeine Symlink-Test deckt diesen Ausgabe-Blattpfad nicht ab. Kein vollständiger CLI-Build und keine Änderung kanonischer oder realer Nutzerdaten wurden dabei ausgeführt.  ",
+      "disposition": "EXPLICIT_NONBLOCKING_FOLLOW_UP: Für den exakt reviewten initialen Bootstrap nichtblockierend: Der gebundene Tree enthält keine Symlinks, der bestätigte CI-Build lief in einer neu ausgecheckten Arbeitsumgebung, und die Ausnutzung setzt einen separat angelegten lokalen Ausgabesymlink voraus; keine betroffene Produktfunktion oder aktuelle Datenbeschädigung wurde festgestellt. Vor Wiederverwendung des Writers in nicht frisch angelegten Arbeitsumgebungen ist der Ausgabe-Blattpfad gegen Linkverfolgung beziehungsweise unerlaubtes Überschreiben abzusichern und durch einen negativen Regressionstest zu belegen. Bis dahin nur einen ausdrücklich geprüften, linkfreien Ausgabeort verwenden. Die Korrektur bleibt einem separat autorisierten Harness-Inkrement vorbehalten; dieser Reviewer hat weder korrigiert noch einen Folgeauftrag gestartet."
+    }
+  ],
+  "reviewed_evidence": [
+    {
+      "path": "foundation/evidence/preflight.json",
+      "sha256": "747878dea6582a1d168c9c787198bd530e4b5f3043de668121c375f86929d567"
+    },
+    {
+      "path": "foundation/evidence/internal-review.md",
+      "sha256": "a7a226454cd04a87f689ecd8cfb3dad79ed051f3c204bd4fc3436eadf72d94aa"
+    },
+    {
+      "path": "foundation/context.md",
+      "sha256": "de7489d2d6bf72a9f4abe75175cb7807f7040162b3dbcc71805d84e891e20f34"
+    },
+    {
+      "path": "foundation/architecture.md",
+      "sha256": "1bde37db0ffa7eaf5769dc54f8a5fe655f2478cb57a44fef640906bf13cdaec5"
+    },
+    {
+      "path": "foundation/engineering.md",
+      "sha256": "bfecd95f026a9d83e3900b8c38fdb2698cc90e59bc1d9157a5b77ddb00b2a808"
+    },
+    {
+      "path": "epics/README.md",
+      "sha256": "9ecc576298637b6b72ca7056a0a7f6c8cdf17b969d8975b89d03970e732c2f13"
+    },
+    {
+      "path": "reviews/README.md",
+      "sha256": "6309f7d03af3cd1a7d782bab34362ef1eb5bd009021aefb2fae77c1c3139d192"
+    },
+    {
+      "path": "reviews/review-contract.json",
+      "sha256": "eeefff513ad07e03d1ae8ac51667b5c7b5d08f02b54e84d648b5781baa11197c"
+    },
+    {
+      "path": "foundation/inputs/SHA256SUMS.json",
+      "sha256": "80203ae9f554aa4dba951d316a685bd20cbe57ef28a2912fd49608cdaf9cb6a8"
+    }
+  ],
+  "result_reference": "reviews/results/WS-PFR-20260917-01.json"
+}

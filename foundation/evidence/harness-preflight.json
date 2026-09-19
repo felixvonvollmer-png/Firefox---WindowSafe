@@ -1,0 +1,25 @@
+{
+  "work_item_id": "WS-HC-20260917-01",
+  "evidence_class": "LOCAL_AGENT_REPORTED_WITH_REMOTE_READS",
+  "prewrite_observed_at_utc": "2026-09-18T09:00:45.014136+00:00",
+  "repository": "felixvonvollmer-png/Firefox---WindowSafe",
+  "repository_id": 1374094477,
+  "visibility": "public",
+  "remote": "https://github.com/felixvonvollmer-png/Firefox---WindowSafe.git",
+  "remote_main_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+  "local_head_sha": "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+  "tree": "2cdf2d0484463c9639d924f0aa239499637e941b",
+  "worktree_and_index": "CLEAN",
+  "untracked_files": [],
+  "work_branch_local_and_remote": "ABSENT_BEFORE_CREATION",
+  "result_target": "ABSENT_BEFORE_TRANSFER",
+  "output_directory_and_leaf": "LINK_FREE_BEFORE_ORIGINAL_WRITER_USE",
+  "available_tools": {
+    "python": "3.14.4",
+    "git": "git version 2.53.0",
+    "gh": "gh version 2.98.0 (2026-08-20)"
+  },
+  "agent_environment": "Existing authorized Codex environment; single coding agent, no model override or provider switch. No independent reviewer instantiated in this implementing run.",
+  "tools_are_not_authorization": true,
+  "original_baseline_checks": "check, 23 tests, build --verify-repeat passed before source changes; original inventory e200bc63b0b6cfd69b0a7f05cbb1be23908e9f199552695bdb80e7f1bdf15270"
+}

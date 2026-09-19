@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import re
+import stat
 import subprocess
 import sys
 
@@ -39,10 +40,56 @@ AUTHORITIES = {
 }
 ID_PATTERN = r"[A-Za-z0-9][A-Za-z0-9_-]{0,127}"
 SHA_PATTERN = r"[0-9a-f]{40}"
+NONBLOCKING_PREFIX = "EXPLICIT_NONBLOCKING_FOLLOW_UP: "
+MINOR_DISPOSITION_CONTRACT = {
+    "prefix": NONBLOCKING_PREFIX,
+    "rationale": "NONEMPTY_TEXT_WITHOUT_ADDITIONAL_DISPOSITION_MARKERS",
+    "applies_to": "ALL_OPEN_MINOR_FINDINGS_REGARDLESS_OF_VERDICT",
+    "legacy_v1": "ENFORCE_EXPLICIT_NONBLOCKING_SEMANTICS_WITH_SAME_MARKER_NO_ID_EXEMPTIONS",
+    "limitation": "MARKER_IS_NOT_PROOF_OF_AUTHENTICITY_OR_SEMANTIC_NONBLOCKING",
+}
+LEGACY_POSITIVE = "nonblocking follow-up with next-review trigger"
+LEGACY_DISPOSITION_CONTRACT = {
+    "recognized_v1_text": LEGACY_POSITIVE,
+    "explicit_marker_also_supported": NONBLOCKING_PREFIX,
+    "otherwise": "V1_SEMANTIC_DISPOSITION_REQUIRED_NOT_V2_SYNTAX_ERROR",
+    "sidecar": "reviews/dispositions/<REVIEW_ID>.json",
+    "binding_fields": ["result_sha256", "subject", "reviewed_evidence", "original_provenance"],
+    "required_fields": ["result_sha256", "subject", "reviewed_evidence", "original_provenance", "reviewer", "provenance", "decisions"],
+    "decision_fields": ["finding_id", "original_disposition_sha256", "decision", "rationale", "follow_up", "trigger"],
+    "decision": "NONBLOCKING_FOLLOW_UP",
+    "authority": "SAME_ROLE_AND_INDEPENDENCE_REQUIREMENTS_AS_BOUND_REVIEW",
+    "limits": "V1_ONLY_NO_EMPTY_OR_EXPLICIT_BLOCKING_OVERRIDE_EXTERNAL_AUTHENTICATION_REQUIRED",
+}
+CURRENT_MINOR_CONTRACT = dict(MINOR_DISPOSITION_CONTRACT,
+    legacy_v1="HISTORICAL_SEMANTICS_WITH_BOUND_SEPARATE_DISPOSITION_WHEN_UNCLEAR")
+FOLLOWUP_AUTH = "foundation/evidence/followup-authorization.json"
+FOLLOWUP_INPUTS = {
+    FOLLOWUP_AUTH: "f3f0c51070e51974bfc6979e5db4ead2cdfa131315c0654ebad8773e467320ed",
+    "foundation/evidence/followup-handoff.md": "17461e12b7a8ff3fcd8fcf5924e506147a471c44a28e626df184dbc91120bb61",
+    "foundation/evidence/followup-draft.md": "77f91ef8333959c6e69c2af510600101fc3fcd241fd5b5be49eee475967582f7",
+    "foundation/evidence/followup-environment-authorization.md": "263a209c0a8233e72fec5020fe5cdb2716f9a4d07c2b3c3b862d104e62a5428d",
+    "foundation/evidence/followup-environment-draft.md": "40d65217da93528afddd5f469884bc4571dfc548c36af445ab92dd3066bebbf4",
+    "foundation/evidence/followup-return.json": "55036d0f3845321f7b66dc8b4cac0f45e57222d6f32816420035c4dbcfcf12ed",
+    "foundation/evidence/followup-baseline.json": "ca79ad0e6433281341215e98eaff763397d7886966238e743440a8c5d2186d4c",
+    "foundation/evidence/followup-manifest.json": "85e15f981b0b1c134234759ddd072d63c7521351c14b84c23138081e6b56950b",
+    "foundation/evidence/followup-return-manifest.json": "486f0fc704a75b52ed5fa8761ef8c271f5d9cfa6181174dd638a08fc48b8a4fe",
+}
+CORRECTION_INPUTS = {
+    "foundation/evidence/harness-authorization.json": "25f0ee35f9cafe89230f47e218d31a43c2aecb57f4f67446008c4a8c4eb3e0ab",
+    "foundation/evidence/harness-handoff.md": "f7957cf9e9643616c78b49d8ffa5912e6d49a9bc155fae95a41192d4c90e0e46",
+    "foundation/evidence/harness-draft.md": "83fee934ec31863b808af771481fcda6d65954b74e62628c1b73e8e24d61bffe",
+    "foundation/evidence/harness-residual.json": "694ac89f40e9246ee8eb4c79b4a5f5712e0079270258fdc90529abe95d223a18",
+    "foundation/evidence/harness-return.json": "c9af93124931e13442e38b40ee476f0a738b8f16b6f0a67f10dfa94a2aaf0e12",
+}
 
 
 class Invalid(ValueError):
     """A closed gate with a safe categorical reason."""
+
+
+class SemanticDispositionRequired(Invalid):
+    """Unclear V1 semantics require separate, bound independent evidence."""
 
 
 def require(condition, reason):
@@ -106,14 +153,26 @@ def at(sha, path):
 
 
 def validate_contract(c):
-    fields(c, {
+    require(isinstance(c, dict), "contract object required")
+    version = c.get("contract_version")
+    require(type(version) is int and version in {1, 2, 3}, "contract version")
+    expected_fields = {
         "contract_version", "format", "result_channel", "required_fields", "review_types",
         "verdicts", "severities", "finding_statuses", "reviewer_fields", "provenance_fields",
         "subject_fields", "evidence_fields", "finding_fields", "authorities", "independence",
         "transport", "rules", "semantic_minimum_mapping",
-    })
-    require(type(c["contract_version"]) is int and c["contract_version"] == 1, "contract version")
-    require(c["format"] == "WINDOWSAFE_REVIEW_CONTRACT_V1", "contract format")
+    }
+    if version >= 2:
+        expected_fields.add("minor_open_disposition")
+    if version == 3:
+        expected_fields.add("legacy_v1_disposition")
+    fields(c, expected_fields)
+    require(c["format"] == "WINDOWSAFE_REVIEW_CONTRACT_V" + str(version), "contract format")
+    if version == 2:
+        require(c["minor_open_disposition"] == MINOR_DISPOSITION_CONTRACT, "minor disposition contract drift")
+    if version == 3:
+        require(c["minor_open_disposition"] == CURRENT_MINOR_CONTRACT, "minor disposition contract drift")
+        require(c["legacy_v1_disposition"] == LEGACY_DISPOSITION_CONTRACT, "legacy semantics contract drift")
     require(c["result_channel"] == "reviews/results/<REVIEW_ID>.json", "result channel")
     require(c["semantic_minimum_mapping"] == SEMANTIC_MAPPING, "semantic minimum mismatch")
     require(c["authorities"] == AUTHORITIES, "review authorities mismatch")
@@ -169,6 +228,7 @@ def request(sha, path="foundation/subject.json"):
     require(len(s["evidence_paths"]) == len(set(s["evidence_paths"])), "duplicate evidence")
     evidence = [{"path": safe_path(p), "sha256": sha256(at(sha, p))} for p in s["evidence_paths"]]
     return {
+        "schema_version": c["contract_version"],
         "review_type": kind,
         "subject": {"id": s["subject_id"], "path": path, "end_sha": sha},
         "implementer": s["implementer"], "required_authority": c["authorities"][kind],
@@ -177,10 +237,10 @@ def request(sha, path="foundation/subject.json"):
     }
 
 
-def validate_result(result, req, c, filename):
+def validate_result(result, req, c, filename, semantic=None, raw_sha=None):
     validate_contract(c)
     fields(result, c["required_fields"])
-    require(type(result["schema_version"]) is int and result["schema_version"] == 1, "schema version")
+    require(type(result["schema_version"]) is int and result["schema_version"] == c["contract_version"], "schema version")
     identifier(result["review_id"])
     require(filename == result["review_id"] + ".json", "ID/filename mismatch")
     require(result["result_reference"] == "reviews/results/" + filename, "result locator mismatch")
@@ -207,6 +267,7 @@ def validate_result(result, req, c, filename):
     require(result["verdict"] in c["verdicts"], "invalid verdict")
     require(isinstance(result["findings"], list), "findings must be a list")
     seen = set()
+    unclear = []
     for finding in result["findings"]:
         fields(finding, c["finding_fields"])
         identifier(finding["id"])
@@ -216,16 +277,81 @@ def validate_result(result, req, c, filename):
         require(finding["status"] in c["finding_statuses"], "finding status")
         text(finding["description"])
         text(finding["disposition"])
+        if finding["status"] == "OPEN" and finding["severity"] == "MINOR":
+            disposition = finding["disposition"]
+            if c["contract_version"] == 1 and disposition == LEGACY_POSITIVE:
+                pass  # Historical positive semantics; no review ID or SHA exemption.
+            elif disposition.startswith(NONBLOCKING_PREFIX):
+                rationale = disposition[len(NONBLOCKING_PREFIX):]
+                text(rationale)
+                require(not re.search(r"\b(?:EXPLICIT_[A-Z_]+|BLOCKING|NONBLOCKING)\s*:", rationale, re.IGNORECASE), "ambiguous disposition markers")
+            elif c["contract_version"] == 1:
+                require(not re.search(r"\b(?:EXPLICIT_[A-Z_]+|BLOCKING|NONBLOCKING)\s*:", disposition, re.IGNORECASE), "ambiguous or blocking disposition marker")
+                unclear.append(finding)
+            else:
+                raise Invalid("explicit nonblocking marker required")
         if result["verdict"] == "PASS":
             require(not (finding["status"] == "OPEN" and finding["severity"] in {"CRITICAL", "BLOCKING", "MAJOR"}), "PASS with blocking finding")
+    if unclear:
+        if semantic is None:
+            raise SemanticDispositionRequired("V1_SEMANTIC_DISPOSITION_REQUIRED")
+        validate_semantic_disposition(semantic, result, req, unclear, raw_sha)
+    else:
+        require(semantic is None, "unexpected semantic disposition")
 
 
-def validate_result_file(path):
-    result = parse(path.read_bytes())
+def validate_semantic_disposition(record, result, req, unclear, raw_sha):
+    fields(record, LEGACY_DISPOSITION_CONTRACT["required_fields"])
+    require(isinstance(raw_sha, str) and re.fullmatch(r"[0-9a-f]{64}", raw_sha), "original bytes required")
+    require(record["result_sha256"] == raw_sha, "semantic original result mismatch")
+    for key in ("subject", "reviewed_evidence"):
+        require(record[key] == result[key], "semantic subject/evidence mismatch")
+    require(record["original_provenance"] == result["provenance"], "semantic original provenance mismatch")
+    reviewer = record["reviewer"]
+    fields(reviewer, {"authority", "identity", "run_reference", "independence"})
+    for value in reviewer.values():
+        text(value)
+    require(reviewer["authority"] == req["required_authority"], "semantic authority mismatch")
+    require(reviewer["identity"].casefold() != req["implementer"].casefold(), "semantic self disposition")
+    require(reviewer["independence"] == "FRESH_OR_SUFFICIENTLY_ISOLATED", "semantic independence")
+    fields(record["provenance"], {"source_reference", "transport"})
+    text(record["provenance"]["source_reference"])
+    require(record["provenance"]["transport"] in {"DIRECT_CANONICAL_WRITE", "EXACT_AUTHORIZED_TRANSFER"}, "semantic transport")
+    decisions = record["decisions"]
+    require(isinstance(decisions, list) and len(decisions) == len(unclear), "semantic decisions incomplete")
+    expected = {finding["id"]: finding for finding in unclear}
+    for decision in decisions:
+        fields(decision, LEGACY_DISPOSITION_CONTRACT["decision_fields"])
+        finding = expected.pop(decision["finding_id"], None)
+        require(finding is not None, "semantic finding mismatch")
+        require(decision["original_disposition_sha256"] == sha256(finding["disposition"].encode()), "semantic disposition mismatch")
+        require(decision["decision"] == "NONBLOCKING_FOLLOW_UP", "semantic nonblocking decision required")
+        for key in ("rationale", "follow_up", "trigger"):
+            text(decision[key])
+
+
+def validate_result_file(path, semantic_path=None):
+    data = path.read_bytes()
+    result = parse(data)
     sha = result["subject"]["end_sha"]
     require(isinstance(sha, str) and re.fullmatch(SHA_PATTERN, sha), "immutable SHA required")
     req = request(sha, result["subject"]["path"])
-    validate_result(result, req, parse(at(sha, CONTRACT_PATH)), path.name)
+    if semantic_path is None and path.parent.resolve() == (ROOT / "reviews/results").resolve():
+        candidate = ROOT / "reviews/dispositions" / path.name
+        if candidate.exists():
+            semantic_path = candidate
+    semantic = parse(semantic_path.read_bytes()) if semantic_path else None
+    try:
+        validate_result(result, req, parse(at(sha, CONTRACT_PATH)), path.name, semantic, sha256(data))
+    except SemanticDispositionRequired:
+        # A machine-readable unresolved request, not a fabricated disposition or V2 error.
+        print(json.dumps({"status": "V1_SEMANTIC_DISPOSITION_REQUIRED", "result_sha256": sha256(data),
+                          "subject": result["subject"], "reviewed_evidence": result["reviewed_evidence"],
+                          "original_provenance": result["provenance"],
+                          "required_authority": req["required_authority"],
+                          "original_result_reference": result["result_reference"],
+                          "sidecar_contract": LEGACY_DISPOSITION_CONTRACT}, indent=2))
+        raise
 
 
 def input_integrity(root):
@@ -267,6 +393,7 @@ def scope(path):
     allowed |= bool(re.fullmatch(r"(tools|tests)/[a-z_]+\.py", path))
     allowed |= path in {"epics/README.md", "reviews/README.md", CONTRACT_PATH}
     allowed |= bool(re.fullmatch(r"reviews/results/" + ID_PATTERN + r"\.json", path))
+    allowed |= bool(re.fullmatch(r"reviews/dispositions/" + ID_PATTERN + r"\.json", path))
     require(allowed, "outside foundation-only path scope")
     require(PurePosixPath(path).name != "manifest.json", "extension manifest prohibited")
 
@@ -274,6 +401,8 @@ def scope(path):
 def check(root=ROOT):
     require(sys.version_info[:3] == (3, 14, 4), "Python 3.14.4 required")
     input_integrity(root)
+    for path, digest in (CORRECTION_INPUTS | FOLLOWUP_INPUTS).items():
+        require(sha256((root / path).read_bytes()) == digest, "correction input drift")
     validate_contract(parse((root / CONTRACT_PATH).read_bytes()))
     subject = parse((root / "foundation/subject.json").read_bytes())
     require(subject["product_features_started"] is False and subject["epic_started"] is False, "product start prohibited")
@@ -288,7 +417,7 @@ def check(root=ROOT):
         content = data.decode("utf-8")
         if path.suffix == ".json":
             parse(data)
-        if rel.startswith(("foundation/inputs/", "foundation/sources/")):
+        if rel.startswith(("foundation/inputs/", "foundation/sources/")) or rel in FOLLOWUP_INPUTS:
             continue  # Original bytes, including original whitespace, are immutable.
         require(content.endswith("\n") and "\r" not in content, "text newline format")
         require(all(line == line.rstrip() for line in content.splitlines()), "trailing whitespace")
@@ -300,7 +429,10 @@ def check(root=ROOT):
                     target = link.split("#", 1)[0]
                     require((path.parent / target).is_file(), "missing local document link")
         if rel.startswith("reviews/results/"):
-            validate_result_file(path)
+            disposition = root / "reviews/dispositions" / path.name
+            validate_result_file(path, disposition if disposition.exists() else None)
+        if rel.startswith("reviews/dispositions/"):
+            require((root / "reviews/results" / path.name).is_file(), "orphan semantic disposition")
     workflow = (root / ".github/workflows/foundation.yml").read_text()
     require("contents: read" in workflow and "persist-credentials: false" in workflow, "CI privilege drift")
     require(re.findall(r"(?m)^\s*permissions:.*$", workflow) == ["permissions:"], "additional CI permissions")
@@ -324,8 +456,48 @@ def build_bytes(root):
     return (json.dumps({"artifact": "FOUNDATION_INVENTORY_NOT_ADDON", "files": inventory}, indent=2) + "\n").encode()
 
 
+def write_inventory(root, data):
+    """No-follow, descriptor-relative writer for qualified POSIX environments.
+
+    Never unlinks/replaces a preexisting link. The output is regenerable, not an
+    atomic/durable store. Hostile mutation of opened inode ancestry is outside
+    the trusted local workspace model; no Windows/reparse-point claim is made.
+    """
+    require(os.name == "posix" and os.open in os.supports_dir_fd
+            and os.mkdir in os.supports_dir_fd
+            and all(hasattr(os, flag) for flag in ("O_NOFOLLOW", "O_DIRECTORY", "O_NONBLOCK")),
+            "qualified no-follow writer unavailable")
+    directory_flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    root_fd = os.open(root, directory_flags)
+    try:
+        try:
+            os.mkdir("build", mode=0o700, dir_fd=root_fd)
+        except FileExistsError:
+            pass  # The following open, not this observation, enforces no-follow.
+        directory_fd = os.open("build", directory_flags, dir_fd=root_fd)
+        try:
+            flags = os.O_WRONLY | os.O_CREAT | os.O_NOFOLLOW | os.O_NONBLOCK
+            output_fd = os.open("foundation-inventory.json", flags, 0o600, dir_fd=directory_fd)
+            try:
+                info = os.fstat(output_fd)
+                require(stat.S_ISREG(info.st_mode) and info.st_nlink == 1, "output must be a single-link regular file")
+                # No path lookup after validation; do not truncate before fstat.
+                os.ftruncate(output_fd, 0)
+                remaining = memoryview(data)
+                while remaining:
+                    written = os.write(output_fd, remaining)
+                    require(written > 0, "output write made no progress")
+                    remaining = remaining[written:]
+            finally:
+                os.close(output_fd)
+        finally:
+            os.close(directory_fd)
+    finally:
+        os.close(root_fd)
+
+
 def protected(path):
-    return path.startswith(("foundation/inputs/", "foundation/sources/", "reviews/results/"))
+    return path.startswith(("foundation/inputs/", "foundation/sources/", "foundation/evidence/", "reviews/results/", "reviews/dispositions/"))
 
 
 def check_history_maps(before, after):
@@ -334,13 +506,41 @@ def check_history_maps(before, after):
             require(path in after and after[path] == value, "append-only history violated")
 
 
-def history(base):
-    head = commit("HEAD")
-    if not base or base == "0" * 40:
-        require(git("rev-list", "--count", head).strip() == b"1", "missing noninitial history baseline")
-        return
-    base = commit(base)
+def ancestor(base, head):
     subprocess.run(["git", "-C", str(ROOT), "merge-base", "--is-ancestor", base, head], check=True, capture_output=True)
+
+
+def history_binding(head):
+    # Anchor is the separately user-authorized original, hash-pinned independently
+    # of the current subject. Changing the subject cannot select a comparison base.
+    try:
+        raw = at(head, FOLLOWUP_AUTH)
+    except subprocess.SubprocessError as error:
+        raise Invalid("missing history authorization") from error
+    require(sha256(raw) == FOLLOWUP_INPUTS[FOLLOWUP_AUTH], "history authorization hash mismatch")
+    require((ROOT / FOLLOWUP_AUTH).read_bytes() == raw, "worktree authorization drift")
+    binding = parse(raw)["repository_binding"]
+    cumulative = binding["cumulative_review_and_history_base_sha"]
+    run_start = binding["run_start_head_sha"]
+    require(binding["expected_main_sha"] == cumulative, "authorization baseline conflict")
+    for value, tree in ((cumulative, binding["cumulative_base_tree_sha"]), (run_start, binding["run_start_tree_sha"])):
+        require(re.fullmatch(SHA_PATTERN, value) and commit(value) == value, "bound commit unavailable")
+        require(git("rev-parse", value + "^{tree}").decode().strip() == tree, "bound tree mismatch")
+        require(value != head, "history self comparison")
+        ancestor(value, head)
+    ancestor(cumulative, run_start)
+    subject_raw = at(head, "foundation/subject.json")
+    require((ROOT / "foundation/subject.json").read_bytes() == subject_raw, "uncommitted history declaration")
+    subject = parse(subject_raw)
+    require(subject["start_baseline_sha"] == subject["cumulative_review_and_history_base_sha"] == cumulative,
+            "cumulative history declaration mismatch")
+    require(subject["run_start_head_sha"] == run_start, "run history declaration mismatch")
+    require(subject["execution_authorization_path"] == FOLLOWUP_AUTH
+            and subject["execution_authorization_sha256"] == sha256(raw), "subject authorization mismatch")
+    return cumulative, run_start
+
+
+def history_snapshot(base):
     before = {}
     for entry in git("ls-tree", "-rz", "--full-tree", base).split(b"\0"):
         if not entry:
@@ -349,8 +549,45 @@ def history(base):
         path = name.decode()
         if protected(path):
             before[path] = at(base, path)
+    return before
+
+
+def compare_history(base):
     after = {p.relative_to(ROOT).as_posix(): p.read_bytes() for p in files(ROOT)}
-    check_history_maps(before, after)
+    check_history_maps(history_snapshot(base), after)
+
+
+def history(base):
+    head = commit("HEAD")
+    no_base = not base or base == "0" * 40
+    # Structural root check, not a fixed count of historical reviews or commits.
+    is_root = len(git("rev-list", "--parents", "-n", "1", head).split()) == 1
+    if is_root:
+        require(no_base, "root must have no history base")
+        return
+    cumulative, run_start = history_binding(head)
+    bases = {cumulative, run_start}
+    if not no_base:
+        require(re.fullmatch(SHA_PATTERN, base), "full event base required")
+        base = commit(base)
+        require(base != head, "history self comparison")
+        ancestor(base, head)
+        if base not in bases:
+            ancestor(run_start, base)  # No arbitrary ancestor between cumulative and run start.
+        bases.add(base)
+    else:
+        require(base == "0" * 40, "missing event binding")
+    for comparison in sorted(bases):
+        compare_history(comparison)
+    # Also protect results introduced within the unaccepted delta, including
+    # changes later reverted. Endpoint comparisons alone would hide those edits.
+    previous = history_snapshot(cumulative)
+    for revision in git("rev-list", "--reverse", cumulative + ".." + head).decode().splitlines():
+        require(len(git("rev-list", "--parents", "-n", "1", revision).split()) == 2, "unaccepted history must be linear")
+        current = history_snapshot(revision)
+        check_history_maps(previous, current)
+        previous = current
+    check_history_maps(previous, {p.relative_to(ROOT).as_posix(): p.read_bytes() for p in files(ROOT)})
 
 
 def main():
@@ -360,6 +597,7 @@ def main():
     parser.add_argument("--subject", default="foundation/subject.json")
     parser.add_argument("--schema", type=Path)
     parser.add_argument("--file", type=Path)
+    parser.add_argument("--semantic-disposition", type=Path)
     parser.add_argument("--base")
     parser.add_argument("--event-base", action="store_true")
     parser.add_argument("--verify-repeat", action="store_true")
@@ -371,9 +609,7 @@ def main():
         result = build_bytes(ROOT)
         if args.verify_repeat:
             require(result == build_bytes(ROOT), "nondeterministic build")
-        require(not (ROOT / "build").is_symlink(), "build symlink prohibited")
-        (ROOT / "build").mkdir(exist_ok=True)
-        (ROOT / "build/foundation-inventory.json").write_bytes(result)
+        write_inventory(ROOT, result)
         print("FOUNDATION_INVENTORY_SHA256", sha256(result))
     elif args.command == "request":
         print(json.dumps(request(args.sha, args.subject), indent=2))
@@ -383,7 +619,7 @@ def main():
         schema_preflight(parse(at(commit(args.sha), CONTRACT_PATH)), parse(args.schema.read_bytes()))
     elif args.command == "validate-result":
         require(args.file is not None, "result file required")
-        validate_result_file(args.file)
+        validate_result_file(args.file, args.semantic_disposition)
     elif args.command == "history":
         base = os.environ.get("FOUNDATION_EVENT_BASE") if args.event_base else args.base
         require(args.event_base or args.base is not None, "explicit history baseline required")
@@ -394,6 +630,9 @@ def main():
 if __name__ == "__main__":
     try:
         main()
+    except SemanticDispositionRequired:
+        print("V1_SEMANTIC_DISPOSITION_REQUIRED: independent original-bound disposition missing", file=sys.stderr)
+        sys.exit(1)
     except (Invalid, KeyError, TypeError, ValueError, OSError, subprocess.SubprocessError):
         print("FOUNDATION_GATE_FAILED: invalid input, binding, environment or history", file=sys.stderr)
         sys.exit(1)

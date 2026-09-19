@@ -12,6 +12,7 @@ import subprocess
 import sys
 
 
+
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_SHA = "80203ae9f554aa4dba951d316a685bd20cbe57ef28a2912fd49608cdaf9cb6a8"
 HANDOFF_SHA = "15701c717061773d9017cf3c884a7eb0cebcb0d66b67a93dc13e41acb7d98774"
@@ -99,6 +100,100 @@ CORRECTION_INPUTS = {
     "foundation/evidence/harness-residual.json": "694ac89f40e9246ee8eb4c79b4a5f5712e0079270258fdc90529abe95d223a18",
     "foundation/evidence/harness-return.json": "c9af93124931e13442e38b40ee476f0a738b8f16b6f0a67f10dfa94a2aaf0e12",
 }
+
+
+FEATURE_ID_PATTERN = r"WS-E[0-9]{2}-F[0-9]{2}"
+FEATURE_AUTHORIZATIONS = {
+    "features/WS-E01-F01/evidence/execution-authorization.json":
+        "0fa96ebc05b1df0f7562f1fe1b10ce7534223ef150200edc1c366f2e31d3138c",
+}
+FEATURE_ORIGINALS = {
+    "start.json": "e97e172bed786d172d5875b630f995ac90796717e6ddd1486eb88dd39f6f2ce6",
+    "qualification-plan.md": "bd99d7db13ed6a7088872a0b2e01baf71dc5cd063303272be2e724b2c88d76b6",
+    "test-envelope.md": "f2c6c57bcdb7162cf7a00bab9e319e8836b5f123c54d44bfd7bd5fa0e0164f56",
+    "acceptance-criteria.md": "3eb9e13483e68d290bfd7899cb3dd05c49a8ab07517e8d123d757310f3dfc2c1",
+    "evidence/research-start.md": "2ef213c0dfebaa2a65252f3d087587a35c575d3946f1967d1f21087173842718",
+}
+
+
+def feature_lifecycle_path(path):
+    return bool(re.fullmatch(r"features/" + FEATURE_ID_PATTERN +
+        r"/(start\.json|state\.json|subject\.json|[a-z-]+\.md|evidence/[a-z0-9-]+\.(json|md))", path))
+
+
+def feature_qualification_path(path):
+    return bool(re.fullmatch(r"qualification/ws-e01-f01/(README\.md|package(-lock)?\.json|tsconfig\.json|"
+        r"[a-z_-]+\.(py|md)|probe/(manifest\.json|background\.ts)|"
+        r"helper/(manifest\.json|background\.js)|pages/[a-z-]+\.html)", path))
+
+
+def feature_anchor(f, read, head):
+    """An exact user-supplied record, never an editable subject, selects the base."""
+    records = []
+    for path, digest in FEATURE_AUTHORIZATIONS.items():
+        try:
+            raw = read(path)
+        except (FileNotFoundError, subprocess.CalledProcessError):
+            continue
+        f.require(f.sha256(raw) == digest, "feature authorization hash")
+        auth = f.parse(raw)
+        f.require(auth['STATUS'] == 'AUTHORIZED' and auth['AUTHORITY'] == 'USER', 'feature authority')
+        base = auth['START_BASELINE_SHA']
+        f.require(f.commit(base) == base, 'feature base unavailable')
+        f.require(f.git('rev-parse', base + '^{tree}').decode().strip() == auth['START_BASELINE_TREE'], 'feature base tree')
+        f.ancestor(base, head)
+        records.append((path, auth))
+    f.require(len(records) <= 1, 'concurrent feature execution')
+    return records[0] if records else None
+
+
+def feature_check(f, paths, read, head):
+    feature_paths = {p for p in paths if p.startswith('features/')}
+    qualified = {p for p in paths if p.startswith('qualification/')}
+    if not feature_paths and not qualified:
+        return
+    bound = feature_anchor(f, read, head)
+    f.require(bound is not None, 'missing feature authorization')
+    auth_path, auth = bound
+    feature = auth['FEATURE_ID']; prefix = 'features/' + feature + '/'
+    f.require(all(p.startswith(prefix) for p in feature_paths), 'unauthorized feature')
+    f.require(all(feature_qualification_path(p) for p in qualified), 'unauthorized qualification path')
+    for name, digest in FEATURE_ORIGINALS.items():
+        f.require(f.sha256(read(prefix + name)) == digest, 'feature original drift')
+    start = f.parse(read(prefix + 'start.json'))
+    base = auth['START_BASELINE_SHA']
+    for key in ('feature_id', 'epic_id', 'start_baseline_sha', 'start_baseline_tree'):
+        f.require(start[key] == auth[key.upper()], 'feature start binding')
+    binding_path = 'epics/' + auth['EPIC_ID'] + '/binding.json'
+    f.require(start['epic_binding_reference'] == binding_path, 'feature epic locator')
+    f.require(read(binding_path) == f.at(base, binding_path), 'feature epic binding drift')
+    binding = f.parse(read(binding_path))
+    f.require(binding['status'] == 'READY_FOR_AGENT', 'feature requires accepted epic')
+    f.epic_preparation(binding_path.replace('binding.json', 'subject.json'), lambda p: f.at(base, p), base)
+    state = f.parse(read(prefix + 'state.json'))
+    f.require(state['status'] in auth['STOP_STATES'] + ['IN_PROGRESS'], 'feature lifecycle')
+    f.require(state['feature_id'] == feature and state['start_baseline_sha'] == base, 'feature state binding')
+    f.require(state['risk_class'] in {'ELEVATED', 'HIGH'}, 'feature risk floor')
+    f.require(isinstance(state['open_gates'], list), 'feature open gates required')
+    if state['status'] == feature + '_READY_FOR_INDEPENDENT_TECHNICAL_REVIEW':
+        f.require(state['open_gates'] == [] and state['target_environments'] == {
+            'Ubuntu Desktop': 'COMPLETE', 'Windows Desktop': 'COMPLETE'}, 'incomplete feature qualification')
+    f.require(state['product_implementation_started'] is False, 'product implementation prohibited')
+    f.require(state['independent_technical_review'] == 'PENDING' and
+              state['feature_acceptance_review'] == 'NOT_READY', 'feature self acceptance prohibited')
+    required = {prefix + p for p in FEATURE_ORIGINALS} | {auth_path, binding_path,
+        binding['approved_product_definition_reference'], binding['project_technical_foundation_reference'],
+        binding['epic_preparation_review_result_reference']}
+    evidence = state['evidence_paths']
+    f.require(isinstance(evidence, list) and len(set(evidence)) == len(evidence) and required <= set(evidence), 'feature traceability')
+    for path in evidence:
+        f.safe_path(path); f.scope(path); read(path)
+    if prefix + 'subject.json' in feature_paths:
+        subject = f.parse(read(prefix + 'subject.json'))
+        f.require(subject.get('status') == 'READY_FOR_ACCEPTANCE_REVIEW', 'feature subject premature')
+        # This authorization ends before technical review / Acceptance. A future
+        # separately hash-bound lifecycle transition must explicitly open this gate.
+        f.require(False, 'feature acceptance preparation not authorized in this run')
 
 
 class Invalid(ValueError):
@@ -249,6 +344,9 @@ def request(sha, path="foundation/subject.json"):
         if binding["status"] == "READY_FOR_AGENT":
             # A current accepted locator still requests the original reviewed bytes.
             return request(binding["epic_preparation_subject_immutable_reference"]["end_sha"], path)
+    if kind == "FEATURE_ACCEPTANCE_REVIEW":
+        paths = git("ls-tree", "-r", "--name-only", sha).decode().splitlines()
+        feature_check(sys.modules[__name__], paths, lambda name: at(sha, name), sha)
     evidence = [{"path": safe_path(p), "sha256": sha256(at(sha, p))} for p in s["evidence_paths"]]
     return {
         "schema_version": c["contract_version"],
@@ -421,8 +519,9 @@ def scope(path):
                                 + ID_PATTERN + r"\.(md|json))", path))
     allowed |= bool(re.fullmatch(r"reviews/results/" + ID_PATTERN + r"\.json", path))
     allowed |= bool(re.fullmatch(r"reviews/dispositions/" + ID_PATTERN + r"\.json", path))
+    allowed |= feature_lifecycle_path(path) or feature_qualification_path(path)
     require(allowed, "outside foundation-only path scope")
-    require(PurePosixPath(path).name != "manifest.json", "extension manifest prohibited")
+    require(PurePosixPath(path).name != "manifest.json" or feature_qualification_path(path), "extension manifest prohibited")
 
 
 def epic_preparation(path, read, head):
@@ -515,6 +614,14 @@ def epic_preparation(path, read, head):
 def accepted_epic_binding(path, read, head):
     """Consume an authorized PASS; preserve the original preparation and verdict."""
     binding_path = path.replace("subject.json", "binding.json")
+    bound = feature_anchor(sys.modules[__name__], read, head)
+    if bound and head != bound[1]["START_BASELINE_SHA"]:
+        base = bound[1]["START_BASELINE_SHA"]
+        # Continue consuming the exact integrated preparation at its own base.
+        # Every Epic path remains immutable throughout the feature delta.
+        for name in git("ls-tree", "-r", "--name-only", base, "--", "epics").decode().splitlines():
+            require(read(name) == at(base, name), "feature preparation drift")
+        return accepted_epic_binding(path, lambda name: at(base, name), base)
     binding = parse(read(binding_path))
     auth_path = safe_path(binding["execution_authorization_reference"])
     raw = read(auth_path)
@@ -587,6 +694,8 @@ def check(root=ROOT):
     epic_paths = epic_subject_paths(p.relative_to(root).as_posix() for p in files(root))
     for path in epic_paths:
         epic_preparation(path, lambda name: (root / name).read_bytes(), commit("HEAD"))
+    feature_check(sys.modules[__name__], [p.relative_to(root).as_posix() for p in files(root)],
+                  lambda name: (root / name).read_bytes(), commit("HEAD"))
     for path in files(root):
         rel = path.relative_to(root).as_posix()
         scope(rel)
@@ -618,7 +727,12 @@ def check(root=ROOT):
     require("pull_request_target" not in workflow and "secrets." not in workflow, "CI trust drift")
     require("python-version: '3.14.4'" in workflow, "CI Python pin drift")
     actions = re.findall(r"uses: ([^\s]+)", workflow)
-    require(actions == ["actions/checkout@11d5960a326750d5838078e36cf38b85af677262", "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"], "CI action pin drift")
+    expected_actions = ["actions/checkout@11d5960a326750d5838078e36cf38b85af677262", "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"]
+    if "qualification-windows-static:" in workflow:
+        require("runs-on: windows-2025" in workflow and "qualification/ws-e01-f01/toolchain.py --setup" in workflow,
+                "Windows static qualification CI binding")
+        expected_actions *= 2
+    require(actions == expected_actions, "CI action pin drift")
     for command in ["foundation.py check", "unittest discover", "foundation.py build --verify-repeat", "foundation.py history --event-base"]:
         require(command in workflow, "missing CI gate")
     if epic_paths:
@@ -680,7 +794,7 @@ def write_inventory(root, data):
 
 
 def protected(path):
-    return path.startswith(("foundation/inputs/", "foundation/sources/", "foundation/evidence/", "reviews/results/", "reviews/dispositions/")) or bool(re.fullmatch(r"epics/" + ID_PATTERN + r"/.+", path))
+    return path.startswith(("foundation/inputs/", "foundation/sources/", "foundation/evidence/", "reviews/results/", "reviews/dispositions/")) or bool(re.fullmatch(r"epics/" + ID_PATTERN + r"/.+", path)) or (path.startswith("features/") and ("/evidence/" in path or PurePosixPath(path).name in FEATURE_ORIGINALS))
 
 
 def check_history_maps(before, after, transitions=None):
@@ -814,6 +928,13 @@ def history(base):
     integrations = preparation_integration(head, cumulative)
     transitions = accepted_binding_transitions(head)
     bases = {cumulative, run_start}
+    feature_bound = feature_anchor(sys.modules[__name__], lambda name: at(head, name), head)
+    if feature_bound:
+        feature_base = feature_bound[1]["START_BASELINE_SHA"]
+        require(feature_base != head, "feature history self comparison")
+        bases.add(feature_base)
+        for name in git("diff", "--name-only", feature_base, head).decode().splitlines():
+            scope(name)
     if not no_base:
         require(re.fullmatch(SHA_PATTERN, base), "full event base required")
         base = commit(base)

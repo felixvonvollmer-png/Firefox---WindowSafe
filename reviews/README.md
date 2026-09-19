@@ -178,3 +178,14 @@ Historisch galt: Für WS-HC endet der Coding-Auftrag am ungemergten reviewbereit
 unabhängiger Delta-Review und **separate Integrationsfreigabe**; PASS allein startet
 keinen Merge. Erst nach autorisierter Integration folgen Kontext-Sync oder
 NOT_APPLICABLE und FIRST_EPIC_PREPARATION mit seinen getrennten Gates.
+
+## F01 Reviewrouting
+
+Der F01-Lauf unter WS-EA-20260919-06 endet vor unabhängiger technischer Annahme.
+Solange die [Qualifikationsgates](../features/WS-E01-F01/state.json) offen sind, bleibt er PARTIAL.
+Nach vollständiger Konvergenz: unabhängiger allgemeiner technischer Review des kumulativen
+F01-Deltas ab `3bdd7439c221b8f8c83e7374c8bb29898891a4fd`, insbesondere Lifecycle-/Historygrenzen,
+Toolchain/Supply Chain, Profil-/Prozessisolation, Plattformbefunde und Messattribution.
+Danach erst separat zulässige FEATURE_ACCEPTANCE_REVIEW-Vorbereitung; kein Selbstverdikt.
+Der implementierende Agent erstellt in diesem Lauf weder Acceptance-Subject noch Resultat.
+Der offene historische Routing-Follow-up wird dadurch berücksichtigt, nicht nachträglich geschlossen.

@@ -1,0 +1,86 @@
+{
+  "DOCUMENT_TYPE": "WINDOWSAFE_FEATURE_EXECUTION_AUTHORIZATION",
+  "AUTHORIZATION_ID": "WS-EA-20260919-06",
+  "STATUS": "AUTHORIZED",
+  "DATE": "2026-09-19",
+  "AUTHORITY": "USER",
+  "USER_AUTHORIZATION_REFERENCE": {
+    "VERBATIM_MESSAGE": "machen wir weiter",
+    "CONTEXT": "Immediate continuation after WS-E01 Epic Preparation reached READY_FOR_AGENT and the next explicitly identified step was WS-E01-F01 — platform, toolchain and measurement qualification.",
+    "INTERPRETATION": "Authorizes the bounded WS-E01-F01 qualification feature run described by this package, including isolated synthetic Firefox qualification probes and disposable test profiles, but no WS-E01-F02/product implementation, no real user profile/data, no Feature Acceptance self-verdict, no merge without the required technical and acceptance gates."
+  },
+  "REPOSITORY": "felixvonvollmer-png/Firefox---WindowSafe",
+  "REPOSITORY_ID": 1374094477,
+  "START_BASELINE_SHA": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
+  "START_BASELINE_TREE": "034b79c80d9e1e6ae2b57268e6dbaf94bfb31b58",
+  "TARGET_BRANCH": "feature/ws-e01-f01-qualification",
+  "EPIC_ID": "WS-E01",
+  "FEATURE_ID": "WS-E01-F01",
+  "FEATURE_TYPE": "TECHNICAL_ENABLER_PREIMPLEMENTATION_QUALIFICATION",
+  "RISK_FLOOR": "ELEVATED",
+  "AUTHORIZED_SCOPE": [
+    "Verify current READY_FOR_AGENT Epic binding and all canonical Product/Foundation/Epic references.",
+    "Create/reuse the short-lived feature branch from the exact start baseline after fail-closed Git preflight.",
+    "Materialize the supplied WS-E01-F01 start/plan/test-envelope/research/acceptance artifacts byte-for-byte.",
+    "Add the minimum generic feature-lifecycle repository support required for features/<FEATURE_ID> start evidence and a future FEATURE_ACCEPTANCE_REVIEW subject, while keeping product paths fail-closed.",
+    "Qualify and pin the development toolchain and supply-chain records needed for the later WindowSafe product build, using exact versions and a lockfile.",
+    "Create qualification-only WebExtension probes and local synthetic test pages under a clearly separated qualification/test path; these probes are not WindowSafe product implementation.",
+    "Run read-only/current-primary-source checks and isolated runtime capability probes against Firefox 156 on available authorized target OS environments.",
+    "Use only synthetic disposable Firefox profiles created for this run; use a stable test add-on ID where restart/persistence testing requires it.",
+    "Use official Mozilla Firefox builds or explicitly documented official/unbranded/Developer test builds only when restart testing requires signing-disabled test execution.",
+    "Inside disposable test profiles only, change test-only preferences required for persistent restart testing if supported by the chosen official test build.",
+    "Download/install Node/npm and dev dependencies in user/workspace scope only, without sudo/system package manager/global profile mutation, if exact required versions are absent.",
+    "Develop and dry-run the R500/R2000/H and T05-R2 measurement methodology/instrumentation, including OS-specific process attribution method, without claiming the later product performance PASS.",
+    "Produce an exact platform/capability matrix, toolchain binding, measurement-method binding, runtime evidence, known limitations and remaining blockers.",
+    "If Ubuntu and Windows target evidence are both complete and all F01 criteria converge, stop at WS-E01-F01_READY_FOR_INDEPENDENT_TECHNICAL_REVIEW on an unmerged branch/PR.",
+    "If a required target OS/runtime or capability cannot be executed, preserve partial evidence and produce an exact bounded continuation handoff; do not falsely mark F01 complete."
+  ],
+  "TEST_ENVELOPE": {
+    "REAL_USER_FIREFOX_PROFILE": "PROHIBITED",
+    "REAL_HISTORY_TABS_SESSIONS_COOKIES": "PROHIBITED",
+    "FIREFOX_SYNC_OR_LOGIN": "PROHIBITED",
+    "AMO_UPLOAD_OR_SIGNING": "PROHIBITED",
+    "GLOBAL_SIGNATURE_SETTING_CHANGE": "PROHIBITED",
+    "DISPOSABLE_PROFILE_ONLY": true,
+    "SYNTHETIC_LOCAL_TEST_DATA_ONLY": true,
+    "LOCALHOST_TEST_SERVER_ALLOWED": true,
+    "OFFICIAL_MOZILLA_TEST_BUILD_ALLOWED_WHEN_REQUIRED": true,
+    "SIGNATURE_PREF_CHANGE_ONLY_IN_DISPOSABLE_TEST_PROFILE_AND_SUPPORTED_NONUSER_BUILD": true,
+    "KILL_UNRELATED_FIREFOX_PROCESSES": "PROHIBITED",
+    "TRACK_AND_CLEAN_ONLY_OWN_CREATED_PROCESSES_AND_TEMP_PATHS": true
+  },
+  "TOOLCHAIN_NETWORK_SCOPE": {
+    "ALLOWED": [
+      "official Node.js distribution endpoints",
+      "npm registry for exact dev dependencies",
+      "official Mozilla/Firefox download and documentation endpoints",
+      "GitHub public read-only sources needed for pinned open-source/toolchain provenance"
+    ],
+    "PROHIBITED": [
+      "new paid providers",
+      "credentials/secrets",
+      "AMO submission/signing"
+    ]
+  },
+  "NOT_AUTHORIZED": [
+    "WS-E01-F02 or any later feature start",
+    "WindowSafe production capture/recovery/data-store/UI/backup/import implementation",
+    "creating a product manifest or packaging a user-installable WindowSafe release",
+    "using real user profiles, sessions, history, cookies, accounts, tabs or backup data",
+    "browser automation against the user's normal Firefox instance",
+    "closing/killing unrelated Firefox processes",
+    "sudo/system package installation",
+    "global Node/npm package installation",
+    "AMO signing/upload or any Mozilla account use",
+    "release, distribution, production readiness or production operations",
+    "self-issued independent technical review PASS",
+    "FEATURE_ACCEPTANCE_REVIEW by the implementing agent",
+    "merge/auto-merge/squash/rebase/force push of F01"
+  ],
+  "STOP_STATES": [
+    "WS-E01-F01_READY_FOR_INDEPENDENT_TECHNICAL_REVIEW",
+    "WS-E01-F01_PARTIAL_QUALIFICATION__TARGET_ENVIRONMENT_REQUIRED",
+    "WS-E01-F01_BLOCKED__MATERIAL_USER_DECISION_REQUIRED",
+    "WS-E01-F01_BLOCKED__QUALIFICATION_GATE_FAILED"
+  ]
+}

@@ -39,3 +39,9 @@ kein Firefox-Add-on. Nach einem Commit liefert
 `python3 tools/foundation.py request --sha HEAD --subject epics/WS-E01/subject.json` nach Prüfung des Accepted-Bindings den ursprünglichen
 Reviewauftrag am reviewed Subject (unverändert 23 Evidence-Bindungen) als JSON auf stdout. Details zum Schema-Preflight stehen im
 [Review-Handoff](reviews/README.md).
+
+## F01-Qualifikation
+
+Der ungemergte F01-Lauf liefert Partial-Evidence und ist am finalen Auditgate BLOCKED; Einstieg über
+[Qualifikationsbericht](features/WS-E01-F01/evidence/qualification-report.md) und
+[Fortsetzungspaket](qualification/ws-e01-f01/README.md). Kein Produktstart, F02 oder Merge.

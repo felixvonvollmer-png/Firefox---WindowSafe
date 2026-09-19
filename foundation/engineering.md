@@ -186,3 +186,20 @@ wiederkehrenden Klassen zuerst ausreichende Qualitätsbaseline; günstige Auswah
 erst mit Verifikation. Eine stärkere Modellstufe ersetzt keine Unabhängigkeit.
 Fehlende Override-/Hook-/Branchschutzfähigkeiten offen benennen und durch die
 in Foundation 2 beschriebenen funktionalen Workflows ersetzen.
+
+## F01-Qualifikation unter WS-EA-20260919-06
+
+Die oben als historisch beschriebenen Preparation-/Integrationsläufe bleiben an ihre Subjects
+gebunden. Der neue Startrecord und das separate Original autorisieren ausschließlich F01.
+Featureoriginale und Evidence sind append-only; state.json ist ein abgeleiteter Lifecyclezustand.
+Feature-Subjects sind erst bei READY_FOR_ACCEPTANCE_REVIEW zulässig und bleiben unter dieser
+Ausführungsautorisierung vollständig gesperrt. Das Harness konsumiert die akzeptierte
+Epic Preparation an der exakten F01-Startbasis und prüft ihre fortgesetzte Unveränderlichkeit.
+Alle alten kumulativen Historybasen, Zwischencommits und kanonischen Resultate bleiben geprüft.
+
+Zusätzliche Befehle: `python3 qualification/ws-e01-f01/toolchain.py --setup` für statische
+Toolchain-/Lint-/Auditprüfungen; synthetische Browserläufe ausschließlich nach dem
+[Fortsetzungsprotokoll](../qualification/ws-e01-f01/README.md). CI führt statische Ubuntu-/Windows-
+Toolchainprüfungen aus. Windows Server CI ist kein Windows-Desktop-/GUI-/Restartnachweis.
+Unabhängiger allgemeiner technischer Review ist nach F01-Konvergenz erforderlich;
+Feature Acceptance wird nicht durch diesen Coding-Agenten vorbereitet oder ausgestellt.

@@ -56,7 +56,7 @@ die exakten Git-Blobs geladen und einschließlich Git-Blob-Header nachgehasht:
 Kein beweglicher Branch ersetzt diese Quellen; historische Candidate-Felder
 werden nicht umgeschrieben. Kein neuer Foundation-Pair-Review.
 
-## Aktueller Lifecycle
+## Historischer Lifecycle bis zur Epic-Integration
 
 Der historische Bootstrap-Subject am SHA
 `4ba2c473fe4d90c85d94ee2b2f5cc5777d115109` erhielt WS-PFR-20260917-01 PASS mit
@@ -82,7 +82,7 @@ Das Original hat 22666 Bytes und SHA-256
 Die lokale Originaldatei wurde unter CPython 3.14.4 kanonisch vor dem bytegenauen
 Transfer validiert. Keine Rekonstruktion aus Chattext.
 
-Aktuell autorisiert: **WS-E01-INT-20260919-02** durch **WS-EA-20260919-05**;
+Damals autorisiert: **WS-E01-INT-20260919-02** durch **WS-EA-20260919-05**;
 Original: [integration-authorization.json](../epics/WS-E01/evidence/integration-authorization.json).
 Das [Accepted-Binding](../epics/WS-E01/binding.json) setzt READY_FOR_AGENT und bindet
 weiterhin genau den reviewed Subject und dessen main-Basis. Der ursprüngliche
@@ -101,3 +101,18 @@ Ein externer installierter ChatGPT-Projektkanal ist hier nicht gebunden.
 Der Review läuft über Git-Locators: externer Text-Sync ist für diesen Bootstrap
 NOT_APPLICABLE. Wird später ein solcher Kanal verlangt, bleibt Installation/Sync
 bis ausdrücklicher externer Bestätigung offen.
+
+## Aktueller F01-Qualifikationslauf
+
+WS-EA-20260919-06 autorisiert WS-E01-F01-START-20260919-01 ab main
+`3bdd7439c221b8f8c83e7374c8bb29898891a4fd`. Sechs Startoriginale wurden bytegenau
+nach `features/WS-E01-F01/` übertragen. Das bisherige Accepted-Epic-Binding und
+alle Product-/Foundation-/Revieworiginale bleiben unverändert.
+
+[Featurezustand](../features/WS-E01-F01/state.json) und
+[Qualifikationsbericht](../features/WS-E01-F01/evidence/qualification-report.md)
+sind die aktuellen Locator. Partial-Evidence ist keine technische Annahme; das finale
+Auditgate ist wegen Registry-Wartung BLOCKED. Windows Desktop
+und weitere native/instrumentelle Teilnachweise bleiben offen. Keine Produktimplementation,
+kein F02, keine Feature Acceptance, kein Merge. Fortsetzung nur innerhalb des gebundenen
+synthetischen Test-Envelopes; keine echten Browserprofile.

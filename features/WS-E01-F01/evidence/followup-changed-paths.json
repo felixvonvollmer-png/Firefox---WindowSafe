@@ -1,13 +1,10 @@
 {
-  "feature_id": "WS-E01-F01",
-  "start_baseline_sha": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
-  "status": "WS-E01-F01_BLOCKED__QUALIFICATION_GATE_FAILED",
-  "risk_class": "ELEVATED",
-  "product_implementation_started": false,
-  "independent_technical_review": "PENDING",
-  "feature_acceptance_review": "NOT_READY",
-  "evidence_paths": [
-    "epics/WS-E01/binding.json",
+  "start_sha": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
+  "first_head": "eb7e93b3fcc89089ebd05682b70082d82129b441",
+  "paths": [
+    ".github/workflows/foundation.yml",
+    "AGENTS.md",
+    "README.md",
     "features/WS-E01-F01/acceptance-criteria.md",
     "features/WS-E01-F01/evidence/audit-service-interruption.json",
     "features/WS-E01-F01/evidence/changed-paths.json",
@@ -56,9 +53,10 @@
     "features/WS-E01-F01/evidence/ubuntu-stable.json",
     "features/WS-E01-F01/qualification-plan.md",
     "features/WS-E01-F01/start.json",
+    "features/WS-E01-F01/state.json",
     "features/WS-E01-F01/test-envelope.md",
-    "foundation/inputs/inputs/WindowSafe_Product_Definition_WS-PD-20260917-01.md",
-    "foundation/inputs/inputs/WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r6.md",
+    "foundation/context.md",
+    "foundation/engineering.md",
     "qualification/ws-e01-f01/README.md",
     "qualification/ws-e01-f01/cgroup_dry_run.py",
     "qualification/ws-e01-f01/continuation.py",
@@ -74,24 +72,9 @@
     "qualification/ws-e01-f01/run_probe.py",
     "qualification/ws-e01-f01/toolchain.py",
     "qualification/ws-e01-f01/tsconfig.json",
-    "reviews/results/WS-E01-EPR-20260919-02.json"
-  ],
-  "open_gates": [
-    "WINDOWS_DESKTOP",
-    "SPECIAL_NATIVE_GUI_CASES",
-    "TARGET_EQUIVALENT_RESTART",
-    "MEASUREMENT_FINAL_ATTRIBUTION",
-    "LIVE_NPM_AUDIT_SERVICE_503"
-  ],
-  "target_environments": {
-    "Ubuntu Desktop": "PARTIAL_RUNTIME_EVIDENCE",
-    "Windows Desktop": "NOT_EXECUTED"
-  },
-  "end_candidate_binding": "Git commit containing this state; exact delivery Head/Tree and CI are verified externally in the terminal delivery report",
-  "feature_changeset": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd..candidate",
-  "non_feature_intervening_changes": "NONE",
-  "required_next_gate": "Successful required audit/CI plus remaining target-environment qualification; then independent technical review",
-  "merge_authorized": false,
-  "current_report": "features/WS-E01-F01/evidence/qualification-followup.md",
-  "continuation_manifest": "features/WS-E01-F01/evidence/continuation-followup-manifest.json"
+    "reviews/README.md",
+    "tests/test_feature.py",
+    "tests/test_foundation.py",
+    "tools/foundation.py"
+  ]
 }

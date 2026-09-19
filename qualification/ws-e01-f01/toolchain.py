@@ -80,6 +80,10 @@ const size=imageSize(png); if(size.width!==1 || size.height!==1) process.exit(2)
     if 'metadata' not in audit_data:
         audit_data = {'status': 'AUDIT_SERVICE_ERROR', 'http_status': audit_data.get('statusCode'), 'exit_code': audit.returncode}
     (BUILD / 'npm-audit-final.json').write_text(json.dumps(audit_data, indent=2) + '\n')
+    if audit.returncode:
+        print(json.dumps({'gate': 'NPM_AUDIT', 'exit_code': audit.returncode,
+            'http_status': audit_data.get('http_status'),
+            'vulnerabilities': audit_data.get('metadata', {}).get('vulnerabilities')}))
     audit.check_returncode()
     print(json.dumps({'toolchain': 'STATIC_CHECKS_PASS', 'lock_sha256': hashlib.sha256((SOURCE / 'package-lock.json').read_bytes()).hexdigest(),
                       'compiled_sha256': hashlib.sha256(first).hexdigest(), 'runtime_claim': False}))

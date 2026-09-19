@@ -6,7 +6,7 @@ from pathlib import Path
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[2]
-MANIFEST = 'features/WS-E01-F01/evidence/continuation-manifest.json'
+MANIFEST = 'features/WS-E01-F01/evidence/continuation-followup-manifest.json'
 
 
 def main():
@@ -27,7 +27,7 @@ def main():
         payloads[name] = content
     result = {'status': 'HASH_BOUND_INPUTS_VERIFIED', 'files': len(payloads), 'runtime_evidence': False}
     if args.build:
-        target = ROOT / 'build/f01/WS-E01-F01-continuation.zip'
+        target = ROOT / 'build/f01/WS-E01-F01-continuation-followup.zip'
         with zipfile.ZipFile(target, 'x') as archive:
             for name, content in sorted(payloads.items()):
                 info = zipfile.ZipInfo(name, (2026, 9, 19, 0, 0, 0)); info.external_attr = 0o100644 << 16

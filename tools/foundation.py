@@ -621,6 +621,8 @@ def accepted_epic_binding(path, read, head):
         # Every Epic path remains immutable throughout the feature delta.
         for name in git("ls-tree", "-r", "--name-only", base, "--", "epics").decode().splitlines():
             require(read(name) == at(base, name), "feature preparation drift")
+        reference = parse(at(base, binding_path))["epic_preparation_review_result_reference"]
+        require(read(reference) == at(base, reference), "feature accepted review drift")
         return accepted_epic_binding(path, lambda name: at(base, name), base)
     binding = parse(read(binding_path))
     auth_path = safe_path(binding["execution_authorization_reference"])

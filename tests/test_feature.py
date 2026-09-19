@@ -59,6 +59,12 @@ class FeatureTests(unittest.TestCase):
             self.data[self.prefix + 'subject.json'] = json.dumps({'status': status}).encode()
             with self.assertRaises(f.Invalid): self.check()
 
+    def test_feature_delegation_keeps_current_review_bytes_bound(self):
+        path = 'reviews/results/WS-E01-EPR-20260919-02.json'
+        self.data[path] += b'\n'
+        with self.assertRaises(f.Invalid):
+            f.accepted_epic_binding('epics/WS-E01/subject.json', self.data.__getitem__, f.commit('HEAD'))
+
     def test_epic_binding_remains_immutable(self):
         self.data['epics/WS-E01/binding.json'] += b'\n'
         with self.assertRaises(f.Invalid): self.check()

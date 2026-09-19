@@ -9,7 +9,7 @@ Original: `features/WS-E01-F01/evidence/execution-authorization.json`.
 Start: `3bdd7439c221b8f8c83e7374c8bb29898891a4fd`, Branch
 `feature/ws-e01-f01-qualification`. Aktueller Zustand und offene Gates:
 [features/WS-E01-F01/state.json](features/WS-E01-F01/state.json),
-[Bericht](features/WS-E01-F01/evidence/qualification-report.md).
+[Bericht](features/WS-E01-F01/evidence/qualification-followup.md).
 
 Nur Plattform-/Toolchain-/Messqualifikation, generischer JIT-Lifecycle, synthetische Probes
 und eigene Wegwerfprofile. Kein Produktcode, F02, reales Profil, AMO/Signing/Release/Production,

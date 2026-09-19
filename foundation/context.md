@@ -110,7 +110,7 @@ nach `features/WS-E01-F01/` übertragen. Das bisherige Accepted-Epic-Binding und
 alle Product-/Foundation-/Revieworiginale bleiben unverändert.
 
 [Featurezustand](../features/WS-E01-F01/state.json) und
-[Qualifikationsbericht](../features/WS-E01-F01/evidence/qualification-report.md)
+[Qualifikationsbericht](../features/WS-E01-F01/evidence/qualification-followup.md)
 sind die aktuellen Locator. Partial-Evidence ist keine technische Annahme; das finale
 Auditgate ist wegen Registry-Wartung BLOCKED. Windows Desktop
 und weitere native/instrumentelle Teilnachweise bleiben offen. Keine Produktimplementation,

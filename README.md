@@ -43,5 +43,5 @@ Reviewauftrag am reviewed Subject (unverändert 23 Evidence-Bindungen) als JSON 
 ## F01-Qualifikation
 
 Der ungemergte F01-Lauf liefert Partial-Evidence und ist am finalen Auditgate BLOCKED; Einstieg über
-[Qualifikationsbericht](features/WS-E01-F01/evidence/qualification-report.md) und
+[Qualifikationsbericht](features/WS-E01-F01/evidence/qualification-followup.md) und
 [Fortsetzungspaket](qualification/ws-e01-f01/README.md). Kein Produktstart, F02 oder Merge.

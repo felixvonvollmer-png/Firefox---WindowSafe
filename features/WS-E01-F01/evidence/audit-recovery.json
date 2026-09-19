@@ -1,0 +1,618 @@
+{
+  "run_id": "WS-E01-F01-AUDIT-RECOVERY-20260919-01",
+  "authorization_id": "WS-EA-20260919-07",
+  "subject_head": "b7ce7cb7735c5d74b37eec4dd2cc7c4d22734bf0",
+  "subject_tree": "cc8e6ef179509e88e2c8b361b9438a7a0e5560df",
+  "main": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
+  "branch": "feature/ws-e01-f01-qualification",
+  "pr": 3,
+  "lock_sha256": "1d6f6b41f6a87d1890695247e6610f60199518b22e87f12f1ee1002661563834",
+  "package_sha256": "482c8c0c8750fca195ac98100398001b21d0d560968adb331d441e72d68522c9",
+  "toolchain": {
+    "node": "24.21.0",
+    "npm": "11.19.0",
+    "typescript": "7.0.2",
+    "web-ext": "10.6.0",
+    "@types/firefox-webext-browser": "143.0.0",
+    "addons-linter/image-size override": "2.0.4"
+  },
+  "status_page": {
+    "url": "https://status.npmjs.org/",
+    "observation": "Security Audit Operational; scheduled maintenance in progress 2026-09-19 17:00-19:00 UTC",
+    "gate_override": false
+  },
+  "phase_a_audit": {
+    "evidence_class": "LOCAL_AGENT_REPORTED",
+    "started_at": "2026-09-19T17:37:27.070346+00:00",
+    "ended_at": "2026-09-19T17:37:27.593122+00:00",
+    "attempts": 1,
+    "automatic_fetch_retries": 0,
+    "command": "build/f01/node-v24.21.0-linux-x64/bin/node build/f01/node-v24.21.0-linux-x64/lib/node_modules/npm/bin/npm-cli.js audit --prefix build/f01/dev --json --registry=https://registry.npmjs.org --cache build/f01/npm-cache",
+    "exit_code": 0,
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "stdout_sha256": "500b3ca6ece698c4234d516af086d7886753cf996868afd5b0fec8de4fa8b6a5",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "package_lock_worktree_index_unchanged": true,
+    "npm_logs": "temporary external directory, removed"
+  },
+  "phase_b_ci": [
+    {
+      "evidence_class": "CI_VERIFIED",
+      "id": 35457726052,
+      "attempt": 2,
+      "event": "push",
+      "head_sha": "b7ce7cb7735c5d74b37eec4dd2cc7c4d22734bf0",
+      "conclusion": "success",
+      "url": "https://github.com/felixvonvollmer-png/Firefox---WindowSafe/actions/runs/35457726052/attempts/2",
+      "jobs": [
+        {
+          "id": 105938450504,
+          "name": "foundation",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-09-19T17:37:45Z",
+              "completed_at": "2026-09-19T17:37:46Z"
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-09-19T17:37:46Z",
+              "completed_at": "2026-09-19T17:37:47Z"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-09-19T17:37:47Z",
+              "completed_at": "2026-09-19T17:37:57Z"
+            },
+            {
+              "name": "Foundation lint and guards",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-09-19T17:37:57Z",
+              "completed_at": "2026-09-19T17:37:58Z"
+            },
+            {
+              "name": "Harness contract regression tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-09-19T17:37:58Z",
+              "completed_at": "2026-09-19T17:38:50Z"
+            },
+            {
+              "name": "Bound review compatibility and schema preflight",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-09-19T17:38:50Z",
+              "completed_at": "2026-09-19T17:38:51Z"
+            },
+            {
+              "name": "Exact epic preparation request",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-09-19T17:38:51Z",
+              "completed_at": "2026-09-19T17:38:51Z"
+            },
+            {
+              "name": "F01 pinned static toolchain qualification",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-09-19T17:38:51Z",
+              "completed_at": "2026-09-19T17:39:02Z"
+            },
+            {
+              "name": "Deterministic foundation build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-09-19T17:39:02Z",
+              "completed_at": "2026-09-19T17:39:07Z"
+            },
+            {
+              "name": "Append-only provenance and review history",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-09-19T17:39:07Z",
+              "completed_at": "2026-09-19T17:39:13Z"
+            },
+            {
+              "name": "Whitespace and clean tracked tree",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-09-19T17:39:13Z",
+              "completed_at": "2026-09-19T17:39:13Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-09-19T17:39:13Z",
+              "completed_at": "2026-09-19T17:39:13Z"
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-09-19T17:39:13Z",
+              "completed_at": "2026-09-19T17:39:14Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-09-19T17:39:14Z",
+              "completed_at": "2026-09-19T17:39:14Z"
+            }
+          ]
+        },
+        {
+          "id": 105938450635,
+          "name": "qualification-windows-static",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-09-19T17:37:45Z",
+              "completed_at": "2026-09-19T17:37:45Z"
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-09-19T17:37:45Z",
+              "completed_at": "2026-09-19T17:37:51Z"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-09-19T17:37:51Z",
+              "completed_at": "2026-09-19T17:38:36Z"
+            },
+            {
+              "name": "F01 Windows static build and lint only - no native GUI evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-09-19T17:38:36Z",
+              "completed_at": "2026-09-19T17:38:47Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-09-19T17:38:47Z",
+              "completed_at": "2026-09-19T17:38:47Z"
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-09-19T17:38:47Z",
+              "completed_at": "2026-09-19T17:38:48Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-09-19T17:38:48Z",
+              "completed_at": "2026-09-19T17:38:48Z"
+            }
+          ]
+        }
+      ],
+      "log_sha256": "87b282439813fccb5990cda92cb7e0044de9d8b25bd49e207e0b7bf35d6ee3ac",
+      "audit_step_output": [
+        "foundation\tF01 pinned static toolchain qualification\t2026-09-19T17:39:02.0784898Z {\"toolchain\": \"STATIC_CHECKS_PASS\", \"lock_sha256\": \"1d6f6b41f6a87d1890695247e6610f60199518b22e87f12f1ee1002661563834\", \"compiled_sha256\": \"d40158d07b12805bf2c54407825a7b7a01ad6cea88a81476693cd645af666f6a\", \"runtime_claim\": false}",
+        "qualification-windows-static\tF01 Windows static build and lint only - no native GUI evidence\t2026-09-19T17:38:47.1159470Z {\"toolchain\": \"STATIC_CHECKS_PASS\", \"lock_sha256\": \"1d6f6b41f6a87d1890695247e6610f60199518b22e87f12f1ee1002661563834\", \"compiled_sha256\": \"d40158d07b12805bf2c54407825a7b7a01ad6cea88a81476693cd645af666f6a\", \"runtime_claim\": false}"
+      ],
+      "audit_interpretation": "Unmodified toolchain.py requires npm audit exit 0 before STATIC_CHECKS_PASS. Audit JSON itself is not emitted in CI logs. Windows static CI is not Desktop runtime evidence."
+    },
+    {
+      "evidence_class": "CI_VERIFIED",
+      "id": 35457728126,
+      "attempt": 2,
+      "event": "pull_request",
+      "head_sha": "b7ce7cb7735c5d74b37eec4dd2cc7c4d22734bf0",
+      "conclusion": "success",
+      "url": "https://github.com/felixvonvollmer-png/Firefox---WindowSafe/actions/runs/35457728126/attempts/2",
+      "jobs": [
+        {
+          "id": 105938452015,
+          "name": "foundation",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-09-19T17:37:46Z",
+              "completed_at": "2026-09-19T17:37:46Z"
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-09-19T17:37:46Z",
+              "completed_at": "2026-09-19T17:37:48Z"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-09-19T17:37:48Z",
+              "completed_at": "2026-09-19T17:37:57Z"
+            },
+            {
+              "name": "Foundation lint and guards",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-09-19T17:37:57Z",
+              "completed_at": "2026-09-19T17:37:58Z"
+            },
+            {
+              "name": "Harness contract regression tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-09-19T17:37:58Z",
+              "completed_at": "2026-09-19T17:38:47Z"
+            },
+            {
+              "name": "Bound review compatibility and schema preflight",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-09-19T17:38:47Z",
+              "completed_at": "2026-09-19T17:38:48Z"
+            },
+            {
+              "name": "Exact epic preparation request",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-09-19T17:38:48Z",
+              "completed_at": "2026-09-19T17:38:48Z"
+            },
+            {
+              "name": "F01 pinned static toolchain qualification",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-09-19T17:38:48Z",
+              "completed_at": "2026-09-19T17:38:59Z"
+            },
+            {
+              "name": "Deterministic foundation build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-09-19T17:38:59Z",
+              "completed_at": "2026-09-19T17:39:05Z"
+            },
+            {
+              "name": "Append-only provenance and review history",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-09-19T17:39:05Z",
+              "completed_at": "2026-09-19T17:39:10Z"
+            },
+            {
+              "name": "Whitespace and clean tracked tree",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-09-19T17:39:10Z",
+              "completed_at": "2026-09-19T17:39:10Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-09-19T17:39:10Z",
+              "completed_at": "2026-09-19T17:39:10Z"
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-09-19T17:39:10Z",
+              "completed_at": "2026-09-19T17:39:10Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-09-19T17:39:10Z",
+              "completed_at": "2026-09-19T17:39:11Z"
+            }
+          ]
+        },
+        {
+          "id": 105938452154,
+          "name": "qualification-windows-static",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-09-19T17:37:46Z",
+              "completed_at": "2026-09-19T17:37:47Z"
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-09-19T17:37:47Z",
+              "completed_at": "2026-09-19T17:37:54Z"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-09-19T17:37:54Z",
+              "completed_at": "2026-09-19T17:38:44Z"
+            },
+            {
+              "name": "F01 Windows static build and lint only - no native GUI evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-09-19T17:38:44Z",
+              "completed_at": "2026-09-19T17:39:00Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-09-19T17:39:00Z",
+              "completed_at": "2026-09-19T17:39:01Z"
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-09-19T17:39:01Z",
+              "completed_at": "2026-09-19T17:39:03Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-09-19T17:39:03Z",
+              "completed_at": "2026-09-19T17:39:03Z"
+            }
+          ]
+        }
+      ],
+      "log_sha256": "65146ac8daa0a569bca832aa631368146f80717d552c28d89ecd8194a4b74f1e",
+      "audit_step_output": [
+        "foundation\tF01 pinned static toolchain qualification\t2026-09-19T17:38:59.9806095Z {\"toolchain\": \"STATIC_CHECKS_PASS\", \"lock_sha256\": \"1d6f6b41f6a87d1890695247e6610f60199518b22e87f12f1ee1002661563834\", \"compiled_sha256\": \"d40158d07b12805bf2c54407825a7b7a01ad6cea88a81476693cd645af666f6a\", \"runtime_claim\": false}",
+        "qualification-windows-static\tF01 Windows static build and lint only - no native GUI evidence\t2026-09-19T17:39:00.6963134Z {\"toolchain\": \"STATIC_CHECKS_PASS\", \"lock_sha256\": \"1d6f6b41f6a87d1890695247e6610f60199518b22e87f12f1ee1002661563834\", \"compiled_sha256\": \"d40158d07b12805bf2c54407825a7b7a01ad6cea88a81476693cd645af666f6a\", \"runtime_claim\": false}"
+      ],
+      "audit_interpretation": "Unmodified toolchain.py requires npm audit exit 0 before STATIC_CHECKS_PASS. Audit JSON itself is not emitted in CI logs. Windows static CI is not Desktop runtime evidence."
+    }
+  ],
+  "risk_class": "ELEVATED",
+  "independent_technical_review": "PENDING",
+  "feature_acceptance_review": "NOT_READY",
+  "no_new_browser_or_profile_execution": true,
+  "merge_authorized": false,
+  "historical_evidence": "All pre-recovery evidence retained byte-for-byte; old 503 results are historical observations.",
+  "continuation": "Existing continuation-followup-manifest.json remains bound to its prior snapshot; it is not evidence for this recovery head. Remaining target execution needs separate authorization.",
+  "delivery_binding": "The commit containing this record binds the evidence-only delta. New-head push/PR CI is verified after push and reported separately; no success is presumed here.",
+  "verified_package": {
+    "manifest_sha256": "5650d141a5b88c74f92cd1bbbfc85abfd8ecbc1f4a65526ffd39c337f86a12c8",
+    "files": {
+      "README_FIRST.txt": {
+        "sha256": "fa8cfe7357b3f8ad412ba5821d625c1fdaa4ff83eb6d65a10027f7c2e33b9e6e",
+        "bytes": 348
+      },
+      "WindowSafe_Execution_Authorization_WS-EA-20260919-07.json": {
+        "sha256": "724911254f6d34cf62607fccd20aa8f331326633547b3b9370275bd634993415",
+        "bytes": 4588
+      },
+      "WindowSafe_F01_Audit_Recovery_Handoff_WS-E01-F01-AUDIT-RECOVERY-20260919-01.md": {
+        "sha256": "f59f4a859196eb6973d0b341a4f267f566923fc60905bc4538d96223b366cbbf",
+        "bytes": 2750
+      },
+      "WindowSafe_F01_Audit_Recovery_Startprompt_WS-E01-F01-AUDIT-RECOVERY-20260919-01.txt": {
+        "sha256": "7a38b6b0277f0700ceed811fbe70d806890d90a9fed914c884dc627dbe01d5ad",
+        "bytes": 1574
+      },
+      "WindowSafe_npm_Status_Context_20260919.json": {
+        "sha256": "2e8a1e655b8b2b83c9030648566debc742234bac0b58201afe055f44a3bdcdd8",
+        "bytes": 635
+      }
+    },
+    "all_hashes_and_lengths_verified": true
+  },
+  "remaining_open_gates": [
+    "WINDOWS_DESKTOP",
+    "SPECIAL_NATIVE_GUI_CASES",
+    "TARGET_EQUIVALENT_RESTART",
+    "MEASUREMENT_FINAL_ATTRIBUTION"
+  ],
+  "stop_state": "WS-E01-F01_PARTIAL_QUALIFICATION__TARGET_ENVIRONMENT_REQUIRED",
+  "phase_c_local_gates": {
+    "evidence_class": "LOCAL_AGENT_REPORTED",
+    "completed_at": "2026-09-19T17:42:30.922719+00:00",
+    "results": [
+      {
+        "command": [
+          "python3",
+          "tools/foundation.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "a7b5648b647d49b2d94c52038f9b004d2a9c315e9bdad7eb718f8bf9dc4ab2f8",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "dcf7781ca28e3e37079d7c1862b9fa79d35f0966d8d32d383e95f82900e3b2f8",
+        "test_summary": [
+          "----------------------------------------------------------------------",
+          "Ran 106 tests in 47.791s",
+          "",
+          "OK"
+        ]
+      },
+      {
+        "command": [
+          "python3",
+          "tools/foundation.py",
+          "build",
+          "--verify-repeat"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "82dcee90599daa1132f7a307630a9a7f3f3c8f3ed3cc3acfbd34bfaeaed0a277",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "python3",
+          "tools/foundation.py",
+          "history",
+          "--base",
+          "3bdd7439c221b8f8c83e7374c8bb29898891a4fd"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "e47d9b5a6f085cc60c83f2da4f6e46db6f817f88e5e1b687aa66f6f817fb0289",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "python3",
+          "tools/foundation.py",
+          "request",
+          "--sha",
+          "HEAD",
+          "--subject",
+          "epics/WS-E01/subject.json"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "3703af82dc7da732861b90bc13c97bcc2ed4a2fd76357afd7278ebfdf69dc338",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "python3",
+          "tools/foundation.py",
+          "schema-preflight",
+          "--sha",
+          "HEAD",
+          "--schema",
+          "reviews/review-contract.json"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "776f90e1aff319af20db6ef89f159730d6b8265e1d30b9e610ae5a86f9311792",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "python3",
+          "qualification/ws-e01-f01/toolchain.py"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "3384b7a8237e48d2ec2065c426e0f3e32ef9916d5505f164d8c5de9961611c65",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "audit": {
+          "auditReportVersion": 2,
+          "vulnerabilities": {},
+          "metadata": {
+            "vulnerabilities": {
+              "info": 0,
+              "low": 0,
+              "moderate": 0,
+              "high": 0,
+              "critical": 0,
+              "total": 0
+            },
+            "dependencies": {
+              "prod": 1,
+              "dev": 351,
+              "optional": 20,
+              "peer": 0,
+              "peerOptional": 0,
+              "total": 351
+            }
+          }
+        },
+        "stdout_tail": [
+          "{\"toolchain\": \"STATIC_CHECKS_PASS\", \"lock_sha256\": \"1d6f6b41f6a87d1890695247e6610f60199518b22e87f12f1ee1002661563834\", \"compiled_sha256\": \"d40158d07b12805bf2c54407825a7b7a01ad6cea88a81476693cd645af666f6a\", \"runtime_claim\": false}"
+        ]
+      }
+    ],
+    "scope": "Working tree recovery candidate; committed-head bindings are checked before push. No setup/install or dependency change."
+  }
+}

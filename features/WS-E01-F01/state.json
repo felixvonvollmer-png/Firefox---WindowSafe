@@ -1,7 +1,7 @@
 {
   "feature_id": "WS-E01-F01",
   "start_baseline_sha": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
-  "status": "WS-E01-F01_BLOCKED__QUALIFICATION_GATE_FAILED",
+  "status": "WS-E01-F01_PARTIAL_QUALIFICATION__TARGET_ENVIRONMENT_REQUIRED",
   "risk_class": "ELEVATED",
   "product_implementation_started": false,
   "independent_technical_review": "PENDING",
@@ -9,6 +9,8 @@
   "evidence_paths": [
     "epics/WS-E01/binding.json",
     "features/WS-E01-F01/acceptance-criteria.md",
+    "features/WS-E01-F01/evidence/audit-recovery-authorization.json",
+    "features/WS-E01-F01/evidence/audit-recovery.json",
     "features/WS-E01-F01/evidence/audit-service-interruption.json",
     "features/WS-E01-F01/evidence/changed-paths.json",
     "features/WS-E01-F01/evidence/cleanup-verification.json",
@@ -80,8 +82,7 @@
     "WINDOWS_DESKTOP",
     "SPECIAL_NATIVE_GUI_CASES",
     "TARGET_EQUIVALENT_RESTART",
-    "MEASUREMENT_FINAL_ATTRIBUTION",
-    "LIVE_NPM_AUDIT_SERVICE_503"
+    "MEASUREMENT_FINAL_ATTRIBUTION"
   ],
   "target_environments": {
     "Ubuntu Desktop": "PARTIAL_RUNTIME_EVIDENCE",
@@ -90,8 +91,8 @@
   "end_candidate_binding": "Git commit containing this state; exact delivery Head/Tree and CI are verified externally in the terminal delivery report",
   "feature_changeset": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd..candidate",
   "non_feature_intervening_changes": "NONE",
-  "required_next_gate": "Successful required audit/CI plus remaining target-environment qualification; then independent technical review",
+  "required_next_gate": "Remaining target-environment qualification under separate authorization; then independent technical review",
   "merge_authorized": false,
-  "current_report": "features/WS-E01-F01/evidence/qualification-followup.md",
+  "current_report": "features/WS-E01-F01/evidence/audit-recovery.json",
   "continuation_manifest": "features/WS-E01-F01/evidence/continuation-followup-manifest.json"
 }

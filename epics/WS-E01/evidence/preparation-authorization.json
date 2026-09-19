@@ -1,0 +1,41 @@
+{
+  "DOCUMENT_TYPE": "WINDOWSAFE_FIRST_EPIC_PREPARATION_MATERIALIZATION_AUTHORIZATION",
+  "AUTHORIZATION_ID": "WS-EA-20260919-04",
+  "STATUS": "AUTHORIZED",
+  "DATE": "2026-09-19",
+  "AUTHORITY": "USER",
+  "USER_AUTHORIZATION_REFERENCE": {
+    "VERBATIM_MESSAGE": "frei",
+    "CONTEXT": "Immediate reply after the project LLM stated the next V6 step is FIRST_EPIC_PREPARATION and would prepare it to EPIC_PREPARATION_READY_FOR_REVIEW without feature/product implementation.",
+    "INTERPRETATION": "Authorizes preparation and repository materialization of WS-E01 Epic Preparation plus the minimum generic harness/living-context transition required to review that Preparation. Does not authorize any WindowSafe product feature, browser/profile probe, Epic execution, merge, release or production action."
+  },
+  "REPOSITORY": "felixvonvollmer-png/Firefox---WindowSafe",
+  "REPOSITORY_ID": 1374094477,
+  "BASELINE_MAIN_SHA": "dc9c1c37a264cc80f79ec08bf166ec42cdd73b95",
+  "TARGET_BRANCH": "prep/ws-e01-20260919-01",
+  "EPIC_ID": "WS-E01",
+  "EPIC_PREPARATION_ID": "WS-E01-EP-20260919-01",
+  "AUTHORIZED_ACTIONS": [
+    "Create/reuse the exact short-lived preparation branch from the bound main baseline if no conflicting branch exists.",
+    "Materialize the supplied WS-E01 preparation, research, self-review, subject and REVIEW_REQUIRED binding.",
+    "Add only the minimum generic repository-harness support required for epics/<EPIC_ID> preparation subjects/evidence/bindings and EPIC_PREPARATION_REVIEW request/schema preflight.",
+    "Add/update regression tests for the generic epic-preparation path and fail-closed behavior.",
+    "Update living routing docs (README/AGENTS/epics README and only necessary current-lifecycle context) to reflect integrated Project Foundation and WS-E01 review-pending state.",
+    "Run existing and new non-browser mechanical tests/checks under CPython 3.14.4.",
+    "Push the preparation branch and open/update a Draft PR.",
+    "Stop at EPIC_PREPARATION_READY_FOR_REVIEW."
+  ],
+  "PROHIBITED_ACTIONS": [
+    "Any WindowSafe product source/manifest/runtime feature implementation",
+    "Any Firefox/browser/profile probe or synthetic browser execution",
+    "Any Node/TypeScript/web-ext dependency installation",
+    "Any EPIC_PREPARATION_REVIEW verdict by the materializer",
+    "Any review-result fabrication or transfer",
+    "Any merge or auto-merge",
+    "Any feature start, release, signing, AMO, production or real user data access",
+    "Any rewrite of historical Product/Foundation/review-result originals"
+  ],
+  "RISK": "ELEVATED",
+  "REQUIRED_NEXT_GATE": "FRESH_OR_SUFFICIENTLY_ISOLATED_EPIC_PREPARATION_REVIEW",
+  "STOP_AFTER": "UNGEMERGED_EPIC_PREPARATION_READY_FOR_REVIEW"
+}

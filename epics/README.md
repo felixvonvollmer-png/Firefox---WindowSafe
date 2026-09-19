@@ -1,21 +1,24 @@
-# Initiale Epic-Karte und Preparation-Kanal
+# Epic-Karte und Preparation-Kanal
 
-**WS-E01 / CANDIDATE_NOT_STARTED:** Zuverlässige lokale Fenster-/Sitzungssicherung
+**WS-E01 / EPIC_PREPARATION_READY_FOR_REVIEW:** Zuverlässige lokale Fenster-/Sitzungssicherung
 und manuelle Wiederherstellung (V1). Product-Anker WS-GOAL, WS-CAP-01–04,
 WS-RESTORE, WS-BACKUP, WS-QUALITY, WS-AC-01–11; Technical Foundation r6 §11.
 
-Ein zusammenhängender V1-Epic, keine Mikro-Epics. Denkbare Feature-Richtungen sind
-konsistente Erfassung/Recovery-Datenhaltung, benannte Fenster/manuelle kontexttreue
-Wiederherstellung und Dateibackup/Import. Schnitt und Reihenfolge werden erst in
-der späteren Epic Preparation konkretisiert; keine Dateien, Klassen, Tasks oder
-PRs für Produktimplementierung sind vorgeplant.
+Ein zusammenhängender V1-Epic, keine Mikro-Epics. Die bytegetreu materialisierte
+[Preparation](WS-E01/preparation.md) beschreibt Feature-Richtungen und Abhängigkeiten.
+[Subject](WS-E01/subject.json) und [Binding](WS-E01/binding.json) binden
+WS-E01-EP-20260919-01 an main `dc9c1c37a264cc80f79ec08bf166ec42cdd73b95` und den
+integrierten Foundation-PASS WS-PFR-20260918-02. External Context Sync NOT_APPLICABLE.
+Unabhängiger Preparation-Review PENDING; Binding REVIEW_REQUIRED,
+`ready_for_agent: false`. WS-EA-20260919-04 autorisiert Materialisierung und
+mechanische Checks, keinen Featurestart oder Browser-/Profiltest.
 
 Voraussetzungen: PROJECT_FOUNDATION_REVIEW PASS, externer Kontext-Sync oder
 begründetes NOT_APPLICABLE, aktueller kanonischer SHA, bekannte Vorgänger und offene
 Entscheidungen, keine parallelen ungebundenen Epicstarts. Plattform-/Messgates aus
 `foundation/architecture.md` müssen vor betroffener Implementierung erfüllt sein.
 
-## Kanonische Locator (noch nicht materialisierte JIT-Artefakte)
+## Kanonische Locator
 
 - Epic Preparation Subject: `epics/<EPIC_ID>/subject.json` mit Verweisen auf den
   fachlichen Preparation-Text und dessen Evidence.

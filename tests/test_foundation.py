@@ -275,5 +275,230 @@ class FoundationGuardsTests(unittest.TestCase):
                     f.history("0" * 40)
 
 
+class EpicPreparationTests(unittest.TestCase):
+    """Generic preparation bindings; disposable local Git, no browser/reviewer."""
+
+    BASELINE = "dc9c1c37a264cc80f79ec08bf166ec42cdd73b95"
+    SUBJECT = "epics/WS-E01/subject.json"
+
+    def setUp(self):
+        self.data = {p.relative_to(f.ROOT).as_posix(): p.read_bytes()
+                     for p in (f.ROOT / "epics/WS-E01").rglob("*") if p.is_file()}
+
+    def read(self, name):
+        return self.data[name] if name in self.data else f.at(self.BASELINE, name)
+
+    def update(self, path, **values):
+        record = f.parse(self.data[path])
+        record.update(values)
+        self.data[path] = (json.dumps(record) + "\n").encode()
+
+    def validate(self):
+        return f.epic_preparation(self.SUBJECT, self.read, f.commit("HEAD"))
+
+    def test_materialized_preparation_is_bound_and_pending(self):
+        baseline, reviewed, reference = self.validate()
+        self.assertEqual(self.BASELINE, baseline)
+        self.assertEqual("fc3ee73c9bf1fab3878c480a0299fda4119e363b", reviewed)
+        self.assertEqual("reviews/results/WS-PFR-20260918-02.json", reference)
+
+    def test_other_valid_epic_id_uses_same_validator_with_own_authorization(self):
+        # Synthetic input only: no real authorization or verdict is created.
+        self.data = {p.replace("WS-E01", "SYNTHETIC_E02"): raw.replace(b"WS-E01", b"SYNTHETIC_E02")
+                     for p, raw in self.data.items()}
+        path = "epics/SYNTHETIC_E02/evidence/preparation-authorization.json"
+        anchors = {path: f.sha256(self.data[path])}
+        with patch.object(f, "PREPARATION_AUTHORIZATIONS", anchors):
+            f.epic_preparation("epics/SYNTHETIC_E02/subject.json", self.read, f.commit("HEAD"))
+
+    def test_scope_preparation_only_and_safe_ids(self):
+        for epic in ("WS-E01", "SYNTHETIC_E02", "another-epic"):
+            for name in ("subject.json", "binding.json", "preparation.md", "evidence/research.md", "evidence/auth.json"):
+                f.scope("epics/" + epic + "/" + name)
+        for path in ("epics/../subject.json", "epics/bad id/subject.json", "epics/E/src.ts",
+                     "epics/E/evidence/nested/auth.json", "epics/E/evidence/manifest.json",
+                     "epics/E/manifest.json", "features/F/subject.json", "src/background.ts"):
+            with self.subTest(path=path), self.assertRaises(f.Invalid):
+                f.scope(path)
+
+    def test_subject_lifecycle_and_claims_fail_closed(self):
+        original = self.data[self.SUBJECT]
+        for key, value in (
+            ("subject_id", "OTHER"), ("review_type", "FEATURE_ACCEPTANCE_REVIEW"),
+            ("status", "READY_FOR_AGENT"), ("implementer", ""),
+            ("ready_for_agent", True), ("ready_for_agent", 0),
+            ("product_features_started", True), ("browser_profile_tests_executed", True),
+            ("epic_preparation_critical_self_review_status", "PENDING"),
+            ("epic_research_reuse_or_delta_status", "UNKNOWN"),
+            ("open_material_user_decisions_required_before_start", ["open"]),
+            ("external_project_context_sync", "ASSUMED"),
+            ("current_canonical_baseline_or_main_sha", "HEAD"),
+            ("current_canonical_baseline_or_main_sha", "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109"),
+        ):
+            with self.subTest(field=key, value=value):
+                self.data[self.SUBJECT] = original
+                self.update(self.SUBJECT, **{key: value})
+                with self.assertRaises(f.Invalid):
+                    self.validate()
+
+    def test_evidence_missing_unsafe_duplicate_and_incomplete(self):
+        original = self.data[self.SUBJECT]
+        evidence = f.parse(original)["evidence_paths"]
+        for changed in ([], evidence * 2, evidence[1:], evidence + ["../outside"],
+                        evidence + ["epics/WS-E01/evidence/missing.md"]):
+            with self.subTest(evidence=changed):
+                self.data[self.SUBJECT] = original
+                self.update(self.SUBJECT, evidence_paths=changed)
+                with self.assertRaises((f.Invalid, subprocess.CalledProcessError)):
+                    self.validate()
+
+    def test_binding_cannot_invent_acceptance_or_diverge(self):
+        path = "epics/WS-E01/binding.json"
+        original = self.data[path]
+        for key, value in (
+            ("status", "READY_FOR_AGENT"), ("ready_for_agent", True),
+            ("epic_preparation_review_result_reference", "reviews/results/FAKE.json"),
+            ("epic_id", "OTHER"), ("epic_preparation_subject_id", "OTHER"),
+            ("epic_preparation_id", "OTHER"),
+            ("current_canonical_baseline_or_main_sha", "0" * 40),
+            ("project_foundation_review_result_reference", "reviews/results/OTHER.json"),
+            ("open_critical_blocking_major_findings", "NONE"),
+            ("open_material_user_decisions_required_before_start", "PENDING"),
+            ("execution_authorization_reference", "foundation/evidence/followup-authorization.json"),
+            ("approved_product_definition_reference", "README.md"),
+            ("project_technical_foundation_reference", "README.md"),
+        ):
+            with self.subTest(field=key):
+                self.data[path] = original
+                self.update(path, **{key: value})
+                with self.assertRaises(f.Invalid):
+                    self.validate()
+
+    def test_authorization_cannot_be_rewritten_to_select_a_baseline(self):
+        auth = "epics/WS-E01/evidence/preparation-authorization.json"
+        self.update(auth, BASELINE_MAIN_SHA=f.commit("HEAD"), AUTHORITY="CODING_AGENT")
+        with self.assertRaisesRegex(f.Invalid, "authorization hash"):
+            self.validate()
+
+    def test_foundation_pass_must_be_exactly_present_in_bound_main(self):
+        ref = "reviews/results/WS-PFR-20260918-02.json"
+        self.data[ref] = self.read(ref) + b"\n"
+        with self.assertRaisesRegex(f.Invalid, "bound main"):
+            self.validate()
+
+    def test_blocked_foundation_result_cannot_enable_preparation(self):
+        ref = "reviews/results/WS-PFR-20260918-01.json"
+        subject = f.parse(self.data[self.SUBJECT])
+        self.update(self.SUBJECT, project_foundation_review_result_reference=ref,
+                    evidence_paths=subject["evidence_paths"] + [ref])
+        self.update("epics/WS-E01/binding.json", project_foundation_review_result_reference=ref)
+        with self.assertRaisesRegex(f.Invalid, "PASS required"):
+            self.validate()
+
+    def test_orphan_preparation_rejected(self):
+        for paths in ({"epics/E/binding.json"}, {"epics/E/evidence/auth.json"}):
+            with self.assertRaises(f.Invalid):
+                f.epic_subject_paths(paths)
+        self.assertEqual(["epics/E/subject.json"], f.epic_subject_paths({"epics/E/subject.json"}))
+
+    def test_original_preparation_bytes_are_append_only(self):
+        for path, raw in self.data.items():
+            with self.subTest(path=path):
+                with self.assertRaises(f.Invalid):
+                    f.check_history_maps({path: raw}, {path: raw + b"\n"})
+                with self.assertRaises(f.Invalid):
+                    f.check_history_maps({path: raw}, {})
+
+
+class EpicHistoryCliTests(unittest.TestCase):
+    """Real CLI gates across accepted merge and unaccepted preparation commits."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="windowsafe-synthetic-epic-")
+        self.addCleanup(self.temp.cleanup)
+        self.repo = Path(self.temp.name) / "repo"
+        subprocess.run(["git", "clone", "--shared", "--no-checkout", str(f.ROOT), str(self.repo)],
+                       check=True, capture_output=True)
+        self.git("checkout", "--detach", EpicPreparationTests.BASELINE)
+        self.git("config", "user.name", "Synthetic Fixture")
+        self.git("config", "user.email", "synthetic@example.invalid")
+        for name in ("tools/foundation.py", ".github/workflows/foundation.yml"):
+            shutil.copyfile(f.ROOT / name, self.repo / name)
+        shutil.copytree(f.ROOT / "epics/WS-E01", self.repo / "epics/WS-E01")
+        self.first = self.save()
+
+    def git(self, *args):
+        return subprocess.check_output(["git", "-C", str(self.repo), *args], stderr=subprocess.PIPE).decode().strip()
+
+    def save(self):
+        self.git("add", "--all")  # Disposable synthetic fixture only.
+        self.git("-c", "commit.gpgsign=false", "commit", "-m", "synthetic preparation")
+        return self.git("rev-parse", "HEAD")
+
+    def cli(self, *args, ok=True):
+        result = subprocess.run([sys.executable, "tools/foundation.py", *args], cwd=self.repo,
+                                capture_output=True, text=True)
+        self.assertEqual(0 if ok else 1, result.returncode, result.stdout + result.stderr)
+        return result
+
+    def test_exact_request_check_and_history_baselines(self):
+        self.cli("check")
+        result = json.loads(self.cli("request", "--sha", "HEAD", "--subject", EpicPreparationTests.SUBJECT).stdout)
+        self.assertEqual(self.first, result["subject"]["end_sha"])
+        self.assertEqual("INDEPENDENT_EPIC_PREPARATION_REVIEWER", result["required_authority"])
+        self.assertEqual(23, len(result["reviewed_evidence"]))
+        for base in ("0" * 40, EpicPreparationTests.BASELINE, "4ba2c473fe4d90c85d94ee2b2f5cc5777d115109",
+                     "9b6dd621deec1193bfdfbdfa730e8f9349c73fd6"):
+            self.cli("history", "--base", base)
+        self.cli("history", "--base", self.first, ok=False)
+
+    def test_request_uses_committed_bytes_and_rejects_committed_drift(self):
+        path = self.repo / EpicPreparationTests.SUBJECT
+        subject = json.loads(path.read_text())
+        subject["ready_for_agent"] = True
+        path.write_text(json.dumps(subject) + "\n")
+        self.cli("request", "--sha", "HEAD", "--subject", EpicPreparationTests.SUBJECT)
+        self.cli("check", ok=False)
+        self.save()
+        self.cli("request", "--sha", "HEAD", "--subject", EpicPreparationTests.SUBJECT, ok=False)
+
+    def test_old_and_new_original_mutations_cannot_hide_behind_later_event_base(self):
+        for name in ("reviews/results/WS-PFR-20260918-02.json", "epics/WS-E01/preparation.md"):
+            path = self.repo / name
+            original = path.read_bytes()
+            path.write_bytes(original + b"\n")
+            changed = self.save()
+            path.write_bytes(original)
+            self.save()
+            self.cli("history", "--base", changed, ok=False)
+            self.cli("history", "--base", "0" * 40, ok=False)
+
+    def test_unrelated_merge_is_still_rejected(self):
+        self.git("switch", "-c", "synthetic-side")
+        (self.repo / "README.md").write_text("synthetic side\n")
+        self.save()
+        self.git("checkout", "--detach", self.first)
+        self.git("-c", "commit.gpgsign=false", "merge", "--no-ff", "synthetic-side", "-m", "synthetic unauthorized merge")
+        self.cli("history", "--base", EpicPreparationTests.BASELINE, ok=False)
+
+    def test_missing_or_changed_authorization_and_uncommitted_binding_rejected(self):
+        path = self.repo / "epics/WS-E01/evidence/preparation-authorization.json"
+        original = path.read_bytes()
+        path.write_bytes(original + b"\n")
+        self.cli("history", "--base", "0" * 40, ok=False)
+        path.unlink()
+        self.save()
+        self.cli("history", "--base", "0" * 40, ok=False)
+
+    def test_removing_exact_head_request_or_schema_ci_gate_rejected(self):
+        path = self.repo / ".github/workflows/foundation.yml"
+        original = path.read_text()
+        for value in ("foundation.py request --sha HEAD --subject epics/WS-E01/subject.json",
+                      "foundation.py schema-preflight --sha HEAD --schema reviews/review-contract.json",
+                      "ref: ${{ github.event.pull_request.head.sha || github.sha }}"):
+            path.write_text(original.replace(value, "REMOVED"))
+            self.cli("check", ok=False)
+
+
 if __name__ == "__main__":
     unittest.main()

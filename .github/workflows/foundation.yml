@@ -24,6 +24,9 @@ jobs:
           python3 tools/foundation.py schema-preflight --sha HEAD --schema reviews/review-contract.json
           python3 tools/foundation.py validate-result --file reviews/results/WS-PFR-20260917-01.json
           python3 tools/foundation.py validate-result --file reviews/results/WS-PFR-20260918-01.json
+          python3 tools/foundation.py validate-result --file reviews/results/WS-PFR-20260918-02.json
+      - name: Exact epic preparation request
+        run: python3 tools/foundation.py request --sha HEAD --subject epics/WS-E01/subject.json
       - name: Deterministic foundation build
         run: python3 tools/foundation.py build --verify-repeat
       - name: Append-only provenance and review history

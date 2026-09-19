@@ -47,7 +47,7 @@ Keine Force-Pushes, History-Rewrites, Repo-/Sichtbarkeits-/Admin-/Secretänderun
 Vor Push Remote erneut prüfen; danach SHA-Gleichheit lokal/tracking/remote belegen.
 Eigener Push ist keine unabhängige Acceptance.
 
-Für **WS-HC-20260918-01** gilt WS-EA-20260918-01: Fortsetzung ab
+Historisch galt für **WS-HC-20260918-01** WS-EA-20260918-01: Fortsetzung ab
 `9b6dd621deec1193bfdfbdfa730e8f9349c73fd6`, kumulative Review-/Historybasis
 `4ba2c473fe4d90c85d94ee2b2f5cc5777d115109`, nur `fix/ws-hc-20260917-01`.
 Kein main-Write, Merge/Auto-Merge oder unabhängiges Selbst-PASS. Mindestens ELEVATED;
@@ -67,6 +67,37 @@ Root-Bootstrap ohne Eltern bleibt strukturell zulässig, ohne festen Historycoun
 Neue Phasen brauchen eigene explizite Bindung; diese enge Fortsetzung ist kein
 allgemeiner automatisch erweiterter Lifecycle. Evidenceoriginale und separate
 semantische Dispositionen sind ebenfalls append-only.
+
+Aktuell gilt WS-EA-20260919-04 für WS-E01-MAT-20260919-01 auf
+`prep/ws-e01-20260919-01` ab main `dc9c1c37a264cc80f79ec08bf166ec42cdd73b95`.
+Der Preparation-Validator prüft generische Epic-IDs, Subject/Binding, sichere
+Evidence, kritische Eigenprüfung, fehlende Ausführungsfreigabe und den bereits
+in der gebundenen main-Basis enthaltenen validen Foundation-PASS samt Ancestry.
+Die neue Originalautorisierung ist unabhängig vom Subject SHA-256-gepinnt;
+eine weitere Preparation braucht eine eigene ausdrücklich gebundene Autorisierung.
+
+Der History-Guard behält kumulative Altbasis, Laufstart und sämtliche
+Append-only-Vergleiche bei. Ausschließlich der durch die neue Autorisierung
+gebundene integrierte Foundation-Merge wird zusätzlich erkannt: zwei Eltern,
+erster Elterncommit gleich kumulativer Altbasis, zweiter enthält den reviewed
+Subject und ausschließlich dessen additive PASS-Resultatübertragung; Mergebaum
+gleich zweitem Elternbaum. Jede andere Merge-Stelle bleibt gesperrt. Auch
+Preparationoriginale sind append-only; Reverts verstecken keine Zwischenänderung.
+Dies ist kein allgemeiner Merge-/Lifecycle-Bypass und keine Integrationsfreigabe.
+
+Zusätzliche Pflichtbefehle am exakten committed Preparation-Head:
+
+```sh
+python3 tools/foundation.py request --sha HEAD --subject epics/WS-E01/subject.json
+python3 tools/foundation.py schema-preflight --sha HEAD --schema reviews/review-contract.json
+python3 tools/foundation.py build --verify-repeat
+python3 tools/foundation.py history --base dc9c1c37a264cc80f79ec08bf166ec42cdd73b95
+```
+
+CI wiederholt den Preparation-Request am echten PR-/Push-Head. Alle vorhandenen
+Reviewresultate werden weiter konsumiert. Preparation-Review bleibt PENDING;
+External Context Sync NOT_APPLICABLE. Keine Dependencyinstallation, Produkt-/
+Browserarbeit, kein eigener unabhängiger Verdict und kein Merge/Auto-Merge.
 
 Der Inventar-Writer öffnet Root/Ausgabeordner/Blatt mit No-follow und relativen
 Directory-FDs, prüft den geöffneten Dateityp/Linkcount vor dem Trunkieren und

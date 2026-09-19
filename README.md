@@ -5,7 +5,7 @@ Nutzeraktion wiederherstellen. Dieses Repository enthält derzeit ausschließlic
 die integrierte **Project Foundation** und die WS-E01 Epic Preparation, keine
 installierbare Erweiterung oder Produktfunktion.
 
-Aktuell: **WS-E01-INT-20260919-02**, autorisiert durch **WS-EA-20260919-05**.
+Historische Epic-Integration: **WS-E01-INT-20260919-02**, autorisiert durch **WS-EA-20260919-05**.
 Der unveränderte unabhängige [Epic Preparation PASS](reviews/results/WS-E01-EPR-20260919-02.json)
 bindet den reviewed Subject `644b81f63dcc1990bc894a9c2c9bd8dc24a98c04` und dessen
 Foundationbasis `dc9c1c37a264cc80f79ec08bf166ec42cdd73b95`.
@@ -42,6 +42,9 @@ Reviewauftrag am reviewed Subject (unverändert 23 Evidence-Bindungen) als JSON 
 
 ## F01-Qualifikation
 
-Der ungemergte F01-Lauf liefert Partial-Evidence und ist am finalen Auditgate BLOCKED; Einstieg über
-[Qualifikationsbericht](features/WS-E01-F01/evidence/qualification-followup.md) und
+Aktuell: **WS-E01-F01-TARGET-QUAL-20260919-01** unter **WS-EA-20260919-08**.
+Audit-Recovery ist abgeschlossen. Der ungemergte F01-Lauf bleibt PARTIAL wegen fehlendem
+Windows Desktop und verbleibender nativer/methodischer Qualifikation. Einstieg über
+[Qualifikationsbericht](features/WS-E01-F01/evidence/target-qualification.md),
+[aktuellen Zustand](features/WS-E01-F01/state.json) und
 [Fortsetzungspaket](qualification/ws-e01-f01/README.md). Kein Produktstart, F02 oder Merge.

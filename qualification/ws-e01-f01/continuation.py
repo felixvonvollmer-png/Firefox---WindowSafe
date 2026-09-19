@@ -11,13 +11,15 @@ MANIFEST = 'features/WS-E01-F01/evidence/continuation-followup-manifest.json'
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument('--manifest', choices=[MANIFEST,
+        'features/WS-E01-F01/evidence/target-continuation-manifest.json'], default=MANIFEST)
     parser.add_argument('--manifest-sha256', required=True)
     parser.add_argument('--build', action='store_true')
     args = parser.parse_args()
-    raw = (ROOT / MANIFEST).read_bytes()
+    raw = (ROOT / args.manifest).read_bytes()
     if hashlib.sha256(raw).hexdigest() != args.manifest_sha256: raise ValueError('continuation manifest hash mismatch')
     binding = json.loads(raw)
-    payloads = {MANIFEST: raw}
+    payloads = {args.manifest: raw}
     for name, exact in binding['files'].items():
         path = ROOT / name
         if path.is_symlink() or not path.resolve().is_relative_to(ROOT): raise ValueError('unsafe continuation path')
@@ -27,7 +29,8 @@ def main():
         payloads[name] = content
     result = {'status': 'HASH_BOUND_INPUTS_VERIFIED', 'files': len(payloads), 'runtime_evidence': False}
     if args.build:
-        target = ROOT / 'build/f01/WS-E01-F01-continuation-followup.zip'
+        target = ROOT / ('build/f01/WS-E01-F01-target-continuation.zip'
+                         if args.manifest != MANIFEST else 'build/f01/WS-E01-F01-continuation-followup.zip')
         with zipfile.ZipFile(target, 'x') as archive:
             for name, content in sorted(payloads.items()):
                 info = zipfile.ZipInfo(name, (2026, 9, 19, 0, 0, 0)); info.external_attr = 0o100644 << 16

@@ -1,5 +1,16 @@
 # F01 synthetic qualification continuation
 
+Current run: WS-E01-F01-TARGET-QUAL-20260919-01 / WS-EA-20260919-08.
+Use the [current target handoff](../../features/WS-E01-F01/evidence/target-continuation.md)
+and [target report](../../features/WS-E01-F01/evidence/target-qualification.md).
+The older commands/manifests below describe historical snapshots. For current inputs pass
+`--manifest features/WS-E01-F01/evidence/target-continuation-manifest.json` to continuation.py
+with the hash from the delivery report. No Windows Desktop was supplied. The Windows launcher
+below still lacks final Job Object qualification; it must not be treated as a complete collector.
+The new target_probe.py runs only on the qualified Ubuntu/Wayland setup and uses privileged
+Marionette chrome commands solely to construct fixtures. It does not expose those capabilities
+to product code. No package, lockfile or toolchain version change is authorized.
+
 These tools are qualification-only, never the WindowSafe product. They accept no existing
 profile path and create their own disposable profile. Run from an exact checkout of the
 published unmerged candidate with Python 3.14.4. Do not overwrite foreign work.

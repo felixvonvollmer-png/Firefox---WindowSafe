@@ -27,6 +27,46 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def release_equivalent(binary, binding_path, binding_sha256):
+    """Require a hash-bound official 156 artifact and the entire extracted installation.
+
+    The launcher hash alone is insufficient: Stable and unbranded can share it.
+    Caller must obtain the binding/hash through the authorized evidence handoff.
+    """
+    if not binding_sha256 or digest(binding_path) != binding_sha256:
+        raise ValueError('release-equivalent binding hash mismatch')
+    record = json.loads(binding_path.read_text())
+    info = record['mozinfo']
+    expected_source = 'a80bd15ddee3b4bf3679aeba340e9d2db933c467'
+    if not (record['version'] == '156.0' and record['source_stamp'] == expected_source
+            and record['source_repository'] == 'https://hg.mozilla.org/releases/mozilla-release'
+            and record['task_state'] == 'completed' and info['official'] is True
+            and info['require_signing'] is False and info['release_or_beta'] is True
+            and info['devedition'] is False and info['nightly_build'] is False
+            and record['chain_of_trust_artifact_hash_verified'] is True
+            and record['task_name'] == 'build-linux64-add-on-devel/opt'
+            and record['task_url'] == 'https://firefox-ci-tc.services.mozilla.com/api/queue/v1/task/' + record['task_id']
+            and record['binary_sha256'] == digest(binary)):
+        raise ValueError('not the authorized official release-equivalent 156 build')
+    actual = {str(p.relative_to(binary.parent)): digest(p)
+              for p in sorted(binary.parent.rglob('*')) if p.is_file()}
+    if actual != record['installation_files']:
+        raise ValueError('release-equivalent installation drift')
+    return record
+
+
+def verify_restart(reports, run_id):
+    if len(reports) != 2 or [r.get('trigger') for r in reports] != ['onInstalled', 'onStartup']:
+        raise ValueError('real install/startup sequence missing')
+    for ordinal, report in enumerate(reports, 1):
+        marker = report.get('marker', {})
+        if marker.get('run') != run_id or marker.get('ordinal') != ordinal:
+            raise ValueError('persistent marker sequence mismatch')
+    previous = next((o for o in reports[1]['observations'] if o['name'] == 'previous-probe-marker'), {})
+    if previous.get('value', {}).get('syntheticMarker') != reports[0]['marker']:
+        raise ValueError('pre-restart marker not preserved')
+
+
 class Marionette:
     def __init__(self, port):
         self.sock = socket.create_connection(('127.0.0.1', port), timeout=30)
@@ -130,6 +170,8 @@ def main():
     parser.add_argument('--firefox', type=Path, required=True)
     parser.add_argument('--firefox-sha256', required=True)
     parser.add_argument('--persistent-test-build-version')
+    parser.add_argument('--release-equivalent-binding', type=Path)
+    parser.add_argument('--release-equivalent-binding-sha256')
     parser.add_argument('--headless', action='store_true')
     args = parser.parse_args()
     binary = args.firefox.resolve(strict=True)
@@ -137,8 +179,15 @@ def main():
     ini = configparser.ConfigParser(); ini.read(binary.parent / 'application.ini')
     version = ini['App']['Version']
     channel = (binary.parent / 'defaults/pref/channel-prefs.js').read_text()
-    persistent = args.persistent_test_build_version is not None
-    if persistent:
+    if args.release_equivalent_binding and args.persistent_test_build_version:
+        raise ValueError('select exactly one persistent build route')
+    equivalent = (release_equivalent(binary, args.release_equivalent_binding,
+                  args.release_equivalent_binding_sha256) if args.release_equivalent_binding else None)
+    persistent = args.persistent_test_build_version is not None or equivalent is not None
+    if equivalent:
+        if version != '156.0' or ini['App']['SourceStamp'] != equivalent['source_stamp'] or '"default"' not in channel:
+            raise ValueError('unbranded 156 runtime metadata drift')
+    elif persistent:
         if version != args.persistent_test_build_version or not any('"' + c + '"' in channel for c in ('aurora', 'nightly')):
             raise ValueError('explicit official Developer/Nightly test build required')
     elif version != '156.0' or '"release"' not in channel:
@@ -175,10 +224,13 @@ def main():
     if persistent: prefs['xpinstall.signatures.required'] = False
     (profile / 'user.js').write_text(''.join('user_pref(' + json.dumps(k) + ', ' + json.dumps(v) + ');\n' for k, v in prefs.items()))
     evidence = {'run_id': run_id, 'profile_class': 'NEW_SYNTHETIC_DISPOSABLE', 'profile': str(profile),
+        'driver_source_sha256': digest(Path(__file__)),
         'binary': str(binary), 'binary_sha256': digest(binary), 'version': version,
         'build_id': ini['App']['BuildID'], 'source_stamp': ini['App']['SourceStamp'],
         'evidence_class': ('WINDOWS_RUNTIME_VERIFIED' if os.name == 'nt' else 'UBUNTU_RUNTIME_VERIFIED'),
-        'runtime_scope': 'TEST_BUILD_ONLY_RESTART' if persistent else 'TARGET_STABLE',
+        'runtime_scope': ('RELEASE_EQUIVALENT_156_RESTART' if equivalent else
+                          'TEST_BUILD_ONLY_RESTART' if persistent else 'TARGET_STABLE'),
+        'release_equivalent_binding_sha256': args.release_equivalent_binding_sha256 if equivalent else None,
         'headless': args.headless, 'prefs_sha256': digest(profile / 'user.js'), 'launches': [],
         'probe_packages': {}, 'reports': [], 'cleanup': 'PENDING', 'status': 'RUNNING'}
     for kind in ('helper', 'probe'):
@@ -187,6 +239,7 @@ def main():
     samples = []
     try:
         for ordinal in range(1, 3 if persistent else 2):
+            launch_sample_start = len(samples)
             command = [str(binary), '--no-remote', '--new-instance', '--profile', str(profile), '--marionette']
             if args.headless: command.append('--headless')
             client = None
@@ -235,7 +288,7 @@ def main():
                         time.sleep(0.25)
                     else: raise TimeoutError('synthetic report absent')
                     for _ in range(12): collect(); time.sleep(0.25)
-                    launch['observed_processes'] = sorted({p['pid'] for s in samples for p in s['processes']})
+                    launch['observed_processes'] = sorted({p['pid'] for s in samples[launch_sample_start:] for p in s['processes']})
                     client.command('Marionette:Quit', {'flags': ['eForceQuit']})
                     proc.wait(timeout=20)
                 finally:
@@ -244,6 +297,8 @@ def main():
                         proc.terminate()
                         proc.wait(timeout=15)
                     launch['exit_code'] = proc.returncode
+        if persistent:
+            verify_restart(evidence['reports'], run_id)
         evidence['status'] = 'OBSERVATIONS_COLLECTED__MATRIX_REVIEW_REQUIRED'
     except Exception as error:
         evidence['status'] = 'PROBE_FAILED'; evidence['error'] = str(error)

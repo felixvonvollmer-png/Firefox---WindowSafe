@@ -4,12 +4,16 @@ Zuerst [foundation/context.md](foundation/context.md), die auftragsrelevanten Or
 und [Engineeringregeln](foundation/engineering.md) laden. Exakte Foundation 2:
 `foundation/sources/foundation-2.md`; Foundation 1 trennt unabhängige Reviewautorität.
 
-Aktueller Featurelauf: **WS-E01-F01-START-20260919-01**, Autorisierung **WS-EA-20260919-06**.
-Original: `features/WS-E01-F01/evidence/execution-authorization.json`.
-Start: `3bdd7439c221b8f8c83e7374c8bb29898891a4fd`, Branch
+Aktueller Featurelauf: **WS-E01-F01-TARGET-QUAL-20260919-01**, Autorisierung **WS-EA-20260919-08**.
+Original: `features/WS-E01-F01/evidence/target-authorization.json`.
+Laufstart: `0f83be2550f34698fe95da4df88b5eb918649973`, ursprüngliche Featurebasis
+`3bdd7439c221b8f8c83e7374c8bb29898891a4fd`, Branch
 `feature/ws-e01-f01-qualification`. Aktueller Zustand und offene Gates:
 [features/WS-E01-F01/state.json](features/WS-E01-F01/state.json),
-[Bericht](features/WS-E01-F01/evidence/qualification-followup.md).
+[Bericht](features/WS-E01-F01/evidence/target-qualification.md).
+Audit-Recovery ist abgeschlossen. Alle vier Zielgates bleiben global offen;
+Windows Desktop wurde nicht bereitgestellt. Ubuntu-Nachweise nicht auf Windows übertragen.
+Keine Dependency-/Lock-/Toolchainversionsänderung und keine finale V6-Migration.
 
 Nur Plattform-/Toolchain-/Messqualifikation, generischer JIT-Lifecycle, synthetische Probes
 und eigene Wegwerfprofile. Kein Produktcode, F02, reales Profil, AMO/Signing/Release/Production,

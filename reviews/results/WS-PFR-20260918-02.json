@@ -1,0 +1,154 @@
+{
+  "schema_version": 3,
+  "review_id": "WS-PFR-20260918-02",
+  "review_type": "PROJECT_FOUNDATION_REVIEW",
+  "reviewer": {
+    "authority": "INDEPENDENT_PROJECT_LLM",
+    "identity": "Codex als unabhängiger Nichtimplementierer in dieser Nutzerkonversation; nicht CODING_AGENT_WS_HC_20260918_01, kein früherer WindowSafe-Implementierer oder Return-Processor",
+    "run_reference": "Diese Konversation, unabhängiger Review WS-PFR-20260918-02 am 2026-09-19; eigener Scratchkontext /tmp/windowsafe-independent-WS-PFR-20260918-02-k5p5v454; keine separate Plattform-Run-ID behauptet",
+    "independence": "FRESH_OR_SUFFICIENTLY_ISOLATED"
+  },
+  "provenance": {
+    "source_reference": "Originaler unabhängiger Review dieser Nutzerkonversation am 2026-09-19 gemäß WS-PFR-20260918-02 und WS-REVENV-AUTH-20260919-01. Dieser Kontext hat weder WS-HC-20260918-01 noch frühere WindowSafe-Korrekturen implementiert und war kein vorbereitender Return-Processor. Keine Delegation, keine erfundene Plattform-Run-ID oder digitale Identitätsauthentifizierung. Historische Autorisierungen und Reviewerprovenienz wurden gegen ihre gebundenen Records geprüft; ihre ursprünglichen Plattformidentitäten wurden nicht erneut authentifiziert.\n\nREPOSITORY_OR_REMOTE_VERIFIED: git ls-remote und gh bestätigten felixvonvollmer-png/Firefox---WindowSafe, ID 1374094477, public, PR #1 offen/Draft/ungemergt/autoMergeRequest=null, Branch fix/ws-hc-20260917-01 und PR-Head fc3ee73c9bf1fab3878c480a0299fda4119e363b sowie main 4ba2c473fe4d90c85d94ee2b2f5cc5777d115109. Der neue Resultatlocator ist am Subject unbelegt. Subject-Tree: 561798550339b7ca1fc007b3f8faa90f9d98640e. Vollständiger kumulativer Reviewbereich: 4ba2c473fe4d90c85d94ee2b2f5cc5777d115109..fc3ee73c9bf1fab3878c480a0299fda4119e363b, einschließlich beider Transfercommits und beider Korrekturcommits; Laufstart 9b6dd621deec1193bfdfbdfa730e8f9349c73fd6 bleibt davon getrennt.\n\nRuntime und eigene Vorbereitung: Bereits vorhandenes tatsächliches CPython 3.14.4, /usr/bin/python3.14, Executable-SHA-256 52e0a13e60a981d8c4b6478be2ba5176f69da07948a056bf49cf6f077e30cb41; Linux x86_64, Git 2.53.0. Kein Download, Build oder Installieren einer Runtime. Die autorisierte Quellbindung https://www.python.org/ftp/python/3.14.4/Python-3.14.4.tar.xz / d923c51303e38e249136fc1bdf3568d56ecb03214efdef48516176d3d7faaef8 wurde deshalb nicht benutzt und nicht als selbst verifizierter Quellarchivhash ausgegeben. Das unveränderte tools/reviewer_environment.py wurde nach Prüfung seiner Bytes mit /usr/bin/python3 tools/reviewer_environment.py --sha fc3ee73c9bf1fab3878c480a0299fda4119e363b --destination /tmp/windowsafe-independent-WS-PFR-20260918-02-k5p5v454/environment ausgeführt, Exit 0. Frischer vollständiger HTTPS-Clone, detached Subject-Checkout, lokal gesperrte Push-URL, venv ohne pip, vorhandene Commit-/Treeobjekte und git fsck --full erfolgreich. preparation.json enthält 24 erfolgreiche Originalkommandos; SHA-256 c7154ce2888ee1291ed195497cbe708dae9e5318122f651ee8fdbb3abbb8316d. Keine Implementiererlogs wurden als eigene Ausführung übernommen.\n\nEigener verpflichtender Preflight vor fachlichem Review: Arbeitsverzeichnis /tmp/windowsafe-independent-WS-PFR-20260918-02-k5p5v454/environment/repository; PY=/tmp/windowsafe-independent-WS-PFR-20260918-02-k5p5v454/environment/runtime/bin/python, tatsächliche Version und Executablehash erneut geprüft. Persönlich ausgeführt: PY tools/foundation.py request --sha fc3ee73c9bf1fab3878c480a0299fda4119e363b; git show fc3ee73c9bf1fab3878c480a0299fda4119e363b:reviews/review-contract.json; PY tools/foundation.py schema-preflight --sha fc3ee73c9bf1fab3878c480a0299fda4119e363b --schema /tmp/windowsafe-independent-WS-PFR-20260918-02-k5p5v454/independent-contract.json. Alle Exitcodes 0. Vollständiger V3-Vertrag, SHA-256 654cdf141ce868d1da288b7eb11423dd14ebd31324315dbc0c50ad0b83cdca21, einschließlich Foundation-2-§32-Mindestmapping und Zusatzregeln. Exakte argv, cwd, Ausgaben und Exitcodes: independent-preflight.json, SHA-256 194a0c5b6e75078442b5786e3545faf936f7d6533913aba6bc39f5bdaf5ff529.\n\nAlle 25 Subject-Evidence-Dateien wurden inhaltlich gelesen und ihre Gitbytes selbst per SHA-256 nachgeprüft; die Lesekopie ist byteidentisch. Die acht vorgegebenen Blobbindungen einschließlich Foundation 1 3b139a7dfd70da3ae6c83bbdfa703cb98ef94193 und Foundation 2 ff49e56aba09881e9e4a22dc8225949fbc4b54f6 stimmen. Beide Rollenquellen wurden gelesen. Die sieben äußeren und sechs inneren Paketmanifestbindungen sowie die byteidentischen kanonischen Subject-/Vertragskopien wurden geprüft. Ein eigener Hilfsleser nahm zunächst die falsche Struktur des inneren Manifests an und endete vor jedem kanonischen Kommando mit Exit 1; nach Lesen der tatsächlichen FILES-Struktur bestand die Paketprüfung. Kein Pflicht-Gate wurde verändert, umgangen oder nach einem Fehlschlag wiederholt. Evidenceprüfrecord: independent-evidence-verification.json, SHA-256 c67439d1970fcf27cfa41fffb03581fe0ab4b90b530c1b9b534e5035e114df0b.\n\nEigene lokale Originalprüfungen unter PY: tools/foundation.py check; -m unittest discover -s tests -v; tools/foundation.py build --verify-repeat; tools/foundation.py history --base 4ba2c473fe4d90c85d94ee2b2f5cc5777d115109; FOUNDATION_EVENT_BASE=0000000000000000000000000000000000000000 tools/foundation.py history --event-base; git diff --check; git status --porcelain. Alle Exitcodes 0, 61 Tests erfolgreich, Inventar-SHA-256 165d57f10967ff78dd83b65e44d945fd8a07e03c24b453769d3f80f7fd61c2ae. Record independent-checks.json, SHA-256 e53b25e8b981c8899ee80aa47a7cfecff173dcd7b4dcea3316d077ecb45d7fbc. Zusätzlich beide historischen Resultate persönlich mit validate-result konsumiert und die exakten historischen V1-/V2-Vertragskopien per schema-preflight geprüft, jeweils Exit 0; independent-compatibility.json, SHA-256 970730fb157f74d3995a749cd4c8f6e2554c9c25b72d60116855186c0e12ff58. Die Suite enthält echte synthetische CLI-Negativfälle für Null-before/Historymanipulation und originalevidenzgebundene V1-Sidecars sowie die erhaltenen Writerregressionen.\n\nHistory und Product Fidelity: Alle vier kumulativen Commits separat auf geschützte Pfadänderungen geprüft; ausschließlich additive Evidence-/Resultatänderungen. Die historischen Resultate sind seit ihren Transfercommits unverändert: WS-PFR-20260917-01, 10136 Bytes, SHA-256 c4c908eb70c99252f185ee89d077919ecc9598cc2842b2f0b1209734f115c19f; WS-PFR-20260918-01, 12581 Bytes, SHA-256 0275bfcbad98bd727b861bd5b972af635139cc0986ef99eed1965331eda5f6b2. Historisches PASS mit MINOR/OPEN und historisches BLOCKED bleiben unverändert. Product-/Approval-/Preparation-/T05-R2-Inputs, Foundationquellen und Epic-Karte sind gegenüber der kumulativen Basis unverändert; Inputintegrität wurde durch den eigenen Original-check erneut geprüft. Unveränderte Product-/TFP-Bereiche werden gemäß Auftrag über den exakt gebundenen historischen Foundation-PASS referenziert, ohne einen neuen vollständigen Preparation-Review zu behaupten. Plattform-/Mess-/Native-/Browser-/Delivery-Gates bleiben bestehen. Risiko weiterhin mindestens ELEVATED; keine neue materielle Produktentscheidung und keine Scope-Erweiterung festgestellt.\n\nCI_VERIFIED: Metadaten, Jobs und relevante Checkout-/Prüflogs selbst read-only gelesen: https://github.com/felixvonvollmer-png/Firefox---WindowSafe/actions/runs/35380950207/job/105716704961 (push) und https://github.com/felixvonvollmer-png/Firefox---WindowSafe/actions/runs/35380953153/job/105716713978 (pull_request). Beide completed/success und tatsächlicher Checkout fc3ee73c9bf1fab3878c480a0299fda4119e363b, CPython 3.14.4, 61 Tests, Schema-/Altresultatkonsum, Build und History erfolgreich. Push-Eventbasis 9b6dd621deec1193bfdfbdfa730e8f9349c73fd6, PR-Eventbasis 4ba2c473fe4d90c85d94ee2b2f5cc5777d115109. Beide Inventarhashes stimmen mit dem eigenen Build überein. CI ergänzt die eigene Reviewer-Ausführung. Kein CI-Rerun ausgelöst.\n\nAbschluss: Eigenes Originalresultat außerhalb des Checkouts: /tmp/windowsafe-independent-WS-PFR-20260918-02-k5p5v454/WS-PFR-20260918-02.json. Abschließender Befehl: /tmp/windowsafe-independent-WS-PFR-20260918-02-k5p5v454/environment/runtime/bin/python tools/foundation.py validate-result --file /tmp/windowsafe-independent-WS-PFR-20260918-02-k5p5v454/WS-PFR-20260918-02.json, im oben angegebenen Review-Checkout; Exit 0 ist zwingende Bedingung der Ausgabe genau dieser Originalbytes. Der tatsächliche Exitcode, stdout/stderr und Payloadhash werden separat in final-consumer-validation.json festgehalten. F02 wird nur mit dieser erfolgreichen eigenen Endvalidierung geschlossen. Mechanische Validierung allein ist kein fachliches Verdict.\n\nGrenzen: Keine Windows-/Reparse-Point-, Atomizitäts-, Crash-Durability- oder feindliche-Inode-Ancestry-Garantie für den Writer; keine Browser-/Profil-/Produkt-/CPU-/RAM-/Production-Ausführung. Keine Änderungen getrackter Dateien, keine Repositorykorrektur, kein Commit/Push/Transfer/Merge/Auto-Merge oder GitHub-Write; ursprünglicher Workspace und Review-Checkout wurden sauber geprüft. Eigene Logs, Resultat und synthetische Test-/Buildartefakte liegen ausschließlich im temporären Reviewkontext. EXACT_AUTHORIZED_TRANSFER bezeichnet nur den vorgesehenen später separat autorisierten unveränderten Transport. Dieser PASS gilt ausschließlich dem gebundenen Korrektur-Subject und ersetzt keine Integrationsfreigabe, keinen Kontext-Sync und keine Epic-/Feature-/Release-Autorisierung.",
+    "transport": "EXACT_AUTHORIZED_TRANSFER"
+  },
+  "subject": {
+    "id": "WS-HC-20260918-01",
+    "path": "foundation/subject.json",
+    "end_sha": "fc3ee73c9bf1fab3878c480a0299fda4119e363b"
+  },
+  "verdict": "PASS",
+  "findings": [
+    {
+      "id": "WS-HARNESS-RESIDUAL-20260917-01",
+      "severity": "MAJOR",
+      "status": "RESOLVED",
+      "description": "Die versionsbewusste Korrektur akzeptiert den historischen markerlosen V1-Positivfall ohne Review-ID-/SHA-Ausnahme. Andere unklare V1-Freitexte öffnen V1_SEMANTIC_DISPOSITION_REQUIRED statt einer rückwirkenden V2-Syntaxpflicht. V2 und V3 verlangen weiterhin ihren exakten Marker und eine eindeutige nichtleere Begründung.",
+      "disposition": "FIXED, am exakten Subject unabhängig bestätigt. Der separate V1-Sidecar bindet Originalresultatbytes, Subject, Evidence, Originalprovenienz und Dispositionstext sowie Reviewerrolle, Unabhängigkeit, konkrete Begründung, Follow-up und Trigger. Leere beziehungsweise explizit blockierende/mehrdeutige Marker, unvollständige Entscheidungen und PASS mit offenen höheren Severities bleiben geschlossen. Code, Versionsmatrix und echte CLI-Regressionsfälle persönlich geprüft. Authentizität und sachliche Nichtblockierung bleiben externe inhaltliche Pflichten; kein realer Sidecar wurde erfunden."
+    },
+    {
+      "id": "WS-PFR-20260918-01-F01",
+      "severity": "MAJOR",
+      "status": "RESOLVED",
+      "description": "Die Historybasis wird aus der separat SHA-256-gepinnten Autorisierung gelesen und gegen Commit-/Treeidentitäten, Ancestors, Subject und Worktree geprüft. Laufstart und kumulative Basis bleiben getrennt. Der Null-before-Pfad kann keinen Selbstvergleich aus einem manipulierten Subject ableiten.",
+      "disposition": "FIXED, am exakten Subject unabhängig bestätigt. Eigene erfolgreiche kumulative und Null-before-Originalkommandos sowie ausgeführte CLI-Regressionen decken unzulässige Basen, fehlende/manipulierte Autorisierung, Änderungen/Löschungen, nachträgliche Reverts, innerhalb des Deltas eingeführte Resultate und legitime additive History ab. Alle unakzeptierten linearen Commits werden geprüft. Die dokumentierte Bindung gilt für diese autorisierte Fortsetzung; spätere Phasen benötigen eigene Rebindung. Lokale Hashpins sind keine Signatur gegen den gleichzeitigen Austausch von Validator und CI."
+    },
+    {
+      "id": "WS-PFR-20260918-01-F02",
+      "severity": "BLOCKING",
+      "status": "RESOLVED",
+      "description": "Dieser unabhängige Nichtimplementierer verfügt über tatsächliches CPython 3.14.4 und eine frisch geklonte vollständige Git-Lesekopie mit allen gebundenen Objekten. Eigener Original-request und vollständiger schema-preflight wurden vor dem fachlichen Review mit Exit 0 ausgeführt.",
+      "disposition": "RESOLVED für WS-PFR-20260918-02 erst mit erfolgreichem abschließendem validate-result auf genau diesem außerhalb des Checkouts geschriebenen Originalpayload. Die Ausgabe erfolgt ausschließlich nach Exit 0; tatsächlicher Konsumrecord: /tmp/windowsafe-independent-WS-PFR-20260918-02-k5p5v454/final-consumer-validation.json. Grundlage sind eigene Originalausführungen, nicht Implementierervorbereitung oder CI. Der frühere BLOCKED-Rücklauf und sein damaliges OPEN bleiben unverändert."
+    },
+    {
+      "id": "WS-PFR-20260917-01-F01",
+      "severity": "MINOR",
+      "status": "RESOLVED",
+      "description": "Die bereits bestätigte Writer-Korrektur und ihre Regressionen bleiben gegenüber 9b6dd621deec1193bfdfbdfa730e8f9349c73fd6 bytegleich erhalten. No-follow- und descriptor-relative Öffnung, Typ-/Linkcountprüfung vor Trunkierung und Writes über den geöffneten FD sind weiterhin vorhanden.",
+      "disposition": "Erhaltene RESOLVED-Disposition für den dokumentierten POSIX/Linux-Scope unabhängig bestätigt; sämtliche Writerregressionen wurden unter CPython 3.14.4 persönlich ausgeführt. Keine Windows-/Reparse-, Atomizitäts- oder Crash-Durability-Zusage und keine Garantie gegen feindliche Änderungen bereits geöffneter Inode-Ancestry beziehungsweise nachträgliche Hardlinks. Das historische PASS-Original mit MINOR/OPEN wird nicht verändert."
+    }
+  ],
+  "reviewed_evidence": [
+    {
+      "path": "foundation/evidence/followup-correction.md",
+      "sha256": "37045967142fc20ec7a8ac2b8efd4397131049bb2efc0f8f23883ad714b277f9"
+    },
+    {
+      "path": "foundation/evidence/followup-inputs.json",
+      "sha256": "4e39174b48793d38dbe430f1c70a03da4dc0fc2b7c4e4b2b05acb5d9656aa691"
+    },
+    {
+      "path": "foundation/evidence/followup-transfer.json",
+      "sha256": "b04edf4cc5c48c456068799829ef1f3bcbedab92065645fbf3f5bf2d0ac6b686"
+    },
+    {
+      "path": "foundation/evidence/followup-authorization.json",
+      "sha256": "f3f0c51070e51974bfc6979e5db4ead2cdfa131315c0654ebad8773e467320ed"
+    },
+    {
+      "path": "foundation/evidence/followup-handoff.md",
+      "sha256": "17461e12b7a8ff3fcd8fcf5924e506147a471c44a28e626df184dbc91120bb61"
+    },
+    {
+      "path": "foundation/evidence/followup-draft.md",
+      "sha256": "77f91ef8333959c6e69c2af510600101fc3fcd241fd5b5be49eee475967582f7"
+    },
+    {
+      "path": "foundation/evidence/followup-environment-authorization.md",
+      "sha256": "263a209c0a8233e72fec5020fe5cdb2716f9a4d07c2b3c3b862d104e62a5428d"
+    },
+    {
+      "path": "foundation/evidence/followup-environment-draft.md",
+      "sha256": "40d65217da93528afddd5f469884bc4571dfc548c36af445ab92dd3066bebbf4"
+    },
+    {
+      "path": "foundation/evidence/followup-return.json",
+      "sha256": "55036d0f3845321f7b66dc8b4cac0f45e57222d6f32816420035c4dbcfcf12ed"
+    },
+    {
+      "path": "foundation/evidence/followup-baseline.json",
+      "sha256": "ca79ad0e6433281341215e98eaff763397d7886966238e743440a8c5d2186d4c"
+    },
+    {
+      "path": "foundation/evidence/followup-manifest.json",
+      "sha256": "85e15f981b0b1c134234759ddd072d63c7521351c14b84c23138081e6b56950b"
+    },
+    {
+      "path": "foundation/evidence/followup-return-manifest.json",
+      "sha256": "486f0fc704a75b52ed5fa8761ef8c271f5d9cfa6181174dd638a08fc48b8a4fe"
+    },
+    {
+      "path": "reviews/results/WS-PFR-20260917-01.json",
+      "sha256": "c4c908eb70c99252f185ee89d077919ecc9598cc2842b2f0b1209734f115c19f"
+    },
+    {
+      "path": "reviews/results/WS-PFR-20260918-01.json",
+      "sha256": "0275bfcbad98bd727b861bd5b972af635139cc0986ef99eed1965331eda5f6b2"
+    },
+    {
+      "path": "foundation/context.md",
+      "sha256": "4cd1ef53ef454e6473c1aec1e8d91e18539ec8f0eae8f567c7f1e5ead5ff18a1"
+    },
+    {
+      "path": "foundation/engineering.md",
+      "sha256": "7a9912fdaaca89903e9f5d8b81b6e3972c9f7229194797a8866c82287b021b06"
+    },
+    {
+      "path": "foundation/reviewer-environment.md",
+      "sha256": "b6e7b0f0e46acbd1956ac0fd4ecebf4535cbbc275be95f971ea054c15e2eac8b"
+    },
+    {
+      "path": "reviews/README.md",
+      "sha256": "65151512f169cae3487541a822726feb02589c3218eab82a607c4baa73bb384e"
+    },
+    {
+      "path": "reviews/review-contract.json",
+      "sha256": "654cdf141ce868d1da288b7eb11423dd14ebd31324315dbc0c50ad0b83cdca21"
+    },
+    {
+      "path": "tools/foundation.py",
+      "sha256": "b51b744bc37292ae0fe2b9f528b47467bbd2df94e321abdef57f494416c63ecf"
+    },
+    {
+      "path": "tools/reviewer_environment.py",
+      "sha256": "d21679c6f3b711807ff6d6c192d5b686793e74026a71f129dfce7be0692e82ff"
+    },
+    {
+      "path": "tests/test_foundation.py",
+      "sha256": "4becf12b6fb47b6551f1753864033029d43aa0ba55dff86c75948bcef36ee615"
+    },
+    {
+      "path": "tests/test_harness_correction.py",
+      "sha256": "e8c85a2ee566d65c04b4a492780fb5f06104df708257339a0deabcc3176adcec"
+    },
+    {
+      "path": "tests/test_harness_followup.py",
+      "sha256": "c97af6044d399559a11e9c2da7bfc45c7c70267c2b25427c5edc904a9646baeb"
+    },
+    {
+      "path": ".github/workflows/foundation.yml",
+      "sha256": "9c77f1c99a669fc9cd65d94e48897e084fe2ebc15cc36e53572240a2e3cfdb7d"
+    }
+  ],
+  "result_reference": "reviews/results/WS-PFR-20260918-02.json"
+}

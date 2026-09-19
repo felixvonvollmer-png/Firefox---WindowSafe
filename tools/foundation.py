@@ -70,6 +70,16 @@ PREPARATION_AUTHORIZATIONS = {
     "epics/WS-E01/evidence/preparation-authorization.json":
         "72fbabec02b37e199cb5043cd2accdfd3925e3ab0c09e58f62f032e7ae3e9b0d",
 }
+# Separately approved integration originals; a PASS alone cannot open this gate.
+INTEGRATION_AUTHORIZATIONS = {
+    "epics/WS-E01/evidence/integration-authorization.json":
+        "ae698e67364c3a887a867d976aaf254deb0811915b4f309a8e4e47e774f79c6b",
+}
+INTEGRATION_SUPPORT_PATHS = {
+    "README.md", "AGENTS.md", "reviews/README.md", "epics/README.md",
+    "foundation/context.md", "foundation/engineering.md",
+    "tools/foundation.py", "tests/test_foundation.py",
+}
 SELF_REVIEW_COMPLETE = "COMPLETE__NO_OPEN_CRITICAL_BLOCKING_MAJOR_SELF_FINDINGS"
 FOLLOWUP_INPUTS = {
     FOLLOWUP_AUTH: "f3f0c51070e51974bfc6979e5db4ead2cdfa131315c0654ebad8773e467320ed",
@@ -233,9 +243,13 @@ def request(sha, path="foundation/subject.json"):
     text(s["implementer"])
     require(isinstance(s["evidence_paths"], list) and s["evidence_paths"], "missing subject evidence")
     require(len(s["evidence_paths"]) == len(set(s["evidence_paths"])), "duplicate evidence")
-    evidence = [{"path": safe_path(p), "sha256": sha256(at(sha, p))} for p in s["evidence_paths"]]
     if kind == "EPIC_PREPARATION_REVIEW":
         epic_preparation(path, lambda name: at(sha, name), sha)
+        binding = parse(at(sha, path.replace("subject.json", "binding.json")))
+        if binding["status"] == "READY_FOR_AGENT":
+            # A current accepted locator still requests the original reviewed bytes.
+            return request(binding["epic_preparation_subject_immutable_reference"]["end_sha"], path)
+    evidence = [{"path": safe_path(p), "sha256": sha256(at(sha, p))} for p in s["evidence_paths"]]
     return {
         "schema_version": c["contract_version"],
         "review_type": kind,
@@ -419,6 +433,10 @@ def epic_preparation(path, read, head):
     identifier(epic)
     prefix = "epics/" + epic + "/"
     require(path == prefix + "subject.json", "epic subject locator")
+    binding = parse(read(prefix + "binding.json"))
+    if binding["status"] == "READY_FOR_AGENT":
+        reviewed = accepted_epic_binding(path, read, head)
+        return epic_preparation(path, lambda name: at(reviewed, name), reviewed)
     require(subject["review_type"] == "EPIC_PREPARATION_REVIEW", "epic review type")
     require(subject["status"] == "EPIC_PREPARATION_READY_FOR_REVIEW", "epic lifecycle")
     text(subject["implementer"])
@@ -492,6 +510,57 @@ def epic_preparation(path, read, head):
                     semantic, sha256(result_raw))
     ancestor(reviewed, baseline)
     return baseline, reviewed, reference
+
+
+def accepted_epic_binding(path, read, head):
+    """Consume an authorized PASS; preserve the original preparation and verdict."""
+    binding_path = path.replace("subject.json", "binding.json")
+    binding = parse(read(binding_path))
+    auth_path = safe_path(binding["execution_authorization_reference"])
+    raw = read(auth_path)
+    require(sha256(raw) == INTEGRATION_AUTHORIZATIONS.get(auth_path), "integration authorization hash")
+    auth = parse(raw)
+    require(auth["STATUS"] == "AUTHORIZED" and auth["AUTHORITY"] == "USER", "integration authorization")
+    reviewed = auth["EXPECTED_BRANCH_HEAD"]
+    require(isinstance(reviewed, str) and re.fullmatch(SHA_PATTERN, reviewed), "reviewed epic SHA")
+    ancestor(reviewed, head)
+    original = parse(at(reviewed, binding_path))
+    require(original["status"] == "REVIEW_REQUIRED", "acceptance requires pending original")
+    require(read(path) == at(reviewed, path), "immutable epic subject drift")
+    baseline = original["current_canonical_baseline_or_main_sha"]
+    require(baseline == auth["EXPECTED_MAIN_SHA"], "integration baseline mismatch")
+    req = request(reviewed, path)
+    reference = "reviews/results/" + auth["REVIEW_ID"] + ".json"
+    safe_path(reference)
+    result_raw = read(reference)
+    exact = auth["EXACT_RESULT_BINDING"]
+    require(len(result_raw) == exact["bytes"] and sha256(result_raw) == exact["sha256"],
+            "integration original result mismatch")
+    result = parse(result_raw)
+    validate_result(result, req, parse(at(reviewed, CONTRACT_PATH)), PurePosixPath(reference).name)
+    require(result["verdict"] == "PASS" and result["review_type"] == "EPIC_PREPARATION_REVIEW",
+            "epic PASS required")
+    follow_up = safe_path(binding["nonblocking_follow_up_reference"])
+    require(follow_up in INTEGRATION_SUPPORT_PATHS and follow_up.endswith(".md"), "follow-up locator")
+    text(read(follow_up).decode())
+    expected = dict(original,
+        status="READY_FOR_AGENT", ready_for_agent=True,
+        epic_preparation_subject_immutable_reference=req["subject"],
+        epic_preparation_review_result_reference=reference,
+        open_critical_blocking_major_findings="NONE",
+        execution_authorization_reference=auth_path,
+        open_nonblocking_finding_ids=[item["id"] for item in result["findings"] if item["status"] == "OPEN"],
+        nonblocking_follow_up_reference=follow_up,
+        execution_scope="PREPARATION_INTEGRATION_ONLY__NO_FEATURE_EXECUTION")
+    require(binding == expected and binding["ready_for_agent"] is True, "accepted binding mismatch")
+    prefix = path.rsplit("/", 1)[0] + "/"
+    for name in parse(at(reviewed, path))["evidence_paths"]:
+        if name.startswith(prefix) and name != binding_path:
+            require(read(name) == at(reviewed, name), "immutable preparation evidence drift")
+    allowed = INTEGRATION_SUPPORT_PATHS | {binding_path, auth_path, reference}
+    require(set(git("diff", "--name-only", reviewed, head).decode().splitlines()) <= allowed,
+            "post-review integration scope")
+    return reviewed
 
 
 def epic_subject_paths(paths):
@@ -614,9 +683,15 @@ def protected(path):
     return path.startswith(("foundation/inputs/", "foundation/sources/", "foundation/evidence/", "reviews/results/", "reviews/dispositions/")) or bool(re.fullmatch(r"epics/" + ID_PATTERN + r"/.+", path))
 
 
-def check_history_maps(before, after):
+def check_history_maps(before, after, transitions=None):
     for path, value in before.items():
         if protected(path):
+            if transitions and path in transitions and after.get(path) != value:
+                old, new, required = transitions[path]
+                require(value == old and after.get(path) == new
+                        and all(after.get(p) == data for p, data in required.items()),
+                        "unauthorized binding history transition")
+                continue
             require(path in after and after[path] == value, "append-only history violated")
 
 
@@ -666,13 +741,29 @@ def history_snapshot(base):
     return before
 
 
-def compare_history(base):
+def compare_history(base, transitions=None):
     after = {p.relative_to(ROOT).as_posix(): p.read_bytes() for p in files(ROOT)}
-    check_history_maps(history_snapshot(base), after)
+    check_history_maps(history_snapshot(base), after, transitions)
+
+
+def accepted_binding_transitions(head):
+    transitions = {}
+    paths = git("ls-tree", "-r", "--name-only", head, "--", "epics").decode().splitlines()
+    for path in epic_subject_paths(paths):
+        binding_path = path.replace("subject.json", "binding.json")
+        raw = at(head, binding_path)
+        binding = parse(raw)
+        if binding["status"] == "READY_FOR_AGENT":
+            reviewed = accepted_epic_binding(path, lambda name: at(head, name), head)
+            required = {name: at(head, name) for name in (
+                path, binding["execution_authorization_reference"],
+                binding["epic_preparation_review_result_reference"])}
+            transitions[binding_path] = (at(reviewed, binding_path), raw, required)
+    return transitions
 
 
 def preparation_integration(head, cumulative):
-    """Recognize only the independently authorized, unchanged Foundation merge.
+    """Recognize only the explicitly authorized Foundation/Epic normal merges.
 
     The old cumulative/run anchors and every pre-merge commit remain checked.
     No subject-supplied SHA may exempt arbitrary merges or shorten history.
@@ -693,7 +784,21 @@ def preparation_integration(head, cumulative):
         require(git("diff", "--name-status", reviewed, parents[1]).decode().splitlines() == ["A\t" + reference],
                 "foundation transfer-only delta required")
         integrations.add(baseline)
-    require(len(integrations) <= 1, "conflicting preparation baselines")
+        binding = parse(at(head, path.replace("subject.json", "binding.json")))
+        if binding["status"] == "READY_FOR_AGENT":
+            epic_reviewed = binding["epic_preparation_subject_immutable_reference"]["end_sha"]
+            for merge in git("rev-list", "--min-parents=2", epic_reviewed + ".." + head).decode().splitlines():
+                parents = git("rev-list", "--parents", "-n", "1", merge).decode().split()[1:]
+                require(len(parents) == 2 and parents[0] == baseline, "authorized epic normal merge required")
+                ancestor(epic_reviewed, parents[1])
+                require(at(parents[1], path.replace("subject.json", "binding.json"))
+                        == at(head, path.replace("subject.json", "binding.json")), "merge acceptance mismatch")
+                require(git("rev-parse", merge + "^{tree}") == git("rev-parse", parents[1] + "^{tree}"),
+                        "epic integration tree drift")
+                integrations.add(merge)
+    baselines = {parse(at(head, path))["current_canonical_baseline_or_main_sha"]
+                 for path in epic_subject_paths(paths)}
+    require(len(baselines) <= 1, "conflicting preparation baselines")
     return integrations
 
 
@@ -707,6 +812,7 @@ def history(base):
         return
     cumulative, run_start = history_binding(head)
     integrations = preparation_integration(head, cumulative)
+    transitions = accepted_binding_transitions(head)
     bases = {cumulative, run_start}
     if not no_base:
         require(re.fullmatch(SHA_PATTERN, base), "full event base required")
@@ -719,7 +825,7 @@ def history(base):
     else:
         require(base == "0" * 40, "missing event binding")
     for comparison in sorted(bases):
-        compare_history(comparison)
+        compare_history(comparison, transitions)
     # Also protect results introduced within the unaccepted delta, including
     # changes later reverted. Endpoint comparisons alone would hide those edits.
     previous = history_snapshot(cumulative)
@@ -727,9 +833,9 @@ def history(base):
         require(revision in integrations or len(git("rev-list", "--parents", "-n", "1", revision).split()) == 2,
                 "unaccepted history must be linear")
         current = history_snapshot(revision)
-        check_history_maps(previous, current)
+        check_history_maps(previous, current, transitions)
         previous = current
-    check_history_maps(previous, {p.relative_to(ROOT).as_posix(): p.read_bytes() for p in files(ROOT)})
+    check_history_maps(previous, {p.relative_to(ROOT).as_posix(): p.read_bytes() for p in files(ROOT)}, transitions)
 
 
 def main():

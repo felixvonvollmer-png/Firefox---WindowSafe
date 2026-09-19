@@ -1,0 +1,69 @@
+{
+  "DOCUMENT_TYPE": "WINDOWSAFE_EPIC_PREPARATION_PASS_INTEGRATION_AUTHORIZATION",
+  "AUTHORIZATION_ID": "WS-EA-20260919-05",
+  "STATUS": "AUTHORIZED",
+  "INTEGRATION_ID": "WS-E01-INT-20260919-02",
+  "REPOSITORY": "felixvonvollmer-png/Firefox---WindowSafe",
+  "REPOSITORY_ID": 1374094477,
+  "PR": 2,
+  "BRANCH": "prep/ws-e01-20260919-01",
+  "EXPECTED_BRANCH_HEAD": "644b81f63dcc1990bc894a9c2c9bd8dc24a98c04",
+  "EXPECTED_MAIN_SHA": "dc9c1c37a264cc80f79ec08bf166ec42cdd73b95",
+  "REVIEW_ID": "WS-E01-EPR-20260919-02",
+  "EXACT_RESULT_BINDING": {
+    "bytes": 22666,
+    "sha256": "1b59d6fc89c293e738ea4e9f16e4004abef5736da527e5c2f7c60533260977d7",
+    "local_path": "/home/felix/Downloads/WindowSafe_Review_Return_WS-E01-EPR-20260919-02/WS-E01-EPR-20260919-02.json"
+  },
+  "AUTHORIZED_IF_USER_APPROVES": [
+    "recheck exact repository/PR/branch/main/worktree bindings",
+    "read the exact local reviewer-original and final-consumer record from the user-machine paths",
+    "verify exact 22666-byte length and SHA-256 1b59d6fc89c293e738ea4e9f16e4004abef5736da527e5c2f7c60533260977d7",
+    "verify final-consumer payload hash matches and prior validate-result exit code is 0",
+    "run canonical validate-result again under actual CPython 3.14.4 on those exact original bytes before repository mutation",
+    "transfer exactly those bytes to reviews/results/WS-E01-EPR-20260919-02.json",
+    "perform only the minimum generic post-review harness/binding support required for accepted Epic Preparation",
+    "update epics/WS-E01/binding.json to READY_FOR_AGENT while preserving the immutable reviewed subject reference and visible nonblocking MINOR",
+    "perform the reviewer-requested narrow Living-Context/review-routing cleanup, especially marking obsolete Project-Foundation reviewer instructions as historical and routing current Epic/Feature reviews correctly",
+    "update README.md and AGENTS.md only if required to avoid obsolete lifecycle routing",
+    "add/update narrowly scoped regression tests for accepted Epic Preparation transition if mechanically required",
+    "run full CPython 3.14.4 local checks, result validation, schema preflight, history, deterministic build and tests",
+    "commit and push the post-review integration delta to the existing preparation branch",
+    "require exact-head push and PR CI SUCCESS and inspect logs",
+    "merge PR #2 by normal merge commit only if all gates pass and main remains at the expected baseline",
+    "post-merge verify exact result bytes/hash, reviewed-subject ancestry, accepted binding and historical immutability",
+    "STOP after post-merge verification"
+  ],
+  "NOT_AUTHORIZED": [
+    "reconstructing review bytes from chat text",
+    "changing the immutable reviewed epics/WS-E01/subject.json",
+    "changing the review verdict or findings",
+    "rewriting historical Product/Foundation/review-result originals",
+    "squash or rebase merge",
+    "auto-merge or force push",
+    "WS-E01-F01 execution",
+    "any WindowSafe product implementation",
+    "any browser/profile/runtime qualification",
+    "Node/TypeScript/web-ext dependency installation for product work",
+    "release, signing, AMO, production, real user data"
+  ],
+  "IMPORTANT_READY_SEMANTICS": "READY_FOR_AGENT records that the Epic Preparation gate is accepted. It does not itself start WS-E01-F01; a later explicit execution authorization/test-envelope gate remains required before any feature/browser/product work.",
+  "FAIL_CLOSED_ON": [
+    "local original file unavailable",
+    "byte length or SHA mismatch",
+    "final-consumer hash/exit-code mismatch",
+    "canonical validate-result failure",
+    "PR/branch/main drift",
+    "unexpected repository changes",
+    "post-review delta contains product/feature implementation",
+    "CI failure",
+    "normal merge-commit integration unavailable"
+  ],
+  "DATE": "2026-09-19",
+  "AUTHORITY": "USER",
+  "USER_AUTHORIZATION_REFERENCE": {
+    "VERBATIM_MESSAGE": "frei",
+    "CONTEXT": "Immediate reply to the explicit request to authorize WS-E01-INT-20260919-02 using the preserved local reviewer-original WS-E01-EPR-20260919-02.",
+    "INTERPRETATION": "Authorizes exactly the prepared scope: local-original verification and canonical validation, byte-exact review-result transfer, accepted READY_FOR_AGENT binding, narrow nonblocking routing cleanup, required generic lifecycle regression support if necessary, local checks, push/CI, normal merge-commit integration of PR #2, post-merge verification, then STOP. Does not authorize WS-E01-F01 or product/browser work."
+  }
+}

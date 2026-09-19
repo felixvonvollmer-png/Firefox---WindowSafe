@@ -73,19 +73,29 @@ PASS-/BLOCKED-Resultate und deren damalige Zustandsfelder bleiben unverändert.
 Der genaue Resultattransfer und die autorisierte Normal-Merge-Integration sind
 in main `dc9c1c37a264cc80f79ec08bf166ec42cdd73b95` enthalten.
 
-Aktuell autorisiert: **WS-E01-MAT-20260919-01** durch **WS-EA-20260919-04**.
-Die sechs gelieferten Project-LLM-Artefakte unter `epics/WS-E01/` werden bytegenau
-materialisiert; nur der minimale generische Preparation-Harness und aktuelle
-Routingtexte ändern sich. Branch `prep/ws-e01-20260919-01` startet vom genannten
-integrierten main. Originalautorisierung:
-[preparation-authorization.json](../epics/WS-E01/evidence/preparation-authorization.json).
+Die historische Materialisierung WS-E01-MAT-20260919-01 unter WS-EA-20260919-04
+lieferte den unveränderten Preparation-Subject am SHA
+`644b81f63dcc1990bc894a9c2c9bd8dc24a98c04`. Dieser erhielt den unabhängigen
+[WS-E01-EPR-20260919-02 PASS](../reviews/results/WS-E01-EPR-20260919-02.json).
+Das Original hat 22666 Bytes und SHA-256
+`1b59d6fc89c293e738ea4e9f16e4004abef5736da527e5c2f7c60533260977d7`.
+Die lokale Originaldatei wurde unter CPython 3.14.4 kanonisch vor dem bytegenauen
+Transfer validiert. Keine Rekonstruktion aus Chattext.
 
-WS-E01 / WS-E01-EP-20260919-01 ist **EPIC_PREPARATION_READY_FOR_REVIEW**,
-unabhängiger Review **PENDING**, Binding REVIEW_REQUIRED, kein Epic READY_FOR_AGENT.
-Die mitgelieferte kritische Project-LLM-Eigenprüfung und die mechanischen
-Coding-Agent-Checks ersetzen keinen unabhängigen EPIC_PREPARATION_REVIEW.
-STOP am getesteten ungemergten Draft-PR. Kein Merge/Auto-Merge, Featurestart,
-Produktcode oder Browser-/Profiltest ist in dieser Phase autorisiert.
+Aktuell autorisiert: **WS-E01-INT-20260919-02** durch **WS-EA-20260919-05**;
+Original: [integration-authorization.json](../epics/WS-E01/evidence/integration-authorization.json).
+Das [Accepted-Binding](../epics/WS-E01/binding.json) setzt READY_FOR_AGENT und bindet
+weiterhin genau den reviewed Subject und dessen main-Basis. Der ursprüngliche
+Subject, Product-/Foundationinputs und alle historischen Resultate bleiben unverändert.
+Das einzige OPEN/MINOR bleibt im Reviewer-Original erhalten; der verlangte
+Routing-Follow-up wird unter dieser Autorisierung in [reviews/README.md](../reviews/README.md)
+dokumentiert. Der historische WS-HC/F02-Auftrag ist kein aktueller Reviewrouter.
+
+Dieser Lauf umfasst nur Originaltransfer, Accepted-Binding-/Harness-Übergang,
+Routing-Follow-up, lokale/Exact-Head-CI-Gates und normalen Mergecommit von PR #2.
+STOP nach Post-Merge-Prüfung. READY_FOR_AGENT akzeptiert die Preparation und startet
+kein WS-E01-F01. Für Feature-/Produkt-/Browser-/Profilarbeit bleiben spätere explizite
+Ausführungsautorisierung und vorgelagerte Test-Envelopes erforderlich.
 
 Ein externer installierter ChatGPT-Projektkanal ist hier nicht gebunden.
 Der Review läuft über Git-Locators: externer Text-Sync ist für diesen Bootstrap

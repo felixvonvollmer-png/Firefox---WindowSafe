@@ -279,11 +279,13 @@ class EpicPreparationTests(unittest.TestCase):
     """Generic preparation bindings; disposable local Git, no browser/reviewer."""
 
     BASELINE = "dc9c1c37a264cc80f79ec08bf166ec42cdd73b95"
+    REVIEWED = "644b81f63dcc1990bc894a9c2c9bd8dc24a98c04"
     SUBJECT = "epics/WS-E01/subject.json"
 
     def setUp(self):
-        self.data = {p.relative_to(f.ROOT).as_posix(): p.read_bytes()
-                     for p in (f.ROOT / "epics/WS-E01").rglob("*") if p.is_file()}
+        # Keep the pending-state regressions on the immutable pre-acceptance fixture.
+        paths = f.git("ls-tree", "-r", "--name-only", self.REVIEWED, "--", "epics/WS-E01").decode().splitlines()
+        self.data = {p: f.at(self.REVIEWED, p) for p in paths}
 
     def read(self, name):
         return self.data[name] if name in self.data else f.at(self.BASELINE, name)
@@ -424,7 +426,11 @@ class EpicHistoryCliTests(unittest.TestCase):
         self.git("config", "user.email", "synthetic@example.invalid")
         for name in ("tools/foundation.py", ".github/workflows/foundation.yml"):
             shutil.copyfile(f.ROOT / name, self.repo / name)
-        shutil.copytree(f.ROOT / "epics/WS-E01", self.repo / "epics/WS-E01")
+        for name in f.git("ls-tree", "-r", "--name-only", EpicPreparationTests.REVIEWED,
+                          "--", "epics/WS-E01").decode().splitlines():
+            target = self.repo / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(f.at(EpicPreparationTests.REVIEWED, name))
         self.first = self.save()
 
     def git(self, *args):
@@ -498,6 +504,200 @@ class EpicHistoryCliTests(unittest.TestCase):
                       "ref: ${{ github.event.pull_request.head.sha || github.sha }}"):
             path.write_text(original.replace(value, "REMOVED"))
             self.cli("check", ok=False)
+
+
+class AcceptedEpicTests(unittest.TestCase):
+    """Acceptance consumes real original bytes; mutations are in-memory fixtures."""
+
+    SUBJECT = EpicPreparationTests.SUBJECT
+    BINDING = "epics/WS-E01/binding.json"
+    AUTH = "epics/WS-E01/evidence/integration-authorization.json"
+    RESULT = "reviews/results/WS-E01-EPR-20260919-02.json"
+
+    def setUp(self):
+        self.data = {p.relative_to(f.ROOT).as_posix(): p.read_bytes() for p in f.files(f.ROOT)}
+
+    def validate(self):
+        return f.epic_preparation(self.SUBJECT, self.data.__getitem__, f.commit("HEAD"))
+
+    def update(self, path, **changes):
+        value = f.parse(self.data[path])
+        value.update(changes)
+        self.data[path] = (json.dumps(value) + "\n").encode()
+
+    def test_accepted_binding_keeps_reviewed_subject_and_nonblocking_finding(self):
+        self.assertEqual(EpicPreparationTests.BASELINE, self.validate()[0])
+        original = f.request(EpicPreparationTests.REVIEWED, self.SUBJECT)
+        result = f.parse(self.data[self.RESULT])
+        self.assertEqual(original["subject"], result["subject"])
+        self.assertEqual(original["reviewed_evidence"], result["reviewed_evidence"])
+        binding = f.parse(self.data[self.BINDING])
+        self.assertEqual([item["id"] for item in result["findings"] if item["status"] == "OPEN"],
+                         binding["open_nonblocking_finding_ids"])
+
+    def test_missing_or_changed_original_result_and_authorization_rejected(self):
+        for path in (self.AUTH, self.RESULT):
+            original = self.data[path]
+            self.data[path] += b"\n"
+            with self.subTest(path=path), self.assertRaises(f.Invalid):
+                self.validate()
+            del self.data[path]
+            with self.subTest(missing=path), self.assertRaises(KeyError):
+                self.validate()
+            self.data[path] = original
+
+    def test_binding_cannot_hide_findings_change_baselines_or_enable_execution(self):
+        original = self.data[self.BINDING]
+        for changes in (
+            {"ready_for_agent": False}, {"ready_for_agent": 1},
+            {"epic_preparation_subject_immutable_reference": {"end_sha": f.commit("HEAD")}},
+            {"epic_preparation_review_result_reference": "reviews/results/OTHER.json"},
+            {"current_canonical_baseline_or_main_sha": "0" * 40},
+            {"approved_product_definition_reference": "README.md"},
+            {"project_foundation_review_result_reference": "reviews/results/WS-PFR-20260918-01.json"},
+            {"open_nonblocking_finding_ids": []}, {"open_critical_blocking_major_findings": "PENDING"},
+            {"open_material_user_decisions_required_before_start": "OPEN"},
+            {"nonblocking_follow_up_reference": "../outside"},
+            {"execution_scope": "FEATURE_EXECUTION"}, {"product_features_started": True},
+        ):
+            self.data[self.BINDING] = original
+            self.update(self.BINDING, **changes)
+            with self.subTest(changes=changes), self.assertRaises(f.Invalid):
+                self.validate()
+
+    def test_original_subject_and_preparation_evidence_remain_immutable(self):
+        for path in (self.SUBJECT, "epics/WS-E01/preparation.md",
+                     "epics/WS-E01/evidence/research.md", "epics/WS-E01/evidence/self-review.md",
+                     "epics/WS-E01/evidence/preparation-authorization.json"):
+            original = self.data[path]
+            self.data[path] += b"\n"
+            with self.subTest(path=path), self.assertRaises(f.Invalid):
+                self.validate()
+            self.data[path] = original
+
+    def test_canonical_result_validation_cannot_be_replaced_by_authorization(self):
+        original = self.data[self.RESULT]
+        for mutation in ("BLOCKED", "MAJOR", "evidence", "self-review", "subject", "marker"):
+            result = f.parse(original)
+            if mutation == "BLOCKED":
+                result["verdict"] = "BLOCKED"
+            elif mutation == "MAJOR":
+                result["findings"][0]["severity"] = "MAJOR"
+            elif mutation == "evidence":
+                result["reviewed_evidence"][0]["sha256"] = "0" * 64
+            elif mutation == "self-review":
+                result["reviewer"]["identity"] = f.parse(self.data[self.SUBJECT])["implementer"]
+            elif mutation == "subject":
+                result["subject"]["end_sha"] = EpicPreparationTests.BASELINE
+            else:
+                result["findings"][0]["disposition"] = "nonblocking"
+            self.data[self.RESULT] = (json.dumps(result) + "\n").encode()
+            auth = f.parse(self.data[self.AUTH])
+            auth["EXACT_RESULT_BINDING"] = {"bytes": len(self.data[self.RESULT]),
+                                            "sha256": f.sha256(self.data[self.RESULT])}
+            self.data[self.AUTH] = (json.dumps(auth) + "\n").encode()
+            # Only a disposable fixture trusts these synthetic pins. The real pin is unchanged.
+            with patch.object(f, "INTEGRATION_AUTHORIZATIONS", {self.AUTH: f.sha256(self.data[self.AUTH])}):
+                with self.subTest(mutation=mutation), self.assertRaises(f.Invalid):
+                    self.validate()
+
+    def test_history_requires_exact_one_way_transition_and_present_evidence(self):
+        old = f.at(EpicPreparationTests.REVIEWED, self.BINDING)
+        new = self.data[self.BINDING]
+        required = {p: self.data[p] for p in (self.SUBJECT, self.AUTH, self.RESULT)}
+        transitions = {self.BINDING: (old, new, required)}
+        before = {self.BINDING: old}
+        after = dict(required, **{self.BINDING: new})
+        f.check_history_maps(before, after, transitions)
+        for changed in ({self.BINDING: new}, dict(after, **{self.BINDING: new + b"\n"}),
+                        dict(after, **{self.RESULT: self.data[self.RESULT] + b"\n"})):
+            with self.assertRaises(f.Invalid):
+                f.check_history_maps(before, changed, transitions)
+        with self.assertRaises(f.Invalid):
+            f.check_history_maps(after, dict(after, **{self.BINDING: old}), transitions)
+
+
+class AcceptedEpicHistoryCliTests(unittest.TestCase):
+    """Full CLI on disposable integration commits and a normal local merge."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="windowsafe-synthetic-acceptance-")
+        self.addCleanup(self.temp.cleanup)
+        self.repo = Path(self.temp.name) / "repo"
+        subprocess.run(["git", "clone", "--shared", "--no-checkout", str(f.ROOT), str(self.repo)],
+                       check=True, capture_output=True)
+        self.git("checkout", "--detach", EpicPreparationTests.REVIEWED)
+        self.git("config", "user.name", "Synthetic Fixture")
+        self.git("config", "user.email", "synthetic@example.invalid")
+        self.git("switch", "-c", "synthetic-integration")
+        for name in f.INTEGRATION_SUPPORT_PATHS | {AcceptedEpicTests.BINDING, AcceptedEpicTests.AUTH,
+                                                  AcceptedEpicTests.RESULT}:
+            target = self.repo / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(f.ROOT / name, target)
+        self.first = self.save()
+
+    git = EpicHistoryCliTests.git
+    save = EpicHistoryCliTests.save
+    cli = EpicHistoryCliTests.cli
+
+    def test_accepted_head_preserves_original_request_and_all_history_bases(self):
+        self.cli("check")
+        current = json.loads(self.cli("request", "--sha", "HEAD", "--subject", AcceptedEpicTests.SUBJECT).stdout)
+        original = json.loads(self.cli("request", "--sha", EpicPreparationTests.REVIEWED,
+                                       "--subject", AcceptedEpicTests.SUBJECT).stdout)
+        self.assertEqual(original, current)
+        self.assertEqual(23, len(current["reviewed_evidence"]))
+        self.cli("validate-result", "--file", AcceptedEpicTests.RESULT)
+        for base in ("0" * 40, EpicPreparationTests.BASELINE, EpicPreparationTests.REVIEWED):
+            self.cli("history", "--base", base)
+
+    def test_normal_merge_retains_accepted_tree_and_history(self):
+        self.git("checkout", "--detach", EpicPreparationTests.BASELINE)
+        self.git("-c", "commit.gpgsign=false", "merge", "--no-ff", "synthetic-integration", "-m", "synthetic normal merge")
+        self.assertEqual(self.git("rev-parse", self.first + "^{tree}"), self.git("rev-parse", "HEAD^{tree}"))
+        self.cli("check")
+        self.cli("history", "--base", EpicPreparationTests.BASELINE)
+        self.cli("request", "--sha", "HEAD", "--subject", AcceptedEpicTests.SUBJECT)
+
+    def test_binding_rewrite_then_revert_cannot_hide_in_history(self):
+        path = self.repo / AcceptedEpicTests.BINDING
+        original = path.read_bytes()
+        path.write_bytes(original + b"\n")
+        changed = self.save()
+        path.write_bytes(original)
+        self.save()
+        self.cli("history", "--base", changed, ok=False)
+
+    def test_result_rewrite_then_revert_cannot_hide_in_history(self):
+        path = self.repo / AcceptedEpicTests.RESULT
+        original = path.read_bytes()
+        path.write_bytes(original + b"\n")
+        changed = self.save()
+        path.write_bytes(original)
+        self.save()
+        self.cli("history", "--base", changed, ok=False)
+
+    def test_acceptance_binding_cannot_be_committed_before_its_original(self):
+        self.git("checkout", "--detach", EpicPreparationTests.REVIEWED)
+        shutil.copyfile(f.ROOT / "tools/foundation.py", self.repo / "tools/foundation.py")
+        shutil.copyfile(f.ROOT / AcceptedEpicTests.BINDING, self.repo / AcceptedEpicTests.BINDING)
+        changed = self.save()
+        for name in (AcceptedEpicTests.AUTH, AcceptedEpicTests.RESULT):
+            shutil.copyfile(f.ROOT / name, self.repo / name)
+        self.save()
+        self.cli("history", "--base", changed, ok=False)
+
+    def test_unrelated_merge_and_product_delta_still_rejected(self):
+        self.git("switch", "-c", "synthetic-unrelated")
+        (self.repo / "README.md").write_text("synthetic side\n")
+        self.save()
+        self.git("checkout", "--detach", self.first)
+        self.git("-c", "commit.gpgsign=false", "merge", "--no-ff", "synthetic-unrelated", "-m", "synthetic unrelated merge")
+        self.cli("history", "--base", EpicPreparationTests.BASELINE, ok=False)
+        (self.repo / "manifest.json").write_text("{}\n")
+        self.save()
+        self.cli("check", ok=False)
 
 
 if __name__ == "__main__":

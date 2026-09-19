@@ -1,6 +1,45 @@
-# Kanonischer Reviewkanal und Foundation-Handoff
+# Kanonischer Reviewkanal und aktuelle Review-Locators
 
-## Nächster Auftrag: PROJECT_FOUNDATION_REVIEW
+## Aktueller Einstieg: Epic Preparation und Feature Acceptance
+
+WS-E01 Preparation ist mit dem unveränderten unabhängigen
+[WS-E01-EPR-20260919-02 PASS](results/WS-E01-EPR-20260919-02.json) angenommen.
+Der exakte reviewed Subject ist `epics/WS-E01/subject.json` am SHA
+`644b81f63dcc1990bc894a9c2c9bd8dc24a98c04`; das aktuelle
+[Binding](../epics/WS-E01/binding.json) referenziert diesen historischen Zustand
+als READY_FOR_AGENT. WS-EA-20260919-05 autorisiert ausschließlich den exakten
+Resultattransfer, Accepted-Binding-/Harness-Übergang, diesen Routing-Follow-up und
+geprüfte Normal-Merge-Integration von PR #2. Danach STOP. Kein WS-E01-F01-Start.
+
+Für einen neuen Epic Preparation Review: `epics/<EPIC_ID>/subject.json` am dann
+explizit gebundenen vollständigen SHA. Für spätere kumulative Feature Acceptance:
+`features/<FEATURE_ID>/subject.json` am separat vorbereiteten Acceptance-SHA.
+Der gemeinsame V3-Kanal bleibt `reviews/results/<REVIEW_ID>.json`; Reviewtyp,
+Subject und tatsächliche Autorisierung sind getrennt zu prüfen. Feature-Locators
+beschreiben den späteren Kanal; diese Integration materialisiert kein Feature.
+
+Vor fachlichem Review führt der unabhängige Reviewer den Request mit explizitem
+`--subject`, den V3-Schema-Preflight und den CPython-3.14.4-Umgebungspreflight selbst
+aus; anschließend validiert er sein exaktes Original mit `validate-result`.
+`request --sha HEAD --subject epics/WS-E01/subject.json` validiert bei akzeptiertem
+Binding den Übergang und liefert den ursprünglichen Reviewrequest mit seinen
+23 Evidence-Bindungen. Der Integrations-Head wird dadurch nicht zum reviewed Subject.
+
+**Follow-up nach dem Review:** Das nichtblockierende MINOR
+`WS-E01-EPR-20260919-02-F01` bleibt im Original OPEN mit seiner unveränderten
+Disposition. Der dort verlangte Living-Context-Follow-up wurde in
+WS-E01-INT-20260919-02 unter WS-EA-20260919-05 ausgeführt: aktueller Epic-/Feature-
+Router oben, historischer WS-HC-Auftrag unten, konsistente Einstiege in README,
+AGENTS, Epic-Karte und Foundationkontext. Trigger: dieser separat autorisierte
+Integrationsübergang, vor weiterer Nutzung des Routers. Das ist die dokumentierte
+Ausführung des Follow-ups, kein rückwirkend geändertes unabhängiges Finding.
+
+## Historischer Auftrag: PROJECT_FOUNDATION_REVIEW (WS-HC, abgeschlossen)
+
+Die folgenden damaligen Branch-/Baseline-/PENDING-Anweisungen sind ausschließlich
+historischer Kontext und kein aktueller Reviewauftrag. Der spätere unabhängige
+WS-PFR-20260918-02 PASS löste F02 auf und wurde in main
+`dc9c1c37a264cc80f79ec08bf166ec42cdd73b95` integriert.
 
 Subject-ID **WS-HC-20260918-01**. Subject-Locator: `foundation/subject.json`
 an dem **vollständigen End-SHA aus dem Coding-Agent-Handoff**. Den SHA einmal
@@ -41,7 +80,7 @@ Evidencehash ein SHA-256. IDs enthalten nur Buchstaben, Ziffern, `_` oder `-`.
 Alle sonstigen Textfelder sind nichtleer, `findings` darf leer sein.
 
 ```sh
-python3 tools/foundation.py request --sha <END_SHA> > /tmp/windowsafe-review-request.json
+python3 tools/foundation.py request --sha <END_SHA> --subject <SUBJECT_PATH> > /tmp/windowsafe-review-request.json
 git show <END_SHA>:reviews/review-contract.json > /tmp/windowsafe-review-output-contract.json
 python3 tools/foundation.py schema-preflight --sha <END_SHA> --schema /tmp/windowsafe-review-output-contract.json
 ```
@@ -135,7 +174,7 @@ Vor Konsum erneut validieren. Bei Mismatch vor Konsum/Mutation stoppen, nicht de
 Kanal passend abschwächen. Originalbytes und historische Resultate bleiben
 append-only; Korrekturen bekommen neue IDs und neue genaue Subjectbindungen.
 
-Für WS-HC endet der Coding-Auftrag am ungemergten reviewbereiten Head. Danach
+Historisch galt: Für WS-HC endet der Coding-Auftrag am ungemergten reviewbereiten Head. Danach
 unabhängiger Delta-Review und **separate Integrationsfreigabe**; PASS allein startet
 keinen Merge. Erst nach autorisierter Integration folgen Kontext-Sync oder
 NOT_APPLICABLE und FIRST_EPIC_PREPARATION mit seinen getrennten Gates.

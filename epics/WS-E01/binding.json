@@ -1,0 +1,28 @@
+{
+  "status": "READY_FOR_AGENT",
+  "epic_id": "WS-E01",
+  "epic_preparation_subject_id": "WS-E01",
+  "epic_preparation_id": "WS-E01-EP-20260919-01",
+  "current_canonical_baseline_or_main_sha": "dc9c1c37a264cc80f79ec08bf166ec42cdd73b95",
+  "approved_product_definition_reference": "foundation/inputs/inputs/WindowSafe_Product_Definition_WS-PD-20260917-01.md",
+  "project_technical_foundation_reference": "foundation/inputs/inputs/WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r6.md",
+  "project_foundation_review_result_reference": "reviews/results/WS-PFR-20260918-02.json",
+  "external_project_context_sync": "NOT_APPLICABLE",
+  "epic_research_reuse_or_delta_status": "UPDATED",
+  "epic_preparation_critical_self_review_status": "COMPLETE__NO_OPEN_CRITICAL_BLOCKING_MAJOR_SELF_FINDINGS",
+  "epic_preparation_review_result_reference": "reviews/results/WS-E01-EPR-20260919-02.json",
+  "open_critical_blocking_major_findings": "NONE",
+  "open_material_user_decisions_required_before_start": "NONE",
+  "execution_authorization_reference": "epics/WS-E01/evidence/integration-authorization.json",
+  "ready_for_agent": true,
+  "epic_preparation_subject_immutable_reference": {
+    "id": "WS-E01",
+    "path": "epics/WS-E01/subject.json",
+    "end_sha": "644b81f63dcc1990bc894a9c2c9bd8dc24a98c04"
+  },
+  "open_nonblocking_finding_ids": [
+    "WS-E01-EPR-20260919-02-F01"
+  ],
+  "nonblocking_follow_up_reference": "reviews/README.md",
+  "execution_scope": "PREPARATION_INTEGRATION_ONLY__NO_FEATURE_EXECUTION"
+}

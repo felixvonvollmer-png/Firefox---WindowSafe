@@ -65,29 +65,37 @@ offenem nichtblockierendem MINOR. Vollständiger unveränderter Rücklauf:
 alten Subject. Der separate Validator-Residual ist kein nachträgliches Finding
 dieses Reviews. Beide historischen Befunde werden nicht vom Coding-Agenten geschlossen.
 
-Aktuell autorisiert: **WS-HC-20260918-01** durch **WS-EA-20260918-01**:
-Reviewtransfer nach Originalkonsum, V1-/V2-Verträglichkeit, unabhängig gebundene
-Historybasis und Vorbereitung der Reviewer-Umgebung. Fortsetzung auf
-`fix/ws-hc-20260917-01` ab `9b6dd621deec1193bfdfbdfa730e8f9349c73fd6`;
-kumulative Review-/Historybasis und main bleiben
-`4ba2c473fe4d90c85d94ee2b2f5cc5777d115109`.
-Originalinputs: `foundation/evidence/followup-inputs.json` und die dort gebundenen
-`followup-*`-Dateien. WS-EA-20260917-02 und seine Evidence bleiben historisch.
+Die Korrektur WS-HC-20260918-01 am Subject
+`fc3ee73c9bf1fab3878c480a0299fda4119e363b` erhielt den unabhängigen PASS
+[WS-PFR-20260918-02](../reviews/results/WS-PFR-20260918-02.json).
+Der Originalrücklauf löst alle vier Findings einschließlich F02 auf; frühere
+PASS-/BLOCKED-Resultate und deren damalige Zustandsfelder bleiben unverändert.
+Der genaue Resultattransfer und die autorisierte Normal-Merge-Integration sind
+in main `dc9c1c37a264cc80f79ec08bf166ec42cdd73b95` enthalten.
 
-Der neue unveränderte Rücklauf `reviews/results/WS-PFR-20260918-01.json` ist
-**BLOCKED**. Sein POSIX/Linux-Writer-Finding ist RESOLVED; das ursprüngliche
-PASS-Resultat bleibt mit MINOR/OPEN unverändert. Die zwei MAJOR-Korrekturen werden
-als Implementiererarbeit zur erneuten Prüfung vorgelegt. Der Umgebungsblocker F02
-bleibt OPEN: Vorbereitung und CI ersetzen nicht den eigenen unabhängigen Preflight
-und die abschließende Resultatvalidierung. Das neue Subject ist reviewbereit,
-nicht akzeptiert. Kein unabhängiger Review wurde durch diesen Lauf gestartet.
+Die historische Materialisierung WS-E01-MAT-20260919-01 unter WS-EA-20260919-04
+lieferte den unveränderten Preparation-Subject am SHA
+`644b81f63dcc1990bc894a9c2c9bd8dc24a98c04`. Dieser erhielt den unabhängigen
+[WS-E01-EPR-20260919-02 PASS](../reviews/results/WS-E01-EPR-20260919-02.json).
+Das Original hat 22666 Bytes und SHA-256
+`1b59d6fc89c293e738ea4e9f16e4004abef5736da527e5c2f7c60533260977d7`.
+Die lokale Originaldatei wurde unter CPython 3.14.4 kanonisch vor dem bytegenauen
+Transfer validiert. Keine Rekonstruktion aus Chattext.
 
-Korrektur → lokale Pflichtchecks/CI → PROJECT_FOUNDATION_READY_FOR_REVIEW auf
-exaktem **ungemergtem** Branch-/PR-Head → **STOP** → unabhängiger gezielter
-PROJECT_FOUNDATION_REVIEW → separate Integrationsfreigabe. Auch ein späterer PASS
-autorisiert hier keinen Merge. Erst nach angenommener und autorisierter Integration
-folgen Kontext-Sync/NOT_APPLICABLE und FIRST_EPIC_PREPARATION. Keine Epic-/Feature-
-oder Browserarbeit in diesem Lauf; alle bestehenden Vorab-Gates bleiben bestehen.
+Aktuell autorisiert: **WS-E01-INT-20260919-02** durch **WS-EA-20260919-05**;
+Original: [integration-authorization.json](../epics/WS-E01/evidence/integration-authorization.json).
+Das [Accepted-Binding](../epics/WS-E01/binding.json) setzt READY_FOR_AGENT und bindet
+weiterhin genau den reviewed Subject und dessen main-Basis. Der ursprüngliche
+Subject, Product-/Foundationinputs und alle historischen Resultate bleiben unverändert.
+Das einzige OPEN/MINOR bleibt im Reviewer-Original erhalten; der verlangte
+Routing-Follow-up wird unter dieser Autorisierung in [reviews/README.md](../reviews/README.md)
+dokumentiert. Der historische WS-HC/F02-Auftrag ist kein aktueller Reviewrouter.
+
+Dieser Lauf umfasst nur Originaltransfer, Accepted-Binding-/Harness-Übergang,
+Routing-Follow-up, lokale/Exact-Head-CI-Gates und normalen Mergecommit von PR #2.
+STOP nach Post-Merge-Prüfung. READY_FOR_AGENT akzeptiert die Preparation und startet
+kein WS-E01-F01. Für Feature-/Produkt-/Browser-/Profilarbeit bleiben spätere explizite
+Ausführungsautorisierung und vorgelagerte Test-Envelopes erforderlich.
 
 Ein externer installierter ChatGPT-Projektkanal ist hier nicht gebunden.
 Der Review läuft über Git-Locators: externer Text-Sync ist für diesen Bootstrap

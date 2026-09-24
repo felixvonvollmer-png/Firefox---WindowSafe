@@ -71,6 +71,26 @@
     "features/WS-E01-F01/evidence/ubuntu-stable-initial.json",
     "features/WS-E01-F01/evidence/ubuntu-stable-samples.json",
     "features/WS-E01-F01/evidence/ubuntu-stable.json",
+    "features/WS-E01-F01/evidence/win-changed-paths.json",
+    "features/WS-E01-F01/evidence/win-continuation-manifest.json",
+    "features/WS-E01-F01/evidence/win-continuation.md",
+    "features/WS-E01-F01/evidence/win-displays.json",
+    "features/WS-E01-F01/evidence/win-handoff.md",
+    "features/WS-E01-F01/evidence/win-host-binding.json",
+    "features/WS-E01-F01/evidence/win-host.json",
+    "features/WS-E01-F01/evidence/win-input-package.json",
+    "features/WS-E01-F01/evidence/win-job-dry-run.json",
+    "features/WS-E01-F01/evidence/win-local-verification.json",
+    "features/WS-E01-F01/evidence/win-matrix.json",
+    "features/WS-E01-F01/evidence/win-native-memory.json",
+    "features/WS-E01-F01/evidence/win-original-sha256sums.json",
+    "features/WS-E01-F01/evidence/win-preflight.json",
+    "features/WS-E01-F01/evidence/win-qualification.md",
+    "features/WS-E01-F01/evidence/win-restart.json",
+    "features/WS-E01-F01/evidence/win-runtime-artifacts.json",
+    "features/WS-E01-F01/evidence/win-stable-download.json",
+    "features/WS-E01-F01/evidence/win-stable.json",
+    "features/WS-E01-F01/evidence/win-unbranded-download.json",
     "features/WS-E01-F01/qualification-plan.md",
     "features/WS-E01-F01/start.json",
     "features/WS-E01-F01/test-envelope.md",
@@ -93,24 +113,35 @@
     "qualification/ws-e01-f01/target_probe.py",
     "qualification/ws-e01-f01/toolchain.py",
     "qualification/ws-e01-f01/tsconfig.json",
+    "qualification/ws-e01-f01/windows_job.py",
+    "qualification/ws-e01-f01/windows_job_dry_run.py",
     "reviews/results/WS-E01-EPR-20260919-02.json",
-    "tests/test_target_qualification.py"
+    "tests/test_target_qualification.py",
+    "tests/test_windows_job.py"
   ],
   "open_gates": [
     "WINDOWS_DESKTOP",
     "SPECIAL_NATIVE_GUI_CASES",
-    "TARGET_EQUIVALENT_RESTART",
     "MEASUREMENT_FINAL_ATTRIBUTION"
   ],
   "target_environments": {
     "Ubuntu Desktop": "PARTIAL_RUNTIME_EVIDENCE",
-    "Windows Desktop": "NOT_EXECUTED"
+    "Windows Desktop": "PARTIAL_RUNTIME_EVIDENCE"
   },
   "end_candidate_binding": "Git commit containing this state; exact delivery Head/Tree and CI are verified externally in the terminal delivery report",
   "feature_changeset": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd..candidate",
   "non_feature_intervening_changes": "NONE",
-  "required_next_gate": "Remaining Desktop/native/measurement qualification per target-continuation.md; then independent technical review",
+  "required_next_gate": "Resolve Windows WebApp safe boundary, remaining Ubuntu native cases and cross-OS final attribution; then independent technical review",
   "merge_authorized": false,
-  "current_report": "features/WS-E01-F01/evidence/target-qualification.md",
-  "continuation_manifest": "features/WS-E01-F01/evidence/target-continuation-manifest.json"
+  "current_report": "features/WS-E01-F01/evidence/win-qualification.md",
+  "continuation_manifest": "features/WS-E01-F01/evidence/win-continuation-manifest.json",
+  "current_run_id": "WS-E01-F01-WIN-20260924-01",
+  "continuation_start_head": "7b52f6655e4478caa4864801b24877d22c33fa83",
+  "closed_gates": {
+    "TARGET_EQUIVALENT_RESTART": {
+      "basis": "Exact official release-equivalent Firefox 156 restart observed independently on each target OS; qualification closure only",
+      "Ubuntu Desktop": "features/WS-E01-F01/evidence/target-ubuntu-restart.json",
+      "Windows Desktop": "features/WS-E01-F01/evidence/win-restart.json"
+    }
+  }
 }

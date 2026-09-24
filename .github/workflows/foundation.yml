@@ -52,3 +52,9 @@ jobs:
           python-version: '3.14.4'
       - name: F01 Windows static build and lint only - no native GUI evidence
         run: python qualification/ws-e01-f01/toolchain.py --setup
+      - name: Qualification binding and synthetic Job regressions - no Desktop evidence
+        run: |
+          python -m unittest discover -s tests -p test_target_qualification.py -v
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m unittest discover -s tests -p test_windows_job.py -v
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

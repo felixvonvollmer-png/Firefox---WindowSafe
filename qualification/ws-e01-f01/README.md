@@ -1,13 +1,19 @@
 # F01 synthetic qualification continuation
 
-Current run: WS-E01-F01-TARGET-QUAL-20260919-01 / WS-EA-20260919-08.
-Use the [current target handoff](../../features/WS-E01-F01/evidence/target-continuation.md)
-and [target report](../../features/WS-E01-F01/evidence/target-qualification.md).
+Current run: WS-E01-F01-WIN-20260924-01 / WS-EA-20260919-08.
+Use the [Windows continuation](../../features/WS-E01-F01/evidence/win-continuation.md)
+and [Windows/cross-OS report](../../features/WS-E01-F01/evidence/win-qualification.md).
+Native Job regressions and browser runs were executed on Windows 11 build 22631.6199.
+Restart is evidenced on both OSes; special-window boundaries and final attribution remain open.
+The current native runner supports Windows Jobs and Ubuntu cgroups. Neither whole-job commit
+peaks nor sampled PID identities close the final attribution gate.
+
+## Historical Ubuntu handoff
+
 The older commands/manifests below describe historical snapshots. For current inputs pass
-`--manifest features/WS-E01-F01/evidence/target-continuation-manifest.json` to continuation.py
-with the hash from the delivery report. No Windows Desktop was supplied. The Windows launcher
-below still lacks final Job Object qualification; it must not be treated as a complete collector.
-The new target_probe.py runs only on the qualified Ubuntu/Wayland setup and uses privileged
+`--manifest features/WS-E01-F01/evidence/win-continuation-manifest.json` to continuation.py
+with the hash from the delivery report. At the prior handoff no Windows Desktop was supplied.
+The historical target_probe.py ran only on the qualified Ubuntu/Wayland setup and uses privileged
 Marionette chrome commands solely to construct fixtures. It does not expose those capabilities
 to product code. No package, lockfile or toolchain version change is authorized.
 

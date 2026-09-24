@@ -42,9 +42,9 @@ Reviewauftrag am reviewed Subject (unverändert 23 Evidence-Bindungen) als JSON 
 
 ## F01-Qualifikation
 
-Aktuell: **WS-E01-F01-TARGET-QUAL-20260919-01** unter **WS-EA-20260919-08**.
-Audit-Recovery ist abgeschlossen. Der ungemergte F01-Lauf bleibt PARTIAL wegen fehlendem
-Windows Desktop und verbleibender nativer/methodischer Qualifikation. Einstieg über
-[Qualifikationsbericht](features/WS-E01-F01/evidence/target-qualification.md),
+Aktuell: **WS-E01-F01-WIN-20260924-01** unter **WS-EA-20260919-08**.
+Windows Desktop und exakter 156-Neustart wurden ausgeführt. Der ungemergte F01-Lauf bleibt
+PARTIAL wegen offener Sonderfensterabgrenzung und nativer/methodischer Qualifikation. Einstieg über
+[Qualifikationsbericht](features/WS-E01-F01/evidence/win-qualification.md),
 [aktuellen Zustand](features/WS-E01-F01/state.json) und
 [Fortsetzungspaket](qualification/ws-e01-f01/README.md). Kein Produktstart, F02 oder Merge.

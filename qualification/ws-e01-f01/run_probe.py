@@ -27,6 +27,17 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def preserve_driver_sources(owned):
+    folder = owned / 'driver-sources'
+    folder.mkdir()
+    bindings = {}
+    for name in ('run_probe.py', 'target_probe.py', 'measure.py', 'windows_job.py'):
+        path = SOURCE / name
+        shutil.copyfile(path, folder / name)
+        bindings[name] = digest(path)
+    return bindings
+
+
 def release_equivalent(binary, binding_path, binding_sha256):
     """Require a hash-bound official 156 artifact and the entire extracted installation.
 
@@ -38,17 +49,23 @@ def release_equivalent(binary, binding_path, binding_sha256):
     record = json.loads(binding_path.read_text())
     info = record['mozinfo']
     expected_source = 'a80bd15ddee3b4bf3679aeba340e9d2db933c467'
+    windows = record['task_name'] == 'build-win64-add-on-devel/opt'
+    if windows and not (os.name == 'nt' and record['task_id'] == 'OSCRr3diR7SXwQr0i6Y1dQ'
+            and record['archive_sha256'] == '30a3444f7416479ec78d03bc48ad63f0a669aa91b40481943c7de426ba8fa25f'
+            and info['os'] == 'win' and info['bits'] == 64
+            and record['build_id'] == '20260909172920'):
+        raise ValueError('Windows release-equivalent binding mismatch')
     if not (record['version'] == '156.0' and record['source_stamp'] == expected_source
             and record['source_repository'] == 'https://hg.mozilla.org/releases/mozilla-release'
             and record['task_state'] == 'completed' and info['official'] is True
             and info['require_signing'] is False and info['release_or_beta'] is True
             and info['devedition'] is False and info['nightly_build'] is False
             and record['chain_of_trust_artifact_hash_verified'] is True
-            and record['task_name'] == 'build-linux64-add-on-devel/opt'
+            and (windows or record['task_name'] == 'build-linux64-add-on-devel/opt')
             and record['task_url'] == 'https://firefox-ci-tc.services.mozilla.com/api/queue/v1/task/' + record['task_id']
             and record['binary_sha256'] == digest(binary)):
         raise ValueError('not the authorized official release-equivalent 156 build')
-    actual = {str(p.relative_to(binary.parent)): digest(p)
+    actual = {p.relative_to(binary.parent).as_posix(): digest(p)
               for p in sorted(binary.parent.rglob('*')) if p.is_file()}
     if actual != record['installation_files']:
         raise ValueError('release-equivalent installation drift')
@@ -224,6 +241,7 @@ def main():
     if persistent: prefs['xpinstall.signatures.required'] = False
     (profile / 'user.js').write_text(''.join('user_pref(' + json.dumps(k) + ', ' + json.dumps(v) + ');\n' for k, v in prefs.items()))
     evidence = {'run_id': run_id, 'profile_class': 'NEW_SYNTHETIC_DISPOSABLE', 'profile': str(profile),
+        'driver_sources': preserve_driver_sources(owned),
         'driver_source_sha256': digest(Path(__file__)),
         'binary': str(binary), 'binary_sha256': digest(binary), 'version': version,
         'build_id': ini['App']['BuildID'], 'source_stamp': ini['App']['SourceStamp'],
@@ -244,12 +262,23 @@ def main():
             if args.headless: command.append('--headless')
             client = None
             with (owned / f'firefox-{ordinal}.log').open('wb') as log:
-                proc = (UserCgroupProcess(command, owned / f'firefox-{ordinal}.log') if os.name != 'nt' else
-                        subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT))
+                if os.name == 'nt':
+                    from windows_job import WindowsJobProcess
+                    proc = WindowsJobProcess(command)
+                else:
+                    proc = UserCgroupProcess(command, owned / f'firefox-{ordinal}.log')
                 launch = {'command': command, 'pid': proc.pid}; evidence['launches'].append(launch)
+                if os.name == 'nt':
+                    launch['job_before_resume'] = proc.before_resume
+                    launch['launcher_in_parent_job'] = proc.launcher_in_job
                 if os.name != 'nt': launch['cgroup'] = str(proc.group)
                 def collect():
-                    value = sample(proc.pid)
+                    if os.name == 'nt':
+                        value = {'monotonic': time.monotonic(), 'processes': [], 'job': proc.counters()}
+                        try: value['processes'] = sample(proc.pid)['processes']
+                        except OSError as error: value['diagnostic_error'] = str(error)
+                    else:
+                        value = sample(proc.pid)
                     if os.name != 'nt':
                         value['cgroup'] = proc.counters()
                         value['cgroup_path'] = str(proc.group)
@@ -264,7 +293,10 @@ def main():
                     if client is None: raise TimeoutError('owned Firefox protocol unavailable')
                     session = client.command('WebDriver:NewSession', {'capabilities': {'alwaysMatch': {'acceptInsecureCerts': False}}})
                     capabilities = session.get('capabilities', session.get('value', {}).get('capabilities', {}))
-                    if capabilities.get('moz:processID') != proc.pid:
+                    launch['protocol_capabilities'] = capabilities
+                    if os.name == 'nt':
+                        launch['browser_job_binding'] = proc.bind_browser(capabilities.get('moz:processID'), binary)
+                    elif capabilities.get('moz:processID') != proc.pid:
                         raise ValueError('protocol process identity mismatch')
                     if Path(capabilities['moz:profile']).resolve() != profile:
                         raise ValueError('protocol profile identity mismatch')
@@ -297,6 +329,10 @@ def main():
                         proc.terminate()
                         proc.wait(timeout=15)
                     launch['exit_code'] = proc.returncode
+                    if os.name == 'nt':
+                        launch['job_final'] = proc.counters()
+                        launch['observed_job_identities'] = [list(k) for k in proc.identities]
+                        proc.close()
         if persistent:
             verify_restart(evidence['reports'], run_id)
         evidence['status'] = 'OBSERVATIONS_COLLECTED__MATRIX_REVIEW_REQUIRED'
@@ -322,7 +358,11 @@ def main():
         try:
             residual = []
             for launch in evidence['launches']:
-                residual.extend(sample(launch['pid'])['processes'])
+                if os.name == 'nt':
+                    if launch.get('job_final', {}).get('active_processes') != 0:
+                        raise OSError('owned job cleanup not proven')
+                else:
+                    residual.extend(sample(launch['pid'])['processes'])
             if residual: raise OSError('own descendant cleanup not proven')
             evidence['remaining_owned_processes'] = []
             shutil.rmtree(profile); evidence['cleanup'] = 'OWN_PROFILE_REMOVED__OWN_LAUNCHES_EXITED'

@@ -1,0 +1,146 @@
+{
+  "evidence_class": "SYNTHETIC_DRY_RUN_MEASUREMENT",
+  "runs": [
+    {
+      "allocation_bytes": 0,
+      "before_resume": {
+        "user_seconds": 0.0,
+        "kernel_seconds": 0.0,
+        "total_processes": 1,
+        "active_processes": 1,
+        "io": {
+          "read_ops": 0,
+          "write_ops": 0,
+          "other_ops": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "other_bytes": 0
+        },
+        "peak_job_commit_bytes": 389120,
+        "peak_process_commit_bytes": 389120,
+        "members": [
+          {
+            "pid": 16088,
+            "creation_filetime": 134347110929940724,
+            "in_job": true,
+            "image": "C:\\Users\\Felix\\AppData\\Local\\Programs\\Python\\Python314\\python.exe"
+          }
+        ],
+        "limit_flags": 8192,
+        "semantics": "Lifetime job CPU/IO including exited children; OS commit peaks, not working set or addon peak."
+      },
+      "post_exit": {
+        "user_seconds": 0.078125,
+        "kernel_seconds": 0.140625,
+        "total_processes": 3,
+        "active_processes": 0,
+        "io": {
+          "read_ops": 54,
+          "write_ops": 0,
+          "other_ops": 1350,
+          "read_bytes": 631460,
+          "write_bytes": 0,
+          "other_bytes": 136070
+        },
+        "peak_job_commit_bytes": 19349504,
+        "peak_process_commit_bytes": 7716864,
+        "members": [],
+        "limit_flags": 8192,
+        "semantics": "Lifetime job CPU/IO including exited children; OS commit peaks, not working set or addon peak."
+      },
+      "exit_code": 0,
+      "no_intermediate_samples": true
+    },
+    {
+      "allocation_bytes": 67108864,
+      "before_resume": {
+        "user_seconds": 0.0,
+        "kernel_seconds": 0.0,
+        "total_processes": 1,
+        "active_processes": 1,
+        "io": {
+          "read_ops": 0,
+          "write_ops": 0,
+          "other_ops": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "other_bytes": 0
+        },
+        "peak_job_commit_bytes": 397312,
+        "peak_process_commit_bytes": 397312,
+        "members": [
+          {
+            "pid": 15924,
+            "creation_filetime": 134347110934025508,
+            "in_job": true,
+            "image": "C:\\Users\\Felix\\AppData\\Local\\Programs\\Python\\Python314\\python.exe"
+          }
+        ],
+        "limit_flags": 8192,
+        "semantics": "Lifetime job CPU/IO including exited children; OS commit peaks, not working set or addon peak."
+      },
+      "post_exit": {
+        "user_seconds": 0.109375,
+        "kernel_seconds": 0.125,
+        "total_processes": 3,
+        "active_processes": 0,
+        "io": {
+          "read_ops": 54,
+          "write_ops": 0,
+          "other_ops": 1350,
+          "read_bytes": 631460,
+          "write_bytes": 0,
+          "other_bytes": 136070
+        },
+        "peak_job_commit_bytes": 86810624,
+        "peak_process_commit_bytes": 73302016,
+        "members": [],
+        "limit_flags": 8192,
+        "semantics": "Lifetime job CPU/IO including exited children; OS commit peaks, not working set or addon peak."
+      },
+      "exit_code": 0,
+      "no_intermediate_samples": true
+    }
+  ],
+  "limitation": "Job commit peak is whole-job, not addon RAM; live PID identities are sampled, not complete exit-event identity evidence.",
+  "query_overhead": {
+    "queries": 100,
+    "driver_cpu_seconds": 0.0,
+    "median_wall_seconds": 0.0001234999997450359,
+    "max_wall_seconds": 0.0004525999997895269,
+    "live_members": [
+      {
+        "pid": 11028,
+        "creation_filetime": 134347110938607745,
+        "in_job": true,
+        "image": "C:\\Users\\Felix\\AppData\\Local\\Programs\\Python\\Python314\\python.exe"
+      },
+      {
+        "pid": 16012,
+        "creation_filetime": 134347110938666089,
+        "in_job": true,
+        "image": "C:\\Windows\\System32\\conhost.exe"
+      }
+    ],
+    "scope": "Native counter queries on idle Python job only; not browser instrumentation overhead."
+  },
+  "cleanup": {
+    "user_seconds": 0.015625,
+    "kernel_seconds": 0.0,
+    "total_processes": 2,
+    "active_processes": 0,
+    "io": {
+      "read_ops": 12,
+      "write_ops": 0,
+      "other_ops": 429,
+      "read_bytes": 38056,
+      "write_bytes": 0,
+      "other_bytes": 61318
+    },
+    "peak_job_commit_bytes": 11632640,
+    "peak_process_commit_bytes": 6017024,
+    "members": [],
+    "limit_flags": 8192,
+    "semantics": "Lifetime job CPU/IO including exited children; OS commit peaks, not working set or addon peak."
+  }
+}

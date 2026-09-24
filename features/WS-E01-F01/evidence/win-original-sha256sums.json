@@ -1,0 +1,20 @@
+{
+  "FILES": {
+    "README_FIRST.txt": {
+      "sha256": "85f5484e590d1668def6a059f0a8fd781069cc28c115a2320b2fe6bd012e6eec",
+      "bytes": 461
+    },
+    "WindowSafe_F01_Windows_Handoff_WS-E01-F01-WIN-20260924-01.md": {
+      "sha256": "79d1af945aca5fb04e2958cae6c5c5433170b1270ac06723436747ce5286542f",
+      "bytes": 6022
+    },
+    "WindowSafe_F01_Windows_Host_Binding_WS-E01-F01-WIN-20260924-01.json": {
+      "sha256": "5b2c12a54d99b4f9c7dd146f580ea22deb99895a41fb0662be870d25778d41e3",
+      "bytes": 1688
+    },
+    "WindowSafe_F01_Windows_Startprompt_WS-E01-F01-WIN-20260924-01.txt": {
+      "sha256": "7ea3781dc1c6dd1be48f606dfdfdb7dd27d370e0bd7c345e08f360cc97222535",
+      "bytes": 2079
+    }
+  }
+}

@@ -7,12 +7,13 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = 'features/WS-E01-F01/evidence/continuation-followup-manifest.json'
+WINDOWS_MANIFEST = 'features/WS-E01-F01/evidence/win-continuation-manifest.json'
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--manifest', choices=[MANIFEST,
-        'features/WS-E01-F01/evidence/target-continuation-manifest.json'], default=MANIFEST)
+        'features/WS-E01-F01/evidence/target-continuation-manifest.json', WINDOWS_MANIFEST], default=MANIFEST)
     parser.add_argument('--manifest-sha256', required=True)
     parser.add_argument('--build', action='store_true')
     args = parser.parse_args()
@@ -29,7 +30,8 @@ def main():
         payloads[name] = content
     result = {'status': 'HASH_BOUND_INPUTS_VERIFIED', 'files': len(payloads), 'runtime_evidence': False}
     if args.build:
-        target = ROOT / ('build/f01/WS-E01-F01-target-continuation.zip'
+        target = ROOT / ('build/f01/WS-E01-F01-windows-continuation.zip' if args.manifest == WINDOWS_MANIFEST else
+                        'build/f01/WS-E01-F01-target-continuation.zip'
                          if args.manifest != MANIFEST else 'build/f01/WS-E01-F01-continuation-followup.zip')
         with zipfile.ZipFile(target, 'x') as archive:
             for name, content in sorted(payloads.items()):

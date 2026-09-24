@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'qualification/ws-e01-f01'))
 from run_probe import digest, release_equivalent, verify_restart
@@ -38,6 +39,24 @@ class TargetQualificationTests(unittest.TestCase):
 
     def test_exact_full_installation_binding(self):
         self.assertEqual(release_equivalent(self.binary, self.binding, self.bind()), self.record)
+
+    def test_windows_binding_requires_exact_task_archive_and_platform(self):
+        record = copy.deepcopy(self.record)
+        record.update(task_name='build-win64-add-on-devel/opt', task_id='OSCRr3diR7SXwQr0i6Y1dQ',
+                      task_url='https://firefox-ci-tc.services.mozilla.com/api/queue/v1/task/OSCRr3diR7SXwQr0i6Y1dQ',
+                      archive_sha256='30a3444f7416479ec78d03bc48ad63f0a669aa91b40481943c7de426ba8fa25f',
+                      build_id='20260909172920')
+        record['mozinfo'].update(os='win', bits=64)
+        pin = self.bind(record)
+        with patch('run_probe.os.name', 'nt'):
+            self.assertEqual(release_equivalent(self.binary, self.binding, pin), record)
+        for key, value in [('task_id', 'foreign'), ('archive_sha256', '0'*64), ('build_id', 'wrong')]:
+            bad = copy.deepcopy(record); bad[key] = value; pin = self.bind(bad)
+            with patch('run_probe.os.name', 'nt'), self.assertRaises(ValueError):
+                release_equivalent(self.binary, self.binding, pin)
+        pin = self.bind(record)
+        with patch('run_probe.os.name', 'posix'), self.assertRaises(ValueError):
+            release_equivalent(self.binary, self.binding, pin)
 
     def test_same_launcher_different_engine_fails(self):
         pin = self.bind()

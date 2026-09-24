@@ -18,7 +18,7 @@ import threading
 import time
 import zipfile
 
-from run_probe import Marionette, UserCgroupProcess, digest
+from run_probe import Marionette, UserCgroupProcess, digest, preserve_driver_sources
 from measure import sample
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -46,6 +46,29 @@ window.targetOperation = async (op, url) => {
     return {logicalAllocationBytes:x.byteLength,heldUntilReturn:true,hardPeakProof:false};
   }
   if(op === 'release') {delete window.fixtureBytes;delete window.fixtureCache;document.body.replaceChildren();return {released:true};}
+  if(op === 'geometry') {
+    const w=await browser.windows.create({url,type:'normal',left:60,top:70,width:900,height:650});
+    const rows=[];
+    try {
+      for(const state of ['normal','maximized','minimized','normal','fullscreen','normal']) {
+        await browser.windows.update(w.id,{state});
+        for(let i=0;i<40;i++){if((await browser.windows.get(w.id)).state===state)break;await new Promise(r=>setTimeout(r,50));}
+        rows.push({requested:state,result:await browser.windows.get(w.id)});
+      }
+      for(const bounds of [{left:-1800,top:80,width:850,height:600},{left:-10000,top:-10000,width:850,height:600}]) {
+        await browser.windows.update(w.id,bounds);
+        await new Promise(r=>setTimeout(r,200));
+        rows.push({requested:bounds,result:await browser.windows.get(w.id)});
+      }
+    } finally {await browser.windows.remove(w.id);}
+    return rows;
+  }
+  if(op === 'collisions') {
+    const spec={name:'F01 duplicate',color:'blue',icon:'circle'};
+    const a=await browser.contextualIdentities.create(spec),b=await browser.contextualIdentities.create(spec);
+    return {a,b,samePresentationDifferentIds:a.cookieStoreId!==b.cookieStoreId,
+      matches:await browser.contextualIdentities.query({name:spec.name})};
+  }
   if(op === 'interactions') {
     const rows=[];const c=await browser.contextualIdentities.create({name:'F01 synthetic custom',color:'blue',icon:'circle'});
     for(const active of [false,true]) for(const discarded of [false,true]) for(const pinned of [false,true]) {
@@ -110,7 +133,7 @@ def api(client, operation, url):
 def main():
     parser = argparse.ArgumentParser(); parser.add_argument('--firefox', type=Path, required=True)
     parser.add_argument('--firefox-sha256', required=True); args = parser.parse_args()
-    if platform.system() != 'Linux' or not os.environ.get('DISPLAY') or not os.environ.get('WAYLAND_DISPLAY'):
+    if os.name != 'nt' and (platform.system() != 'Linux' or not os.environ.get('DISPLAY') or not os.environ.get('WAYLAND_DISPLAY')):
         raise ValueError('this instrument requires the available Ubuntu visible Wayland Desktop')
     binary = args.firefox.resolve(strict=True)
     if digest(binary) != args.firefox_sha256: raise ValueError('binary hash mismatch')
@@ -127,6 +150,12 @@ def main():
     server = http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Local,directory=str(SOURCE/'pages')))
     threading.Thread(target=server.serve_forever,daemon=True).start()
     url=f'http://127.0.0.1:{server.server_port}/article.html'
+    if os.name == 'nt':
+        # Preseed only this new profile; native openWindow avoids the pin/install path.
+        webapp=profile/'taskbartabs';webapp.mkdir()
+        (webapp/'taskbartabs.json').write_text(json.dumps({'version':1,'taskbarTabs':[{
+            'id':'c930c827-57af-4119-a8e6-88808019f001','scopes':[{'hostname':'127.0.0.1'}],
+            'userContextId':0,'startUrl':url,'name':'F01 synthetic disposable'}]}))
     with socket.socket() as s: s.bind(('127.0.0.1',0)); port=s.getsockname()[1]
     prefs={'marionette.port':port,'browser.shell.checkDefaultBrowser':False,'browser.startup.page':0,
         'browser.startup.homepage':'about:blank','browser.aboutwelcome.enabled':False,
@@ -146,7 +175,8 @@ def main():
     with zipfile.ZipFile(package,'x') as z:
         for name,content in {'manifest.json':json.dumps(manifest),'driver.html':'<!doctype html><meta charset="utf-8"><title>F01 synthetic driver</title><script src="driver.js"></script>','driver.js':DRIVER}.items():
             info=zipfile.ZipInfo(name,(2026,9,19,0,0,0));info.external_attr=0o100644<<16;z.writestr(info,content)
-    record={'evidence_class':'UBUNTU_RUNTIME_VERIFIED','qualification_only':True,'host':platform.node(),'os':platform.platform(),
+    record={'evidence_class':'WINDOWS_RUNTIME_VERIFIED' if os.name == 'nt' else 'UBUNTU_RUNTIME_VERIFIED','qualification_only':True,'host':platform.node(),'os':platform.platform(),
+        'driver_sources':preserve_driver_sources(owned),
         'version':ini['App']['Version'],'build_id':ini['App']['BuildID'],'binary':str(binary),'binary_sha256':digest(binary),
         'profile':str(profile),'profile_class':'NEW_SYNTHETIC_DISPOSABLE','probe_sha256':digest(package),
         'headless':False,'driver_source_sha256':digest(Path(__file__)),'observations':[],'memory':[], 'cleanup':'PENDING'}
@@ -157,16 +187,28 @@ def main():
             record['observations'].append({'name':name,'outcome':outcome,'value':value});return value
         except Exception as e: record['observations'].append({'name':name,'outcome':'OPEN','error':str(e)});return None
     def memory(label, origin=''):
+        started=time.monotonic()
         rows=execute(client,MEMORY,async_script=True)
         artifact=owned/(label+'-memory.json');artifact.write_text(json.dumps(rows,indent=2)+'\n')
+        try:
+            diagnostics=sample(proc.pid)
+        except OSError as error:
+            diagnostics={'status':'UNAVAILABLE','error':str(error)}
         record['memory'].append({'label':label,'native_report_sha256':digest(artifact),'native_report_count':len(rows),
             'addon_rows':[r for r in rows if origin and origin in r['path']],
-            'categories':memory_categories(rows,origin),
-            'os_cgroup':proc.counters(),'process_diagnostics':sample(proc.pid),
+            'categories':memory_categories(rows,origin),'reporter_wall_seconds':time.monotonic()-started,
+            'os_job' if os.name == 'nt' else 'os_cgroup':proc.counters(),
+            'process_diagnostics':diagnostics,
             'semantics':'Firefox point-in-time native reporters; OS total/shared/charged memory is not addon-attributable memory or a hard addon peak.'})
     try:
         command=[str(binary),'--no-remote','--new-instance','--profile',str(profile),'--marionette','--remote-allow-system-access']
-        proc=UserCgroupProcess(command,owned/'firefox.log');record.update(pid=proc.pid,command=command,cgroup=str(proc.group))
+        if os.name == 'nt':
+            from windows_job import WindowsJobProcess
+            proc=WindowsJobProcess(command)
+            record.update(pid=proc.pid,command=command,job_before_resume=proc.before_resume,
+                          launcher_in_parent_job=proc.launcher_in_job)
+        else:
+            proc=UserCgroupProcess(command,owned/'firefox.log');record.update(pid=proc.pid,command=command,cgroup=str(proc.group))
         deadline=time.monotonic()+45
         while time.monotonic()<deadline:
             if proc.poll() is not None: raise RuntimeError('owned browser exited')
@@ -175,7 +217,11 @@ def main():
         if client is None:raise TimeoutError('owned protocol absent')
         session=client.command('WebDriver:NewSession',{'capabilities':{'alwaysMatch':{}}})
         caps=session.get('capabilities',session.get('value',{}).get('capabilities',{}))
-        if caps.get('moz:processID')!=proc.pid or Path(caps['moz:profile']).resolve()!=profile:raise ValueError('owned PID/profile mismatch')
+        if os.name == 'nt':
+            record['browser_job_binding']=proc.bind_browser(caps.get('moz:processID'),binary)
+        elif caps.get('moz:processID')!=proc.pid:
+            raise ValueError('owned PID mismatch')
+        if Path(caps['moz:profile']).resolve()!=profile:raise ValueError('owned profile mismatch')
         record['session_binding']=caps
         observe('desktop',lambda:execute(client,'return {mozHeadlessEnvironment:Services.env.get("MOZ_HEADLESS"),windowState:window.windowState,screen:{width:screen.width,height:screen.height},platform:Services.appinfo.OS,profilerFeatures:Services.profiler.GetFeatures()};'))
         memory('a-no-addon')
@@ -197,6 +243,8 @@ def main():
         time.sleep(.5)
         observe('split-api-events',lambda:api(client,'snapshot',url))
         observe('interactions',lambda:api(client,'interactions',url))
+        observe('container-collisions',lambda:api(client,'collisions',url))
+        observe('geometry-states',lambda:api(client,'geometry',url))
         observe('devtools',lambda:execute(client,'const done=arguments[arguments.length-1];const {loader}=ChromeUtils.importESModule("resource://devtools/shared/loader/Loader.sys.mjs");loader.require("devtools/client/framework/devtools").gDevTools.showToolboxForTab(window.gBrowser.selectedTab,{toolId:"webconsole",hostType:"window"}).then(t=>{window.f01Toolbox=t;done({host:t.hostType});},e=>done({error:String(e)}));',async_script=True))
         observe('special-native-windows',lambda:execute(client,'return Array.from(Services.wm.getEnumerator(null)).map(w=>({type:w.document.documentElement.getAttribute("windowtype"),uri:w.document.documentURI}));'))
         observe('special-api-windows',lambda:api(client,'snapshot',url))
@@ -207,6 +255,10 @@ def main():
         observe('pip-api-exclusion',lambda:api(client,'snapshot',url))
         observe('pip-native-close',lambda:execute(client,'for(const w of Services.wm.getEnumerator(null)){if(w.document.documentURI.includes("pictureinpicture"))w.close();}return true;'))
         observe('webapp-surface',lambda:execute(client,'return {os:Services.appinfo.OS,webAppWindow:typeof window.openWebApp,webAppMenu:!!document.getElementById("appMenu-installSite-button"),taskbarTabsEnabled:Services.prefs.getBoolPref("browser.taskbarTabs.enabled",false)};'))
+        if os.name == 'nt':
+            observe('webapp-native-open',lambda:execute(client,'const done=arguments[arguments.length-1];(async()=>{const {TaskbarTabs}=ChromeUtils.importESModule("resource:///modules/taskbartabs/TaskbarTabs.sys.mjs");const t=await TaskbarTabs.getTaskbarTab("c930c827-57af-4119-a8e6-88808019f001");window.f01WebApp=await TaskbarTabs.openWindow(t);done({id:t.id,type:window.f01WebApp.document.documentElement.getAttribute("windowtype"),uri:window.f01WebApp.document.documentURI,taskbarTab:window.f01WebApp.document.documentElement.getAttribute("taskbartab"),tabs:window.f01WebApp.gBrowser.tabs.length});})().catch(e=>done({error:String(e)}));',async_script=True))
+            observe('webapp-api-classification',lambda:api(client,'snapshot',url))
+            observe('webapp-native-close',lambda:execute(client,'if(window.f01WebApp){window.f01WebApp.close();return true;}return false;'))
         record['status']='PARTIAL_OBSERVATIONS__NO_GATE_SELF_ACCEPTANCE'
         client.command('Marionette:Quit',{'flags':['eForceQuit']});proc.wait(20)
     except Exception as e:record['status']='PROBE_FAILED';record['error']=str(e)
@@ -215,7 +267,12 @@ def main():
         if proc and proc.poll() is None:proc.terminate();proc.wait(15)
         server.shutdown();server.server_close()
         if proc and proc.poll() is None:record['cleanup']='OWN_PROCESS_REMAINS'
-        else:shutil.rmtree(profile);record['cleanup']='OWN_PROFILE_REMOVED__OWN_CGROUP_EXITED'
+        else:
+            if os.name == 'nt' and proc:
+                record['job_final']=proc.counters()
+                record['observed_job_identities']=[list(k) for k in proc.identities]
+                proc.close()
+            shutil.rmtree(profile);record['cleanup']='OWN_PROFILE_REMOVED__OWN_JOB_EXITED' if os.name == 'nt' else 'OWN_PROFILE_REMOVED__OWN_CGROUP_EXITED'
         (owned/'evidence.json').write_text(json.dumps(record,indent=2)+'\n')
         print(json.dumps({'evidence':str(owned/'evidence.json'),'status':record['status'],'cleanup':record['cleanup']}))
     if record['status']=='PROBE_FAILED':raise SystemExit(1)

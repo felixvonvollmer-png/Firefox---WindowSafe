@@ -1,0 +1,61 @@
+{
+  "evidence_class": "LOCAL_AGENT_REPORTED",
+  "os": {
+    "NAME": "Ubuntu",
+    "ID": "ubuntu",
+    "PRETTY_NAME": "Ubuntu 26.04.1 LTS",
+    "VERSION_ID": "26.04",
+    "VERSION": "26.04.1 LTS (Resolute Raccoon)",
+    "VERSION_CODENAME": "resolute",
+    "ID_LIKE": "debian",
+    "HOME_URL": "https://www.ubuntu.com/",
+    "SUPPORT_URL": "https://help.ubuntu.com/",
+    "BUG_REPORT_URL": "https://bugs.launchpad.net/ubuntu/",
+    "PRIVACY_POLICY_URL": "https://www.ubuntu.com/legal/terms-and-policies/privacy-policy",
+    "UBUNTU_CODENAME": "resolute",
+    "LOGO": "ubuntu-logo"
+  },
+  "kernel": "7.0.0-31-generic",
+  "cpu": {
+    "CPU(s):": "6",
+    "model": "AMD Ryzen 5 3600 6-Core Processor"
+  },
+  "memory": "MemTotal:       15768788 kB",
+  "storage": {
+    "blockdevices": [
+      {
+        "name": "sda",
+        "type": "disk",
+        "size": "931.5G",
+        "model": "WD Blue SA510 2.5 1000GB",
+        "rota": false
+      },
+      {
+        "name": "sdb",
+        "type": "disk",
+        "size": "931.5G",
+        "model": "Hitachi HDT721010SLA360",
+        "rota": true
+      },
+      {
+        "name": "sdc",
+        "type": "disk",
+        "size": "111.8G",
+        "model": "Intenso SSD",
+        "rota": false
+      }
+    ]
+  },
+  "windows": "NOT_AVAILABLE_IN_LOCAL_EXECUTION_ENVIRONMENT",
+  "display": "GUI run, headless=false in runtime evidence",
+  "runtime": "Python 3.14.4",
+  "privacy": "No host name, serial number, machine ID or user profile inspected",
+  "worktree_filesystem": {
+    "filesystems": [
+      {
+        "source": "/dev/sda5",
+        "fstype": "ext4"
+      }
+    ]
+  }
+}

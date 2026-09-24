@@ -1,0 +1,30 @@
+{
+  "evidence_class": "REPOSITORY_OR_REMOTE_VERIFIED",
+  "runtime_status": "NOT_EXECUTED__NO_WINDOWS_DESKTOP_PROVIDED",
+  "index_url": "https://firefox-ci-tc.services.mozilla.com/api/index/v1/tasks/gecko.v2.mozilla-release.revision.a80bd15ddee3b4bf3679aeba340e9d2db933c467.firefox?limit=1000",
+  "index_entry": {
+    "namespace": "gecko.v2.mozilla-release.revision.a80bd15ddee3b4bf3679aeba340e9d2db933c467.firefox.win64-add-on-devel",
+    "taskId": "OSCRr3diR7SXwQr0i6Y1dQ",
+    "rank": 1,
+    "data": {},
+    "expires": "2027-09-09T17:32:46.064Z"
+  },
+  "task_url": "https://firefox-ci-tc.services.mozilla.com/api/queue/v1/task/OSCRr3diR7SXwQr0i6Y1dQ",
+  "task_name": "build-win64-add-on-devel/opt",
+  "task_state": "completed",
+  "source_repository": "https://hg.mozilla.org/releases/mozilla-release",
+  "source_stamp": "a80bd15ddee3b4bf3679aeba340e9d2db933c467",
+  "build_id": "20260909172920",
+  "artifact": {
+    "storageType": "s3",
+    "name": "public/build/target.zip",
+    "expires": "2027-09-09T17:32:46.064Z",
+    "contentType": "application/zip",
+    "contentLength": 135889494
+  },
+  "artifact_url": "https://firefox-ci-tc.services.mozilla.com/api/queue/v1/task/OSCRr3diR7SXwQr0i6Y1dQ/runs/0/artifacts/public/build/target.zip",
+  "advertised_artifact_sha256": "30a3444f7416479ec78d03bc48ad63f0a669aa91b40481943c7de426ba8fa25f",
+  "artifact_downloaded_or_verified": false,
+  "chain_of_trust_signature_verified": false,
+  "limitation": "Locator only. Windows executor must verify archive hash, full extracted installation, 156 runtime equivalence and Desktop session before launch. Linux-only release binding validator does not silently authorize a Windows binary."
+}

@@ -1,0 +1,249 @@
+{
+  "run_id": "WS-E01-F01-TARGET-QUAL-20260919-01",
+  "authorization_id": "WS-EA-20260919-08",
+  "start_head": "0f83be2550f34698fe95da4df88b5eb918649973",
+  "start_tree": "2db2d133b8aeb43f8ce7444d6192e55aa2d49c12",
+  "main": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
+  "repository_id": 1374094477,
+  "pr": 3,
+  "branch": "feature/ws-e01-f01-qualification",
+  "package_manifest_sha256": "5540945eda8dffa64e4857945d7661073382ea7e3ca7e2010f9a562fd9e14674",
+  "package_verification": "All five entries matched SHA-256 and byte length before any mutation",
+  "host": {
+    "hostname": "felix-A320M-S2H-V2",
+    "os_release": "PRETTY_NAME=\"Ubuntu 26.04.1 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"26.04\"\nVERSION=\"26.04.1 LTS (Resolute Raccoon)\"\nVERSION_CODENAME=resolute\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=resolute\nLOGO=ubuntu-logo\n",
+    "kernel": "7.0.0-31-generic",
+    "arch": "x86_64",
+    "logical_cpus": 6,
+    "ram_bytes": 16147238912,
+    "display": {
+      "DISPLAY": ":0",
+      "WAYLAND_DISPLAY": "wayland-0",
+      "XDG_SESSION_TYPE": "wayland",
+      "XDG_CURRENT_DESKTOP": "ubuntu:GNOME"
+    },
+    "resolution": [
+      1920,
+      1080
+    ]
+  },
+  "windows": {
+    "status": "NOT_EXECUTED",
+    "user_confirmation": "Kein Windows-Desktop bereitgestellt",
+    "host": null,
+    "browser": null,
+    "job_accounting": "NOT_IMPLEMENTED_OR_EXECUTED__NO_DESKTOP_HOST",
+    "server_ci_is_desktop_evidence": false
+  },
+  "browser_builds": {
+    "ubuntu_stable": {
+      "version": "156.0",
+      "build_id": "20260909172920",
+      "channel": "release",
+      "binary_sha256": "7ea3daf0cdbe5ec27e4f2e7c644c25032169f8a2f2f15e438ff4379bf737a78a"
+    },
+    "ubuntu_release_equivalent": {
+      "version": "156.0",
+      "build_id": "20260909172920",
+      "source_stamp": "a80bd15ddee3b4bf3679aeba340e9d2db933c467",
+      "channel": "default",
+      "task_id": "fXVSnCllT3yplCRhcnFWYw",
+      "binding_path": "features/WS-E01-F01/evidence/target-unbranded-download.json",
+      "binding_sha256": "39856ddb2f4b8133ca842b8d7ab325da32cff38ddc8c30b6e592aa4cdedb12e4",
+      "installation_manifest_sha256": "e69de8fd2a5abad72b93106cca9d72fcc80e9631b80427f3a27dece7fde4c16e"
+    }
+  },
+  "gate_matrix": {
+    "WINDOWS_DESKTOP": {
+      "Ubuntu": "NOT_APPLICABLE",
+      "Windows": "OPEN__NO_HOST"
+    },
+    "SPECIAL_NATIVE_GUI_CASES": {
+      "Ubuntu": "PARTIAL__PRIVATE_DEVTOOLS_PIP_SPLIT_INTERACTIONS_OBSERVED; enabled WebApp boundary and multi-monitor/state coverage remain incomplete",
+      "Windows": "OPEN__NO_HOST"
+    },
+    "TARGET_EQUIVALENT_RESTART": {
+      "Ubuntu": "RUNTIME_OBSERVED__OFFICIAL_RELEASE_EQUIVALENT_156_ONSTARTUP_MARKER_1_TO_2",
+      "Windows": "OPEN__NO_HOST"
+    },
+    "MEASUREMENT_FINAL_ATTRIBUTION": {
+      "Ubuntu": "PARTIAL__NATIVE_ORIGIN_JS_DOM_REPORTS_PLUS_OS_COUNTERS; cache/shared attribution and hard peak remain OPEN",
+      "Windows": "OPEN__NO_JOB_RUNTIME_OR_ATTRIBUTION"
+    }
+  },
+  "measurement": {
+    "evidence_class": "SYNTHETIC_DRY_RUN_MEASUREMENT",
+    "method": "Sequential A(no addon), B(idle addon page), B(held synthetic allocation), B(after short allocation). Native nsIMemoryReporterManager reports plus same owned cgroup/process diagnostics. No product benchmark or statistically controlled performance A/B claim.",
+    "synthetic_held": {
+      "typed_array_bytes": 4194304,
+      "dom_nodes": 1000,
+      "cache_entries": 1024
+    },
+    "synthetic_pulse_bytes": 12582912,
+    "origin_report_categories": [
+      {
+        "label": "a-no-addon",
+        "categories": {
+          "explicit_origin_leaf_bytes": {
+            "js": 0,
+            "dom": 0,
+            "layout": 0,
+            "other_explicit": 0,
+            "driver_sandbox": 0
+          },
+          "cache_separately_attributed": false,
+          "shared_native_residual_attributed": false,
+          "hard_peak_qualified": false
+        }
+      },
+      {
+        "label": "b-addon-idle",
+        "categories": {
+          "explicit_origin_leaf_bytes": {
+            "js": 708480,
+            "dom": 15008,
+            "layout": 89136,
+            "other_explicit": 960,
+            "driver_sandbox": 32000
+          },
+          "cache_separately_attributed": false,
+          "shared_native_residual_attributed": false,
+          "hard_peak_qualified": false
+        }
+      },
+      {
+        "label": "b-addon-held",
+        "categories": {
+          "explicit_origin_leaf_bytes": {
+            "js": 5042664,
+            "dom": 326848,
+            "layout": 838480,
+            "other_explicit": 1440,
+            "driver_sandbox": 63944
+          },
+          "cache_separately_attributed": false,
+          "shared_native_residual_attributed": false,
+          "hard_peak_qualified": false
+        }
+      },
+      {
+        "label": "b-after-pulse",
+        "categories": {
+          "explicit_origin_leaf_bytes": {
+            "js": 17655744,
+            "dom": 326848,
+            "layout": 835888,
+            "other_explicit": 1440,
+            "driver_sandbox": 95888
+          },
+          "cache_separately_attributed": false,
+          "shared_native_residual_attributed": false,
+          "hard_peak_qualified": false
+        }
+      }
+    ],
+    "native_allocations_profiler_feature_available": false,
+    "jsallocations_profiler_feature_available": true,
+    "profiler_trace_executed": false,
+    "limitations": [
+      "Point-in-time reporting misses arbitrary transient peaks; one retained pulse observation is not coverage proof.",
+      "JS Map cache entries share JS reporters; not separately attributable as a cache category.",
+      "Shared/native/driver overhead remains separate and unresolved.",
+      "A/B sampled in one process lifetime: startup/order/background/measurement overhead are confounders; no F05 threshold decision.",
+      "cgroup memory.peak is total charged process-tree lifetime peak, not addon peak.",
+      "Windows Job Object lifetime CPU/IO/containment and memory semantics require a real Windows executor."
+    ]
+  },
+  "runtime_attempts": [
+    {
+      "run": "synthetic-q2kehn7v",
+      "status": "OBSERVATIONS_COLLECTED__MATRIX_REVIEW_REQUIRED",
+      "cleanup": "OWN_PROFILE_REMOVED__OWN_LAUNCHES_EXITED",
+      "owned_profile_absent": true,
+      "owned_cgroups_absent": true
+    },
+    {
+      "run": "synthetic-o28_q6hi",
+      "status": "OBSERVATIONS_COLLECTED__MATRIX_REVIEW_REQUIRED",
+      "cleanup": "OWN_PROFILE_REMOVED__OWN_LAUNCHES_EXITED",
+      "owned_profile_absent": true,
+      "owned_cgroups_absent": true
+    },
+    {
+      "run": "synthetic-tsh3e3o6",
+      "status": "OBSERVATIONS_COLLECTED__MATRIX_REVIEW_REQUIRED",
+      "cleanup": "OWN_PROFILE_REMOVED__OWN_LAUNCHES_EXITED",
+      "owned_profile_absent": true,
+      "owned_cgroups_absent": true
+    },
+    {
+      "run": "target-2gxl28k0",
+      "status": "PARTIAL_OBSERVATIONS__NO_GATE_SELF_ACCEPTANCE",
+      "cleanup": "OWN_PROFILE_REMOVED__OWN_CGROUP_EXITED",
+      "owned_profile_absent": true,
+      "owned_cgroups_absent": true
+    },
+    {
+      "run": "target-2fnq8du9",
+      "status": "PARTIAL_OBSERVATIONS__NO_GATE_SELF_ACCEPTANCE",
+      "cleanup": "OWN_PROFILE_REMOVED__OWN_CGROUP_EXITED",
+      "owned_profile_absent": true,
+      "owned_cgroups_absent": true
+    }
+  ],
+  "attempt_notes": [
+    "First restart output cumulative observed_processes diagnostic included prior-launch PIDs. Raw samples remain separated by cgroup. The launcher list was scoped to each launch; final run uses that fix plus strict onStartup/prior-marker validation.",
+    "Initial native run had no PiP fixture and no disjoint reporter reduction. Final run adds actual PiP and excludes duplicate summary trees/driver sandbox bytes. All attempts retained."
+  ],
+  "toolchain_unchanged": {
+    "node": "24.21.0",
+    "npm": "11.19.0",
+    "typescript": "7.0.2",
+    "web-ext": "10.6.0",
+    "@types/firefox-webext-browser": "143.0.0",
+    "lock_sha256": "1d6f6b41f6a87d1890695247e6610f60199518b22e87f12f1ee1002661563834"
+  },
+  "risk_class": "ELEVATED",
+  "independent_technical_review": "PENDING",
+  "feature_acceptance_review": "NOT_READY",
+  "product_implementation_started": false,
+  "stop_state": "WS-E01-F01_PARTIAL_QUALIFICATION__TARGET_ENVIRONMENT_REQUIRED",
+  "delivery_binding": "The containing commit binds the final candidate; exact final Head/Tree and post-push CI are reported externally after push.",
+  "evidence_classes": [
+    "UBUNTU_RUNTIME_VERIFIED",
+    "SYNTHETIC_DRY_RUN_MEASUREMENT",
+    "REPOSITORY_OR_REMOTE_VERIFIED",
+    "PRIMARY_DOCUMENTATION",
+    "LOCAL_AGENT_REPORTED"
+  ],
+  "primary_sources": [
+    {
+      "url": "https://wiki.mozilla.org/Add-ons/Extension_Signing",
+      "use": "Official unbranded release testing route; live links are stale, exact revision CI index was used"
+    },
+    {
+      "url": "https://firefox-source-docs.mozilla.org/tools/profiler/memory.html",
+      "use": "Allocation sampling does not prove arbitrary addon hard peaks"
+    },
+    {
+      "url": "https://firefox-source-docs.mozilla.org/performance/memory/about_colon_memory.html",
+      "use": "Native memory report interpretation"
+    },
+    {
+      "url": "https://firefox-source-docs.mozilla.org/browser/components/taskbartabs/docs/index.html",
+      "use": "Linux WebApps implementation can exist but is default disabled; no global unsupported claim"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/jobapi2/nf-jobapi2-assignprocesstojobobject",
+      "use": "Windows continuation: assignment, nesting and child containment"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/jobapi2/nf-jobapi2-queryinformationjobobject",
+      "use": "Windows native job counters"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_basic_and_io_accounting_information",
+      "use": "Includes formerly associated processes; sampled-only CPU is insufficient"
+    }
+  ]
+}

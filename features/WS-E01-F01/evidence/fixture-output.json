@@ -1,0 +1,23 @@
+{
+  "evidence_class": "LOCAL_STATIC_TOOLCHAIN",
+  "command": "python3 qualification/ws-e01-f01/fixtures.py --output build/f01/qualified-fixtures",
+  "files": {
+    "B300.json": {
+      "bytes": 12608,
+      "sha256": "8f58c9e38506842935ec5c60b0b7e0b7341100582418d0e96c83b614a2b717b7"
+    },
+    "R500-H.json": {
+      "bytes": 1208787,
+      "sha256": "ae7b82ff759faace592f7b1ec3a3a1d476f7add22177f913fb2bc74588b1e547"
+    },
+    "L10.json": {
+      "bytes": 189779,
+      "sha256": "f2bd01dd91c552c0a7c59fd454b2d37e833c2824833fc59c60940dc90ea42c74"
+    },
+    "R2000-H.json": {
+      "bytes": 3037263,
+      "sha256": "e5c8c8e2716512731ae439304b35efa7a7bb5067d70286c26d389bff3ebd951e"
+    }
+  },
+  "product_performance_verdict": "NOT_EVALUATED"
+}

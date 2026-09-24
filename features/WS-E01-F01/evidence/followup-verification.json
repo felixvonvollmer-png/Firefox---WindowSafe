@@ -1,0 +1,13 @@
+{
+  "evidence_class": "LOCAL_AGENT_REPORTED",
+  "tests": {
+    "count": 106,
+    "status": "PASS",
+    "command": "python3 -m unittest discover -s tests -v"
+  },
+  "foundation_check": "PASS",
+  "append_only_history": "PASS",
+  "previous_evidence_unchanged": true,
+  "audit_gate": "BLOCKED__NO_LOCAL_RETRY_AFTER_TWO_MAINTENANCE_FAILURES",
+  "independent_review": "NOT_ISSUED"
+}

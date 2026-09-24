@@ -634,7 +634,12 @@ class AcceptedEpicHistoryCliTests(unittest.TestCase):
                                                   AcceptedEpicTests.RESULT}:
             target = self.repo / name
             target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(f.ROOT / name, target)
+            if name.endswith(".md") and name in f.INTEGRATION_SUPPORT_PATHS:
+                # This fixture models the historical Epic integration, before F01.
+                # Keep its docs at that exact phase while exercising the current CLI.
+                target.write_bytes(f.at("3bdd7439c221b8f8c83e7374c8bb29898891a4fd", name))
+            else:
+                shutil.copyfile(f.ROOT / name, target)
         self.first = self.save()
 
     git = EpicHistoryCliTests.git

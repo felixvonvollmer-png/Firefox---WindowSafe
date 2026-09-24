@@ -5,7 +5,7 @@ Nutzeraktion wiederherstellen. Dieses Repository enthält derzeit ausschließlic
 die integrierte **Project Foundation** und die WS-E01 Epic Preparation, keine
 installierbare Erweiterung oder Produktfunktion.
 
-Aktuell: **WS-E01-INT-20260919-02**, autorisiert durch **WS-EA-20260919-05**.
+Historische Epic-Integration: **WS-E01-INT-20260919-02**, autorisiert durch **WS-EA-20260919-05**.
 Der unveränderte unabhängige [Epic Preparation PASS](reviews/results/WS-E01-EPR-20260919-02.json)
 bindet den reviewed Subject `644b81f63dcc1990bc894a9c2c9bd8dc24a98c04` und dessen
 Foundationbasis `dc9c1c37a264cc80f79ec08bf166ec42cdd73b95`.
@@ -39,3 +39,13 @@ kein Firefox-Add-on. Nach einem Commit liefert
 `python3 tools/foundation.py request --sha HEAD --subject epics/WS-E01/subject.json` nach Prüfung des Accepted-Bindings den ursprünglichen
 Reviewauftrag am reviewed Subject (unverändert 23 Evidence-Bindungen) als JSON auf stdout. Details zum Schema-Preflight stehen im
 [Review-Handoff](reviews/README.md).
+
+## F01-Qualifikation
+
+Aktuell: **WS-E01-F01-UBUNTU-CLOSURE-20260924-01** unter **WS-EA-20260919-08**.
+**BLOCKED__MATERIAL_USER_DECISION_REQUIRED**: Native WebApps erscheinen auf beiden OS
+öffentlich als normale Fenster; keine sichere öffentliche Abgrenzung nachgewiesen.
+Display-/State- und Messmethodik bleiben offen; der belegte Neustart wurde nicht wiederholt. Einstieg über
+[Qualifikationsbericht und Entscheidungsoptionen](features/WS-E01-F01/evidence/ubuntu-closure.md),
+[aktuellen Zustand](features/WS-E01-F01/state.json) und
+[Fortsetzungspaket](qualification/ws-e01-f01/README.md). Kein Produktstart, F02 oder Merge.

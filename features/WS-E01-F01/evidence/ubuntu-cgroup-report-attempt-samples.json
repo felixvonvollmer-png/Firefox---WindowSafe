@@ -1,0 +1,761 @@
+[
+  {
+    "monotonic": 23478.151438156,
+    "processes": [
+      {
+        "pid": 236048,
+        "ppid": 4023,
+        "identity": "2347666",
+        "cpu_seconds": 1.76,
+        "rss_bytes": 521359360,
+        "io": {
+          "rchar": 19637100,
+          "wchar": 34769347,
+          "read_bytes": 1085440,
+          "write_bytes": 35672064,
+          "syscr": 10638,
+          "syscw": 10984
+        }
+      },
+      {
+        "pid": 236128,
+        "ppid": 236048,
+        "identity": "2347706",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 35434496,
+        "io": {
+          "rchar": 74622,
+          "wchar": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 96,
+          "syscw": 0
+        }
+      },
+      {
+        "pid": 236137,
+        "ppid": 236048,
+        "identity": "2347710",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2289664,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 236138,
+        "ppid": 236137,
+        "identity": "2347710",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1511424,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 236139,
+        "ppid": 236138,
+        "identity": "2347710",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17625088,
+        "io": {
+          "rchar": 60314,
+          "wchar": 144,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 180,
+          "syscw": 18
+        }
+      },
+      {
+        "pid": 236207,
+        "ppid": 236048,
+        "identity": "2347712",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2293760,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 236208,
+        "ppid": 236207,
+        "identity": "2347713",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1515520,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 236209,
+        "ppid": 236208,
+        "identity": "2347713",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7172096,
+        "io": {
+          "rchar": 6044,
+          "wchar": 64,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 43,
+          "syscw": 8
+        }
+      },
+      {
+        "pid": 236215,
+        "ppid": 236128,
+        "identity": "2347716",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 48545792,
+        "io": {
+          "rchar": 115101,
+          "wchar": 20,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 139,
+          "syscw": 13
+        }
+      },
+      {
+        "pid": 236225,
+        "ppid": 236128,
+        "identity": "2347729",
+        "cpu_seconds": 0.17,
+        "rss_bytes": 154132480,
+        "io": {
+          "rchar": 330674,
+          "wchar": 202,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 534,
+          "syscw": 195
+        }
+      },
+      {
+        "pid": 236233,
+        "ppid": 236128,
+        "identity": "2347729",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 57147392,
+        "io": {
+          "rchar": 158941,
+          "wchar": 342,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 513,
+          "syscw": 335
+        }
+      },
+      {
+        "pid": 236270,
+        "ppid": 236128,
+        "identity": "2347741",
+        "cpu_seconds": 0.03,
+        "rss_bytes": 109539328,
+        "io": {
+          "rchar": 327900,
+          "wchar": 308,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 624,
+          "syscw": 301
+        }
+      },
+      {
+        "pid": 236377,
+        "ppid": 236128,
+        "identity": "2347785",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43241472,
+        "io": {
+          "rchar": 112261,
+          "wchar": 28,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 139,
+          "syscw": 21
+        }
+      }
+    ],
+    "cgroup": {
+      "cpu.stat": "usage_usec 2132529\nuser_usec 1709580\nsystem_usec 422948\nnice_usec 0\ncore_sched.force_idle_usec 0\n",
+      "memory.current": "353513472\n",
+      "memory.peak": "353558528\n",
+      "io.stat": null,
+      "cgroup.procs": "236048\n236055\n236128\n236137\n236138\n236139\n236207\n236208\n236209\n236215\n236225\n236233\n236270\n236377\n"
+    },
+    "cgroup_path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-59b3054efb5e42a4bfb2fb393d976e00.service"
+  },
+  {
+    "monotonic": 23478.415097479,
+    "processes": [
+      {
+        "pid": 236048,
+        "ppid": 4023,
+        "identity": "2347666",
+        "cpu_seconds": 2.1,
+        "rss_bytes": 590979072,
+        "io": {
+          "rchar": 21481016,
+          "wchar": 37604963,
+          "read_bytes": 1085440,
+          "write_bytes": 38555648,
+          "syscr": 12503,
+          "syscw": 12860
+        }
+      },
+      {
+        "pid": 236128,
+        "ppid": 236048,
+        "identity": "2347706",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 35434496,
+        "io": {
+          "rchar": 74622,
+          "wchar": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 96,
+          "syscw": 0
+        }
+      },
+      {
+        "pid": 236137,
+        "ppid": 236048,
+        "identity": "2347710",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2289664,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 236138,
+        "ppid": 236137,
+        "identity": "2347710",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1511424,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 236139,
+        "ppid": 236138,
+        "identity": "2347710",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17625088,
+        "io": {
+          "rchar": 62308,
+          "wchar": 152,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 187,
+          "syscw": 19
+        }
+      },
+      {
+        "pid": 236207,
+        "ppid": 236048,
+        "identity": "2347712",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2293760,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 236208,
+        "ppid": 236207,
+        "identity": "2347713",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1515520,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 236209,
+        "ppid": 236208,
+        "identity": "2347713",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7172096,
+        "io": {
+          "rchar": 6044,
+          "wchar": 64,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 43,
+          "syscw": 8
+        }
+      },
+      {
+        "pid": 236215,
+        "ppid": 236128,
+        "identity": "2347716",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 48545792,
+        "io": {
+          "rchar": 115101,
+          "wchar": 20,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 139,
+          "syscw": 13
+        }
+      },
+      {
+        "pid": 236225,
+        "ppid": 236128,
+        "identity": "2347729",
+        "cpu_seconds": 0.18,
+        "rss_bytes": 154198016,
+        "io": {
+          "rchar": 330726,
+          "wchar": 254,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 586,
+          "syscw": 247
+        }
+      },
+      {
+        "pid": 236233,
+        "ppid": 236128,
+        "identity": "2347729",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 57147392,
+        "io": {
+          "rchar": 158947,
+          "wchar": 348,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 519,
+          "syscw": 341
+        }
+      },
+      {
+        "pid": 236270,
+        "ppid": 236128,
+        "identity": "2347741",
+        "cpu_seconds": 0.03,
+        "rss_bytes": 109408256,
+        "io": {
+          "rchar": 327925,
+          "wchar": 333,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 649,
+          "syscw": 326
+        }
+      },
+      {
+        "pid": 236377,
+        "ppid": 236128,
+        "identity": "2347785",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43241472,
+        "io": {
+          "rchar": 112267,
+          "wchar": 34,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 145,
+          "syscw": 27
+        }
+      },
+      {
+        "pid": 236393,
+        "ppid": 236128,
+        "identity": "2347823",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 118370304,
+        "io": {
+          "rchar": 334277,
+          "wchar": 90,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 416,
+          "syscw": 83
+        }
+      },
+      {
+        "pid": 236421,
+        "ppid": 236128,
+        "identity": "2347834",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 103723008,
+        "io": {
+          "rchar": 327646,
+          "wchar": 54,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 370,
+          "syscw": 47
+        }
+      }
+    ],
+    "cgroup": {
+      "cpu.stat": "usage_usec 2562856\nuser_usec 2059597\nsystem_usec 503258\nnice_usec 0\ncore_sched.force_idle_usec 0\n",
+      "memory.current": "433545216\n",
+      "memory.peak": "433545216\n",
+      "io.stat": null,
+      "cgroup.procs": "236048\n236055\n236128\n236137\n236138\n236139\n236207\n236208\n236209\n236215\n236225\n236233\n236270\n236377\n236393\n236421\n"
+    },
+    "cgroup_path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-59b3054efb5e42a4bfb2fb393d976e00.service"
+  },
+  {
+    "monotonic": 23478.678906727,
+    "processes": [
+      {
+        "pid": 236048,
+        "ppid": 4023,
+        "identity": "2347666",
+        "cpu_seconds": 2.5,
+        "rss_bytes": 608542720,
+        "io": {
+          "rchar": 24353513,
+          "wchar": 42604968,
+          "read_bytes": 1085440,
+          "write_bytes": 43569152,
+          "syscr": 16885,
+          "syscw": 18046
+        }
+      },
+      {
+        "pid": 236128,
+        "ppid": 236048,
+        "identity": "2347706",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 35565568,
+        "io": {
+          "rchar": 402298,
+          "wchar": 85,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 497,
+          "syscw": 78
+        }
+      },
+      {
+        "pid": 236137,
+        "ppid": 236048,
+        "identity": "2347710",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2289664,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 236138,
+        "ppid": 236137,
+        "identity": "2347710",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1511424,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 236139,
+        "ppid": 236138,
+        "identity": "2347710",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17625088,
+        "io": {
+          "rchar": 62308,
+          "wchar": 152,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 187,
+          "syscw": 19
+        }
+      },
+      {
+        "pid": 236207,
+        "ppid": 236048,
+        "identity": "2347712",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2293760,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 236208,
+        "ppid": 236207,
+        "identity": "2347713",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1515520,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 236209,
+        "ppid": 236208,
+        "identity": "2347713",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7172096,
+        "io": {
+          "rchar": 6044,
+          "wchar": 64,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 43,
+          "syscw": 8
+        }
+      },
+      {
+        "pid": 236215,
+        "ppid": 236128,
+        "identity": "2347716",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 48545792,
+        "io": {
+          "rchar": 115101,
+          "wchar": 20,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 139,
+          "syscw": 13
+        }
+      },
+      {
+        "pid": 236225,
+        "ppid": 236128,
+        "identity": "2347729",
+        "cpu_seconds": 0.19,
+        "rss_bytes": 156405760,
+        "io": {
+          "rchar": 330921,
+          "wchar": 449,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 781,
+          "syscw": 442
+        }
+      },
+      {
+        "pid": 236233,
+        "ppid": 236128,
+        "identity": "2347729",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 57147392,
+        "io": {
+          "rchar": 158951,
+          "wchar": 352,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 523,
+          "syscw": 345
+        }
+      },
+      {
+        "pid": 236270,
+        "ppid": 236128,
+        "identity": "2347741",
+        "cpu_seconds": 0.03,
+        "rss_bytes": 109395968,
+        "io": {
+          "rchar": 327939,
+          "wchar": 347,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 663,
+          "syscw": 340
+        }
+      },
+      {
+        "pid": 236377,
+        "ppid": 236128,
+        "identity": "2347785",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43241472,
+        "io": {
+          "rchar": 112271,
+          "wchar": 38,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 149,
+          "syscw": 31
+        }
+      },
+      {
+        "pid": 236393,
+        "ppid": 236128,
+        "identity": "2347823",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 120463360,
+        "io": {
+          "rchar": 334391,
+          "wchar": 204,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 530,
+          "syscw": 197
+        }
+      },
+      {
+        "pid": 236458,
+        "ppid": 236128,
+        "identity": "2347845",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 114941952,
+        "io": {
+          "rchar": 331451,
+          "wchar": 112,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 430,
+          "syscw": 105
+        }
+      },
+      {
+        "pid": 236472,
+        "ppid": 236128,
+        "identity": "2347847",
+        "cpu_seconds": 0.11,
+        "rss_bytes": 153784320,
+        "io": {
+          "rchar": 331487,
+          "wchar": 148,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 466,
+          "syscw": 141
+        }
+      },
+      {
+        "pid": 236500,
+        "ppid": 236128,
+        "identity": "2347849",
+        "cpu_seconds": 0.03,
+        "rss_bytes": 114634752,
+        "io": {
+          "rchar": 331417,
+          "wchar": 78,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 396,
+          "syscw": 71
+        }
+      },
+      {
+        "pid": 236534,
+        "ppid": 236128,
+        "identity": "2347855",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97366016,
+        "io": {
+          "rchar": 330475,
+          "wchar": 35,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 359,
+          "syscw": 28
+        }
+      },
+      {
+        "pid": 236538,
+        "ppid": 236128,
+        "identity": "2347855",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 96718848,
+        "io": {
+          "rchar": 330477,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 361,
+          "syscw": 30
+        }
+      },
+      {
+        "pid": 236542,
+        "ppid": 236128,
+        "identity": "2347855",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 97042432,
+        "io": {
+          "rchar": 330475,
+          "wchar": 35,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 359,
+          "syscw": 28
+        }
+      }
+    ],
+    "cgroup": {
+      "cpu.stat": "usage_usec 3286245\nuser_usec 2638969\nsystem_usec 647275\nnice_usec 0\ncore_sched.force_idle_usec 0\n",
+      "memory.current": "526086144\n",
+      "memory.peak": "526086144\n",
+      "io.stat": null,
+      "cgroup.procs": "236048\n236055\n236128\n236137\n236138\n236139\n236207\n236208\n236209\n236215\n236225\n236233\n236270\n236377\n236393\n236458\n236472\n236500\n236534\n236538\n236542\n"
+    },
+    "cgroup_path": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-59b3054efb5e42a4bfb2fb393d976e00.service"
+  }
+]

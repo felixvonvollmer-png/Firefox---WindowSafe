@@ -1,0 +1,57 @@
+{
+  "DOCUMENT_TYPE": "WINDOWSAFE_F01_AUDIT_RECOVERY_AUTHORIZATION",
+  "AUTHORIZATION_ID": "WS-EA-20260919-07",
+  "STATUS": "AUTHORIZED",
+  "DATE": "2026-09-19",
+  "AUTHORITY": "USER",
+  "USER_AUTHORIZATION_REFERENCE": {
+    "VERBATIM_MESSAGE": "frei",
+    "CONTEXT": "Immediate reply to the proposed narrow retry/recovery continuation after WS-E01-F01 stopped because mandatory npm audit returned HTTP 503 in local and exact-head CI.",
+    "INTERPRETATION": "Authorizes only the bounded recovery flow in this addendum: verify unchanged head/lock, retry the live npm audit without code/dependency changes, rerun the existing exact-head CI if audit succeeds cleanly, then add only minimal lifecycle/evidence updates needed to clear the transient audit-service blocker and move to the truthful remaining target-environment partial state. It does not authorize dependency remediation, Windows Desktop qualification, product implementation, F02, technical self-acceptance, Feature Acceptance or merge."
+  },
+  "REPOSITORY": "felixvonvollmer-png/Firefox---WindowSafe",
+  "REPOSITORY_ID": 1374094477,
+  "PR": 3,
+  "BRANCH": "feature/ws-e01-f01-qualification",
+  "EXPECTED_HEAD": "b7ce7cb7735c5d74b37eec4dd2cc7c4d22734bf0",
+  "EXPECTED_TREE": "cc8e6ef179509e88e2c8b361b9438a7a0e5560df",
+  "EXPECTED_MAIN": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
+  "FEATURE_ID": "WS-E01-F01",
+  "EXPECTED_LOCKFILE_SHA256": "1d6f6b41f6a87d1890695247e6610f60199518b22e87f12f1ee1002661563834",
+  "RECOVERY_SCOPE": [
+    "Read-only recheck PR #3, branch head/tree, remote main and clean worktree/index before retry.",
+    "Verify qualification/ws-e01-f01/package-lock.json SHA-256 exactly matches the bound lock hash.",
+    "Verify package.json/toolchain pins remain unchanged.",
+    "Check current npm service status read-only.",
+    "Execute one fresh local mandatory npm audit with the existing exact toolchain/registry/lock and no dependency mutation.",
+    "If audit exits 0 with zero vulnerabilities, rerun the existing failed exact-head GitHub Actions runs/jobs for the unchanged head without changing code.",
+    "Inspect all rerun jobs/logs and require the unchanged head to pass the mandatory audit on Ubuntu and Windows static jobs.",
+    "Only after local audit and exact-head CI are green, create a minimal additive recovery-evidence/lifecycle commit: preserve prior 503 evidence, add a new recovery record, update mutable features/WS-E01-F01/state.json to remove only LIVE_NPM_AUDIT_SERVICE_503 and transition status to WS-E01-F01_PARTIAL_QUALIFICATION__TARGET_ENVIRONMENT_REQUIRED, and update current routing/report pointers only if required by the harness.",
+    "Do not rewrite qualification-followup.md, audit-service-interruption.json, historical audit files, prior CI evidence or other immutable evidence; new facts go into new additive files.",
+    "Push the additive evidence-only commit to the same branch and require fresh push/PR CI success on that new head.",
+    "Stop at WS-E01-F01_PARTIAL_QUALIFICATION__TARGET_ENVIRONMENT_REQUIRED with Windows Desktop/native/restart/measurement gaps still open."
+  ],
+  "FAIL_CLOSED_BRANCHES": {
+    "AUDIT_HTTP_5XX_OR_NETWORK_SERVICE_FAILURE": "STOP with WS-E01-F01_BLOCKED__QUALIFICATION_GATE_FAILED; no repo mutation; no repeated hammering/retries beyond one fresh local attempt in this run.",
+    "AUDIT_REAL_VULNERABILITIES": "STOP with WS-E01-F01_BLOCKED__SUPPLY_CHAIN_FINDING; no dependency/lock/package changes under this authorization; report exact advisories and request separate remediation authorization.",
+    "AUDIT_OTHER_NONZERO": "STOP; preserve external evidence until cause classified; no dependency mutation.",
+    "CI_FAILS_FOR_AUDIT_5XX": "STOP; no evidence-state transition.",
+    "CI_FAILS_FOR_REAL_PROJECT_OR_HARNESS_REASON": "STOP; no automatic correction under this narrow authorization.",
+    "HEAD_LOCK_MAIN_OR_WORKTREE_DRIFT": "STOP before retry/mutation."
+  },
+  "NOT_AUTHORIZED": [
+    "dependency or lockfile changes",
+    "package.json changes",
+    "toolchain version changes",
+    "audit bypass, ignore, allowlist, severity downgrade or CI weakening",
+    "multiple repeated audit retries intended to wait out an outage",
+    "Windows Desktop runtime qualification",
+    "new browser/profile qualification",
+    "product implementation",
+    "WS-E01-F02 or later feature start",
+    "independent technical review verdict",
+    "FEATURE_ACCEPTANCE_REVIEW",
+    "merge/auto-merge/squash/rebase/force push"
+  ],
+  "STOP_AFTER": "WS-E01-F01_PARTIAL_QUALIFICATION__TARGET_ENVIRONMENT_REQUIRED OR fail-closed blocker"
+}

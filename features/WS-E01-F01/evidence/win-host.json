@@ -1,0 +1,49 @@
+{
+  "run_id": "WS-E01-F01-WIN-20260924-01",
+  "evidence_class": "LOCAL_AGENT_REPORTED",
+  "observed_at": "2026-09-24T08:06:50.0085125Z",
+  "os": {
+    "Caption": "Microsoft Windows 11 Pro",
+    "BuildNumber": "22631",
+    "OSArchitecture": "64-Bit",
+    "ProductType": 1
+  },
+  "registry": {
+    "ProductName": "Windows 10 Pro",
+    "DisplayVersion": "23H2",
+    "CurrentBuild": "22631",
+    "UBR": 6199
+  },
+  "cpu": {
+    "Name": "AMD Ryzen 5 3600 6-Core Processor              ",
+    "NumberOfCores": 6,
+    "NumberOfLogicalProcessors": 6
+  },
+  "ram_bytes": 17100005376,
+  "gpu": {
+    "Name": "NVIDIA GeForce GTX 980 Ti",
+    "DriverVersion": "32.0.15.8228",
+    "CurrentHorizontalResolution": 1920,
+    "CurrentVerticalResolution": 1080
+  },
+  "storage": {
+    "DeviceID": "D:",
+    "DriveType": 3,
+    "FileSystem": "NTFS",
+    "Size": 314572795904,
+    "FreeSpace": 255388577792
+  },
+  "power": "GUID des Energieschemas: 9935e61f-1661-40c5-ae2f-8495027d5d5d  (AMD Ryzen\u2122 High Performance)",
+  "user_interactive": true,
+  "session_id": 1,
+  "python": "Python 3.14.4",
+  "git": "git version 2.55.0.windows.3",
+  "installed_firefox_context_only": "156.0.1",
+  "physical_storage": {
+    "model": "WD Blue SA510 2.5 1000GB",
+    "bus": "SATA",
+    "disk_bytes": 1000204886016,
+    "partition_style": "GPT"
+  },
+  "battery_query": "No Win32_Battery instance returned; desktop host"
+}

@@ -1,0 +1,4612 @@
+[
+  {
+    "monotonic": 22811.947019616,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 1.9,
+        "rss_bytes": 522297344,
+        "io": {
+          "rchar": 14020386,
+          "wchar": 36772154,
+          "read_bytes": 569344,
+          "write_bytes": 35799040,
+          "syscr": 9366,
+          "syscw": 11411
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35340288,
+        "io": {
+          "rchar": 74622,
+          "wchar": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 96,
+          "syscw": 0
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 48939008,
+        "io": {
+          "rchar": 117278,
+          "wchar": 47,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 142,
+          "syscw": 17
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.19,
+        "rss_bytes": 154095616,
+        "io": {
+          "rchar": 332901,
+          "wchar": 236,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 544,
+          "syscw": 206
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161310,
+          "wchar": 511,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 658,
+          "syscw": 481
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.03,
+        "rss_bytes": 110145536,
+        "io": {
+          "rchar": 330296,
+          "wchar": 511,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 803,
+          "syscw": 481
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114437,
+          "wchar": 54,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 141,
+          "syscw": 24
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 94760960,
+        "io": {
+          "rchar": 332672,
+          "wchar": 44,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 342,
+          "syscw": 14
+        }
+      },
+      {
+        "pid": 190687,
+        "ppid": 190685,
+        "identity": "2281193",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 10792960,
+        "io": {
+          "rchar": 0,
+          "wchar": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 0,
+          "syscw": 0
+        }
+      },
+      {
+        "pid": 190695,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 79761408,
+        "io": {
+          "rchar": 329816,
+          "wchar": 40,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 329,
+          "syscw": 10
+        }
+      },
+      {
+        "pid": 190698,
+        "ppid": 190695,
+        "identity": "2281194",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 10792960,
+        "io": {
+          "rchar": 0,
+          "wchar": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 0,
+          "syscw": 0
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 79106048,
+        "io": {
+          "rchar": 329816,
+          "wchar": 40,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 329,
+          "syscw": 10
+        }
+      },
+      {
+        "pid": 190710,
+        "ppid": 190708,
+        "identity": "2281194",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 10792960,
+        "io": {
+          "rchar": 0,
+          "wchar": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 0,
+          "syscw": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22812.225455743,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 2.22,
+        "rss_bytes": 587964416,
+        "io": {
+          "rchar": 14645566,
+          "wchar": 42056345,
+          "read_bytes": 573440,
+          "write_bytes": 38289408,
+          "syscr": 10140,
+          "syscw": 12511
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35340288,
+        "io": {
+          "rchar": 74622,
+          "wchar": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 96,
+          "syscw": 0
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 48939008,
+        "io": {
+          "rchar": 117278,
+          "wchar": 47,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 142,
+          "syscw": 17
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.2,
+        "rss_bytes": 153767936,
+        "io": {
+          "rchar": 332929,
+          "wchar": 264,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 572,
+          "syscw": 234
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161316,
+          "wchar": 517,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 664,
+          "syscw": 487
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110276608,
+        "io": {
+          "rchar": 330317,
+          "wchar": 532,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 824,
+          "syscw": 502
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114443,
+          "wchar": 60,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 147,
+          "syscw": 30
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 118038528,
+        "io": {
+          "rchar": 336522,
+          "wchar": 142,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 444,
+          "syscw": 112
+        }
+      },
+      {
+        "pid": 190695,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 103215104,
+        "io": {
+          "rchar": 332718,
+          "wchar": 85,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 385,
+          "syscw": 55
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97579008,
+        "io": {
+          "rchar": 332705,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 372,
+          "syscw": 42
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22812.490722914,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 2.61,
+        "rss_bytes": 624902144,
+        "io": {
+          "rchar": 16873673,
+          "wchar": 46602808,
+          "read_bytes": 573440,
+          "write_bytes": 42618880,
+          "syscr": 13610,
+          "syscw": 16366
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 48939008,
+        "io": {
+          "rchar": 117278,
+          "wchar": 47,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 142,
+          "syscw": 17
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.21,
+        "rss_bytes": 154161152,
+        "io": {
+          "rchar": 333052,
+          "wchar": 387,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 695,
+          "syscw": 357
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161316,
+          "wchar": 517,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 664,
+          "syscw": 487
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330331,
+          "wchar": 546,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 838,
+          "syscw": 516
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114443,
+          "wchar": 60,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 147,
+          "syscw": 30
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.05,
+        "rss_bytes": 120139776,
+        "io": {
+          "rchar": 336643,
+          "wchar": 263,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 565,
+          "syscw": 233
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 118874112,
+        "io": {
+          "rchar": 336539,
+          "wchar": 159,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 461,
+          "syscw": 129
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 114876416,
+        "io": {
+          "rchar": 333613,
+          "wchar": 81,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 375,
+          "syscw": 51
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.03,
+        "rss_bytes": 108085248,
+        "io": {
+          "rchar": 333621,
+          "wchar": 90,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 383,
+          "syscw": 60
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22812.755272121,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 2.92,
+        "rss_bytes": 665239552,
+        "io": {
+          "rchar": 17224934,
+          "wchar": 49029048,
+          "read_bytes": 593920,
+          "write_bytes": 45043712,
+          "syscr": 16509,
+          "syscw": 20430
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 48939008,
+        "io": {
+          "rchar": 117278,
+          "wchar": 47,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 142,
+          "syscw": 17
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.22,
+        "rss_bytes": 155516928,
+        "io": {
+          "rchar": 333133,
+          "wchar": 468,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 776,
+          "syscw": 438
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161320,
+          "wchar": 521,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 668,
+          "syscw": 491
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330337,
+          "wchar": 552,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 844,
+          "syscw": 522
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114447,
+          "wchar": 64,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 151,
+          "syscw": 34
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.05,
+        "rss_bytes": 120139776,
+        "io": {
+          "rchar": 336688,
+          "wchar": 308,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 610,
+          "syscw": 278
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 119136256,
+        "io": {
+          "rchar": 336561,
+          "wchar": 181,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 483,
+          "syscw": 151
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.15,
+        "rss_bytes": 165601280,
+        "io": {
+          "rchar": 333731,
+          "wchar": 199,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 493,
+          "syscw": 169
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 113840128,
+        "io": {
+          "rchar": 333642,
+          "wchar": 110,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 404,
+          "syscw": 80
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22812.769440867,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 2.93,
+        "rss_bytes": 665239552,
+        "io": {
+          "rchar": 17224952,
+          "wchar": 49029241,
+          "read_bytes": 593920,
+          "write_bytes": 45043712,
+          "syscr": 16527,
+          "syscw": 20449
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 48939008,
+        "io": {
+          "rchar": 117278,
+          "wchar": 47,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 142,
+          "syscw": 17
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.22,
+        "rss_bytes": 155516928,
+        "io": {
+          "rchar": 333133,
+          "wchar": 468,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 776,
+          "syscw": 438
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161320,
+          "wchar": 521,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 668,
+          "syscw": 491
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330337,
+          "wchar": 552,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 844,
+          "syscw": 522
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114447,
+          "wchar": 64,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 151,
+          "syscw": 34
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.05,
+        "rss_bytes": 120139776,
+        "io": {
+          "rchar": 336690,
+          "wchar": 310,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 612,
+          "syscw": 280
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 119136256,
+        "io": {
+          "rchar": 336561,
+          "wchar": 181,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 483,
+          "syscw": 151
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.15,
+        "rss_bytes": 165601280,
+        "io": {
+          "rchar": 333731,
+          "wchar": 199,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 493,
+          "syscw": 169
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 113840128,
+        "io": {
+          "rchar": 333642,
+          "wchar": 110,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 404,
+          "syscw": 80
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22813.032829889,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 3.1,
+        "rss_bytes": 676450304,
+        "io": {
+          "rchar": 17970921,
+          "wchar": 49735174,
+          "read_bytes": 593920,
+          "write_bytes": 45752320,
+          "syscr": 17427,
+          "syscw": 21622
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 48939008,
+        "io": {
+          "rchar": 117278,
+          "wchar": 47,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 142,
+          "syscw": 17
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.22,
+        "rss_bytes": 155516928,
+        "io": {
+          "rchar": 333135,
+          "wchar": 470,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 778,
+          "syscw": 440
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161320,
+          "wchar": 521,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 668,
+          "syscw": 491
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330337,
+          "wchar": 552,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 844,
+          "syscw": 522
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114447,
+          "wchar": 64,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 151,
+          "syscw": 34
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.05,
+        "rss_bytes": 120139776,
+        "io": {
+          "rchar": 336692,
+          "wchar": 312,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 614,
+          "syscw": 282
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 119136256,
+        "io": {
+          "rchar": 336563,
+          "wchar": 183,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 485,
+          "syscw": 153
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.23,
+        "rss_bytes": 182685696,
+        "io": {
+          "rchar": 333775,
+          "wchar": 243,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 537,
+          "syscw": 213
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 113840128,
+        "io": {
+          "rchar": 333646,
+          "wchar": 114,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 408,
+          "syscw": 84
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22813.29705494,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 3.53,
+        "rss_bytes": 722014208,
+        "io": {
+          "rchar": 26344033,
+          "wchar": 53036224,
+          "read_bytes": 593920,
+          "write_bytes": 49119232,
+          "syscr": 23495,
+          "syscw": 25017
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 48939008,
+        "io": {
+          "rchar": 117278,
+          "wchar": 47,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 142,
+          "syscw": 17
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.22,
+        "rss_bytes": 154816512,
+        "io": {
+          "rchar": 333168,
+          "wchar": 503,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 811,
+          "syscw": 473
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161342,
+          "wchar": 543,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 690,
+          "syscw": 513
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330359,
+          "wchar": 574,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 866,
+          "syscw": 544
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114469,
+          "wchar": 86,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 173,
+          "syscw": 56
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.06,
+        "rss_bytes": 120270848,
+        "io": {
+          "rchar": 336735,
+          "wchar": 355,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 657,
+          "syscw": 325
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 119136256,
+        "io": {
+          "rchar": 336585,
+          "wchar": 205,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 507,
+          "syscw": 175
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.23,
+        "rss_bytes": 182226944,
+        "io": {
+          "rchar": 333807,
+          "wchar": 275,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 569,
+          "syscw": 245
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 113848320,
+        "io": {
+          "rchar": 333668,
+          "wchar": 136,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 430,
+          "syscw": 106
+        }
+      },
+      {
+        "pid": 191592,
+        "ppid": 190194,
+        "identity": "2281328",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 92090368,
+        "io": {
+          "rchar": 332669,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 339,
+          "syscw": 11
+        }
+      },
+      {
+        "pid": 191593,
+        "ppid": 191592,
+        "identity": "2281328",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 10792960,
+        "io": {
+          "rchar": 0,
+          "wchar": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 0,
+          "syscw": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22813.563495461,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 3.9,
+        "rss_bytes": 780627968,
+        "io": {
+          "rchar": 27451978,
+          "wchar": 54376509,
+          "read_bytes": 593920,
+          "write_bytes": 50585600,
+          "syscr": 24602,
+          "syscw": 26117
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 49070080,
+        "io": {
+          "rchar": 117280,
+          "wchar": 49,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 144,
+          "syscw": 19
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.22,
+        "rss_bytes": 154816512,
+        "io": {
+          "rchar": 333186,
+          "wchar": 521,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 829,
+          "syscw": 491
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161356,
+          "wchar": 557,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 704,
+          "syscw": 527
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330373,
+          "wchar": 588,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 880,
+          "syscw": 558
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114483,
+          "wchar": 100,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 187,
+          "syscw": 70
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.06,
+        "rss_bytes": 120270848,
+        "io": {
+          "rchar": 336786,
+          "wchar": 406,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 708,
+          "syscw": 376
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 119398400,
+        "io": {
+          "rchar": 336604,
+          "wchar": 224,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 526,
+          "syscw": 194
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.23,
+        "rss_bytes": 181764096,
+        "io": {
+          "rchar": 333827,
+          "wchar": 295,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 589,
+          "syscw": 265
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 114110464,
+        "io": {
+          "rchar": 333684,
+          "wchar": 152,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 446,
+          "syscw": 122
+        }
+      },
+      {
+        "pid": 191592,
+        "ppid": 190194,
+        "identity": "2281328",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97525760,
+        "io": {
+          "rchar": 332704,
+          "wchar": 71,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 371,
+          "syscw": 41
+        }
+      },
+      {
+        "pid": 191750,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97304576,
+        "io": {
+          "rchar": 332692,
+          "wchar": 59,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 359,
+          "syscw": 29
+        }
+      },
+      {
+        "pid": 191754,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97996800,
+        "io": {
+          "rchar": 332690,
+          "wchar": 57,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 357,
+          "syscw": 27
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22813.83082458,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 4.04,
+        "rss_bytes": 791375872,
+        "io": {
+          "rchar": 27452409,
+          "wchar": 56846772,
+          "read_bytes": 593920,
+          "write_bytes": 53149696,
+          "syscr": 25033,
+          "syscw": 26626
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 49070080,
+        "io": {
+          "rchar": 117280,
+          "wchar": 49,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 144,
+          "syscw": 19
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.22,
+        "rss_bytes": 154816512,
+        "io": {
+          "rchar": 333192,
+          "wchar": 527,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 835,
+          "syscw": 497
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161360,
+          "wchar": 561,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 708,
+          "syscw": 531
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330375,
+          "wchar": 590,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 882,
+          "syscw": 560
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114487,
+          "wchar": 104,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 191,
+          "syscw": 74
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.06,
+        "rss_bytes": 120270848,
+        "io": {
+          "rchar": 336802,
+          "wchar": 422,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 724,
+          "syscw": 392
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 119398400,
+        "io": {
+          "rchar": 336606,
+          "wchar": 226,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 528,
+          "syscw": 196
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.23,
+        "rss_bytes": 181895168,
+        "io": {
+          "rchar": 333832,
+          "wchar": 300,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 594,
+          "syscw": 270
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 114110464,
+        "io": {
+          "rchar": 333690,
+          "wchar": 158,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 452,
+          "syscw": 128
+        }
+      },
+      {
+        "pid": 191592,
+        "ppid": 190194,
+        "identity": "2281328",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97525760,
+        "io": {
+          "rchar": 332706,
+          "wchar": 73,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 373,
+          "syscw": 43
+        }
+      },
+      {
+        "pid": 191750,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97304576,
+        "io": {
+          "rchar": 332694,
+          "wchar": 61,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 361,
+          "syscw": 31
+        }
+      },
+      {
+        "pid": 191754,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97996800,
+        "io": {
+          "rchar": 332692,
+          "wchar": 59,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 359,
+          "syscw": 29
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22814.094531036,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 4.16,
+        "rss_bytes": 823590912,
+        "io": {
+          "rchar": 27453082,
+          "wchar": 56847445,
+          "read_bytes": 593920,
+          "write_bytes": 53149696,
+          "syscr": 25706,
+          "syscw": 27299
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 49070080,
+        "io": {
+          "rchar": 117280,
+          "wchar": 49,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 144,
+          "syscw": 19
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.22,
+        "rss_bytes": 154816512,
+        "io": {
+          "rchar": 333192,
+          "wchar": 527,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 835,
+          "syscw": 497
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161360,
+          "wchar": 561,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 708,
+          "syscw": 531
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330375,
+          "wchar": 590,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 882,
+          "syscw": 560
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114487,
+          "wchar": 104,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 191,
+          "syscw": 74
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.06,
+        "rss_bytes": 120270848,
+        "io": {
+          "rchar": 336806,
+          "wchar": 426,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 728,
+          "syscw": 396
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 119398400,
+        "io": {
+          "rchar": 336606,
+          "wchar": 226,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 528,
+          "syscw": 196
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.23,
+        "rss_bytes": 181895168,
+        "io": {
+          "rchar": 333832,
+          "wchar": 300,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 594,
+          "syscw": 270
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 114110464,
+        "io": {
+          "rchar": 333690,
+          "wchar": 158,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 452,
+          "syscw": 128
+        }
+      },
+      {
+        "pid": 191592,
+        "ppid": 190194,
+        "identity": "2281328",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97525760,
+        "io": {
+          "rchar": 332706,
+          "wchar": 73,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 373,
+          "syscw": 43
+        }
+      },
+      {
+        "pid": 191750,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97304576,
+        "io": {
+          "rchar": 332694,
+          "wchar": 61,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 361,
+          "syscw": 31
+        }
+      },
+      {
+        "pid": 191754,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97996800,
+        "io": {
+          "rchar": 332692,
+          "wchar": 59,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 359,
+          "syscw": 29
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22814.358123474,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 4.28,
+        "rss_bytes": 829067264,
+        "io": {
+          "rchar": 34722187,
+          "wchar": 61800195,
+          "read_bytes": 593920,
+          "write_bytes": 58294272,
+          "syscr": 26083,
+          "syscw": 27643
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 49070080,
+        "io": {
+          "rchar": 117280,
+          "wchar": 49,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 144,
+          "syscw": 19
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.22,
+        "rss_bytes": 154816512,
+        "io": {
+          "rchar": 333196,
+          "wchar": 531,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 839,
+          "syscw": 501
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161364,
+          "wchar": 565,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 712,
+          "syscw": 535
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330377,
+          "wchar": 592,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 884,
+          "syscw": 562
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114491,
+          "wchar": 108,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 195,
+          "syscw": 78
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.06,
+        "rss_bytes": 120270848,
+        "io": {
+          "rchar": 336810,
+          "wchar": 430,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 732,
+          "syscw": 400
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 119398400,
+        "io": {
+          "rchar": 336612,
+          "wchar": 232,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 534,
+          "syscw": 202
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.23,
+        "rss_bytes": 181895168,
+        "io": {
+          "rchar": 333838,
+          "wchar": 306,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 600,
+          "syscw": 276
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 114110464,
+        "io": {
+          "rchar": 333696,
+          "wchar": 164,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 458,
+          "syscw": 134
+        }
+      },
+      {
+        "pid": 191592,
+        "ppid": 190194,
+        "identity": "2281328",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97525760,
+        "io": {
+          "rchar": 332712,
+          "wchar": 79,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 379,
+          "syscw": 49
+        }
+      },
+      {
+        "pid": 191750,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97304576,
+        "io": {
+          "rchar": 332701,
+          "wchar": 68,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 368,
+          "syscw": 38
+        }
+      },
+      {
+        "pid": 191754,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97857536,
+        "io": {
+          "rchar": 332698,
+          "wchar": 65,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 365,
+          "syscw": 35
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22814.621565457,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 4.28,
+        "rss_bytes": 829067264,
+        "io": {
+          "rchar": 34722324,
+          "wchar": 61801916,
+          "read_bytes": 593920,
+          "write_bytes": 58298368,
+          "syscr": 26143,
+          "syscw": 27707
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 49070080,
+        "io": {
+          "rchar": 117280,
+          "wchar": 49,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 144,
+          "syscw": 19
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.22,
+        "rss_bytes": 154816512,
+        "io": {
+          "rchar": 333196,
+          "wchar": 531,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 839,
+          "syscw": 501
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161364,
+          "wchar": 565,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 712,
+          "syscw": 535
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330377,
+          "wchar": 592,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 884,
+          "syscw": 562
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114491,
+          "wchar": 108,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 195,
+          "syscw": 78
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.06,
+        "rss_bytes": 120270848,
+        "io": {
+          "rchar": 336810,
+          "wchar": 430,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 732,
+          "syscw": 400
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 119398400,
+        "io": {
+          "rchar": 336614,
+          "wchar": 234,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 536,
+          "syscw": 204
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.23,
+        "rss_bytes": 181895168,
+        "io": {
+          "rchar": 333838,
+          "wchar": 306,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 600,
+          "syscw": 276
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 114110464,
+        "io": {
+          "rchar": 333698,
+          "wchar": 166,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 460,
+          "syscw": 136
+        }
+      },
+      {
+        "pid": 191592,
+        "ppid": 190194,
+        "identity": "2281328",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97525760,
+        "io": {
+          "rchar": 332712,
+          "wchar": 79,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 379,
+          "syscw": 49
+        }
+      },
+      {
+        "pid": 191750,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97304576,
+        "io": {
+          "rchar": 332701,
+          "wchar": 68,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 368,
+          "syscw": 38
+        }
+      },
+      {
+        "pid": 191754,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97857536,
+        "io": {
+          "rchar": 332698,
+          "wchar": 65,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 365,
+          "syscw": 35
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22814.885014213,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 4.32,
+        "rss_bytes": 828628992,
+        "io": {
+          "rchar": 35193490,
+          "wchar": 77229007,
+          "read_bytes": 593920,
+          "write_bytes": 73736192,
+          "syscr": 26286,
+          "syscw": 28348
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 49070080,
+        "io": {
+          "rchar": 117280,
+          "wchar": 49,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 144,
+          "syscw": 19
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.22,
+        "rss_bytes": 154816512,
+        "io": {
+          "rchar": 333196,
+          "wchar": 531,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 839,
+          "syscw": 501
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161364,
+          "wchar": 565,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 712,
+          "syscw": 535
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330377,
+          "wchar": 592,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 884,
+          "syscw": 562
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114491,
+          "wchar": 108,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 195,
+          "syscw": 78
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.06,
+        "rss_bytes": 120270848,
+        "io": {
+          "rchar": 336810,
+          "wchar": 430,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 732,
+          "syscw": 400
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 119398400,
+        "io": {
+          "rchar": 336614,
+          "wchar": 234,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 536,
+          "syscw": 204
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.23,
+        "rss_bytes": 182091776,
+        "io": {
+          "rchar": 333841,
+          "wchar": 309,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 603,
+          "syscw": 279
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 114110464,
+        "io": {
+          "rchar": 333698,
+          "wchar": 166,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 460,
+          "syscw": 136
+        }
+      },
+      {
+        "pid": 191592,
+        "ppid": 190194,
+        "identity": "2281328",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97525760,
+        "io": {
+          "rchar": 332712,
+          "wchar": 79,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 379,
+          "syscw": 49
+        }
+      },
+      {
+        "pid": 191750,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97304576,
+        "io": {
+          "rchar": 332701,
+          "wchar": 68,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 368,
+          "syscw": 38
+        }
+      },
+      {
+        "pid": 191754,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97857536,
+        "io": {
+          "rchar": 332698,
+          "wchar": 65,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 365,
+          "syscw": 35
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22815.148377165,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 4.33,
+        "rss_bytes": 828628992,
+        "io": {
+          "rchar": 35193526,
+          "wchar": 77229043,
+          "read_bytes": 593920,
+          "write_bytes": 73736192,
+          "syscr": 26322,
+          "syscw": 28384
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 49070080,
+        "io": {
+          "rchar": 117280,
+          "wchar": 49,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 144,
+          "syscw": 19
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.22,
+        "rss_bytes": 154816512,
+        "io": {
+          "rchar": 333196,
+          "wchar": 531,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 839,
+          "syscw": 501
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161364,
+          "wchar": 565,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 712,
+          "syscw": 535
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330377,
+          "wchar": 592,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 884,
+          "syscw": 562
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114491,
+          "wchar": 108,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 195,
+          "syscw": 78
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.06,
+        "rss_bytes": 120270848,
+        "io": {
+          "rchar": 336810,
+          "wchar": 430,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 732,
+          "syscw": 400
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 119398400,
+        "io": {
+          "rchar": 336614,
+          "wchar": 234,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 536,
+          "syscw": 204
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.23,
+        "rss_bytes": 182091776,
+        "io": {
+          "rchar": 333841,
+          "wchar": 309,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 603,
+          "syscw": 279
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 114110464,
+        "io": {
+          "rchar": 333698,
+          "wchar": 166,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 460,
+          "syscw": 136
+        }
+      },
+      {
+        "pid": 191592,
+        "ppid": 190194,
+        "identity": "2281328",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97525760,
+        "io": {
+          "rchar": 332712,
+          "wchar": 79,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 379,
+          "syscw": 49
+        }
+      },
+      {
+        "pid": 191750,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97304576,
+        "io": {
+          "rchar": 332701,
+          "wchar": 68,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 368,
+          "syscw": 38
+        }
+      },
+      {
+        "pid": 191754,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97857536,
+        "io": {
+          "rchar": 332698,
+          "wchar": 65,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 365,
+          "syscw": 35
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22815.411739346,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 4.34,
+        "rss_bytes": 820543488,
+        "io": {
+          "rchar": 35193576,
+          "wchar": 77230237,
+          "read_bytes": 593920,
+          "write_bytes": 73736192,
+          "syscr": 26372,
+          "syscw": 28447
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 49070080,
+        "io": {
+          "rchar": 117280,
+          "wchar": 49,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 144,
+          "syscw": 19
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.22,
+        "rss_bytes": 154816512,
+        "io": {
+          "rchar": 333196,
+          "wchar": 531,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 839,
+          "syscw": 501
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 57274368,
+        "io": {
+          "rchar": 161364,
+          "wchar": 565,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 712,
+          "syscw": 535
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330377,
+          "wchar": 592,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 884,
+          "syscw": 562
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 43683840,
+        "io": {
+          "rchar": 114491,
+          "wchar": 108,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 195,
+          "syscw": 78
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.06,
+        "rss_bytes": 120270848,
+        "io": {
+          "rchar": 336810,
+          "wchar": 430,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 732,
+          "syscw": 400
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 119398400,
+        "io": {
+          "rchar": 336614,
+          "wchar": 234,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 536,
+          "syscw": 204
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.23,
+        "rss_bytes": 182091776,
+        "io": {
+          "rchar": 333841,
+          "wchar": 309,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 603,
+          "syscw": 279
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 114110464,
+        "io": {
+          "rchar": 333698,
+          "wchar": 166,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 460,
+          "syscw": 136
+        }
+      },
+      {
+        "pid": 191592,
+        "ppid": 190194,
+        "identity": "2281328",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97525760,
+        "io": {
+          "rchar": 332712,
+          "wchar": 79,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 379,
+          "syscw": 49
+        }
+      },
+      {
+        "pid": 191750,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97304576,
+        "io": {
+          "rchar": 332707,
+          "wchar": 74,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 374,
+          "syscw": 44
+        }
+      },
+      {
+        "pid": 191754,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97857536,
+        "io": {
+          "rchar": 332698,
+          "wchar": 65,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 365,
+          "syscw": 35
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 22815.675016175,
+    "processes": [
+      {
+        "pid": 189904,
+        "ppid": 189902,
+        "identity": "2281020",
+        "cpu_seconds": 4.37,
+        "rss_bytes": 805515264,
+        "io": {
+          "rchar": 40821573,
+          "wchar": 83117946,
+          "read_bytes": 593920,
+          "write_bytes": 79630336,
+          "syscr": 27811,
+          "syscw": 29900
+        }
+      },
+      {
+        "pid": 190194,
+        "ppid": 189904,
+        "identity": "2281068",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 35471360,
+        "io": {
+          "rchar": 407411,
+          "wchar": 157,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 553,
+          "syscw": 127
+        }
+      },
+      {
+        "pid": 190214,
+        "ppid": 189904,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2060288,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190215,
+        "ppid": 190214,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1257472,
+        "io": {
+          "rchar": 87335,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 51,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190216,
+        "ppid": 190215,
+        "identity": "2281072",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 7069696,
+        "io": {
+          "rchar": 6036,
+          "wchar": 56,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 42,
+          "syscw": 7
+        }
+      },
+      {
+        "pid": 190222,
+        "ppid": 190194,
+        "identity": "2281075",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 50376704,
+        "io": {
+          "rchar": 117284,
+          "wchar": 53,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 148,
+          "syscw": 23
+        }
+      },
+      {
+        "pid": 190233,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.22,
+        "rss_bytes": 154816512,
+        "io": {
+          "rchar": 333198,
+          "wchar": 533,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 841,
+          "syscw": 503
+        }
+      },
+      {
+        "pid": 190242,
+        "ppid": 190194,
+        "identity": "2281090",
+        "cpu_seconds": 0.01,
+        "rss_bytes": 58511360,
+        "io": {
+          "rchar": 161368,
+          "wchar": 569,
+          "read_bytes": 2301952,
+          "write_bytes": 0,
+          "syscr": 716,
+          "syscw": 539
+        }
+      },
+      {
+        "pid": 190297,
+        "ppid": 190194,
+        "identity": "2281105",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 110407680,
+        "io": {
+          "rchar": 330379,
+          "wchar": 594,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 886,
+          "syscw": 564
+        }
+      },
+      {
+        "pid": 190322,
+        "ppid": 189904,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 2252800,
+        "io": {
+          "rchar": 10354,
+          "wchar": 37,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 23,
+          "syscw": 2
+        }
+      },
+      {
+        "pid": 190323,
+        "ppid": 190322,
+        "identity": "2281113",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 1388544,
+        "io": {
+          "rchar": 147135,
+          "wchar": 41,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 81,
+          "syscw": 5
+        }
+      },
+      {
+        "pid": 190324,
+        "ppid": 190323,
+        "identity": "2281114",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 17727488,
+        "io": {
+          "rchar": 51026,
+          "wchar": 72,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 113,
+          "syscw": 9
+        }
+      },
+      {
+        "pid": 190569,
+        "ppid": 190194,
+        "identity": "2281159",
+        "cpu_seconds": 0.0,
+        "rss_bytes": 45051904,
+        "io": {
+          "rchar": 114495,
+          "wchar": 112,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 199,
+          "syscw": 82
+        }
+      },
+      {
+        "pid": 190685,
+        "ppid": 190194,
+        "identity": "2281193",
+        "cpu_seconds": 0.06,
+        "rss_bytes": 120270848,
+        "io": {
+          "rchar": 336818,
+          "wchar": 438,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 740,
+          "syscw": 408
+        }
+      },
+      {
+        "pid": 190708,
+        "ppid": 190194,
+        "identity": "2281194",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 119398400,
+        "io": {
+          "rchar": 336619,
+          "wchar": 239,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 541,
+          "syscw": 209
+        }
+      },
+      {
+        "pid": 191043,
+        "ppid": 190194,
+        "identity": "2281240",
+        "cpu_seconds": 0.23,
+        "rss_bytes": 182091776,
+        "io": {
+          "rchar": 333843,
+          "wchar": 311,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 605,
+          "syscw": 281
+        }
+      },
+      {
+        "pid": 191075,
+        "ppid": 190194,
+        "identity": "2281244",
+        "cpu_seconds": 0.04,
+        "rss_bytes": 114110464,
+        "io": {
+          "rchar": 333705,
+          "wchar": 173,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 467,
+          "syscw": 143
+        }
+      },
+      {
+        "pid": 191592,
+        "ppid": 190194,
+        "identity": "2281328",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97525760,
+        "io": {
+          "rchar": 332714,
+          "wchar": 81,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 381,
+          "syscw": 51
+        }
+      },
+      {
+        "pid": 191750,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97304576,
+        "io": {
+          "rchar": 332709,
+          "wchar": 76,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 376,
+          "syscw": 46
+        }
+      },
+      {
+        "pid": 191754,
+        "ppid": 190194,
+        "identity": "2281351",
+        "cpu_seconds": 0.02,
+        "rss_bytes": 97857536,
+        "io": {
+          "rchar": 332700,
+          "wchar": 67,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "syscr": 367,
+          "syscw": 37
+        }
+      }
+    ]
+  }
+]

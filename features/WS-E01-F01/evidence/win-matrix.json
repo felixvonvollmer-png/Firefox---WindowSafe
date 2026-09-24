@@ -1,0 +1,346 @@
+{
+  "run_id": "WS-E01-F01-WIN-20260924-01",
+  "evidence_class": "LOCAL_AGENT_REPORTED",
+  "derivation": "Finite analysis of bound runtime observations, not independent review",
+  "records": {
+    "win-native-memory.json": "31e9b2308f8241cab8eecc25af507bfcaea797ae38ab79db019b995c56bef6c7",
+    "win-stable.json": "7ebaffd467212de070ce114616422aba95a93cdace27ddccd3cd3019ad35b6a1",
+    "win-restart.json": "227826731dfcc014695e22eb45eb3fc6700d2f578cbaa29357c94083867f955d",
+    "target-ubuntu-restart.json": "0d674a251d8e1f9340fa7009054155d92d5270754a93639b0bb0b1860489227c"
+  },
+  "windows_matrix": [
+    {
+      "case": "previous-probe-marker",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "previous-session-hints",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "private-access",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "normal-window",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "popup-window",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "private-window-exclusion",
+      "status": "OBSERVED",
+      "observation": "REJECTED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "combination-pfalse-dfalse-mfalse",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "combination-pfalse-dfalse-mtrue",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "combination-pfalse-dtrue-mfalse",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "combination-pfalse-dtrue-mtrue",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "combination-ptrue-dfalse-mfalse",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "combination-ptrue-dfalse-mtrue",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "combination-ptrue-dtrue-mfalse",
+      "status": "OBSERVED",
+      "observation": "REJECTED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "combination-ptrue-dtrue-mtrue",
+      "status": "OBSERVED",
+      "observation": "REJECTED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "hidden-by-helper",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "container",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "missing-container",
+      "status": "OBSERVED",
+      "observation": "REJECTED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "native-group",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "reader-intent",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "privileged-url-rejection",
+      "status": "OBSERVED",
+      "observation": "REJECTED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "session-hints",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "surface",
+      "status": "OBSERVED",
+      "observation": "OBSERVED",
+      "evidence": "win-stable.json",
+      "scope": "Exact Stable Windows synthetic case; rejection is an observed boundary, not generic capability absence"
+    },
+    {
+      "case": "desktop",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "initial-api",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "synthetic-allocation",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "synthetic-short-pulse",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "synthetic-release",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "private-native-create",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "private-native-windows",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "private-api-exclusion",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "private-native-close",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "split-native",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "split-api-events",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "interactions",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "container-collisions",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "geometry-states",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "devtools",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "special-native-windows",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "special-api-windows",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "devtools-close",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "pip-video-tab",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "pip-request",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "pip-native-window",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "pip-api-exclusion",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "pip-native-close",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "webapp-surface",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "webapp-native-open",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "webapp-api-classification",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "webapp-native-close",
+      "status": "OBSERVED",
+      "evidence": "win-native-memory.json"
+    },
+    {
+      "case": "safe-public-webapp-discrimination",
+      "status": "OPEN",
+      "reason": "Native taskbartab window appears as normal to extension; no reliable public discriminator qualified"
+    },
+    {
+      "case": "addon-cache-shared-native-hard-peak",
+      "status": "OPEN",
+      "reason": "Reporter snapshots and whole-job peak cannot establish addon-only continuous hard peak"
+    },
+    {
+      "case": "all-short-lived-pid-identities",
+      "status": "OPEN",
+      "reason": "Final Stable job has 18 lifetime processes but 17 retained identities"
+    }
+  ],
+  "global_open_gates": [
+    "WINDOWS_DESKTOP",
+    "SPECIAL_NATIVE_GUI_CASES",
+    "MEASUREMENT_FINAL_ATTRIBUTION"
+  ],
+  "global_closed_gate": "TARGET_EQUIVALENT_RESTART",
+  "closure_basis": "verify_restart succeeds independently on both OS reports; both preserve a matching tab session hint; no evidence transfer between OSes",
+  "initial_attempts": [
+    {
+      "attempt": "synthetic-h05l50ra",
+      "result": "PROBE_FAILED",
+      "reason": "Windows browser PID differs from suspended launcher; failed closed before addon installation; owned job/profile cleaned"
+    },
+    {
+      "attempt": "initial native unit tests",
+      "result": "3 assertions failed",
+      "reason": "Assumed exact process counts 1/2; observed 2/3/4 because conhost participates. Subsequent dry-run records conhost image; functional rejection, lifetime CPU/IO/peak and containment assertions preserved."
+    },
+    {
+      "attempt": "initial continuation command",
+      "result": "CLI_ARGUMENT_REJECTED",
+      "reason": "Windows backslash path did not match explicit manifest choices; forward-slash invocation verified 153 files."
+    },
+    {
+      "attempt": "first archive inspection",
+      "result": "tar rejected SFX installer",
+      "reason": "Installer not executed; validated embedded 7z payload extracted instead."
+    }
+  ]
+}

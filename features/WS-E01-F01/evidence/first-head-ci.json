@@ -1,0 +1,80 @@
+{
+  "evidence_class": "CI_VERIFIED",
+  "head": "eb7e93b3fcc89089ebd05682b70082d82129b441",
+  "runs": [
+    {
+      "id": 35457388829,
+      "head_sha": "eb7e93b3fcc89089ebd05682b70082d82129b441",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/felixvonvollmer-png/Firefox---WindowSafe/actions/runs/35457388829",
+      "jobs": [
+        {
+          "name": "foundation",
+          "conclusion": "failure",
+          "failed_steps": [
+            "Harness contract regression tests"
+          ],
+          "url": "https://github.com/felixvonvollmer-png/Firefox---WindowSafe/actions/runs/35457388829/job/105934987439"
+        },
+        {
+          "name": "qualification-windows-static",
+          "conclusion": "failure",
+          "failed_steps": [
+            "F01 Windows static build and lint only - no native GUI evidence"
+          ],
+          "url": "https://github.com/felixvonvollmer-png/Firefox---WindowSafe/actions/runs/35457388829/job/105934987679"
+        }
+      ],
+      "failure_categories": {
+        "npm_503": false,
+        "audit_failure": true,
+        "test_failure": true,
+        "syntax_or_import": false
+      },
+      "diagnostic_lines": [
+        "2026-09-19T17:14:09.6639902Z AssertionError: Invalid not raised",
+        "2026-09-19T17:14:09.6645048Z AssertionError: KeyError not raised",
+        "2026-09-19T17:14:09.6645930Z Ran 105 tests in 49.138s",
+        "2026-09-19T17:14:09.6646162Z FAILED (failures=2)"
+      ]
+    },
+    {
+      "id": 35457405405,
+      "head_sha": "eb7e93b3fcc89089ebd05682b70082d82129b441",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/felixvonvollmer-png/Firefox---WindowSafe/actions/runs/35457405405",
+      "jobs": [
+        {
+          "name": "qualification-windows-static",
+          "conclusion": "failure",
+          "failed_steps": [
+            "F01 Windows static build and lint only - no native GUI evidence"
+          ],
+          "url": "https://github.com/felixvonvollmer-png/Firefox---WindowSafe/actions/runs/35457405405/job/105935031238"
+        },
+        {
+          "name": "foundation",
+          "conclusion": "failure",
+          "failed_steps": [
+            "Harness contract regression tests"
+          ],
+          "url": "https://github.com/felixvonvollmer-png/Firefox---WindowSafe/actions/runs/35457405405/job/105935031341"
+        }
+      ],
+      "failure_categories": {
+        "npm_503": true,
+        "audit_failure": true,
+        "test_failure": true,
+        "syntax_or_import": false
+      },
+      "diagnostic_lines": [
+        "2026-09-19T17:14:25.0166010Z AssertionError: Invalid not raised",
+        "2026-09-19T17:14:25.0174187Z AssertionError: KeyError not raised",
+        "2026-09-19T17:14:25.0175408Z Ran 105 tests in 49.379s",
+        "2026-09-19T17:14:25.0175760Z FAILED (failures=2)"
+      ]
+    }
+  ]
+}

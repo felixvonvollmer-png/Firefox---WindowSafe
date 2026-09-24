@@ -1,0 +1,40 @@
+{
+  "evidence_class": "SYNTHETIC_DRY_RUN_MEASUREMENT",
+  "unit": "windowsafe-f01-dry-8f6c602288c947f38d11e5d09244603d.service",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--unit=windowsafe-f01-dry-8f6c602288c947f38d11e5d09244603d.service",
+    "--property=Type=exec",
+    "--property=CPUAccounting=yes",
+    "--property=MemoryAccounting=yes",
+    "--property=IOAccounting=yes",
+    "/usr/bin/python3",
+    "-c",
+    "import pathlib,time,sys,os\np=pathlib.Path(sys.argv[1]); (p/'ready').write_text(str(os.getpid()))\nwhile not (p/'go').exists(): time.sleep(.05)\nstart=time.process_time(); memory=bytearray(4*1024*1024)\nwhile time.process_time()-start < .5:\n for i in range(0,len(memory),4096): memory[i]=(memory[i]+1)%256\nwith (p/'synthetic.bin').open('wb') as f: f.write(memory); f.flush(); os.fsync(f.fileno())\n(p/'done').write_text(str(time.process_time()-start))\nwhile not (p/'finish').exists(): time.sleep(.05)\n",
+    "/home/felix/projekte/firefox WindowsSaver addon/build/f01/cgroup-dry-atcqfntb"
+  ],
+  "product_performance_verdict": "NOT_EVALUATED",
+  "cgroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-dry-8f6c602288c947f38d11e5d09244603d.service",
+  "before": {
+    "cpu.stat": "usage_usec 18581\nuser_usec 14452\nsystem_usec 4129\nnice_usec 0\ncore_sched.force_idle_usec 0\n",
+    "memory.current": "5402624\n",
+    "memory.peak": "5402624\n",
+    "io.stat": null,
+    "cgroup.procs": "234174\n"
+  },
+  "after": {
+    "cpu.stat": "usage_usec 519921\nuser_usec 513910\nsystem_usec 6010\nnice_usec 0\ncore_sched.force_idle_usec 0\n",
+    "memory.current": "14061568\n",
+    "memory.peak": "14061568\n",
+    "io.stat": null,
+    "cgroup.procs": "234174\n"
+  },
+  "elapsed_seconds": 0.551434192002489,
+  "cpu_delta_seconds": 0.50134,
+  "percent_one_core": 90.91565363029522,
+  "worker_cpu_seconds": 0.501150354,
+  "status": "COUNTERS_OBSERVED",
+  "limitation": "Synthetic Python worker, not Firefox or product. cgroup memory includes native/shared charges; io.stat may be unavailable/empty for the storage layer.",
+  "cleanup": "OWN_TRANSIENT_UNIT_STOPPED"
+}

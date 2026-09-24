@@ -1,0 +1,32 @@
+{
+  "DOCUMENT_TYPE": "WINDOWSAFE_F01_TARGET_QUALIFICATION_RESEARCH_SNAPSHOT",
+  "DATE": "2026-09-19",
+  "PURPOSE": "Starting references only; executing agent must verify current primary sources and actual target runtime.",
+  "SOURCES": [
+    {
+      "topic": "Mozilla unsigned persistent test path",
+      "url": "https://wiki.mozilla.org/Add-ons/Extension_Signing",
+      "fact": "Mozilla documents specialized unbranded release/beta builds for unsigned extension testing; signature-pref changes must stay in a disposable profile."
+    },
+    {
+      "topic": "Windows Job Object assignment",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/jobapi2/nf-jobapi2-assignprocesstojobobject",
+      "fact": "Child processes join an assigned job by default unless breakaway is used; actual assignment/nesting behavior must be verified."
+    },
+    {
+      "topic": "Windows Job Object accounting",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/jobapi2/nf-jobapi2-queryinformationjobobject",
+      "fact": "QueryInformationJobObject exposes basic and basic+I/O accounting information."
+    },
+    {
+      "topic": "Lifetime I/O/accounting semantics",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_basic_and_io_accounting_information",
+      "fact": "Aggregate accounting includes processes that have terminated after being associated with the job."
+    }
+  ],
+  "CAUTION": [
+    "Documentation is not runtime evidence.",
+    "Windows Server CI is not Windows Desktop browser evidence.",
+    "Firefox 157 Developer restart is not Firefox-156-equivalent restart evidence."
+  ]
+}

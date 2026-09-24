@@ -1,0 +1,504 @@
+{
+  "evidence_class": "UBUNTU_RUNTIME_VERIFIED",
+  "qualification_only": true,
+  "host": "felix-A320M-S2H-V2",
+  "os": "Linux-7.0.0-31-generic-x86_64-with-glibc2.43",
+  "driver_sources": {
+    "run_probe.py": "43f670bcff81ab75e962520b31fb10e9515faf7dac2da14d9858081be4711337",
+    "target_probe.py": "7ec69283ffc4b27baaf6327cfffebbb8f3f5c541205f4bfe6b94b38f2afae1ae",
+    "measure.py": "d4e7b322ec870a47ae130a0c692e28527b560f8ed574f2930e260be6cab8f094",
+    "windows_job.py": "61512c629784d92ca555fb6f45070a12a7bc97019a6eb52eef433de256d94bb3"
+  },
+  "version": "156.0",
+  "build_id": "20260909172920",
+  "binary": "/home/felix/projekte/firefox WindowsSaver addon/build/f01/firefox/firefox",
+  "binary_sha256": "7ea3daf0cdbe5ec27e4f2e7c644c25032169f8a2f2f15e438ff4379bf737a78a",
+  "profile": "/home/felix/projekte/firefox WindowsSaver addon/build/f01/runs/target-kbjbxfpv/profile",
+  "profile_class": "NEW_SYNTHETIC_DISPOSABLE",
+  "probe_sha256": "6a9df24e04dc6d3df98930a06a924cb3c5adbb45d68572e7c6b074030b38790d",
+  "headless": false,
+  "driver_source_sha256": "7ec69283ffc4b27baaf6327cfffebbb8f3f5c541205f4bfe6b94b38f2afae1ae",
+  "observations": [
+    {
+      "name": "desktop",
+      "outcome": "OBSERVED",
+      "value": {
+        "mozHeadlessEnvironment": "",
+        "windowState": 3,
+        "screen": {
+          "width": 1920,
+          "height": 1080
+        },
+        "platform": "Linux",
+        "profilerFeatures": [
+          "js",
+          "mainthreadio",
+          "fileio",
+          "fileioall",
+          "nomarkerstacks",
+          "screenshots",
+          "seqstyle",
+          "stackwalk",
+          "jsallocations",
+          "nostacksampling",
+          "ipcmessages",
+          "audiocallbacktracing",
+          "cpuallthreads",
+          "samplingallthreads",
+          "markersallthreads",
+          "unregisteredthreads",
+          "processcpu",
+          "power",
+          "cpufreq",
+          "bandwidth",
+          "memory",
+          "tracing",
+          "sandbox",
+          "flows",
+          "jssources"
+        ]
+      }
+    },
+    {
+      "name": "display-topology",
+      "outcome": "OPEN",
+      "error": "{\"error\": \"javascript error\", \"message\": \"TypeError: can't access property Symbol.iterator, items is undefined\", \"stacktrace\": \"@[System Principal]:2:29\\n@[System Principal]:3:8\\nevaluate.sandbox/promise<@chrome://remote/content/marionette/evaluate.sys.mjs:127:10\\nevaluate.sandbox@chrome://remote/content/marionette/evaluate.sys.mjs:103:17\\nexecuteScript@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:353:26\\nreceiveMessage@chrome://remote/content/marionette/actors/MarionetteCommandsChild.sys.mjs:209:31\\n\"}"
+    },
+    {
+      "name": "initial-api",
+      "outcome": "OBSERVED",
+      "value": {
+        "windows": [
+          {
+            "id": 1,
+            "focused": true,
+            "top": 0,
+            "left": 0,
+            "width": 1332,
+            "height": 1024,
+            "incognito": false,
+            "type": "normal",
+            "state": "normal",
+            "alwaysOnTop": false,
+            "title": "F01 synthetic driver — Mozilla Firefox",
+            "tabs": [
+              {
+                "id": 1,
+                "index": 0,
+                "windowId": 1,
+                "highlighted": true,
+                "active": true,
+                "attention": false,
+                "pinned": false,
+                "status": "complete",
+                "hidden": false,
+                "discarded": false,
+                "incognito": false,
+                "width": 1280,
+                "height": 887,
+                "lastAccessed": 1790248298980,
+                "audible": false,
+                "autoDiscardable": true,
+                "mutedInfo": {
+                  "muted": false
+                },
+                "isInReaderMode": false,
+                "sharingState": {
+                  "camera": false,
+                  "microphone": false
+                },
+                "successorTabId": -1,
+                "groupId": -1,
+                "splitViewId": -1,
+                "cookieStoreId": "firefox-default",
+                "url": "moz-extension://03d4c438-e366-4a5d-b355-7b0ac3156596/driver.html",
+                "title": "F01 synthetic driver"
+              }
+            ]
+          }
+        ],
+        "tabs": [
+          {
+            "id": 1,
+            "windowId": 1,
+            "active": true,
+            "incognito": false,
+            "pinned": false,
+            "discarded": false,
+            "muted": false,
+            "hidden": false,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "splitViewId": -1,
+            "isInReaderMode": false
+          }
+        ],
+        "events": [
+          {
+            "id": 1,
+            "change": {
+              "title": "F01 synthetic driver"
+            }
+          },
+          {
+            "id": 1,
+            "change": {
+              "status": "complete"
+            }
+          }
+        ],
+        "privateAllowed": false
+      }
+    },
+    {
+      "name": "geometry-states",
+      "outcome": "OPEN",
+      "error": "{\"error\": \"script timeout\", \"message\": \"Timed out after 30000 ms\", \"stacktrace\": \"RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8\\nWebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:169:5\\nScriptTimeoutError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:797:5\\nevaluate.sandbox/timeoutPromise</scriptTimeoutID<@chrome://remote/content/marionette/evaluate.sys.mjs:97:11\\nnotify@resource://gre/modules/Timer.sys.mjs:66:16\\n\"}"
+    },
+    {
+      "name": "webapp-surface",
+      "outcome": "OBSERVED",
+      "value": {
+        "os": "Linux",
+        "webAppWindow": "undefined",
+        "webAppMenu": false,
+        "taskbarTabsEnabled": true
+      }
+    },
+    {
+      "name": "webapp-native-open",
+      "outcome": "OBSERVED",
+      "value": {
+        "id": "c930c827-57af-4119-a8e6-88808019f001",
+        "type": "navigator:browser",
+        "uri": "chrome://browser/content/browser.xhtml",
+        "taskbarTab": "c930c827-57af-4119-a8e6-88808019f001",
+        "tabs": 1
+      }
+    },
+    {
+      "name": "webapp-api-classification",
+      "outcome": "OBSERVED",
+      "value": {
+        "windows": [
+          {
+            "id": 1,
+            "focused": false,
+            "top": 0,
+            "left": 0,
+            "width": 1332,
+            "height": 1024,
+            "incognito": false,
+            "type": "normal",
+            "state": "normal",
+            "alwaysOnTop": false,
+            "title": "F01 synthetic driver — Mozilla Firefox",
+            "tabs": [
+              {
+                "id": 1,
+                "index": 0,
+                "windowId": 1,
+                "highlighted": true,
+                "active": true,
+                "attention": false,
+                "pinned": false,
+                "status": "complete",
+                "hidden": false,
+                "discarded": false,
+                "incognito": false,
+                "width": 1280,
+                "height": 887,
+                "lastAccessed": 1790248329141,
+                "audible": false,
+                "autoDiscardable": true,
+                "mutedInfo": {
+                  "muted": false
+                },
+                "isInReaderMode": false,
+                "sharingState": {
+                  "camera": false,
+                  "microphone": false
+                },
+                "successorTabId": -1,
+                "groupId": -1,
+                "splitViewId": -1,
+                "cookieStoreId": "firefox-default",
+                "url": "moz-extension://03d4c438-e366-4a5d-b355-7b0ac3156596/driver.html",
+                "title": "F01 synthetic driver"
+              }
+            ]
+          },
+          {
+            "id": 23,
+            "focused": false,
+            "top": 0,
+            "left": 0,
+            "width": 1853,
+            "height": 1048,
+            "incognito": false,
+            "type": "normal",
+            "state": "maximized",
+            "alwaysOnTop": false,
+            "title": "F01 synthetic article — Mozilla Firefox",
+            "tabs": [
+              {
+                "id": 2,
+                "index": 0,
+                "windowId": 23,
+                "highlighted": true,
+                "active": true,
+                "attention": false,
+                "pinned": false,
+                "status": "complete",
+                "hidden": false,
+                "discarded": false,
+                "incognito": false,
+                "width": 1853,
+                "height": 963,
+                "lastAccessed": 1790248329141,
+                "audible": false,
+                "autoDiscardable": true,
+                "mutedInfo": {
+                  "muted": false
+                },
+                "isArticle": true,
+                "isInReaderMode": false,
+                "sharingState": {
+                  "camera": false,
+                  "microphone": false
+                },
+                "successorTabId": -1,
+                "groupId": -1,
+                "splitViewId": -1,
+                "cookieStoreId": "firefox-default",
+                "url": "http://127.0.0.1:41301/article.html",
+                "title": "F01 synthetic article"
+              }
+            ]
+          },
+          {
+            "id": 29,
+            "focused": true,
+            "top": 0,
+            "left": 0,
+            "width": 1332,
+            "height": 1024,
+            "incognito": false,
+            "type": "normal",
+            "state": "normal",
+            "alwaysOnTop": false,
+            "title": "F01 synthetic article — F01 synthetic disposable in Mozilla Firefox",
+            "tabs": [
+              {
+                "id": 3,
+                "index": 0,
+                "windowId": 29,
+                "highlighted": true,
+                "active": true,
+                "attention": false,
+                "pinned": false,
+                "status": "complete",
+                "hidden": false,
+                "discarded": false,
+                "incognito": false,
+                "width": 1280,
+                "height": 931,
+                "lastAccessed": 1790248329142,
+                "audible": false,
+                "autoDiscardable": true,
+                "mutedInfo": {
+                  "muted": false
+                },
+                "isInReaderMode": false,
+                "sharingState": {
+                  "camera": false,
+                  "microphone": false
+                },
+                "successorTabId": -1,
+                "groupId": -1,
+                "splitViewId": -1,
+                "cookieStoreId": "firefox-default",
+                "url": "http://127.0.0.1:41301/article.html",
+                "title": "F01 synthetic article"
+              }
+            ]
+          }
+        ],
+        "tabs": [
+          {
+            "id": 1,
+            "windowId": 1,
+            "active": true,
+            "incognito": false,
+            "pinned": false,
+            "discarded": false,
+            "muted": false,
+            "hidden": false,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "splitViewId": -1,
+            "isInReaderMode": false
+          },
+          {
+            "id": 2,
+            "windowId": 23,
+            "active": true,
+            "incognito": false,
+            "pinned": false,
+            "discarded": false,
+            "muted": false,
+            "hidden": false,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "splitViewId": -1,
+            "isInReaderMode": false
+          },
+          {
+            "id": 3,
+            "windowId": 29,
+            "active": true,
+            "incognito": false,
+            "pinned": false,
+            "discarded": false,
+            "muted": false,
+            "hidden": false,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "splitViewId": -1,
+            "isInReaderMode": false
+          }
+        ],
+        "events": [
+          {
+            "id": 1,
+            "change": {
+              "title": "F01 synthetic driver"
+            }
+          },
+          {
+            "id": 1,
+            "change": {
+              "status": "complete"
+            }
+          },
+          {
+            "id": 2,
+            "change": {
+              "status": "loading"
+            }
+          },
+          {
+            "id": 2,
+            "change": {
+              "title": "127.0.0.1:41301/article.html"
+            }
+          },
+          {
+            "id": 2,
+            "change": {
+              "status": "loading",
+              "url": "http://127.0.0.1:41301/article.html"
+            }
+          },
+          {
+            "id": 2,
+            "change": {
+              "title": "F01 synthetic article"
+            }
+          },
+          {
+            "id": 2,
+            "change": {
+              "status": "complete"
+            }
+          },
+          {
+            "id": 2,
+            "change": {
+              "isArticle": true
+            }
+          },
+          {
+            "id": 3,
+            "change": {
+              "status": "loading"
+            }
+          },
+          {
+            "id": 3,
+            "change": {
+              "title": "127.0.0.1:41301/article.html"
+            }
+          },
+          {
+            "id": 3,
+            "change": {
+              "status": "loading",
+              "url": "http://127.0.0.1:41301/article.html"
+            }
+          },
+          {
+            "id": 3,
+            "change": {
+              "title": "F01 synthetic article"
+            }
+          },
+          {
+            "id": 3,
+            "change": {
+              "status": "complete"
+            }
+          }
+        ],
+        "privateAllowed": false
+      }
+    },
+    {
+      "name": "webapp-native-close",
+      "outcome": "OBSERVED",
+      "value": true
+    }
+  ],
+  "memory": [],
+  "cleanup": "OWN_PROFILE_REMOVED__OWN_CGROUP_EXITED",
+  "pid": 23274,
+  "command": [
+    "/home/felix/projekte/firefox WindowsSaver addon/build/f01/firefox/firefox",
+    "--no-remote",
+    "--new-instance",
+    "--profile",
+    "/home/felix/projekte/firefox WindowsSaver addon/build/f01/runs/target-kbjbxfpv/profile",
+    "--marionette",
+    "--remote-allow-system-access"
+  ],
+  "cgroup": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-e2ec129211d14b51a1f41ae5df446d47.service",
+  "session_binding": {
+    "acceptInsecureCerts": false,
+    "browserName": "firefox",
+    "browserVersion": "156.0",
+    "platformName": "linux",
+    "setWindowRect": true,
+    "unhandledPromptBehavior": "dismiss and notify",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:156.0) Gecko/20100101 Firefox/156.0",
+    "moz:buildID": "20260909172920",
+    "moz:headless": false,
+    "moz:platformVersion": "7.0.0-31-generic",
+    "moz:processID": 23274,
+    "moz:profile": "/home/felix/projekte/firefox WindowsSaver addon/build/f01/runs/target-kbjbxfpv/profile",
+    "moz:shutdownTimeout": 60000,
+    "pageLoadStrategy": "normal",
+    "timeouts": {
+      "implicit": 0,
+      "pageLoad": 300000,
+      "script": 30000
+    },
+    "strictFileInteractability": false,
+    "moz:accessibilityChecks": false,
+    "moz:webdriverClick": true,
+    "moz:windowless": false,
+    "proxy": {}
+  },
+  "closure_only": true,
+  "extension_url": "moz-extension://03d4c438-e366-4a5d-b355-7b0ac3156596/driver.html",
+  "status": "PARTIAL_OBSERVATIONS__NO_GATE_SELF_ACCEPTANCE"
+}

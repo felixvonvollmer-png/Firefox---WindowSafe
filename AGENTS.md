@@ -4,16 +4,18 @@ Zuerst [foundation/context.md](foundation/context.md), die auftragsrelevanten Or
 und [Engineeringregeln](foundation/engineering.md) laden. Exakte Foundation 2:
 `foundation/sources/foundation-2.md`; Foundation 1 trennt unabhängige Reviewautorität.
 
-Aktuelle Fortsetzung: **WS-E01-F01-WIN-20260924-01**, Autorisierung **WS-EA-20260919-08**.
+Aktueller Stop: **WS-E01-F01-UBUNTU-CLOSURE-20260924-01**, Autorisierung **WS-EA-20260919-08**.
 Original: `features/WS-E01-F01/evidence/target-authorization.json`.
-Fortsetzungsstart: `7b52f6655e4478caa4864801b24877d22c33fa83`, ursprüngliche Featurebasis
+Fortsetzungsstart: `ead93411b37dcb0885be018f0a865f236dc52ff2`, ursprüngliche Featurebasis
 `3bdd7439c221b8f8c83e7374c8bb29898891a4fd`, Branch
-`feature/ws-e01-f01-qualification`. Aktueller Zustand und offene Gates:
+`feature/ws-e01-f01-qualification`. Aktueller Zustand:
 [features/WS-E01-F01/state.json](features/WS-E01-F01/state.json),
-[Bericht](features/WS-E01-F01/evidence/win-qualification.md).
-Windows Desktop wurde ausgeführt; exakter 156-Neustart ist für beide OS belegt.
-Windows-/Sonderfensterabgrenzung und finale Messattribution bleiben offen.
-Ubuntu-Nachweise nicht auf Windows übertragen. Audit-Recovery ist abgeschlossen.
+[Bericht und Entscheidungsoptionen](features/WS-E01-F01/evidence/ubuntu-closure.md).
+**BLOCKED__MATERIAL_USER_DECISION_REQUIRED**: Native WebApps erscheinen auf beiden OS
+öffentlich als `normal`; kein sicherer öffentlicher Discriminator nachgewiesen.
+Keine Option gewählt. Zuerst materielle Entscheidung und erforderliches Rebinding.
+Ubuntu-Display-/State-Proben und finale Messmethodik bleiben offen; exakter 156-Neustart
+ist für beide OS belegt und wurde nicht wiederholt. Historische Evidence unverändert.
 Keine Dependency-/Lock-/Toolchainversionsänderung und keine finale V6-Migration.
 
 Nur Plattform-/Toolchain-/Messqualifikation, generischer JIT-Lifecycle, synthetische Probes

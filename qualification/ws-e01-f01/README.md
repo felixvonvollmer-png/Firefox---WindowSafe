@@ -1,12 +1,21 @@
 # F01 synthetic qualification continuation
 
-Current run: WS-E01-F01-WIN-20260924-01 / WS-EA-20260919-08.
-Use the [Windows continuation](../../features/WS-E01-F01/evidence/win-continuation.md)
-and [Windows/cross-OS report](../../features/WS-E01-F01/evidence/win-qualification.md).
-Native Job regressions and browser runs were executed on Windows 11 build 22631.6199.
-Restart is evidenced on both OSes; special-window boundaries and final attribution remain open.
-The current native runner supports Windows Jobs and Ubuntu cgroups. Neither whole-job commit
-peaks nor sampled PID identities close the final attribution gate.
+Current stop: WS-E01-F01-UBUNTU-CLOSURE-20260924-01 / WS-EA-20260919-08.
+**BLOCKED__MATERIAL_USER_DECISION_REQUIRED**. Read the
+[closure report and options](../../features/WS-E01-F01/evidence/ubuntu-closure.md).
+No further qualification execution until the material WebApp decision and required
+rebinding. Existing exact-156 restart evidence on both OSes is retained.
+
+The `target_probe.py --closure-only` mode creates only enabled native WebApp and
+remaining display/state fixtures in a new disposable profile. It does not repeat
+restart/private/DevTools/PiP/Split/memory runs. Its recorded Ubuntu topology API
+error and geometry timeout remain unresolved; exit 0 is not probe success.
+The exact executed driver and errors are in the closure artifact pack.
+
+For read-only input verification use `continuation.py --manifest
+features/WS-E01-F01/evidence/ubuntu-closure-manifest.json --manifest-sha256 HASH`
+with the external delivery hash. The historical commands below are provenance,
+not authority to resume the blocked run.
 
 ## Historical Ubuntu handoff
 

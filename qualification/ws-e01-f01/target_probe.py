@@ -132,7 +132,10 @@ def api(client, operation, url):
 
 def main():
     parser = argparse.ArgumentParser(); parser.add_argument('--firefox', type=Path, required=True)
-    parser.add_argument('--firefox-sha256', required=True); args = parser.parse_args()
+    parser.add_argument('--firefox-sha256', required=True)
+    parser.add_argument('--closure-only', action='store_true',
+                        help='Only enabled WebApp and display/state delta; no restart or repeated matrix')
+    args = parser.parse_args()
     if os.name != 'nt' and (platform.system() != 'Linux' or not os.environ.get('DISPLAY') or not os.environ.get('WAYLAND_DISPLAY')):
         raise ValueError('this instrument requires the available Ubuntu visible Wayland Desktop')
     binary = args.firefox.resolve(strict=True)
@@ -150,7 +153,7 @@ def main():
     server = http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Local,directory=str(SOURCE/'pages')))
     threading.Thread(target=server.serve_forever,daemon=True).start()
     url=f'http://127.0.0.1:{server.server_port}/article.html'
-    if os.name == 'nt':
+    if os.name == 'nt' or args.closure_only:
         # Preseed only this new profile; native openWindow avoids the pin/install path.
         webapp=profile/'taskbartabs';webapp.mkdir()
         (webapp/'taskbartabs.json').write_text(json.dumps({'version':1,'taskbarTabs':[{
@@ -167,6 +170,8 @@ def main():
         'network.proxy.type':1,'network.proxy.http':'127.0.0.1','network.proxy.http_port':9,
         'network.proxy.ssl':'127.0.0.1','network.proxy.ssl_port':9,'network.proxy.no_proxies_on':'localhost, 127.0.0.1',
         'network.dns.disablePrefetch':True,'network.prefetch-next':False,'media.autoplay.default':0}
+    if args.closure_only:
+        prefs['browser.taskbarTabs.enabled'] = True
     (profile/'user.js').write_text(''.join('user_pref('+json.dumps(k)+', '+json.dumps(v)+');\n' for k,v in prefs.items()))
     manifest={'manifest_version':3,'name':'F01 target qualification ONLY','version':'0.0.1','incognito':'not_allowed',
         'browser_specific_settings':{'gecko':{'id':ID,'strict_min_version':'156.0','data_collection_permissions':{'required':['none']}}},
@@ -224,38 +229,45 @@ def main():
         if Path(caps['moz:profile']).resolve()!=profile:raise ValueError('owned profile mismatch')
         record['session_binding']=caps
         observe('desktop',lambda:execute(client,'return {mozHeadlessEnvironment:Services.env.get("MOZ_HEADLESS"),windowState:window.windowState,screen:{width:screen.width,height:screen.height},platform:Services.appinfo.OS,profilerFeatures:Services.profiler.GetFeatures()};'))
-        memory('a-no-addon')
+        record['closure_only'] = args.closure_only
+        if not args.closure_only:
+            memory('a-no-addon')
         client.command('Addon:Install',{'path':str(package),'temporary':True})
         extension_url=execute(client,'return WebExtensionPolicy.getByID(arguments[0]).getURL("driver.html");',[ID])
         record['extension_url']=extension_url
         client.command('Marionette:SetContext',{'value':'content'});client.command('WebDriver:Navigate',{'url':extension_url})
         origin=extension_url.split('/')[2]
-        observe('initial-api',lambda:api(client,'snapshot',url));memory('b-addon-idle',origin)
-        observe('synthetic-allocation',lambda:api(client,'allocate',url));memory('b-addon-held',origin)
-        observe('synthetic-short-pulse',lambda:api(client,'pulse',url));memory('b-after-pulse',origin)
-        observe('synthetic-release',lambda:api(client,'release',url))
-        observe('private-native-create',lambda:execute(client,'window.f01Private=window.OpenBrowserWindow({private:true}); return true;'))
-        time.sleep(1)
-        observe('private-native-windows',lambda:execute(client,'return Array.from(Services.wm.getEnumerator(null)).map(w=>({type:w.document.documentElement.getAttribute("windowtype"),private:ChromeUtils.importESModule("resource://gre/modules/PrivateBrowsingUtils.sys.mjs").PrivateBrowsingUtils.isWindowPrivate(w)}));'))
-        observe('private-api-exclusion',lambda:api(client,'snapshot',url))
-        observe('private-native-close',lambda:execute(client,'window.f01Private.close();return true;'))
-        observe('split-native',lambda:execute(client,'const b=window.gBrowser;const a=b.addTab(arguments[0],{triggeringPrincipal:Services.scriptSecurityManager.getSystemPrincipal()});const c=b.addTab(arguments[0],{triggeringPrincipal:Services.scriptSecurityManager.getSystemPrincipal()});const v=b.addTabSplitView([a,c]);return {id:v.splitViewId,tabs:v.tabs.length,pref:Services.prefs.getBoolPref("browser.tabs.splitView.enabled",false)};',[url]))
-        time.sleep(.5)
-        observe('split-api-events',lambda:api(client,'snapshot',url))
-        observe('interactions',lambda:api(client,'interactions',url))
-        observe('container-collisions',lambda:api(client,'collisions',url))
-        observe('geometry-states',lambda:api(client,'geometry',url))
-        observe('devtools',lambda:execute(client,'const done=arguments[arguments.length-1];const {loader}=ChromeUtils.importESModule("resource://devtools/shared/loader/Loader.sys.mjs");loader.require("devtools/client/framework/devtools").gDevTools.showToolboxForTab(window.gBrowser.selectedTab,{toolId:"webconsole",hostType:"window"}).then(t=>{window.f01Toolbox=t;done({host:t.hostType});},e=>done({error:String(e)}));',async_script=True))
-        observe('special-native-windows',lambda:execute(client,'return Array.from(Services.wm.getEnumerator(null)).map(w=>({type:w.document.documentElement.getAttribute("windowtype"),uri:w.document.documentURI}));'))
-        observe('special-api-windows',lambda:api(client,'snapshot',url))
-        observe('devtools-close',lambda:execute(client,'const done=arguments[arguments.length-1];if(window.f01Toolbox)window.f01Toolbox.destroy().then(()=>done(true));else done(false);',async_script=True))
-        observe('pip-video-tab',lambda:execute(client,'const t=window.gBrowser.addTab(arguments[0],{triggeringPrincipal:Services.scriptSecurityManager.getSystemPrincipal()});window.f01VideoTab=t;window.gBrowser.selectedTab=t;return true;',[url.replace('/article.html','/video.html')]))
-        observe('pip-request',lambda:execute(client,'const done=arguments[arguments.length-1];const b=window.f01VideoTab.linkedBrowser;const start=Date.now();const poll=()=>{if(b.currentURI.spec.endsWith("/video.html")&&!b.webProgress.isLoadingDocument){b.browsingContext.currentWindowGlobal.getActor("PictureInPictureLauncher").sendAsyncMessage("PictureInPicture:KeyToggle");done(true);}else if(Date.now()-start>10000)done({error:"synthetic video load deadline"});else setTimeout(poll,100);};poll();',async_script=True))
-        observe('pip-native-window',lambda:execute(client,'const done=arguments[arguments.length-1];const start=Date.now();const poll=()=>{const ws=Array.from(Services.wm.getEnumerator(null));const p=ws.find(w=>w.document.documentURI.includes("pictureinpicture"));if(p)done({type:p.document.documentElement.getAttribute("windowtype"),uri:p.document.documentURI});else if(Date.now()-start>10000)done({error:"no native PiP window observed"});else setTimeout(poll,100);};poll();',async_script=True))
-        observe('pip-api-exclusion',lambda:api(client,'snapshot',url))
-        observe('pip-native-close',lambda:execute(client,'for(const w of Services.wm.getEnumerator(null)){if(w.document.documentURI.includes("pictureinpicture"))w.close();}return true;'))
+        if args.closure_only:
+            observe('display-topology',lambda:execute(client,'return {screens:Array.from(Cc["@mozilla.org/gfx/screenmanager;1"].getService(Ci.nsIScreenManager).screens, s=>{const x={},y={},w={},h={};s.GetRect(x,y,w,h);return {x:x.value,y:y.value,width:w.value,height:h.value,scale:s.contentsScaleFactor,defaultCSSScale:s.defaultCSSScaleFactor};}),devicePixelRatio:window.devicePixelRatio};'))
+            observe('initial-api',lambda:api(client,'snapshot',url))
+            observe('geometry-states',lambda:api(client,'geometry',url))
+        else:
+            observe('initial-api',lambda:api(client,'snapshot',url));memory('b-addon-idle',origin)
+            observe('synthetic-allocation',lambda:api(client,'allocate',url));memory('b-addon-held',origin)
+            observe('synthetic-short-pulse',lambda:api(client,'pulse',url));memory('b-after-pulse',origin)
+            observe('synthetic-release',lambda:api(client,'release',url))
+            observe('private-native-create',lambda:execute(client,'window.f01Private=window.OpenBrowserWindow({private:true}); return true;'))
+            time.sleep(1)
+            observe('private-native-windows',lambda:execute(client,'return Array.from(Services.wm.getEnumerator(null)).map(w=>({type:w.document.documentElement.getAttribute("windowtype"),private:ChromeUtils.importESModule("resource://gre/modules/PrivateBrowsingUtils.sys.mjs").PrivateBrowsingUtils.isWindowPrivate(w)}));'))
+            observe('private-api-exclusion',lambda:api(client,'snapshot',url))
+            observe('private-native-close',lambda:execute(client,'window.f01Private.close();return true;'))
+            observe('split-native',lambda:execute(client,'const b=window.gBrowser;const a=b.addTab(arguments[0],{triggeringPrincipal:Services.scriptSecurityManager.getSystemPrincipal()});const c=b.addTab(arguments[0],{triggeringPrincipal:Services.scriptSecurityManager.getSystemPrincipal()});const v=b.addTabSplitView([a,c]);return {id:v.splitViewId,tabs:v.tabs.length,pref:Services.prefs.getBoolPref("browser.tabs.splitView.enabled",false)};',[url]))
+            time.sleep(.5)
+            observe('split-api-events',lambda:api(client,'snapshot',url))
+            observe('interactions',lambda:api(client,'interactions',url))
+            observe('container-collisions',lambda:api(client,'collisions',url))
+            observe('geometry-states',lambda:api(client,'geometry',url))
+            observe('devtools',lambda:execute(client,'const done=arguments[arguments.length-1];const {loader}=ChromeUtils.importESModule("resource://devtools/shared/loader/Loader.sys.mjs");loader.require("devtools/client/framework/devtools").gDevTools.showToolboxForTab(window.gBrowser.selectedTab,{toolId:"webconsole",hostType:"window"}).then(t=>{window.f01Toolbox=t;done({host:t.hostType});},e=>done({error:String(e)}));',async_script=True))
+            observe('special-native-windows',lambda:execute(client,'return Array.from(Services.wm.getEnumerator(null)).map(w=>({type:w.document.documentElement.getAttribute("windowtype"),uri:w.document.documentURI}));'))
+            observe('special-api-windows',lambda:api(client,'snapshot',url))
+            observe('devtools-close',lambda:execute(client,'const done=arguments[arguments.length-1];if(window.f01Toolbox)window.f01Toolbox.destroy().then(()=>done(true));else done(false);',async_script=True))
+            observe('pip-video-tab',lambda:execute(client,'const t=window.gBrowser.addTab(arguments[0],{triggeringPrincipal:Services.scriptSecurityManager.getSystemPrincipal()});window.f01VideoTab=t;window.gBrowser.selectedTab=t;return true;',[url.replace('/article.html','/video.html')]))
+            observe('pip-request',lambda:execute(client,'const done=arguments[arguments.length-1];const b=window.f01VideoTab.linkedBrowser;const start=Date.now();const poll=()=>{if(b.currentURI.spec.endsWith("/video.html")&&!b.webProgress.isLoadingDocument){b.browsingContext.currentWindowGlobal.getActor("PictureInPictureLauncher").sendAsyncMessage("PictureInPicture:KeyToggle");done(true);}else if(Date.now()-start>10000)done({error:"synthetic video load deadline"});else setTimeout(poll,100);};poll();',async_script=True))
+            observe('pip-native-window',lambda:execute(client,'const done=arguments[arguments.length-1];const start=Date.now();const poll=()=>{const ws=Array.from(Services.wm.getEnumerator(null));const p=ws.find(w=>w.document.documentURI.includes("pictureinpicture"));if(p)done({type:p.document.documentElement.getAttribute("windowtype"),uri:p.document.documentURI});else if(Date.now()-start>10000)done({error:"no native PiP window observed"});else setTimeout(poll,100);};poll();',async_script=True))
+            observe('pip-api-exclusion',lambda:api(client,'snapshot',url))
+            observe('pip-native-close',lambda:execute(client,'for(const w of Services.wm.getEnumerator(null)){if(w.document.documentURI.includes("pictureinpicture"))w.close();}return true;'))
         observe('webapp-surface',lambda:execute(client,'return {os:Services.appinfo.OS,webAppWindow:typeof window.openWebApp,webAppMenu:!!document.getElementById("appMenu-installSite-button"),taskbarTabsEnabled:Services.prefs.getBoolPref("browser.taskbarTabs.enabled",false)};'))
-        if os.name == 'nt':
+        if os.name == 'nt' or args.closure_only:
             observe('webapp-native-open',lambda:execute(client,'const done=arguments[arguments.length-1];(async()=>{const {TaskbarTabs}=ChromeUtils.importESModule("resource:///modules/taskbartabs/TaskbarTabs.sys.mjs");const t=await TaskbarTabs.getTaskbarTab("c930c827-57af-4119-a8e6-88808019f001");window.f01WebApp=await TaskbarTabs.openWindow(t);done({id:t.id,type:window.f01WebApp.document.documentElement.getAttribute("windowtype"),uri:window.f01WebApp.document.documentURI,taskbarTab:window.f01WebApp.document.documentElement.getAttribute("taskbartab"),tabs:window.f01WebApp.gBrowser.tabs.length});})().catch(e=>done({error:String(e)}));',async_script=True))
             observe('webapp-api-classification',lambda:api(client,'snapshot',url))
             observe('webapp-native-close',lambda:execute(client,'if(window.f01WebApp){window.f01WebApp.close();return true;}return false;'))

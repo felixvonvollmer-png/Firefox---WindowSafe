@@ -1,0 +1,48 @@
+Materialisiere jetzt das exakt gebundene WindowSafe Project-Foundation-Delta.
+
+Run:
+`WS-PFDELTA-MAT-20260928-01`
+
+Authorization:
+`WS-EA-20260928-01`
+
+Repository:
+`felixvonvollmer-png/Firefox---WindowSafe`
+
+Start strictly from:
+`main@3bdd7439c221b8f8c83e7374c8bb29898891a4fd`
+
+Create only:
+`foundation/ws-pf-delta-20260928-01`
+
+Read first:
+1. `WindowSafe_Execution_Authorization_WS-EA-20260928-01.json`
+2. `WindowSafe_Project_Foundation_Delta_Materialization_Handoff_WS-PFDELTA-MAT-20260928-01.md`
+3. `WindowSafe_Technical_Foundation_Delta_Binding_WS-TFP-DELTA-BIND-20260928-01.json`
+4. `WindowSafe_Project_Foundation_Delta_Materialization_Scope_20260928.md`
+5. `SHA256SUMS.json`
+6. the exact bound Product/TF/Review artifacts in this package.
+
+Reverify every package hash and every Git/V6 locator before writing.
+
+This is a Brownfield, append-only Project-Foundation materialization. Preserve historical
+Product/Foundation/Epic/F01/review originals exactly. Do not overwrite the old
+`foundation/sources/foundation-1.md`, `foundation/sources/foundation-2.md` or
+`foundation/subject.json`.
+
+Materialize the approved WS-P05 Product Truth and reviewed TF delta, migrate active routing
+minimally to the final frozen V6 F1/F2 pair, and create a new versioned Project-Foundation
+delta subject/evidence state.
+
+PR #3 / `feature/ws-e01-f01-qualification@7d66ca5b025c8f748d7f97b961c496ee450daaa7` is read-only external evidence.
+Do not modify, rebase, merge or continue F01.
+
+You may commit/push only the new foundation branch and create/update its separate PR to main.
+Do not merge.
+
+Stop exactly at:
+`PROJECT_FOUNDATION_READY_FOR_REVIEW`
+
+Then return exact Head/Tree, PR, subject/evidence locators, changed paths, checks/CI, immutable
+hash verification and proof that no external Project Context Sync, Epic delta, F01 continuation,
+Feature Acceptance, merge, release or Production occurred.

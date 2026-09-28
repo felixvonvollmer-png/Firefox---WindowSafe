@@ -1,6 +1,31 @@
 # Kanonischer Reviewkanal und aktuelle Review-Locators
 
-## Aktueller Einstieg: Epic Preparation und Feature Acceptance
+## Aktueller Auftrag: Project Foundation Delta
+
+[Subject](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json): **WS-PFDELTA-MAT-20260928-01**.
+[Evidence und Ausführungsgrenzen](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/evidence.md).
+Der vollständige End-SHA und die CI-Run-Locators werden im separaten PR-Handoff
+angegeben und müssen unabhängig gegen den PR-Head geprüft werden.
+Kanonischer V3-Vertrag und Resultatkanal bleiben unverändert; kein alternativer
+Reviewvertrag für das Delta. Neue Foundation-Subjects besitzen versionierte Locator,
+`foundation/subject.json` bleibt historisch. TF-Preparation-Resultate liegen als
+externe Originalinputs vor, nicht als neu erzeugte Repository-Reviewresultate.
+
+```sh
+python3 tools/foundation.py request --sha <END_SHA> --subject foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json
+python3 tools/foundation.py schema-preflight --sha <END_SHA> --schema reviews/review-contract.json
+python3 tools/foundation.py history --base 3bdd7439c221b8f8c83e7374c8bb29898891a4fd
+```
+
+Review durch frischen/ausreichend isolierten unabhängigen Kontext, read-only am
+exakten SHA. Kritische Eigenprüfung und grüne CI sind kein unabhängiges PASS.
+Review umfasst WS-P05-Fidelität, finale V6-Router, historische Kompatibilität,
+Scope-/Historyguards, lokale Tests und exakte CI. Resultat vor Transport mit dem
+kanonischen Verbraucher validieren. Kein Merge, externer Sync, Epic-Rebinding,
+F01-Start, Feature Acceptance oder Production durch dieses Review vorbereitet.
+
+
+## Historischer Einstieg: Epic Preparation und Feature Acceptance
 
 WS-E01 Preparation ist mit dem unveränderten unabhängigen
 [WS-E01-EPR-20260919-02 PASS](results/WS-E01-EPR-20260919-02.json) angenommen.

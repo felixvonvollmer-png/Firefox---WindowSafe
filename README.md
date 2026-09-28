@@ -5,15 +5,14 @@ Nutzeraktion wiederherstellen. Dieses Repository enthält derzeit ausschließlic
 die integrierte **Project Foundation** und die WS-E01 Epic Preparation, keine
 installierbare Erweiterung oder Produktfunktion.
 
-Aktuell: **WS-E01-INT-20260919-02**, autorisiert durch **WS-EA-20260919-05**.
-Der unveränderte unabhängige [Epic Preparation PASS](reviews/results/WS-E01-EPR-20260919-02.json)
-bindet den reviewed Subject `644b81f63dcc1990bc894a9c2c9bd8dc24a98c04` und dessen
-Foundationbasis `dc9c1c37a264cc80f79ec08bf166ec42cdd73b95`.
-Das [WS-E01 Binding](epics/WS-E01/binding.json) ist **READY_FOR_AGENT**;
-External Context Sync: NOT_APPLICABLE. Die Annahme öffnet ausschließlich das
-Preparation-Gate. Dieser Auftrag endet nach geprüfter Normal-Merge-Integration
-von PR #2. WS-E01-F01 benötigt eine spätere ausdrückliche Ausführungsautorisierung;
-Produkt-/Browser-/Profilarbeit bleibt in diesem Lauf ausgeschlossen.
+Aktuell: **WS-PFDELTA-MAT-20260928-01** unter **WS-EA-20260928-01**:
+minimaler Brownfield-Foundation-Delta für WS-P05 und finale V6-Router.
+[Neuer Subject](foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json) und [Evidence/Review-Handoff](foundation/deltas/WS-PFDELTA-MAT-20260928-01/evidence.md).
+Stop: **PROJECT_FOUNDATION_READY_FOR_REVIEW**, unabhängiger Review noch offen.
+Historische WS-E01 Preparation bleibt unverändert angenommen; ihre Annahme ersetzt
+kein Delta-Rebinding. F01 bleibt auf PR #3 am Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`
+Draft/ungemergt und wird hier nicht fortgesetzt. Kein Merge oder Produktcode.
+Externer Project-Context-Sync: **PENDING_AFTER_PROJECT_FOUNDATION_REVIEW_PASS**.
 
 - [Kontext und unveränderte Product Truth](foundation/context.md)
 - [Architektur, Entscheidungen und offene Vorab-Gates](foundation/architecture.md)

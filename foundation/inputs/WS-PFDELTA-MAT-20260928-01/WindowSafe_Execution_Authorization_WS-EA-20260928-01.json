@@ -1,0 +1,87 @@
+{
+  "DOCUMENT_TYPE": "EXECUTION_AUTHORIZATION",
+  "AUTHORIZATION_ID": "WS-EA-20260928-01",
+  "RUN_ID": "WS-PFDELTA-MAT-20260928-01",
+  "PROJECT": "WindowSafe",
+  "DATE": "2026-09-28",
+  "AUTHORITY": "USER",
+  "USER_AUTHORIZATION_REFERENCE": {
+    "SOURCE": "CURRENT_CONVERSATION_EXPLICIT_USER_MESSAGE",
+    "VERBATIM_MESSAGE": "frei",
+    "CONTEXT": "Immediately after the Project-LLM proposed a separately authorized Coding-Agent run limited to materializing the bound Project-Foundation delta.",
+    "INTERPRETATION": "Authorizes exactly the materialization run defined here; no merge, F01 continuation, Epic delta, Feature Acceptance, release or Production."
+  },
+  "TARGET_REPOSITORY": {
+    "FULL_NAME": "felixvonvollmer-png/Firefox---WindowSafe",
+    "REPOSITORY_ID": 1374094477,
+    "START_MAIN_SHA": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
+    "START_BRANCH": "main",
+    "MATERIALIZATION_BRANCH": "foundation/ws-pf-delta-20260928-01",
+    "PR_TARGET": "main",
+    "CURRENT_F01_PR": 3,
+    "CURRENT_F01_PR_HEAD": "7d66ca5b025c8f748d7f97b961c496ee450daaa7",
+    "CURRENT_F01_PR_EXPECTED": "DRAFT__OPEN__UNMERGED"
+  },
+  "BOUND_INPUTS": {
+    "PRODUCT_DELTA": {
+      "ID": "WS-PD-DELTA-20260924-01",
+      "SHA256": "0caca99a713a0e026af5b63beee5f8abc310ef3d38f20c9653cd3042322aec16"
+    },
+    "PRODUCT_DELTA_APPROVAL": {
+      "ID": "WS-PD-DELTA-APPROVAL-20260928-01",
+      "SHA256": "9e15db18b095655dfc503d67cad4486998e68493c323f8b2217e9d71e5987ab5"
+    },
+    "TECHNICAL_FOUNDATION_DELTA": {
+      "ID": "WS-TFP-DELTA-20260928-02",
+      "SHA256": "8c687681f9a46cf0782212ebfa5be5d6e22cac77d890b1f436a8395f7b1c5d2c"
+    },
+    "TF_DELTA_BINDING": {
+      "ID": "WS-TFP-DELTA-BIND-20260928-01",
+      "SHA256": "684e759d4f66b8ac73a2e191b6ccaedf1416c9360619f2d89dc1ef2366b60e21"
+    },
+    "INDEPENDENT_TF_REVIEW": {
+      "ID": "WS-TFPR-DELTA-20260928-02",
+      "SHA256": "ce2b893e6f3c6777bb1e22c51442684d360d05508978963c7da29d9700d597c8",
+      "VERDICT": "PASS"
+    }
+  },
+  "ACTIVE_V6": {
+    "META_REPOSITORY": "felixvonvollmer-png/projektbeschreibung-und-geruest",
+    "META_MAIN_OBSERVED": "0dc8f145d27f796ea8ae230fae6ec4b21d6aa921",
+    "V6_README_BLOB": "c9c0a47d108268059ca5b5825d2d445b44179775",
+    "FOUNDATION_1_BLOB": "0c10e10eebcb2b23336cc9cdf4a88305a209fd22",
+    "FOUNDATION_2_BLOB": "3034da0fbee6ab79318da25ed65ccdc0933074e5",
+    "BROWNFIELD_MIGRATION_ENTRY_BLOB": "5884c85334dc083171a9f7976f445e7c22fa7123",
+    "TARGET_PROJECT_LLM_BASE_DESCRIPTION_BLOB": "043b3fe15b24a805aa15a0a78eb0f9924405fec1",
+    "CHATGPT_PROJECT_DESCRIPTION_CONTRACT_BLOB": "47cffb9187017fc66e22808dbcc11167c3313c43",
+    "AI_AGENT_PLAYBOOK_BLOB": "1f49fe8a8b50b28da48f1110b7fa0fe5a522727a"
+  },
+  "ALLOWED_ACTIONS": [
+    "Create the exact short-lived branch foundation/ws-pf-delta-20260928-01 from exact main 3bdd7439c221b8f8c83e7374c8bb29898891a4fd after preflight.",
+    "Materialize the exact bound Product Delta, Product Approval, Technical Foundation Delta, Binding and independent review/correction evidence append-only.",
+    "Introduce the final active frozen V6 F1/F2 into active project routing additively while preserving the old foundation/sources bytes as historical evidence.",
+    "Update only the minimum durable Project-Foundation routers/context/guards/tests needed for WS-P05, current final V6 routing, and the required Project-Foundation -> external-context-sync -> Epic sequence.",
+    "Create a new versioned Project-Foundation delta subject/evidence state; do not overwrite the historically reviewed foundation/subject.json.",
+    "Adapt generic harness/review routing only as necessary so the new versioned Project-Foundation subject can be reviewed without weakening historical validation.",
+    "Run local tests/checks, commit, push the new branch, create or update a separate reviewable PR to main, inspect exact-head CI.",
+    "Prepare the branch state PROJECT_FOUNDATION_READY_FOR_REVIEW and a compact independent Project Foundation Review handoff/locator."
+  ],
+  "PROHIBITED_ACTIONS": [
+    "Do not write to or rebase/merge/cherry-pick the F01 branch feature/ws-e01-f01-qualification.",
+    "Do not modify PR #3 except read-only verification.",
+    "Do not run F01 remainder qualification or browser probes.",
+    "Do not implement F02 or any WindowSafe product capture/restore/UI feature.",
+    "Do not perform WS-E01 Epic Preparation Delta or Epic rebinding.",
+    "Do not perform or claim REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE; it follows only after Project Foundation Review PASS.",
+    "Do not change ChatGPT Project settings or claim external project-context sync.",
+    "Do not run Feature Acceptance.",
+    "Do not merge the new Project-Foundation PR.",
+    "Do not overwrite/delete historical Product/Foundation/Epic/F01/Review evidence.",
+    "Do not force-push, rebase published history, squash history, change repository visibility/admin/secrets, sign/release/deploy or enter Production."
+  ],
+  "STOP_CONDITION": "Stop after the new branch/PR is truthfully PROJECT_FOUNDATION_READY_FOR_REVIEW with required local/exact-head CI evidence, or earlier on material drift/blocker.",
+  "MERGE_AUTHORIZED": false,
+  "F01_CONTINUATION_AUTHORIZED": false,
+  "EPIC_DELTA_AUTHORIZED": false,
+  "EXTERNAL_PROJECT_CONTEXT_SYNC_AUTHORIZED": false
+}

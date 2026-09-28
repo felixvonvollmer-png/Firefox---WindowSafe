@@ -1,5 +1,43 @@
 # Kontext und Provenienz
 
+## Aktives Delta und aktuelle Grenzen
+
+**WS-PFDELTA-MAT-20260928-01**, separat autorisiert durch
+[WS-EA-20260928-01](inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Execution_Authorization_WS-EA-20260928-01.json),
+materialisiert ausschließlich das Foundation-Delta ab main
+`3bdd7439c221b8f8c83e7374c8bb29898891a4fd`.
+[Versionierter Subject](deltas/WS-PFDELTA-MAT-20260928-01/subject.json) und
+[Evidence/Review-Handoff](deltas/WS-PFDELTA-MAT-20260928-01/evidence.md) sind der aktuelle Einstieg.
+Die darunter dokumentierten Bootstrap-/Integrationsaufträge und alten V6-Quellen
+sind historisch; ihre Statusfelder bleiben an die damaligen Subjects gebunden.
+
+Wirksame Product Truth: Basis WS-PD-20260917-01 mit Approval plus
+[WS-P05 Product Delta](inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Product_Definition_Delta_WS-PD-DELTA-20260924-01.md)
+und [exakte Approval](inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Product_Delta_Approval_WS-PD-DELTA-APPROVAL-20260928-01.json).
+Technische Basis: r6 plus [TF Delta 02](inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-02.md),
+[Binding](inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Technical_Foundation_Delta_Binding_WS-TFP-DELTA-BIND-20260928-01.json)
+und byteidentisches unabhängiges Resultat `inputs/WS-PFDELTA-MAT-20260928-01/WS-TFPR-DELTA-20260928-02(1).json`.
+Die historischen PENDING-Felder in Originalen werden durch separate Records gebunden,
+nicht überschrieben. Der Preparation-PASS ist kein Project-Foundation-PASS.
+
+Aktive finale V6: [F1](sources/v6-final-20260918/foundation-1.md),
+[F2](sources/v6-final-20260918/foundation-2.md),
+[Freeze-Router](sources/v6-final-20260918/README.md). Provenienz und weitere exakte
+Meta-Locators stehen in der Autorisierung und wurden vor dem ersten Write geprüft.
+
+F01 / [PR #3](https://github.com/felixvonvollmer-png/Firefox---WindowSafe/pull/3)
+am Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7` ist externe Read-only-Evidence.
+WS-P05 beantwortet die materielle Produktfrage; es schließt keine noch offenen
+Zielumgebungs-/Messnachweise und autorisiert keine Wiederaufnahme.
+Der externe ChatGPT-Projektkanal ist in Benutzung. Sein Sync ist
+**PENDING_AFTER_PROJECT_FOUNDATION_REVIEW_PASS**; das historische NOT_APPLICABLE
+unten ist keine aktuelle Disposition. Kein Sync wurde ausgeführt oder bestätigt.
+Nach Foundation-PASS: tatsächlicher Sync/explicit begründetes NOT_APPLICABLE,
+erst danach Epic Delta, kritischer + unabhängiger Review, Rebinding und neue F01-Autorisierung.
+Nach EPIC_CONVERGED: Stop neuer Epic-Arbeit; Project-LLM/Nutzer wählen die nächste
+Richtung vor neuer Epic Preparation. Der Coding-Agent wählt keinen Folge-Epic.
+
+
 ## Rangfolge und Rolle
 
 Aktuelle ausdrückliche Nutzerentscheidung und freigegebene Product Truth stehen

@@ -1,0 +1,104 @@
+--- WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-01.md@sha256:fbd2ed1daacccc7c0b26e40e30673b133b1960e4f12a2ff615075505487e62f1
++++ WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-02.md@sha256:8c687681f9a46cf0782212ebfa5be5d6e22cac77d890b1f436a8395f7b1c5d2c
+@@ -2,10 +2,16 @@
+ 
+ ```text
+ DOCUMENT_TYPE: TECHNICAL_FOUNDATION_DELTA_PREPARATION_SUBJECT
+-PREPARATION_ID: WS-TFP-DELTA-20260928-01
++PREPARATION_ID: WS-TFP-DELTA-20260928-02
++PREVIOUS_PREPARATION_ID: WS-TFP-DELTA-20260928-01
++PREVIOUS_PREPARATION_SHA256: fbd2ed1daacccc7c0b26e40e30673b133b1960e4f12a2ff615075505487e62f1
++PREVIOUS_INDEPENDENT_REVIEW_ID: WS-TFPR-DELTA-20260928-01
++PREVIOUS_INDEPENDENT_REVIEW_SHA256: f0e43b93cd55b007b7c2bd6b2f149e85ae834e65fa2146fc0c13fdda67392adf
++PREVIOUS_INDEPENDENT_REVIEW_VERDICT: CORRECTION_REQUIRED
++CORRECTION_TARGET_FINDING: WS-TFPR-DELTA-20260928-01-F01
+ PROJECT: WindowSafe
+ DATE: 2026-09-28
+-STATUS: CRITICAL_REVIEW_COMPLETE__INDEPENDENT_REVIEW_REQUIRED
++STATUS: CORRECTION_APPLIED__CRITICAL_REREVIEW_COMPLETE__INDEPENDENT_REREVIEW_REQUIRED
+ MODE: BROWNFIELD__APPEND_ONLY_DELTA
+ 
+ BASE_TECHNICAL_FOUNDATION_ID: WS-TFP-20260917-01
+@@ -32,8 +38,8 @@
+ CURRENT_F01_STATE: WS-E01-F01_BLOCKED__MATERIAL_USER_DECISION_REQUIRED
+ 
+ RISK_CLASS: ELEVATED
+-CRITICAL_REVIEW_STATUS: COMPLETE__CORRECTIONS_APPLIED__NO_OPEN_CRITICAL_BLOCKING_MAJOR_FINDINGS
+-INDEPENDENT_TECHNICAL_FOUNDATION_PREPARATION_REVIEW: REQUIRED__PENDING
++CRITICAL_REVIEW_STATUS: COMPLETE__CORRECTION_REREVIEW__NO_OPEN_CRITICAL_BLOCKING_MAJOR_FINDINGS
++INDEPENDENT_TECHNICAL_FOUNDATION_PREPARATION_REVIEW: REREVIEW_REQUIRED__PENDING
+ EXACT_BINDING_STATUS: NOT_CREATED
+ CODING_AGENT_MATERIALIZATION_AUTHORIZED: NO
+ F01_CONTINUATION_AUTHORIZED: NO
+@@ -221,12 +227,14 @@
+ - Release/Signierung/Production;
+ - Überschreiben historischer gebundener Dateien.
+ 
+-## 10. Nachgelagerter Epic-Pfad
+-
+-Nur nach `PROJECT_FOUNDATION_REVIEW = PASS`:
+-
+-```text
+-WS-E01_EPIC_PREPARATION_DELTA
++## 10. Nachgelagerter Project-Context- und Epic-Pfad
++
++Nur nach `PROJECT_FOUNDATION_REVIEW = PASS` gilt zwingend:
++
++```text
++PROJECT_FOUNDATION_REVIEW_PASS
++-> REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE
++-> WS-E01_EPIC_PREPARATION_DELTA
+ -> EPIC_PREPARATION_CRITICAL_SELF_REVIEW
+ -> INDEPENDENT_EPIC_PREPARATION_REVIEW
+ -> EXACT_EPIC_REBINDING
+@@ -234,6 +242,22 @@
+ -> F01_REMAINDER_QUALIFICATION
+ ```
+ 
++Der Schritt `REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE` ist ein
++eigenständiges Gate und darf nicht implizit übersprungen werden.
++
++Wenn ein externer ChatGPT-/Project-Context-Kanal für WindowSafe verwendet wird und das
++materialisierte Project-Foundation-Delta dessen langlebigen Startkontext materiell ändert,
++ist der erforderliche Kontext-Sync gemäß dem dann aktuellen kanonischen V6-Format-/Pflegevertrag
++vor der Epic Preparation durchzuführen. Ein erfolgreicher Sync darf erst nach tatsächlicher
++Nutzer-/externer Bestätigung behauptet werden.
++
++`NOT_APPLICABLE` ist nur mit expliziter, nachvollziehbarer Begründung zulässig. Dieser
++Preparation-Subject legt die spätere Disposition nicht vorweg und behauptet keinen bereits
++ausgeführten Sync.
++
++Dieses Gate autorisiert weder F01 noch Produktarbeit. Erst nach seiner abgeschlossenen
++Disposition darf `WS-E01_EPIC_PREPARATION_DELTA` beginnen.
++
+ Bis dahin bleibt PR #3 Draft/ungemergt und F01 gestoppt.
+ 
+ ## 11. Offene materielle Nutzerentscheidungen
+@@ -245,3 +269,27 @@
+ Die noch offenen Fragen sind Review-/Evidence-/Implementierungsfragen innerhalb der bereits
+ freigegebenen Grenze. Eine neue materielle Nutzerentscheidung wäre nur erforderlich, wenn der
+ Review oder spätere Evidence eine weitere Product-/Scope-/Security-/Architekturabweichung zeigt.
++
++## 12. Correction Trace für unabhängigen Rereview
++
++Der vorherige unabhängige Review
++
++`WS-TFPR-DELTA-20260928-01@sha256:f0e43b93cd55b007b7c2bd6b2f149e85ae834e65fa2146fc0c13fdda67392adf`
++
++hat bei verifizierter Subject-Integrität genau ein offenes `MAJOR`-Finding festgestellt:
++
++`WS-TFPR-DELTA-20260928-01-F01`.
++
++Disposition dieses korrigierten Subjects:
++
++```text
++FINDING_ID: WS-TFPR-DELTA-20260928-01-F01
++DISPOSITION: FIXED_IN_NEW_IMMUTABLE_SUBJECT
++CORRECTION: REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE
++            wurde zwischen PROJECT_FOUNDATION_REVIEW_PASS und
++            WS-E01_EPIC_PREPARATION_DELTA eingefügt.
++NEW_MATERIAL_USER_DECISION_REQUIRED: NO
++```
++
++Der vorherige Subject und das vorherige Reviewresultat bleiben unverändert historische Evidence.
++Dieses Dokument benötigt einen neuen unabhängigen Rereview; die Korrektur selbst erzeugt kein PASS.

@@ -1,0 +1,98 @@
+{
+  "DOCUMENT_TYPE": "TECHNICAL_FOUNDATION_DELTA_BINDING_RECORD",
+  "BINDING_ID": "WS-TFP-DELTA-BIND-20260928-01",
+  "STATUS": "READY_FOR_AGENT",
+  "PROJECT": "WindowSafe",
+  "DATE": "2026-09-28",
+  "MODE": "BROWNFIELD__APPEND_ONLY_DELTA",
+  "APPROVED_PRODUCT_TRUTH": {
+    "BASE_PRODUCT_DEFINITION_ID": "WS-PD-20260917-01",
+    "BASE_PRODUCT_DEFINITION_SHA256": "fff235b7591f483b9b31c945911a6b5950d29fac931b9136438ae5586c756900",
+    "BASE_APPROVAL_ID": "WS-PD-APPROVAL-20260917-01",
+    "BASE_APPROVAL_SHA256": "a655d1fb0a594997e1f6da00c7e8a36bb6c5807ac844ce9fbf04ccb7d1afd4a5",
+    "PRODUCT_DELTA_ID": "WS-PD-DELTA-20260924-01",
+    "PRODUCT_DELTA_SHA256": "0caca99a713a0e026af5b63beee5f8abc310ef3d38f20c9653cd3042322aec16",
+    "PRODUCT_DELTA_APPROVAL_ID": "WS-PD-DELTA-APPROVAL-20260928-01",
+    "PRODUCT_DELTA_APPROVAL_SHA256": "9e15db18b095655dfc503d67cad4486998e68493c323f8b2217e9d71e5987ab5"
+  },
+  "BASE_TECHNICAL_FOUNDATION": {
+    "ID": "WS-TFP-20260917-01",
+    "REVISION": 6,
+    "SHA256": "c461c45c5bd20f12dcffb400acd6f7d5c0f0de0a75616eef3eb1d78dd175dcb6"
+  },
+  "BOUND_TECHNICAL_FOUNDATION_DELTA": {
+    "ID": "WS-TFP-DELTA-20260928-02",
+    "FILENAME": "WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-02.md",
+    "SHA256": "8c687681f9a46cf0782212ebfa5be5d6e22cac77d890b1f436a8395f7b1c5d2c",
+    "BYTES": 13195
+  },
+  "CRITICAL_REVIEW": {
+    "ID": "WS-TFP-DELTA-CR-20260928-02",
+    "SHA256": "5fb8a5125ca6e8f6dfca0584a6fcbccb6bf477074540b5a88724baa9406eeb96",
+    "STATUS": "COMPLETE__NO_OPEN_CRITICAL_BLOCKING_MAJOR_SELF_FINDINGS",
+    "INDEPENDENT": false
+  },
+  "INDEPENDENT_REVIEW": {
+    "ID": "WS-TFPR-DELTA-20260928-02",
+    "REVIEW_TYPE": "TECHNICAL_FOUNDATION_PREPARATION_REVIEW",
+    "RESULT_SHA256": "ce2b893e6f3c6777bb1e22c51442684d360d05508978963c7da29d9700d597c8",
+    "RESULT_BYTES": 11551,
+    "VERDICT": "PASS",
+    "SUBJECT_INTEGRITY_STATUS": "VERIFIED",
+    "OPEN_FINDINGS": [],
+    "OPEN_MATERIAL_USER_DECISIONS": [],
+    "PRIOR_FINDING_DISPOSITION": {
+      "ID": "WS-TFPR-DELTA-20260928-01-F01",
+      "STATUS": "RESOLVED"
+    }
+  },
+  "ACTIVE_V6_BASIS": {
+    "FOUNDATION_1_BLOB": "0c10e10eebcb2b23336cc9cdf4a88305a209fd22",
+    "FOUNDATION_2_BLOB": "3034da0fbee6ab79318da25ed65ccdc0933074e5",
+    "V6_README_BLOB": "c9c0a47d108268059ca5b5825d2d445b44179775"
+  },
+  "TARGET_REPOSITORY": {
+    "FULL_NAME": "felixvonvollmer-png/Firefox---WindowSafe",
+    "REPOSITORY_ID": 1374094477,
+    "MATERIALIZATION_BASE_MAIN_SHA": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
+    "CURRENT_F01_PR": 3,
+    "CURRENT_F01_PR_HEAD": "7d66ca5b025c8f748d7f97b961c496ee450daaa7",
+    "CURRENT_F01_PR_STATUS": "DRAFT__OPEN__UNMERGED",
+    "F01_BRANCH_IS_NOT_THE_FOUNDATION_MATERIALIZATION_BRANCH": true
+  },
+  "MATERIALIZATION_SCOPE": {
+    "ALLOWED": [
+      "Materialize the approved Product Delta and Approval as new append-only canonical project inputs/locators.",
+      "Materialize the reviewed Technical Foundation Delta and this Binding as new append-only project inputs/locators.",
+      "Apply only the minimal active Project-Foundation router/guard/context changes required for WS-P05 and the final V6 lifecycle.",
+      "Preserve existing historical Product/Foundation/Epic/F01/Review evidence byte-for-byte.",
+      "Prepare a Project Foundation review subject/evidence state ending at PROJECT_FOUNDATION_READY_FOR_REVIEW."
+    ],
+    "PROHIBITED": [
+      "No F01 remainder qualification.",
+      "No F02 or product implementation.",
+      "No Feature Acceptance.",
+      "No merge of PR #3.",
+      "No WS-E01 Epic Preparation Delta yet.",
+      "No external Project-Context Sync disposition yet; that follows only after PROJECT_FOUNDATION_REVIEW PASS.",
+      "No release, signing, AMO, deployment or Production."
+    ]
+  },
+  "LIFECYCLE_AFTER_MATERIALIZATION": [
+    "PROJECT_FOUNDATION_READY_FOR_REVIEW",
+    "INDEPENDENT_PROJECT_FOUNDATION_REVIEW",
+    "PASS_ONLY",
+    "REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE",
+    "WS-E01_EPIC_PREPARATION_DELTA",
+    "CRITICAL_SELF_REVIEW",
+    "INDEPENDENT_EPIC_PREPARATION_REVIEW",
+    "EXACT_EPIC_REBINDING",
+    "NEW_F01_EXECUTION_AUTHORIZATION",
+    "F01_REMAINDER_QUALIFICATION"
+  ],
+  "READY_FOR_AGENT": true,
+  "CODING_AGENT_START_AUTHORIZED": false,
+  "EXECUTION_AUTHORIZATION_STATUS": "REQUIRES_SEPARATE_EXPLICIT_USER_AUTHORIZATION",
+  "F01_CONTINUATION_AUTHORIZED": false,
+  "MERGE_AUTHORIZED": false
+}

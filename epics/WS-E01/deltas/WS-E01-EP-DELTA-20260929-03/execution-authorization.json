@@ -1,0 +1,132 @@
+{
+  "DOCUMENT_TYPE": "EPIC_PREPARATION_DELTA_CORRECTION_EXECUTION_AUTHORIZATION",
+  "AUTHORIZATION_ID": "WS-EA-20260929-03",
+  "STATUS": "AUTHORIZED",
+  "DATE": "2026-09-29",
+  "RUN_ID": "WS-E01-EPDELTA-CORR-20260929-01",
+  "AUTHORITY": "USER",
+  "USER_AUTHORIZATION_REFERENCE": {
+    "VERBATIM_MESSAGE": "frei",
+    "CONTEXT": "Immediate reply after the Project-LLM presented the independent CORRECTION_REQUIRED result and proposed a fresh Coding-Agent correction run on PR #5 limited to the three review findings.",
+    "INTERPRETATION": "Authorizes only the bounded correction/materialization/rereview-readiness run. No merge, Epic Rebinding, broad WS-E01 execution, F01 continuation or product implementation."
+  },
+  "TARGET_REPOSITORY": {
+    "FULL_NAME": "felixvonvollmer-png/Firefox---WindowSafe",
+    "REPOSITORY_ID": 1374094477,
+    "EXPECTED_MAIN_SHA": "1cb82c926903b2fd6b497d008db61c71c5d92aca",
+    "PR": 5,
+    "BRANCH": "prep/ws-e01-delta-20260929-02",
+    "EXPECTED_START_HEAD": "48d7b0f97eacecd7515f7cbf064955303b0d5767",
+    "EXPECTED_START_TREE": "3393b5c6de0dd0c11988b702ca602698f736e290",
+    "EXPECTED_PR_STATE": "OPEN_UNMERGED"
+  },
+  "F01_READ_ONLY": {
+    "PR": 3,
+    "HEAD": "7d66ca5b025c8f748d7f97b961c496ee450daaa7",
+    "EXPECTED": "DRAFT_OPEN_UNMERGED"
+  },
+  "EXACT_SOURCE_REVIEW": {
+    "REVIEW_ID": "WS-E01-EPR-DELTA-20260929-01",
+    "FILENAME": "WS-E01-EPR-DELTA-20260929-01.json",
+    "BYTES": 13760,
+    "SHA256": "e438cc1fba49bc472e78adbf4b12aa9475e24c2dac0cd187c8a29c5682f16048",
+    "VERDICT": "CORRECTION_REQUIRED",
+    "SUBJECT_ID": "WS-E01-EP-DELTA-20260929-02",
+    "SUBJECT_PATH": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json",
+    "SUBJECT_END_SHA": "48d7b0f97eacecd7515f7cbf064955303b0d5767",
+    "TRANSFER_TARGET": "reviews/results/WS-E01-EPR-DELTA-20260929-01.json"
+  },
+  "CORRECTION": {
+    "CORRECTION_ID": "WS-E01-EP-CORR-20260929-02",
+    "CORRECTED_SUBJECT_ID": "WS-E01-EP-DELTA-20260929-03",
+    "CORRECTED_SUBJECT_PATH": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/subject.json",
+    "EXPECTED_NEW_PROJECT_LLM_IMPLEMENTER": "PROJECT_LLM_WS_E01_EP_DELTA_20260929_03",
+    "EXPECTED_CORRECTION_MATERIALIZER": "CODING_AGENT_WS_E01_EPDELTA_CORR_20260929_01",
+    "REVIEW_EXCLUDED_IDENTITIES": [
+      "PROJECT_LLM_WS_E01_EP_DELTA_20260929_03",
+      "CODING_AGENT_WS_E01_EPDELTA_MAT_20260929_01",
+      "CODING_AGENT_WS_E01_EPDELTA_CORR_20260929_01"
+    ],
+    "FULL_HISTORICAL_EPIC_BINDING_BLOB": "930b4c3176a9601e44f7a4b04ff1d4530488b6e1",
+    "SUPERSEDES_TRUNCATED_VALUE_ONLY_FOR_CORRECTION_PATH": true
+  },
+  "MANDATORY_PREWRITE_READS": [
+    {
+      "path": "foundation/architecture.md",
+      "git_blob": "923c8e5820067376f3ea6660bf0307e7bfaa9d6a"
+    },
+    {
+      "path": "foundation/sources/v6-final-20260918/README.md",
+      "git_blob": "c9c0a47d108268059ca5b5825d2d445b44179775"
+    },
+    {
+      "path": "foundation/sources/v6-final-20260918/foundation-1.md",
+      "git_blob": "0c10e10eebcb2b23336cc9cdf4a88305a209fd22"
+    },
+    {
+      "path": "foundation/sources/v6-final-20260918/foundation-2.md",
+      "git_blob": "3034da0fbee6ab79318da25ed65ccdc0933074e5"
+    }
+  ],
+  "BOUND_PROJECT_LLM_ARTIFACTS": {
+    "CORRECTION": {
+      "filename": "WindowSafe_WS-E01_Epic_Preparation_Correction_WS-E01-EP-CORR-20260929-02.md",
+      "bytes": 8551,
+      "sha256": "aee88ae816f85489982176fba0089e3555f0cab95585a5f55152d6050e977b3e"
+    },
+    "DISPOSITION": {
+      "filename": "WindowSafe_WS-E01_Epic_Preparation_Correction_Disposition_WS-E01-EP-CORR-DISP-20260929-02.json",
+      "bytes": 2385,
+      "sha256": "9f268ea37fc7716fe2ed4ea8a8270adb780235a376961279f08271989767c1aa"
+    },
+    "CRITICAL_SELF_REVIEW": {
+      "filename": "WindowSafe_WS-E01_Epic_Preparation_Correction_Critical_Review_WS-E01-EP-CORR-CR-20260929-02.md",
+      "bytes": 1945,
+      "sha256": "30254913d37577f5766e95904d17738c05d69006af76b939ec2e9d549fad0692"
+    }
+  },
+  "AUTHORIZED_ACTIONS": [
+    "Recheck exact repository/main/PR5/head/tree/worktree/index/untracked and PR3/F01 bindings before first mutation.",
+    "Read and verify all four mandatory pre-write sources before any mutation and record actual completion in evidence.",
+    "Verify the exact source-review bytes/hash and run canonical validate-result against the old subject before any repository mutation.",
+    "Transfer the exact CORRECTION_REQUIRED review bytes append-only to reviews/results/WS-E01-EPR-DELTA-20260929-01.json after successful validation.",
+    "Materialize the exact Project-LLM correction/disposition/self-review originals append-only under the corrected versioned Epic-delta namespace or a minimal exact correction-evidence namespace as required by the harness.",
+    "Create a new corrected immutable subject WS-E01-EP-DELTA-20260929-03 and REVIEW_REQUIRED binding; do not modify the old subject/binding.",
+    "Bind the full three-entry review_excluded_identities set into the corrected subject and canonical request.",
+    "Modify validate_result/request/harness minimally so the corrected request rejects reviewer.identity against every excluded identity while historical request semantics remain compatible.",
+    "Bind the full 40-character historical epics/WS-E01/binding.json Git blob in the new correction authorization/superseding state.",
+    "Add foundation/architecture.md to the corrected canonical review evidence.",
+    "Add focused positive/negative regression tests for all three findings and fail-closed history/scope behavior.",
+    "Update CI/router/evidence minimally for the corrected current rereview gate.",
+    "Run full canonical local checks, old-review validate-result, old/current/new requests, schema-preflight, full tests, deterministic build, history and git diff --check.",
+    "Commit/push only to existing branch prep/ws-e01-delta-20260929-02, update PR #5, require exact-head CI success and inspect logs.",
+    "Stop unmerged at EPIC_PREPARATION_DELTA_CORRECTED_READY_FOR_REREVIEW."
+  ],
+  "PROHIBITED_ACTIONS": [
+    "Do not edit or delete any file in the old WS-E01-EP-DELTA-20260929-02 namespace.",
+    "Do not alter the independent review original.",
+    "Do not merge PR #5.",
+    "Do not create an independent rereview verdict.",
+    "Do not create Exact Epic Rebinding.",
+    "Do not create/execute the broad WS-E01 F01-F05 authorization.",
+    "Do not continue or mutate F01/PR #3.",
+    "Do not run browser/profile qualification.",
+    "Do not implement product code or perform Feature Acceptance.",
+    "Do not weaken generic review/history/security guards.",
+    "Do not rebase/amend/force-push the existing reviewed commit history.",
+    "Do not release or enter Production."
+  ],
+  "FAIL_CLOSED_ON": [
+    "source review byte/hash or validate-result mismatch",
+    "main/PR5/head/tree drift before first mutation",
+    "PR3/F01 drift",
+    "mandatory pre-write source missing/blob mismatch",
+    "old delta namespace mutation required",
+    "correction cannot be implemented without generic guard weakening",
+    "tests/CI/history/schema failure"
+  ],
+  "STOP_CONDITION": "EPIC_PREPARATION_DELTA_CORRECTED_READY_FOR_REREVIEW",
+  "MERGE_AUTHORIZED": false,
+  "F01_CONTINUATION_AUTHORIZED": false,
+  "PRODUCT_IMPLEMENTATION_AUTHORIZED": false
+}

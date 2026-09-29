@@ -128,6 +128,16 @@ vorhanden, prüft die Foundation-Acceptance ihre Strecke bis zum Merge
 linear sein und pro Commit in der exakten Delta-/Router-/Harness-Allowlist bleiben.
 Kein allgemeiner Nested-Subject-Bypass, kein Accepted-Übergang vor unabhängigem Review.
 
+WS-EA-20260929-03 (WS-E01-EPDELTA-CORR-20260929-01) ergänzt nach dem CORRECTION_REQUIRED
+WS-E01-EPR-DELTA-20260929-01 genau den Korrektur-Locator
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/subject.json`. Ist er vorhanden, gilt ab dem
+reviewed Head `48d7b0f97eacecd7515f7cbf064955303b0d5767` (Tree gepinnt) nur die lineare
+Korrektur-Allowlist; der alte Namespace bleibt bytegleich und außerhalb davon. Der Request
+dieses Subjects transportiert `review_excluded_identities`; `validate-result` lehnt jede
+dieser Identitäten als Reviewer oder Sidecar-Autor ab. Requests ohne dieses Feld behalten die
+bisherige Implementer-Regel. Der alte Locator liefert den Request am reviewed Head. Der
+historische Binding-Blob ist mit allen 40 Stellen gebunden. Kein Merge, kein READY.
+
 Der Inventar-Writer öffnet Root/Ausgabeordner/Blatt mit No-follow und relativen
 Directory-FDs, prüft den geöffneten Dateityp/Linkcount vor dem Trunkieren und
 folgt nach Öffnung keinem Pfad mehr. Es gibt keine automatische Linklöschung.

@@ -75,6 +75,39 @@ EPIC_DELTA_SUPPORT = {
 }
 F01_EVIDENCE = {"pr": 3, "head": "7d66ca5b025c8f748d7f97b961c496ee450daaa7",
                 "role": "READ_ONLY_EXTERNAL_QUALIFICATION_EVIDENCE"}
+# The CORRECTION_REQUIRED head of that delta and exactly one bound correction of it.
+EPIC_DELTA_REVIEWED = "48d7b0f97eacecd7515f7cbf064955303b0d5767"
+EPIC_DELTA_REVIEWED_TREE = "3393b5c6de0dd0c11988b702ca602698f736e290"
+EPIC_DELTA_REVIEW_ID = "WS-E01-EPR-DELTA-20260929-01"
+EPIC_DELTA_RESULT = "reviews/results/" + EPIC_DELTA_REVIEW_ID + ".json"
+EPIC_DELTA_RESULT_ORIGINAL = (13760, "e438cc1fba49bc472e78adbf4b12aa9475e24c2dac0cd187c8a29c5682f16048")
+EPIC_CORR_ID = "WS-E01-EP-DELTA-20260929-03"
+EPIC_CORR_DIR = "epics/WS-E01/deltas/" + EPIC_CORR_ID + "/"
+EPIC_CORR_SUBJECT = EPIC_CORR_DIR + "subject.json"
+EPIC_CORR_BINDING = EPIC_CORR_DIR + "binding.json"
+EPIC_CORR_EVIDENCE = EPIC_CORR_DIR + "evidence.md"
+EPIC_CORR_AUTH = EPIC_CORR_DIR + "execution-authorization.json"
+EPIC_CORR_AUTH_SHA = "1672b45700ffc5b4aa1846521e2faf1af06b2334d759f6eeb30af22ed06d16ef"
+EPIC_CORR_ORIGINALS = {
+    EPIC_CORR_DIR + "correction.md": (8551, "aee88ae816f85489982176fba0089e3555f0cab95585a5f55152d6050e977b3e"),
+    EPIC_CORR_DIR + "correction-disposition.json":
+        (2385, "9f268ea37fc7716fe2ed4ea8a8270adb780235a376961279f08271989767c1aa"),
+    EPIC_CORR_DIR + "correction-critical-self-review.md":
+        (1945, "30254913d37577f5766e95904d17738c05d69006af76b939ec2e9d549fad0692"),
+    EPIC_CORR_AUTH: (7254, EPIC_CORR_AUTH_SHA),
+}
+EPIC_CORR_FILES = set(EPIC_CORR_ORIGINALS) | {EPIC_CORR_SUBJECT, EPIC_CORR_BINDING, EPIC_CORR_EVIDENCE}
+# Every author of the cumulative corrected subject; none may issue its verdict.
+EPIC_CORR_EXCLUDED = [
+    "PROJECT_LLM_WS_E01_EP_DELTA_20260929_03",
+    "CODING_AGENT_WS_E01_EPDELTA_MAT_20260929_01",
+    "CODING_AGENT_WS_E01_EPDELTA_CORR_20260929_01",
+]
+# Sources the correction run had to read before its first write; bound as review evidence.
+EPIC_CORR_PREWRITE = dict({"foundation/architecture.md": "923c8e5820067376f3ea6660bf0307e7bfaa9d6a"},
+                          **DELTA_SOURCES)
+EPIC_CORR_SUPPORT = EPIC_DELTA_SUPPORT | {"tests/test_epic_correction.py"}
+EPIC_CORR_ALLOWED = EPIC_CORR_FILES | EPIC_CORR_SUPPORT | {EPIC_DELTA_RESULT}
 MANIFEST_SHA = "80203ae9f554aa4dba951d316a685bd20cbe57ef28a2912fd49608cdaf9cb6a8"
 HANDOFF_SHA = "15701c717061773d9017cf3c884a7eb0cebcb0d66b67a93dc13e41acb7d98774"
 BLOBS = {
@@ -306,22 +339,27 @@ def request(sha, path="foundation/subject.json"):
         if reviewed != sha:
             # A current accepted locator still requests the original reviewed bytes.
             return request(reviewed, path)
-    elif kind == "EPIC_PREPARATION_REVIEW" and path == EPIC_DELTA_SUBJECT:
-        # Only this exact versioned locator; it also revalidates foundation acceptance.
+    elif kind == "EPIC_PREPARATION_REVIEW" and path in (EPIC_DELTA_SUBJECT, EPIC_CORR_SUBJECT):
+        # Only these exact versioned locators; they also revalidate foundation acceptance.
         delta_history(sha)
+        if path == EPIC_DELTA_SUBJECT and EPIC_CORR_SUBJECT in tree_snapshot(sha):
+            # The superseded CORRECTION_REQUIRED subject stays bound to its reviewed bytes.
+            return request(EPIC_DELTA_REVIEWED, path)
     else:
         require(path == expected, "subject locator mismatch")
     text(s["implementer"])
+    if path != EPIC_CORR_SUBJECT:
+        require("review_excluded_identities" not in s, "unbound review exclusion set")
     require(isinstance(s["evidence_paths"], list) and s["evidence_paths"], "missing subject evidence")
     require(len(s["evidence_paths"]) == len(set(s["evidence_paths"])), "duplicate evidence")
-    if kind == "EPIC_PREPARATION_REVIEW" and path != EPIC_DELTA_SUBJECT:
+    if kind == "EPIC_PREPARATION_REVIEW" and path not in (EPIC_DELTA_SUBJECT, EPIC_CORR_SUBJECT):
         epic_preparation(path, lambda name: at(sha, name), sha)
         binding = parse(at(sha, path.replace("subject.json", "binding.json")))
         if binding["status"] == "READY_FOR_AGENT":
             # A current accepted locator still requests the original reviewed bytes.
             return request(binding["epic_preparation_subject_immutable_reference"]["end_sha"], path)
     evidence = [{"path": safe_path(p), "sha256": sha256(at(sha, p))} for p in s["evidence_paths"]]
-    return {
+    req = {
         "schema_version": c["contract_version"],
         "review_type": kind,
         "subject": {"id": s["subject_id"], "path": path, "end_sha": sha},
@@ -329,6 +367,20 @@ def request(sha, path="foundation/subject.json"):
         "reviewed_evidence": evidence,
         "contract_sha256": sha256(at(sha, CONTRACT_PATH)),
     }
+    if path == EPIC_CORR_SUBJECT:
+        # Validated exactly by epic_correction_integrity inside delta_history above.
+        req["review_excluded_identities"] = s["review_excluded_identities"]
+    return req
+
+
+def self_verdict(identity, req):
+    """Historical requests exclude the implementer; a bound set excludes every listed author."""
+    if "review_excluded_identities" not in req:
+        return identity.casefold() == req["implementer"].casefold()
+    excluded = req["review_excluded_identities"]
+    require(isinstance(excluded, list) and excluded and req["implementer"] in excluded
+            and all(isinstance(value, str) and value.strip() for value in excluded), "review exclusion set")
+    return identity.strip().casefold() in {value.strip().casefold() for value in excluded}
 
 
 def validate_result(result, req, c, filename, semantic=None, raw_sha=None):
@@ -346,7 +398,7 @@ def validate_result(result, req, c, filename, semantic=None, raw_sha=None):
     for value in r.values():
         text(value)
     require(r["authority"] == req["required_authority"], "review authority mismatch")
-    require(r["identity"].casefold() != req["implementer"].casefold(), "self verdict prohibited")
+    require(not self_verdict(r["identity"], req), "self verdict prohibited")
     require(r["independence"] == c["independence"], "independent context required")
     fields(result["provenance"], c["provenance_fields"])
     text(result["provenance"]["source_reference"])
@@ -406,7 +458,7 @@ def validate_semantic_disposition(record, result, req, unclear, raw_sha):
     for value in reviewer.values():
         text(value)
     require(reviewer["authority"] == req["required_authority"], "semantic authority mismatch")
-    require(reviewer["identity"].casefold() != req["implementer"].casefold(), "semantic self disposition")
+    require(not self_verdict(reviewer["identity"], req), "semantic self disposition")
     require(reviewer["independence"] == "FRESH_OR_SUFFICIENTLY_ISOLATED", "semantic independence")
     fields(record["provenance"], {"source_reference", "transport"})
     text(record["provenance"]["source_reference"])
@@ -500,7 +552,7 @@ def scope(path):
     allowed |= bool(re.fullmatch(r"reviews/results/" + ID_PATTERN + r"\.json", path))
     allowed |= bool(re.fullmatch(r"reviews/dispositions/" + ID_PATTERN + r"\.json", path))
     allowed |= path in {DELTA_SUBJECT, DELTA_EVIDENCE, DELTA_BINDING} | set(DELTA_SOURCES)
-    allowed |= path in EPIC_DELTA_FILES
+    allowed |= path in EPIC_DELTA_FILES | EPIC_CORR_FILES
     require(allowed, "outside foundation-only path scope")
     require(PurePosixPath(path).name != "manifest.json", "extension manifest prohibited")
 
@@ -830,18 +882,129 @@ def epic_delta_integrity(read):
 
 
 def epic_delta_history(head):
-    """Linear exact-scope continuation from the integrated foundation merge only."""
+    """Linear exact-scope continuation from the integrated foundation merge only.
+
+    Once the bound correction subject exists, every commit after the exact
+    CORRECTION_REQUIRED head uses the correction allowlist instead; the reviewed
+    delta namespace remains append-only and outside that allowlist.
+    """
     ancestor(EPIC_DELTA_BASE, head)
+    corrected = set()
+    if EPIC_CORR_SUBJECT in tree_snapshot(head):
+        ancestor(EPIC_DELTA_REVIEWED, head)
+        corrected = set(git("rev-list", EPIC_DELTA_REVIEWED + ".." + head).decode().splitlines())
     previous = tree_snapshot(EPIC_DELTA_BASE)
     for revision in git("rev-list", "--reverse", EPIC_DELTA_BASE + ".." + head).decode().splitlines():
         parents = git("rev-list", "--parents", "-n", "1", revision).decode().split()[1:]
         require(len(parents) == 1, "epic delta merges prohibited")
         changed = set(git("diff", "--name-only", parents[0], revision).decode().splitlines())
-        require(changed <= EPIC_DELTA_FILES | EPIC_DELTA_SUPPORT, "epic delta scope drift")
+        allowed = EPIC_CORR_ALLOWED if revision in corrected else EPIC_DELTA_FILES | EPIC_DELTA_SUPPORT
+        require(changed <= allowed, "epic delta scope drift")
         current = tree_snapshot(revision)
         check_history_maps(previous, current)
         previous = current
     epic_delta_integrity(lambda name: at(head, name))
+    if corrected:
+        epic_correction_integrity(lambda name: at(head, name))
+
+
+def epic_correction_expected():
+    """Exact pre-rereview values; the factual preparation content is the reviewed delta's."""
+    subject, binding, _ = epic_delta_expected()
+    blob = EPIC_DELTA_PINNED_BLOBS["epics/WS-E01/binding.json"]
+    superseded = {
+        "id": EPIC_DELTA_ID, "path": EPIC_DELTA_SUBJECT,
+        "end_sha": EPIC_DELTA_REVIEWED, "tree": EPIC_DELTA_REVIEWED_TREE,
+        "execution_authorization_path": EPIC_DELTA_AUTH,
+        "review_id": EPIC_DELTA_REVIEW_ID, "review_result_reference": EPIC_DELTA_RESULT,
+        "review_result_sha256": EPIC_DELTA_RESULT_ORIGINAL[1], "review_verdict": "CORRECTION_REQUIRED",
+        "status": "HISTORICAL_CORRECTION_REQUIRED_PRESERVED",
+    }
+    subject = dict(subject,
+        subject_id=EPIC_CORR_ID, epic_preparation_delta_id=EPIC_CORR_ID,
+        implementer=EPIC_CORR_EXCLUDED[0], materializer=EPIC_CORR_EXCLUDED[2],
+        review_excluded_identities=EPIC_CORR_EXCLUDED,
+        execution_authorization_path=EPIC_CORR_AUTH, execution_authorization_sha256=EPIC_CORR_AUTH_SHA,
+        correction_id="WS-E01-EP-CORR-20260929-02",
+        correction_reference=EPIC_CORR_DIR + "correction.md",
+        correction_disposition_reference=EPIC_CORR_DIR + "correction-disposition.json",
+        correction_critical_self_review_reference=EPIC_CORR_DIR + "correction-critical-self-review.md",
+        superseded_subject=superseded,
+        historical_epic_binding_git_blob=blob,
+        architecture_reference="foundation/architecture.md",
+        mandatory_prewrite_reads=EPIC_CORR_PREWRITE,
+        product_truth_change="NONE", technical_foundation_change="NONE", epic_product_scope_change="NONE")
+    binding = dict(binding,
+        epic_preparation_subject_id=EPIC_CORR_ID, epic_preparation_subject_path=EPIC_CORR_SUBJECT,
+        independent_epic_preparation_review="PENDING_REREVIEW",
+        open_critical_blocking_major_findings="NONE_AT_SELF_REVIEW__INDEPENDENT_REREVIEW_PENDING",
+        execution_authorization_reference=EPIC_CORR_AUTH, execution_authorization_sha256=EPIC_CORR_AUTH_SHA,
+        review_excluded_identities=EPIC_CORR_EXCLUDED,
+        superseded_subject_reference=EPIC_DELTA_SUBJECT, superseded_subject_end_sha=EPIC_DELTA_REVIEWED,
+        superseded_review_result_reference=EPIC_DELTA_RESULT, superseded_review_verdict="CORRECTION_REQUIRED",
+        historical_epic_binding_git_blob=blob,
+        execution_scope="EPIC_PREPARATION_DELTA_CORRECTION_ONLY__NO_REVIEW_VERDICT_REBINDING_MERGE_OR_FEATURE_EXECUTION")
+    return subject, binding
+
+
+def epic_correction_integrity(read):
+    """Mechanical binding of the one correction of the reviewed delta; never a verdict."""
+    for name, (size, digest) in EPIC_CORR_ORIGINALS.items():
+        raw = read(name)
+        require(len(raw) == size and sha256(raw) == digest, "epic correction original drift")
+    result_raw = read(EPIC_DELTA_RESULT)
+    require((len(result_raw), sha256(result_raw)) == EPIC_DELTA_RESULT_ORIGINAL, "correction source review drift")
+    require(commit(EPIC_DELTA_REVIEWED) == EPIC_DELTA_REVIEWED
+            and git("rev-parse", EPIC_DELTA_REVIEWED + "^{tree}").decode().strip() == EPIC_DELTA_REVIEWED_TREE
+            and EPIC_CORR_SUBJECT not in tree_snapshot(EPIC_DELTA_REVIEWED), "reviewed delta head")
+    for name in EPIC_DELTA_FILES:
+        require(read(name) == at(EPIC_DELTA_REVIEWED, name), "reviewed delta namespace drift")
+    result = parse(result_raw)
+    validate_result(result, request(EPIC_DELTA_REVIEWED, EPIC_DELTA_SUBJECT),
+                    parse(at(EPIC_DELTA_REVIEWED, CONTRACT_PATH)), PurePosixPath(EPIC_DELTA_RESULT).name)
+    require(result["verdict"] == "CORRECTION_REQUIRED", "correction source verdict")
+    blob = git_blob(read("epics/WS-E01/binding.json"))
+    require(re.fullmatch(SHA_PATTERN, blob) and blob == EPIC_DELTA_PINNED_BLOBS["epics/WS-E01/binding.json"],
+            "historical binding blob")
+    auth = parse(read(EPIC_CORR_AUTH))
+    repository, correction, source = auth["TARGET_REPOSITORY"], auth["CORRECTION"], auth["EXACT_SOURCE_REVIEW"]
+    require(auth["STATUS"] == "AUTHORIZED" and auth["AUTHORITY"] == "USER"
+            and repository["EXPECTED_MAIN_SHA"] == EPIC_DELTA_BASE
+            and repository["EXPECTED_START_HEAD"] == EPIC_DELTA_REVIEWED
+            and repository["EXPECTED_START_TREE"] == EPIC_DELTA_REVIEWED_TREE
+            and (source["BYTES"], source["SHA256"]) == EPIC_DELTA_RESULT_ORIGINAL
+            and source["TRANSFER_TARGET"] == EPIC_DELTA_RESULT and source["VERDICT"] == "CORRECTION_REQUIRED"
+            and correction["CORRECTED_SUBJECT_PATH"] == EPIC_CORR_SUBJECT
+            and correction["REVIEW_EXCLUDED_IDENTITIES"] == EPIC_CORR_EXCLUDED
+            and correction["FULL_HISTORICAL_EPIC_BINDING_BLOB"] == blob
+            and auth["MERGE_AUTHORIZED"] is False and auth["F01_CONTINUATION_AUTHORIZED"] is False
+            and auth["PRODUCT_IMPLEMENTATION_AUTHORIZED"] is False, "epic correction authorization")
+    bound = {item["sha256"] for item in auth["BOUND_PROJECT_LLM_ARTIFACTS"].values()}
+    require(bound == {digest for name, (_, digest) in EPIC_CORR_ORIGINALS.items() if name != EPIC_CORR_AUTH},
+            "epic correction artifact binding")
+    prewrite = {item["path"]: item["git_blob"] for item in auth["MANDATORY_PREWRITE_READS"]}
+    require(prewrite == EPIC_CORR_PREWRITE, "mandatory pre-write sources")
+    for name, value in prewrite.items():
+        require(git_blob(read(name)) == value, "mandatory pre-write source drift")
+    expected, binding = epic_correction_expected()
+    subject = parse(read(EPIC_CORR_SUBJECT))
+    fields(subject, set(expected) | {"evidence_paths"})
+    for key, value in expected.items():
+        # Canonical JSON comparison also rejects type drift and truncated locators.
+        require(json.dumps(subject[key], sort_keys=True) == json.dumps(value, sort_keys=True),
+                "epic correction subject boundary")
+    require(json.dumps(parse(read(EPIC_CORR_BINDING)), sort_keys=True) == json.dumps(binding, sort_keys=True),
+            "epic correction binding must stay pending")
+    evidence = subject["evidence_paths"]
+    required = set(parse(read(EPIC_DELTA_SUBJECT))["evidence_paths"]) | {EPIC_DELTA_SUBJECT, EPIC_DELTA_RESULT}
+    required |= (EPIC_CORR_FILES - {EPIC_CORR_SUBJECT}) | EPIC_CORR_SUPPORT | set(EPIC_CORR_PREWRITE)
+    required |= set(EPIC_DELTA_PINNED_BLOBS) | {CONTRACT_PATH}
+    require(isinstance(evidence, list) and len(evidence) == len(set(evidence))
+            and required <= set(evidence) and EPIC_CORR_SUBJECT not in evidence,
+            "epic correction evidence incomplete")
+    for name in evidence:
+        scope(name)
+        read(name)
 
 
 def foundation_integration_head(head):
@@ -1018,6 +1181,8 @@ def check(root=ROOT):
         accepted_delta_binding(lambda name: (root / name).read_bytes(), foundation_integration_head(commit("HEAD")))
     if (root / EPIC_DELTA_SUBJECT).exists():
         epic_delta_integrity(lambda name: (root / name).read_bytes())
+    if (root / EPIC_CORR_SUBJECT).exists():
+        epic_correction_integrity(lambda name: (root / name).read_bytes())
     for path in files(root):
         rel = path.relative_to(root).as_posix()
         scope(rel)
@@ -1058,6 +1223,9 @@ def check(root=ROOT):
     if (root / EPIC_DELTA_SUBJECT).exists():
         require("foundation.py request --sha HEAD --subject " + EPIC_DELTA_SUBJECT in workflow,
                 "missing epic delta CI request")
+    if (root / EPIC_CORR_SUBJECT).exists():
+        require("foundation.py request --sha HEAD --subject " + EPIC_CORR_SUBJECT in workflow,
+                "missing epic correction CI request")
     if epic_paths:
         require("ref: ${{ github.event.pull_request.head.sha || github.sha }}" in workflow, "CI exact head required")
         require("foundation.py schema-preflight --sha HEAD --schema reviews/review-contract.json" in workflow,

@@ -1,24 +1,28 @@
 # Kanonischer Reviewkanal und aktuelle Review-Locators
 
-## Aktueller Auftrag: EPIC_PREPARATION_REVIEW des WS-E01-Deltas
+## Aktueller Auftrag: EPIC_PREPARATION_REVIEW (Rereview) des korrigierten WS-E01-Deltas
 
-Subject **WS-E01-EP-DELTA-20260929-02**, Locator
-`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json` am vollständigen End-SHA aus
-dem Delivery-Handoff des PR von `prep/ws-e01-delta-20260929-02` (ungemergt; Basis main
+Subject **WS-E01-EP-DELTA-20260929-03**, Locator
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/subject.json` am vollständigen End-SHA aus
+dem Delivery-Handoff von PR #5 (`prep/ws-e01-delta-20260929-02`, ungemergt; Basis main
 `1cb82c926903b2fd6b497d008db61c71c5d92aca`). Rolle `INDEPENDENT_EPIC_PREPARATION_REVIEWER`,
-Vertrag unverändert V3, Resultat `reviews/results/<REVIEW_ID>.json`. Der Harness kennt genau
-diesen einen versionierten Epic-Locator zusätzlich zu `epics/<EPIC_ID>/subject.json`.
+Vertrag unverändert V3, Resultat `reviews/results/<REVIEW_ID>.json` mit neuer Review-ID.
+Der Request enthält `review_excluded_identities`; keine dieser drei Autorenidentitäten darf
+als `reviewer.identity` auftreten (mechanisch geprüft, ersetzt keine Provenienzprüfung).
 
 ```sh
-python3 tools/foundation.py request --sha <END_SHA> --subject epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json
+python3 tools/foundation.py request --sha <END_SHA> --subject epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/subject.json
 python3 tools/foundation.py schema-preflight --sha <END_SHA> --schema reviews/review-contract.json
 python3 tools/foundation.py history --base 1cb82c926903b2fd6b497d008db61c71c5d92aca
 ```
 
-Prüfbereich: Delta-Fidelität zu WS-P05/TF-Delta/Foundation-PASS, Sync-Bindung, Nutzerrichtung
-und deren Grenzen, historische Unveränderlichkeit, Harness-Erweiterung, Tests, Exact-Head-CI.
-Kritische Eigenprüfung und grüne CI sind kein unabhängiges PASS. Kein Rebinding, Merge,
-F01-Start, Feature Acceptance oder Production durch diesen Review.
+Prüfbereich: Schließung der drei Findings aus
+WS-E01-EPR-DELTA-20260929-01 (`results/WS-E01-EPR-DELTA-20260929-01.json`, CORRECTION_REQUIRED,
+byteidentisch übertragen), kumulativer Delta-/Harness-Stand seit main, unveränderte fachliche
+Delta-Aussage, historische Unveränderlichkeit, Tests, Exact-Head-CI. Der alte Locator
+`…-20260929-02/subject.json` liefert weiter den Request am reviewed Head
+`48d7b0f97eacecd7515f7cbf064955303b0d5767`. Kritische Eigenprüfung und grüne CI sind kein
+unabhängiges PASS. Kein Rebinding, Merge, F01-Start, Feature Acceptance oder Production.
 
 ## Historischer Stand: Project Foundation Delta angenommen
 

@@ -26,6 +26,7 @@ jobs:
           python3 tools/foundation.py validate-result --file reviews/results/WS-PFR-20260918-01.json
           python3 tools/foundation.py validate-result --file reviews/results/WS-PFR-20260918-02.json
           python3 tools/foundation.py validate-result --file reviews/results/WS-PFR-DELTA-20260928-01.json
+          python3 tools/foundation.py validate-result --file reviews/results/WS-E01-EPR-DELTA-20260929-01.json
       - name: Exact epic preparation request
         run: python3 tools/foundation.py request --sha HEAD --subject epics/WS-E01/subject.json
       - name: Exact versioned foundation delta request
@@ -33,6 +34,8 @@ jobs:
         run: python3 tools/foundation.py request --sha HEAD --subject foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json
       - name: Exact versioned epic preparation delta request
         run: python3 tools/foundation.py request --sha HEAD --subject epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json
+      - name: Exact corrected epic preparation delta request
+        run: python3 tools/foundation.py request --sha HEAD --subject epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/subject.json
       - name: Deterministic foundation build
         run: python3 tools/foundation.py build --verify-repeat
       - name: Append-only provenance and review history

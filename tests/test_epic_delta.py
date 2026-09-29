@@ -15,7 +15,8 @@ import foundation as f
 PF_REVIEWED = "bbca750fab1e760714cf409b8751287db6b93041"
 PF_INTEGRATION_HEAD = "1fb16ff993a303d2b4af95a0be77616b4940edfa"
 HISTORICAL = "epics/WS-E01/subject.json"
-SECOND = "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/subject.json"
+# -03 is the exactly bound correction (tests/test_epic_correction.py); any other stays rejected.
+SECOND = "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json"
 SOURCE = f.ROOT  # Fixtures patch f.ROOT; materialized bytes still come from here.
 
 
@@ -53,7 +54,7 @@ class EpicDeltaIntegrityTests(unittest.TestCase):
     def test_subject_lifecycle_references_and_claims_cannot_drift(self):
         inputs = f.DELTA_INPUTS
         mutations = {
-            "subject_id": "WS-E01-EP-DELTA-20260929-03", "epic_id": "WS-E02",
+            "subject_id": "WS-E01-EP-DELTA-20260929-04", "epic_id": "WS-E02",
             "review_type": "FEATURE_ACCEPTANCE_REVIEW", "status": "READY_FOR_AGENT",
             "current_canonical_baseline_or_main_sha": f.DELTA_BASE,
             "independent_review_status": "PASS", "risk": "LOW",
@@ -208,7 +209,7 @@ class EpicDeltaHistoryTests(unittest.TestCase):
 
     def test_second_or_mislocated_delta_subject_rejected(self):
         raw = (self.repo / f.EPIC_DELTA_SUBJECT).read_bytes()
-        second = dict(f.parse(raw), subject_id="WS-E01-EP-DELTA-20260929-03")
+        second = dict(f.parse(raw), subject_id="WS-E01-EP-DELTA-20260929-04")
         self.edit(SECOND, (json.dumps(second, indent=2) + "\n").encode())
         self.rejected("locator", SECOND)
         self.rejected("scope")

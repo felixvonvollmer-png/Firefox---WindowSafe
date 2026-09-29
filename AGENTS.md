@@ -14,12 +14,15 @@ reviewed Head `bbca750fab1e760714cf409b8751287db6b93041`, integriert durch
 Externer Project-Context-Sync: **CONFIRMED_BY_USER** (WS-EXTCTX-SYNC-20260929-01, separater
 Record im Epic-Delta; das Foundation-Binding bleibt unverändert).
 
-**Aktuelles Gate:** WS-E01 Epic Preparation Delta **WS-E01-EP-DELTA-20260929-02** ist
-materialisiert (WS-E01-EPDELTA-MAT-20260929-01 unter WS-EA-20260929-02) und
-**READY_FOR_INDEPENDENT_REVIEW**: Subject
-`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json`, Binding REVIEW_REQUIRED.
-Das historische WS-E01-Binding bleibt unverändert erhalten und autorisiert kein F01.
-Danach unabhängiger Epic Review, exaktes Rebinding, separate breite WS-E01-Autorisierung.
+**Aktuelles Gate:** WS-E01-EP-DELTA-20260929-02 erhielt das unabhängige
+WS-E01-EPR-DELTA-20260929-01 **CORRECTION_REQUIRED**
+(`reviews/results/WS-E01-EPR-DELTA-20260929-01.json`) und bleibt historisch unverändert. Der korrigierte Subject **WS-E01-EP-DELTA-20260929-03**
+(WS-E01-EPDELTA-CORR-20260929-01 unter WS-EA-20260929-03) ist
+**EPIC_PREPARATION_DELTA_CORRECTED_READY_FOR_REREVIEW**: Subject
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/subject.json`, Binding REVIEW_REQUIRED,
+drei review-ausschließende Autorenidentitäten. Das historische WS-E01-Binding bleibt
+unverändert und autorisiert kein F01. Danach frischer unabhängiger Rereview, exaktes
+Rebinding, separate breite WS-E01-Autorisierung.
 
 WS-P05 ergänzt Product Truth und TF r6 durch exakt gebundene Originale im Kontextrouter.
 F01 / PR #3 bleibt ausschließlich externe Read-only-Evidence am Head

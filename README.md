@@ -11,9 +11,10 @@ angenommen und durch **WS-PFDELTA-INT-20260929-01** / **WS-EA-20260929-01** inte
 [Acceptance-Binding](foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json),
 [reviewed Subject](foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json) und [Evidence](foundation/deltas/WS-PFDELTA-MAT-20260928-01/evidence.md).
 Externer Project-Context-Sync: **CONFIRMED_BY_USER** (WS-EXTCTX-SYNC-20260929-01).
-Aktuelles Gate: WS-E01 Epic Preparation Delta **WS-E01-EP-DELTA-20260929-02**
-**READY_FOR_INDEPENDENT_REVIEW**, Subject
-`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json`.
+Aktuelles Gate: korrigiertes WS-E01 Epic Preparation Delta **WS-E01-EP-DELTA-20260929-03**
+**EPIC_PREPARATION_DELTA_CORRECTED_READY_FOR_REREVIEW**, Subject
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/subject.json`; die Vorversion -02 erhielt
+CORRECTION_REQUIRED (`reviews/results/WS-E01-EPR-DELTA-20260929-01.json`) und bleibt historisch.
 Historische WS-E01 Preparation bleibt unverändert angenommen; ihre Annahme ersetzt
 kein Delta-Rebinding. F01 bleibt auf PR #3 am Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`
 Draft/ungemergt, gestoppt und wird nicht fortgesetzt. Kein Produktcode oder Feature Acceptance.

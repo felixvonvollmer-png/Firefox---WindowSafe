@@ -12,10 +12,18 @@ mit unabhängigem PASS angenommen. Externer Context-Sync: CONFIRMED_BY_USER
 `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/`: exakte Project-LLM-Originale
 (`preparation.md`, `critical-self-review.md`, Nutzerrichtung, Sync, Beschreibung,
 Vorversion), Autorisierung WS-EA-20260929-02, versionierter `subject.json`, Binding
-REVIEW_REQUIRED mit `ready_for_agent: false` und `evidence.md`. Status
-**READY_FOR_INDEPENDENT_REVIEW** über den kanonischen `EPIC_PREPARATION_REVIEW`-Kanal.
-Danach unabhängiger Epic Review, exaktes Rebinding und separate breite
-WS-E01-Ausführungsautorisierung; nichts davon ist hier erfolgt.
+REVIEW_REQUIRED mit `ready_for_agent: false` und `evidence.md`. Der unabhängige
+WS-E01-EPR-DELTA-20260929-01 (`reviews/results/WS-E01-EPR-DELTA-20260929-01.json`) ergab
+**CORRECTION_REQUIRED** am Head `48d7b0f97eacecd7515f7cbf064955303b0d5767`; dieser Namespace
+bleibt unverändert historisch.
+
+**WS-E01-EP-DELTA-20260929-03** unter `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/`
+korrigiert ausschließlich die drei Reviewfindings (Korrektur, Disposition, Self-Review und
+WS-EA-20260929-03 als Originale; neuer Subject, Binding REVIEW_REQUIRED, `evidence.md`).
+Fachliche Epic-/Product-/TF-Aussage unverändert. Status
+**EPIC_PREPARATION_DELTA_CORRECTED_READY_FOR_REREVIEW**. Danach frischer unabhängiger
+Rereview, exaktes Rebinding und separate breite WS-E01-Ausführungsautorisierung;
+nichts davon ist hier erfolgt.
 F01 / PR #3 bleibt Draft/ungemergt und gestoppt, Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`.
 Nach EPIC_CONVERGED stoppt neue Epic-Arbeit bis Project-LLM-/Nutzer-Richtungsreview;
 der Nutzer bestätigt die nächste Epic-Auswahl vor neuer Preparation.

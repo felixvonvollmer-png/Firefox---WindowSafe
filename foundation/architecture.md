@@ -1,10 +1,31 @@
 # Architektur, Entscheidungen und Vorab-Gates
 
+## Gebundenes WS-P05-Delta
+
+[TF Delta 02](inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-02.md)
+ergänzt r6 §§7/7.1. Öffentlich nicht zuverlässig unterscheidbare `normal`-Sonderfenster
+dürfen regulär sichtbare nichtprivate Tab-/Sitzungsdaten über den gewöhnlichen
+öffentlichen Datenpfad sichern; Restore verspricht ausschließlich gewöhnliche Fenster/Tabs.
+Keine native WebApp-/Taskbar-Identität, App-Shell, Pinning-/OS-Integration wird zugesagt.
+Keine URL-/Titel-/Geometrieheuristik, Firefox-Interna oder zusätzliche privilegierte
+Berechtigung darf als Discriminator dienen. Kein per-Fenster-Fallbackmarker wird gefordert:
+die allgemeine Einschränkung muss sichtbar sein, ohne native Vollständigkeit zu behaupten.
+
+Private-/Container-/Identitäts-/Recovery- und Ressourceninvarianten bleiben erhalten.
+Popup/DevTools/PiP erhalten keine pauschale Scope-Erweiterung. Vor betroffener
+Produktimplementation bleibt versionsgebundene Qualifikation zwingend; F01 belegt nur
+API-Zugänglichkeit und Tragfähigkeit des gewöhnlichen Zielpfads, keine Produktlogik/UX.
+Ubuntu Display/State und finale Messmethodik bleiben offen; vorhandene Restart-Evidence
+wird nicht wiederholt. Spätere WS-AC-08-/F05-Evidence muss Datenerhalt, gewöhnlichen
+Restore, Verzicht auf privilegierte Identität und sichtbare Nutzerinformation beweisen.
+Dieses Foundation-Inkrement ist ELEVATED: Recovery-/Plattformgrenze und Reviewrouting.
+
+
 ## Übernommene Grenzen
 
 Die normative technische Beschreibung ist die unveränderte r6 in
 `foundation/inputs/inputs/WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r6.md`.
-Ihre §§2–10 und I01–I10 bleiben verbindlich. Dieses Dokument ist Routing und
+Ihre §§2–10 und I01–I10 bleiben verbindlich, mit dem unten gebundenen WS-P05-Delta. Dieses Dokument ist Routing und
 Engineeringentscheidung, keine alternative Product Truth.
 
 T01: Firefox Desktop 156 als gewählte Mindest-/Referenzversion, Windows und Ubuntu.
@@ -56,7 +77,7 @@ der funktionale Fallback. Spätere Inkremente bevorzugen kurze Branches/kleine P
 
 | Gate | Status und notwendiger späterer Nachweis |
 |---|---|
-| WS-GATE-PLATFORM / r6 §7.1 | REQUIRED_BEFORE_AFFECTED_PRODUCT_IMPLEMENTATION: exakter Zielbuild, API-/Erkennungsqualifikation für Sonderfenster, Restoregrenzen, verborgene Tabs, Gruppen/Split/Containerkombinationen. Keine produktive Erfassung vor sicherer Erkennung. |
+| WS-GATE-PLATFORM / r6 §7.1 | REQUIRED_BEFORE_AFFECTED_PRODUCT_IMPLEMENTATION: exakter Zielbuild, API-/Erkennungsqualifikation für Sonderfenster, Restoregrenzen, verborgene Tabs, Gruppen/Split/Containerkombinationen. Keine produktive Erfassung vor sicherer öffentlicher Erkennung oder qualifizierter und gebundener WS-P05-Fallbackgrenze. |
 | WS-GATE-MEASUREMENT / r6 §§9.1/9.3 | REQUIRED_BEFORE_AFFECTED_PRODUCT_IMPLEMENTATION: konkrete Tools/Trace, OS-/Firefox-Build, Hardware, Warm-up, Profilzustand, Hintergrundlast, Unsicherheit und gepaarte A/B-Methode binden; mindestens fünf Paare je Profil/OS. |
 | WS-GATE-NATIVE | REQUIRED_BEFORE_FEATURE_ACCEPTANCE: echte Integrations-/Abbruch-/Restart-/Performance-Nachweise der späteren Implementation; kein Ersatz durch Modelltests oder temporär geladenes Add-on. |
 | WS-GATE-TEST-ENVELOPE | BEFORE_ANY_BROWSER_PROBE: separat autorisierte künstliche Profile und geeigneter Installationsweg. Dieser Lauf startet keinerlei Browserprobe. |

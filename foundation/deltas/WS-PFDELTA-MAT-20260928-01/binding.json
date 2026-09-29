@@ -1,0 +1,31 @@
+{
+  "status": "PROJECT_FOUNDATION_ACCEPTED",
+  "subject_id": "WS-PFDELTA-MAT-20260928-01",
+  "review_type": "PROJECT_FOUNDATION_REVIEW",
+  "project_foundation_subject_immutable_reference": {
+    "id": "WS-PFDELTA-MAT-20260928-01",
+    "path": "foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json",
+    "end_sha": "bbca750fab1e760714cf409b8751287db6b93041"
+  },
+  "project_foundation_review_result_reference": "reviews/results/WS-PFR-DELTA-20260928-01.json",
+  "project_foundation_review_result_sha256": "3dbc5884e32529fd4a7097a055b6ab77d5874b398b15e6048e329a42beee9992",
+  "independent_review_verdict": "PASS",
+  "open_critical_blocking_major_findings": "NONE",
+  "open_nonblocking_finding_ids": [],
+  "execution_authorization_reference": "foundation/evidence/pf-delta-integration-authorization.json",
+  "execution_authorization_sha256": "ca04feb83e3d2053615f7836e8c79cb5909ab98ab6449b24cab3230ac5a965f1",
+  "external_project_context_sync": "PENDING",
+  "next_gate": "REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE",
+  "epic_delta_started": false,
+  "epic_rebinding_started": false,
+  "f01_continuation_authorized": false,
+  "feature_acceptance_started": false,
+  "product_features_started": false,
+  "release_or_production_authorized": false,
+  "f01_evidence_reference": {
+    "pr": 3,
+    "head": "7d66ca5b025c8f748d7f97b961c496ee450daaa7",
+    "role": "READ_ONLY_EXTERNAL_QUALIFICATION_EVIDENCE"
+  },
+  "execution_scope": "PROJECT_FOUNDATION_PASS_INTEGRATION_ONLY__NO_CONTEXT_SYNC_EPIC_OR_FEATURE_EXECUTION"
+}

@@ -1,0 +1,74 @@
+{
+  "SCHEMA_VERSION": 1,
+  "REVIEW_ID": "WS-TFPR-DELTA-20260928-01",
+  "REVIEW_TYPE": "TECHNICAL_FOUNDATION_PREPARATION_REVIEW",
+  "REVIEWER_OR_REVIEW_AUTHORITY": "FRESH_OR_SUFFICIENTLY_ISOLATED_INDEPENDENT_PREPARATION_REVIEWER",
+  "RESULT_PROVENANCE": "Fresh independent read-only review performed from the exact uploaded WindowSafe TF-delta review package and read-only GitHub evidence. Package hashes, bound subject/product/approval/critical-review bytes, repository blobs/refs, PR #3 state, and the final active V6 Foundation 1/2 bindings were checked. No GitHub writes, repository mutations, binding creation, Coding-Agent start, merge, or F01 continuation were performed.",
+  "INDEPENDENCE_STATUS": "FRESH_OR_SUFFICIENTLY_ISOLATED",
+  "PREPARATION_SUBJECT_REFERENCE": "WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-01.md@sha256:fbd2ed1daacccc7c0b26e40e30673b133b1960e4f12a2ff615075505487e62f1",
+  "PRODUCT_DEFINITION_REFERENCE": "WS-PD-20260917-01@sha256:fff235b7591f483b9b31c945911a6b5950d29fac931b9136438ae5586c756900 + WS-PD-DELTA-20260924-01@sha256:0caca99a713a0e026af5b63beee5f8abc310ef3d38f20c9653cd3042322aec16",
+  "PRODUCT_APPROVAL_REFERENCE": "WS-PD-APPROVAL-20260917-01@sha256:a655d1fb0a594997e1f6da00c7e8a36bb6c5807ac844ce9fbf04ccb7d1afd4a5 + WS-PD-DELTA-APPROVAL-20260928-01@sha256:9e15db18b095655dfc503d67cad4486998e68493c323f8b2217e9d71e5987ab5",
+  "MATERIAL_DECISIONS_REFERENCE": "WS-PD-DELTA-20260924-01@sha256:0caca99a713a0e026af5b63beee5f8abc310ef3d38f20c9653cd3042322aec16",
+  "CRITICAL_REVIEW_REFERENCE": "WindowSafe_Technical_Foundation_Delta_Critical_Review_WS-TFP-DELTA-CR-20260928-01.md@sha256:9cf2149eb04d02053d87836c98677868103b82a5bd63ed17b069302550b9bba6",
+  "SUBJECT_INTEGRITY_STATUS": "VERIFIED",
+  "VERDICT": "CORRECTION_REQUIRED",
+  "FINDINGS": [
+    {
+      "ID": "WS-TFPR-DELTA-20260928-01-F01",
+      "SEVERITY": "MAJOR",
+      "STATUS": "OPEN",
+      "DESCRIPTION": "The preparation subject's downstream lifecycle is incomplete against the final active V6 Foundation 2. Section 10 begins the WS-E01 Epic Preparation Delta immediately after PROJECT_FOUNDATION_REVIEW = PASS, but V6 Foundation 2 section 35 requires REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE after Project Foundation Review PASS and before FIRST_EPIC_PREPARATION. Omitting that gate permits Epic preparation/rebinding to begin without the required external project-context sync disposition.",
+      "DISPOSITION": "Correct the preparation subject so the post-Project-Foundation sequence explicitly includes REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE before WS-E01_EPIC_PREPARATION_DELTA. Preserve the existing stop on F01/product implementation. Produce a new immutable corrected subject and rerun the required independent delta review. No new material user decision is required for this correction."
+    }
+  ],
+  "OPEN_MATERIAL_USER_DECISIONS": [],
+  "REVIEWED_EVIDENCE_REFERENCE": [
+    {
+      "REFERENCE": "SHA256SUMS.json@sha256:124aaed6704e0bbc74a944b6db47fb3795655ef3df4544ec30b80e57497bfef5",
+      "CHECK_PERFORMED": "Recomputed SHA-256 and byte counts for all nine files listed by the package manifest; every listed package file matched its recorded byte count and SHA-256.",
+      "LIMITATION": "Package integrity proves the reviewed local bytes are exact; it does not by itself establish technical correctness."
+    },
+    {
+      "REFERENCE": "WindowSafe_TF_Delta_Review_Request_WS-TFPR-DELTA-20260928-01.json@sha256:b4b075dc78cf80d3858102b795cd2c5c89450c7021f5f4e80512edb52746e764 + WindowSafe_TF_Delta_Review_Output_Contract_WS-TFPR-DELTA-20260928-01.json@sha256:edfee2df0c986d5988ecb826e698d9221d339564c605cac12f118215976a7bce",
+      "CHECK_PERFORMED": "Verified the exact review request, scope, verdict semantics, fixed values, required output fields, and no-additional-top-level-fields contract before constructing the result.",
+      "LIMITATION": "The request and output contract constrain review execution and result shape; they do not determine the substantive verdict."
+    },
+    {
+      "REFERENCE": "WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-01.md@sha256:fbd2ed1daacccc7c0b26e40e30673b133b1960e4f12a2ff615075505487e62f1",
+      "CHECK_PERFORMED": "Reviewed Product Truth propagation, special-window fallback semantics, F01 qualification boundary, permissions/trust/data invariants, Brownfield append-only limits, Elevated-Risk review chain, Project-Foundation materialization boundary, and downstream Epic/F01 rebinding sequence.",
+      "LIMITATION": "This is a preparation review only; it does not implement or validate the later product behavior."
+    },
+    {
+      "REFERENCE": "WS-PD-DELTA-20260924-01@sha256:0caca99a713a0e026af5b63beee5f8abc310ef3d38f20c9653cd3042322aec16 + WS-PD-DELTA-APPROVAL-20260928-01@sha256:9e15db18b095655dfc503d67cad4486998e68493c323f8b2217e9d71e5987ab5",
+      "CHECK_PERFORMED": "Verified the approved WS-P05 delta and its approval as the material Product Truth change against which the Technical Foundation delta was reviewed.",
+      "LIMITATION": "The approved product delta authorizes the stated product boundary only; it does not waive V6 lifecycle gates."
+    },
+    {
+      "REFERENCE": "WindowSafe_Technical_Foundation_Delta_Critical_Review_WS-TFP-DELTA-CR-20260928-01.md@sha256:9cf2149eb04d02053d87836c98677868103b82a5bd63ed17b069302550b9bba6",
+      "CHECK_PERFORMED": "Used the internal critical review only as context to identify prior corrected concerns and independently re-evaluated the final subject.",
+      "LIMITATION": "The internal critical review is not independent and its conclusion was not inherited as this review's verdict."
+    },
+    {
+      "REFERENCE": "felixvonvollmer-png/Firefox---WindowSafe@7d66ca5b025c8f748d7f97b961c496ee450daaa7",
+      "CHECK_PERFORMED": "Verified the bound base Product Definition blob bc98f81f64ebda18894f604700dd17147e12935e and SHA-256 fff235b7591f483b9b31c945911a6b5950d29fac931b9136438ae5586c756900; base Approval blob 3395524c1d901810a5d1d93e9554056b8273f461 and SHA-256 a655d1fb0a594997e1f6da00c7e8a36bb6c5807ac844ce9fbf04ccb7d1afd4a5; base Technical Foundation r6 blob 446e1e0553aa64997345b16c2c0c8e97cb6709b6 and SHA-256 c461c45c5bd20f12dcffb400acd6f7d5c0f0de0a75616eef3eb1d78dd175dcb6; and historical independent review blob dc3a1b8ebe63d6d06ddd795af3685437d2076fd9.",
+      "LIMITATION": "Historical PASS evidence remains bound to its historical subject and does not automatically approve this delta."
+    },
+    {
+      "REFERENCE": "features/WS-E01-F01/state.json@blob:7515185da745289574f6aeaa556732c93625e128 + features/WS-E01-F01/evidence/ubuntu-closure.md@blob:9f22df503da45409a1b57e6512f0067faf9f5e4f",
+      "CHECK_PERFORMED": "Verified F01 remains blocked for a material user decision at the bound evidence state, product implementation has not started, public Firefox window data exposed the observed WebApp as normal without supported WebApp identity, and the special-native-GUI/measurement gates remain open or blocked as recorded.",
+      "LIMITATION": "The runtime evidence is qualification evidence for the bound Firefox/OS observations, not proof of all future Firefox versions or final product behavior."
+    },
+    {
+      "REFERENCE": "felixvonvollmer-png/Firefox---WindowSafe main@3bdd7439c221b8f8c83e7374c8bb29898891a4fd + PR#3 head@7d66ca5b025c8f748d7f97b961c496ee450daaa7",
+      "CHECK_PERFORMED": "Verified read-only that main equals the requested baseline and PR #3 is open, Draft, unmerged, with the expected base and head SHAs.",
+      "LIMITATION": "Repository state verification establishes the review baseline only; no mutation or merge authorization follows from it."
+    },
+    {
+      "REFERENCE": "V6_F1@blob:0c10e10eebcb2b23336cc9cdf4a88305a209fd22 + V6_F2@blob:3034da0fbee6ab79318da25ed65ccdc0933074e5 + foundations/v6/README.md@blob:c9c0a47d108268059ca5b5825d2d445b44179775",
+      "CHECK_PERFORMED": "Verified the final active frozen V6 basis on meta-repository main 0dc8f145d27f796ea8ae230fae6ec4b21d6aa921 and reviewed the relevant Technical Foundation binding/review, Brownfield, Project Foundation Review, and External Project Context Sync lifecycle requirements.",
+      "LIMITATION": "Candidate authoring-state fields are historical metadata; the active freeze/README and exact frozen blobs govern this review."
+    }
+  ],
+  "REVIEW_RESULT_REFERENCE": "/mnt/data/WS-TFPR-DELTA-20260928-01.json",
+  "RATIONALE": "Subject integrity and all required baseline/package bindings were verified, and the substantive WS-P05 propagation is otherwise technically coherent: it does not invent a WebApp discriminator, does not introduce URL/title/geometry heuristics or privileged Firefox interfaces, keeps F01 as qualification rather than product implementation, preserves the existing permissions/trust/private/recovery/container/identity boundaries, and keeps the Brownfield change additive. However, the subject's downstream lifecycle omits the active V6 Foundation 2 requirement for REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE between PROJECT_FOUNDATION_REVIEW_PASS and FIRST_EPIC_PREPARATION. That is an OPEN MAJOR preparation defect because the subject explicitly defines the gate sequence and currently permits Epic delta/rebinding to start too early. The defect is correctable without a new material user decision, so the proper verdict is CORRECTION_REQUIRED rather than BLOCKED."
+}

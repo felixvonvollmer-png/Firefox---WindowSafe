@@ -634,7 +634,12 @@ class AcceptedEpicHistoryCliTests(unittest.TestCase):
                                                   AcceptedEpicTests.RESULT}:
             target = self.repo / name
             target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(f.ROOT / name, target)
+            if name.endswith(".md"):
+                # Historical integration fixture must retain its historical routers;
+                # today's delta routers point to inputs not present in this fixture.
+                target.write_bytes(f.at(f.DELTA_BASE, name))
+            else:
+                shutil.copyfile(f.ROOT / name, target)
         self.first = self.save()
 
     git = EpicHistoryCliTests.git

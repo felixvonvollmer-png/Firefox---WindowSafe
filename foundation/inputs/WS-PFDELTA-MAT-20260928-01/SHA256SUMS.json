@@ -1,0 +1,67 @@
+{
+  "PACKAGE_ID": "WS-PFDELTA-MAT-20260928-01-PACKAGE",
+  "AUTHORIZATION_ID": "WS-EA-20260928-01",
+  "RUN_ID": "WS-PFDELTA-MAT-20260928-01",
+  "FILES": {
+    "README_FIRST.txt": {
+      "bytes": 387,
+      "sha256": "1f0ecfc05ab2a9889ccd134d427dc74220da90f46734a39765b3beda7879e249"
+    },
+    "WS-TFPR-DELTA-20260928-01(2).json": {
+      "bytes": 9485,
+      "sha256": "f0e43b93cd55b007b7c2bd6b2f149e85ae834e65fa2146fc0c13fdda67392adf"
+    },
+    "WS-TFPR-DELTA-20260928-02(1).json": {
+      "bytes": 11551,
+      "sha256": "ce2b893e6f3c6777bb1e22c51442684d360d05508978963c7da29d9700d597c8"
+    },
+    "WindowSafe_Execution_Authorization_WS-EA-20260928-01.json": {
+      "bytes": 5316,
+      "sha256": "677c3eb9933cb0f6b3313253fff7f9457f0c342bf0e30ea70fc04f5bfc83e2c4"
+    },
+    "WindowSafe_Product_Definition_Delta_WS-PD-DELTA-20260924-01.md": {
+      "bytes": 7692,
+      "sha256": "0caca99a713a0e026af5b63beee5f8abc310ef3d38f20c9653cd3042322aec16"
+    },
+    "WindowSafe_Product_Delta_Approval_WS-PD-DELTA-APPROVAL-20260928-01.json": {
+      "bytes": 2962,
+      "sha256": "9e15db18b095655dfc503d67cad4486998e68493c323f8b2217e9d71e5987ab5"
+    },
+    "WindowSafe_Project_Foundation_Delta_Materialization_Handoff_WS-PFDELTA-MAT-20260928-01.md": {
+      "bytes": 7672,
+      "sha256": "0f8632d743e9ecfdc83f56fc027641ea255f90a7fa4ac5406b444c1ae36d2c21"
+    },
+    "WindowSafe_Project_Foundation_Delta_Materialization_Scope_20260928.md": {
+      "bytes": 1634,
+      "sha256": "73a20bdbfc59e9cb24c43632daafe40918b91d3c52e91caa0bf688ed884dad95"
+    },
+    "WindowSafe_Project_Foundation_Delta_Materialization_Startprompt_WS-PFDELTA-MAT-20260928-01.txt": {
+      "bytes": 1883,
+      "sha256": "bc9bb5595ec9fbd93090d1f5829ea74c19f1a866794c5dbd75d35e105e5668d1"
+    },
+    "WindowSafe_TF_Delta_Correction_Disposition_WS-TFP-DELTA-CORR-20260928-01.json": {
+      "bytes": 1264,
+      "sha256": "0917047b86dbaedc3893f7265a54dc21e19a599fef6c8ceaa37c23d6fbbe9c7c"
+    },
+    "WindowSafe_TF_Delta_Correction_WS-TFP-DELTA-20260928-01_to_02.diff": {
+      "bytes": 4695,
+      "sha256": "9080367cfb5d181c768b3d561c233a7c0dcc95e684bb19f0d1b9d56996ef362d"
+    },
+    "WindowSafe_Technical_Foundation_Delta_Binding_WS-TFP-DELTA-BIND-20260928-01.json": {
+      "bytes": 4441,
+      "sha256": "684e759d4f66b8ac73a2e191b6ccaedf1416c9360619f2d89dc1ef2366b60e21"
+    },
+    "WindowSafe_Technical_Foundation_Delta_Critical_Rereview_WS-TFP-DELTA-CR-20260928-02.md": {
+      "bytes": 1839,
+      "sha256": "5fb8a5125ca6e8f6dfca0584a6fcbccb6bf477074540b5a88724baa9406eeb96"
+    },
+    "WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-01.md": {
+      "bytes": 10789,
+      "sha256": "fbd2ed1daacccc7c0b26e40e30673b133b1960e4f12a2ff615075505487e62f1"
+    },
+    "WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-02.md": {
+      "bytes": 13195,
+      "sha256": "8c687681f9a46cf0782212ebfa5be5d6e22cac77d890b1f436a8395f7b1c5d2c"
+    }
+  }
+}

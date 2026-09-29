@@ -13,6 +13,29 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
+DELTA_ID = "WS-PFDELTA-MAT-20260928-01"
+DELTA_BASE = "3bdd7439c221b8f8c83e7374c8bb29898891a4fd"
+DELTA_INPUTS = "foundation/inputs/" + DELTA_ID + "/"
+DELTA_SUBJECT = "foundation/deltas/" + DELTA_ID + "/subject.json"
+DELTA_EVIDENCE = "foundation/deltas/" + DELTA_ID + "/evidence.md"
+DELTA_AUTH = DELTA_INPUTS + "WindowSafe_Execution_Authorization_WS-EA-20260928-01.json"
+DELTA_MANIFEST_SHA = "bf6a4832c52860a136090790e3ec973b7a6536546a30dcc54711e0f09f69d757"
+DELTA_AUTH_SHA = "677c3eb9933cb0f6b3313253fff7f9457f0c342bf0e30ea70fc04f5bfc83e2c4"
+DELTA_SOURCES = {
+    "foundation/sources/v6-final-20260918/README.md": "c9c0a47d108268059ca5b5825d2d445b44179775",
+    "foundation/sources/v6-final-20260918/foundation-1.md": "0c10e10eebcb2b23336cc9cdf4a88305a209fd22",
+    "foundation/sources/v6-final-20260918/foundation-2.md": "3034da0fbee6ab79318da25ed65ccdc0933074e5",
+}
+DELTA_SUPPORT = {
+    "AGENTS.md", "README.md", "foundation/context.md", "foundation/architecture.md",
+    "reviews/README.md", "epics/README.md", "tools/foundation.py",
+    "tests/test_foundation.py", "tests/test_foundation_delta.py", ".github/workflows/foundation.yml",
+}
+# Separate acceptance state; the reviewed delta subject itself stays immutable.
+DELTA_BINDING = "foundation/deltas/" + DELTA_ID + "/binding.json"
+DELTA_INTEGRATION_AUTH = "foundation/evidence/pf-delta-integration-authorization.json"
+DELTA_INTEGRATION_AUTH_SHA = "ca04feb83e3d2053615f7836e8c79cb5909ab98ab6449b24cab3230ac5a965f1"
+DELTA_NEXT_GATE = "REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE"
 MANIFEST_SHA = "80203ae9f554aa4dba951d316a685bd20cbe57ef28a2912fd49608cdaf9cb6a8"
 HANDOFF_SHA = "15701c717061773d9017cf3c884a7eb0cebcb0d66b67a93dc13e41acb7d98774"
 BLOBS = {
@@ -239,7 +262,13 @@ def request(sha, path="foundation/subject.json"):
         "EPIC_PREPARATION_REVIEW": "epics/" + s["subject_id"] + "/subject.json",
         "FEATURE_ACCEPTANCE_REVIEW": "features/" + s["subject_id"] + "/subject.json",
     }[kind]
-    require(path == expected, "subject locator mismatch")
+    if kind == "PROJECT_FOUNDATION_REVIEW" and path == DELTA_SUBJECT:
+        reviewed = delta_history(sha)
+        if reviewed != sha:
+            # A current accepted locator still requests the original reviewed bytes.
+            return request(reviewed, path)
+    else:
+        require(path == expected, "subject locator mismatch")
     text(s["implementer"])
     require(isinstance(s["evidence_paths"], list) and s["evidence_paths"], "missing subject evidence")
     require(len(s["evidence_paths"]) == len(set(s["evidence_paths"])), "duplicate evidence")
@@ -389,8 +418,15 @@ def input_integrity(root):
         expected.add(name)
         data = (base / name).read_bytes()
         require(len(data) == entry["bytes"] and sha256(data) == entry["sha256"], "input integrity mismatch")
-    actual = {p.relative_to(base).as_posix() for p in base.rglob("*") if p.is_file()}
+    actual = {p.relative_to(base).as_posix() for p in base.rglob("*")
+              if p.is_file() and not p.relative_to(base).as_posix().startswith(DELTA_ID + "/")}
     require(expected == actual, "input inventory mismatch")
+    if any((root / name).exists() for name in (DELTA_INPUTS, DELTA_SUBJECT, *DELTA_SOURCES)):
+        delta_integrity(lambda name: (root / name).read_bytes())
+        expected_delta = set(parse((root / (DELTA_INPUTS + "SHA256SUMS.json")).read_bytes())["FILES"])
+        actual_delta = {p.relative_to(root / DELTA_INPUTS).as_posix()
+                        for p in (root / DELTA_INPUTS).rglob("*") if p.is_file()}
+        require(actual_delta == expected_delta | {"SHA256SUMS.json"}, "delta inventory mismatch")
     handoff = base / "WindowSafe_Project_Foundation_Agent_Start_Handoff_WS-PFBOOT-20260917-01.md"
     require(sha256(handoff.read_bytes()) == HANDOFF_SHA, "handoff mismatch")
     for name, sha in BLOBS.items():
@@ -421,8 +457,202 @@ def scope(path):
                                 + ID_PATTERN + r"\.(md|json))", path))
     allowed |= bool(re.fullmatch(r"reviews/results/" + ID_PATTERN + r"\.json", path))
     allowed |= bool(re.fullmatch(r"reviews/dispositions/" + ID_PATTERN + r"\.json", path))
+    allowed |= path in {DELTA_SUBJECT, DELTA_EVIDENCE, DELTA_BINDING} | set(DELTA_SOURCES)
     require(allowed, "outside foundation-only path scope")
     require(PurePosixPath(path).name != "manifest.json", "extension manifest prohibited")
+
+
+def delta_integrity(read):
+    """Verify the new authorization and immutable originals, never issue a verdict."""
+    manifest = read(DELTA_INPUTS + "SHA256SUMS.json")
+    require(sha256(manifest) == DELTA_MANIFEST_SHA, "delta manifest drift")
+    entries = parse(manifest)["FILES"]
+    for name, entry in entries.items():
+        safe_path(name)
+        raw = read(DELTA_INPUTS + name)
+        require(len(raw) == entry["bytes"] and sha256(raw) == entry["sha256"], "delta input drift")
+    require(sha256(read(DELTA_AUTH)) == DELTA_AUTH_SHA, "delta authorization drift")
+    for name, blob in DELTA_SOURCES.items():
+        raw = read(name)
+        require(hashlib.sha1(b"blob " + str(len(raw)).encode() + b"\0" + raw).hexdigest() == blob,
+                "final V6 blob drift")
+    subject = parse(read(DELTA_SUBJECT))
+    expected = {
+        "subject_id": DELTA_ID, "review_type": "PROJECT_FOUNDATION_REVIEW",
+        "status": "PROJECT_FOUNDATION_READY_FOR_REVIEW",
+        "start_baseline_sha": DELTA_BASE,
+        "work_branch": "foundation/ws-pf-delta-20260928-01",
+        "execution_authorization_path": DELTA_AUTH,
+        "execution_authorization_sha256": DELTA_AUTH_SHA,
+        "independent_review_status": "PENDING", "risk": "ELEVATED",
+        "external_project_context_sync": "PENDING_AFTER_PROJECT_FOUNDATION_REVIEW_PASS",
+        "product_features_started": False, "integration_authorized": False,
+        "epic_delta_started": False, "f01_continuation_authorized": False,
+        "feature_acceptance_started": False, "operations_policy": "NOT_APPLICABLE_NOT_ACTIVATED",
+        "open_material_user_decisions": [],
+        "f01_evidence_reference": {
+            "pr": 3, "head": "7d66ca5b025c8f748d7f97b961c496ee450daaa7",
+            "role": "READ_ONLY_EXTERNAL_QUALIFICATION_EVIDENCE",
+        },
+        "end_state_binding": "EXACT_COMMIT_SUPPLIED_BY_REVIEW_REQUEST_NO_SELF_REFERENTIAL_SHA",
+    }
+    for key, value in expected.items():
+        require(subject.get(key) == value and type(subject.get(key)) is type(value), "delta subject boundary")
+    fields(subject, set(expected) | {"implementer", "evidence_paths"})
+    text(subject["implementer"])
+    evidence = subject["evidence_paths"]
+    required = {DELTA_INPUTS + n for n in entries} | {DELTA_INPUTS + "SHA256SUMS.json", DELTA_EVIDENCE}
+    required |= set(DELTA_SOURCES) | DELTA_SUPPORT | {CONTRACT_PATH}
+    required |= {"foundation/inputs/inputs/" + n for n in (
+        "WindowSafe_Product_Definition_WS-PD-20260917-01.md",
+        "WindowSafe_Approval_Record_WS-PD-20260917-01.json",
+        "WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r6.md")}
+    require(isinstance(evidence, list) and len(evidence) == len(set(evidence))
+            and required <= set(evidence), "delta evidence incomplete")
+    for name in evidence:
+        scope(name)
+        read(name)
+
+
+def tree_snapshot(revision):
+    return {entry.split(b"\t", 1)[1].decode(): entry.split(b"\t", 1)[0]
+            for entry in git("ls-tree", "-rz", revision).split(b"\0") if entry}
+
+
+def delta_history(head):
+    """Bind this additive run to main without shortening any historical checks.
+
+    Returns the reviewed subject commit: head itself while review is pending, or
+    the exact authorized reviewed head once the separate acceptance exists.
+    """
+    ancestor(DELTA_BASE, head)
+    read = lambda name: at(head, name)
+    if DELTA_BINDING in tree_snapshot(head):
+        # request(reviewed) inside re-runs the unchanged original delta checks.
+        reviewed, allowed = accepted_delta_binding(read, head)
+        delta_integration_history(reviewed, head, allowed)
+        return reviewed
+    delta_integrity(read)
+    manifest = parse(read(DELTA_INPUTS + "SHA256SUMS.json"))["FILES"]
+    allowed = DELTA_SUPPORT | {DELTA_SUBJECT, DELTA_EVIDENCE} | set(DELTA_SOURCES)
+    allowed |= {DELTA_INPUTS + n for n in manifest} | {DELTA_INPUTS + "SHA256SUMS.json"}
+    snapshot = tree_snapshot
+    previous = snapshot(DELTA_BASE)
+    for revision in git("rev-list", "--reverse", DELTA_BASE + ".." + head).decode().splitlines():
+        require(len(git("rev-list", "--parents", "-n", "1", revision).split()) == 2,
+                "delta merges prohibited")
+        changed = set(git("diff", "--name-only", revision + "^", revision).decode().splitlines())
+        require(changed <= allowed, "delta scope drift")
+        current = snapshot(revision)
+        check_history_maps(previous, current)
+        require(current.get("foundation/subject.json") == previous.get("foundation/subject.json"),
+                "historical foundation subject drift")
+        previous = current
+    require(read("foundation/subject.json") == at(DELTA_BASE, "foundation/subject.json"),
+            "historical foundation subject drift")
+    return head
+
+
+def accepted_delta_binding(read, head):
+    """Consume the authorized PASS; preserve the reviewed delta subject and verdict."""
+    raw = read(DELTA_INTEGRATION_AUTH)
+    require(sha256(raw) == DELTA_INTEGRATION_AUTH_SHA, "integration authorization hash")
+    auth = parse(raw)
+    require(auth["DOCUMENT_TYPE"] == "PROJECT_FOUNDATION_PASS_INTEGRATION_AUTHORIZATION"
+            and auth["STATUS"] == "AUTHORIZED" and auth["AUTHORITY"] == "USER", "integration authorization")
+    require(auth["EXPECTED_MAIN_SHA"] == DELTA_BASE, "integration baseline mismatch")
+    reviewed = auth["EXPECTED_REVIEWED_HEAD"]
+    require(isinstance(reviewed, str) and re.fullmatch(SHA_PATTERN, reviewed)
+            and commit(reviewed) == reviewed, "reviewed delta SHA")
+    require(git("rev-parse", reviewed + "^{tree}").decode().strip() == auth["EXPECTED_REVIEWED_TREE"],
+            "reviewed delta tree")
+    ancestor(reviewed, head)
+    require(DELTA_BINDING not in tree_snapshot(reviewed), "acceptance requires pending original")
+    require(read(DELTA_SUBJECT) == at(reviewed, DELTA_SUBJECT), "immutable delta subject drift")
+    req = request(reviewed, DELTA_SUBJECT)
+    for item in req["reviewed_evidence"]:
+        if protected(item["path"]):
+            require(sha256(read(item["path"])) == item["sha256"], "immutable delta evidence drift")
+    exact = auth["EXACT_REVIEW_RESULT"]
+    reference = safe_path(exact["TARGET"])
+    require(re.fullmatch(r"reviews/results/" + ID_PATTERN + r"\.json", reference), "result locator")
+    result_raw = read(reference)
+    require(len(result_raw) == exact["BYTES"] and sha256(result_raw) == exact["SHA256"],
+            "integration original result mismatch")
+    result = parse(result_raw)
+    validate_result(result, req, parse(at(reviewed, CONTRACT_PATH)), PurePosixPath(reference).name)
+    require(result["verdict"] == exact["VERDICT"] == "PASS"
+            and result["review_type"] == "PROJECT_FOUNDATION_REVIEW", "foundation PASS required")
+    expected = {
+        "status": "PROJECT_FOUNDATION_ACCEPTED",
+        "subject_id": DELTA_ID,
+        "review_type": "PROJECT_FOUNDATION_REVIEW",
+        "project_foundation_subject_immutable_reference": req["subject"],
+        "project_foundation_review_result_reference": reference,
+        "project_foundation_review_result_sha256": exact["SHA256"],
+        "independent_review_verdict": "PASS",
+        "open_critical_blocking_major_findings": "NONE",
+        "open_nonblocking_finding_ids": [item["id"] for item in result["findings"] if item["status"] == "OPEN"],
+        "execution_authorization_reference": DELTA_INTEGRATION_AUTH,
+        "execution_authorization_sha256": DELTA_INTEGRATION_AUTH_SHA,
+        "external_project_context_sync": "PENDING",
+        "next_gate": DELTA_NEXT_GATE,
+        "epic_delta_started": False,
+        "epic_rebinding_started": False,
+        "f01_continuation_authorized": False,
+        "feature_acceptance_started": False,
+        "product_features_started": False,
+        "release_or_production_authorized": False,
+        "f01_evidence_reference": parse(at(reviewed, DELTA_SUBJECT))["f01_evidence_reference"],
+        "execution_scope": "PROJECT_FOUNDATION_PASS_INTEGRATION_ONLY__NO_CONTEXT_SYNC_EPIC_OR_FEATURE_EXECUTION",
+    }
+    # Canonical JSON comparison also rejects type drift such as 0 for false.
+    require(json.dumps(parse(read(DELTA_BINDING)), sort_keys=True) == json.dumps(expected, sort_keys=True),
+            "accepted binding mismatch")
+    allowed = DELTA_SUPPORT | {DELTA_BINDING, DELTA_INTEGRATION_AUTH, reference}
+    require(set(git("diff", "--name-only", reviewed, head).decode().splitlines()) <= allowed,
+            "post-review integration scope")
+    return reviewed, allowed
+
+
+def delta_integration_history(reviewed, head, allowed):
+    """Every post-review commit, plus at most one exact normal merge into DELTA_BASE."""
+    merges = set()
+    previous = tree_snapshot(reviewed)
+    for revision in git("rev-list", "--reverse", reviewed + ".." + head).decode().splitlines():
+        parents = git("rev-list", "--parents", "-n", "1", revision).decode().split()[1:]
+        if len(parents) == 2:
+            require(parents[0] == DELTA_BASE and not merges, "authorized foundation normal merge required")
+            ancestor(reviewed, parents[1])
+            require(git("rev-parse", revision + "^{tree}") == git("rev-parse", parents[1] + "^{tree}"),
+                    "foundation integration tree drift")
+            require(at(parents[1], DELTA_BINDING) == at(head, DELTA_BINDING), "merge acceptance mismatch")
+            merges.add(revision)
+            previous = tree_snapshot(parents[1])
+        else:
+            require(len(parents) == 1, "integration merges prohibited")
+            changed = set(git("diff", "--name-only", parents[0], revision).decode().splitlines())
+            require(changed <= allowed, "post-review integration scope")
+        current = tree_snapshot(revision)
+        check_history_maps(previous, current)
+        previous = current
+    return merges
+
+
+def delta_integration_merges(head):
+    """The validated normal merge of the accepted delta, if one exists."""
+    if DELTA_BINDING not in tree_snapshot(head):
+        return set()
+    reviewed = delta_history(head)
+    return set(git("rev-list", "--min-parents=2", reviewed + ".." + head).decode().splitlines())
+
+
+def delta_scope_head(head):
+    paths = git("ls-tree", "-r", "--name-only", head).decode().splitlines()
+    if DELTA_SUBJECT not in paths:
+        return head
+    delta_history(head)
+    return DELTA_BASE
 
 
 def epic_preparation(path, read, head):
@@ -558,7 +788,7 @@ def accepted_epic_binding(path, read, head):
         if name.startswith(prefix) and name != binding_path:
             require(read(name) == at(reviewed, name), "immutable preparation evidence drift")
     allowed = INTEGRATION_SUPPORT_PATHS | {binding_path, auth_path, reference}
-    require(set(git("diff", "--name-only", reviewed, head).decode().splitlines()) <= allowed,
+    require(set(git("diff", "--name-only", reviewed, delta_scope_head(head)).decode().splitlines()) <= allowed,
             "post-review integration scope")
     return reviewed
 
@@ -587,6 +817,8 @@ def check(root=ROOT):
     epic_paths = epic_subject_paths(p.relative_to(root).as_posix() for p in files(root))
     for path in epic_paths:
         epic_preparation(path, lambda name: (root / name).read_bytes(), commit("HEAD"))
+    if (root / DELTA_BINDING).exists():
+        accepted_delta_binding(lambda name: (root / name).read_bytes(), commit("HEAD"))
     for path in files(root):
         rel = path.relative_to(root).as_posix()
         scope(rel)
@@ -621,6 +853,9 @@ def check(root=ROOT):
     require(actions == ["actions/checkout@11d5960a326750d5838078e36cf38b85af677262", "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"], "CI action pin drift")
     for command in ["foundation.py check", "unittest discover", "foundation.py build --verify-repeat", "foundation.py history --event-base"]:
         require(command in workflow, "missing CI gate")
+    if (root / DELTA_SUBJECT).exists():
+        require("foundation.py request --sha HEAD --subject " + DELTA_SUBJECT in workflow,
+                "missing delta CI request")
     if epic_paths:
         require("ref: ${{ github.event.pull_request.head.sha || github.sha }}" in workflow, "CI exact head required")
         require("foundation.py schema-preflight --sha HEAD --schema reviews/review-contract.json" in workflow,
@@ -680,7 +915,7 @@ def write_inventory(root, data):
 
 
 def protected(path):
-    return path.startswith(("foundation/inputs/", "foundation/sources/", "foundation/evidence/", "reviews/results/", "reviews/dispositions/")) or bool(re.fullmatch(r"epics/" + ID_PATTERN + r"/.+", path))
+    return path.startswith(("foundation/inputs/", "foundation/sources/", "foundation/evidence/", "foundation/deltas/", "reviews/results/", "reviews/dispositions/")) or bool(re.fullmatch(r"epics/" + ID_PATTERN + r"/.+", path))
 
 
 def check_history_maps(before, after, transitions=None):
@@ -769,7 +1004,9 @@ def preparation_integration(head, cumulative):
     No subject-supplied SHA may exempt arbitrary merges or shorten history.
     """
     paths = git("ls-tree", "-r", "--name-only", head, "--", "epics").decode().splitlines()
-    integrations = set()
+    # Only the exact merge already validated against the accepted delta binding.
+    delta_merges = delta_integration_merges(head)
+    integrations = set(delta_merges)
     for path in epic_subject_paths(paths):
         baseline, reviewed, reference = epic_preparation(path, lambda name: at(head, name), head)
         for name in (path, path.replace("subject.json", "binding.json"),
@@ -788,6 +1025,8 @@ def preparation_integration(head, cumulative):
         if binding["status"] == "READY_FOR_AGENT":
             epic_reviewed = binding["epic_preparation_subject_immutable_reference"]["end_sha"]
             for merge in git("rev-list", "--min-parents=2", epic_reviewed + ".." + head).decode().splitlines():
+                if merge in delta_merges:
+                    continue
                 parents = git("rev-list", "--parents", "-n", "1", merge).decode().split()[1:]
                 require(len(parents) == 2 and parents[0] == baseline, "authorized epic normal merge required")
                 ancestor(epic_reviewed, parents[1])

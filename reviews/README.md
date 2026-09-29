@@ -1,6 +1,41 @@
 # Kanonischer Reviewkanal und aktuelle Review-Locators
 
-## Aktueller Einstieg: Epic Preparation und Feature Acceptance
+## Aktueller Stand: Project Foundation Delta angenommen
+
+[Subject](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json): **WS-PFDELTA-MAT-20260928-01**,
+reviewed Head `bbca750fab1e760714cf409b8751287db6b93041`, unverändert.
+Unabhängiges Resultat: [WS-PFR-DELTA-20260928-01](results/WS-PFR-DELTA-20260928-01.json),
+**PASS**, 13537 Bytes, SHA-256 `3dbc5884e32529fd4a7097a055b6ab77d5874b398b15e6048e329a42beee9992`,
+byteidentisch übertragen. Separates [Acceptance-Binding](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json)
+unter [WS-EA-20260929-01](../foundation/evidence/pf-delta-integration-authorization.json)
+(Lauf WS-PFDELTA-INT-20260929-01): Harness akzeptiert nur diesen gebundenen
+Post-Review-Übergang und genau einen normalen Mergecommit von PR #4 auf
+`3bdd7439c221b8f8c83e7374c8bb29898891a4fd`. Der aktuelle Request liefert weiter
+den exakten reviewed Request. Externer Sync **PENDING**; nächstes Gate
+`REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE`. Kein Epic Delta,
+Rebinding, F01, Feature Acceptance oder Production.
+
+Die folgenden Review-Anweisungen des Delta-Reviews sind historisch:
+Kanonischer V3-Vertrag und Resultatkanal bleiben unverändert; kein alternativer
+Reviewvertrag für das Delta. Neue Foundation-Subjects besitzen versionierte Locator,
+`foundation/subject.json` bleibt historisch. TF-Preparation-Resultate liegen als
+externe Originalinputs vor, nicht als neu erzeugte Repository-Reviewresultate.
+
+```sh
+python3 tools/foundation.py request --sha <END_SHA> --subject foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json
+python3 tools/foundation.py schema-preflight --sha <END_SHA> --schema reviews/review-contract.json
+python3 tools/foundation.py history --base 3bdd7439c221b8f8c83e7374c8bb29898891a4fd
+```
+
+Review durch frischen/ausreichend isolierten unabhängigen Kontext, read-only am
+exakten SHA. Kritische Eigenprüfung und grüne CI sind kein unabhängiges PASS.
+Review umfasst WS-P05-Fidelität, finale V6-Router, historische Kompatibilität,
+Scope-/Historyguards, lokale Tests und exakte CI. Resultat vor Transport mit dem
+kanonischen Verbraucher validieren. Kein Merge, externer Sync, Epic-Rebinding,
+F01-Start, Feature Acceptance oder Production durch dieses Review vorbereitet.
+
+
+## Historischer Einstieg: Epic Preparation und Feature Acceptance
 
 WS-E01 Preparation ist mit dem unveränderten unabhängigen
 [WS-E01-EPR-20260919-02 PASS](results/WS-E01-EPR-20260919-02.json) angenommen.

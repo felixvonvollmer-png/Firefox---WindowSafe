@@ -1,11 +1,21 @@
 # Kanonischer Reviewkanal und aktuelle Review-Locators
 
-## Aktueller Auftrag: Project Foundation Delta
+## Aktueller Stand: Project Foundation Delta angenommen
 
-[Subject](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json): **WS-PFDELTA-MAT-20260928-01**.
-[Evidence und Ausführungsgrenzen](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/evidence.md).
-Der vollständige End-SHA und die CI-Run-Locators werden im separaten PR-Handoff
-angegeben und müssen unabhängig gegen den PR-Head geprüft werden.
+[Subject](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json): **WS-PFDELTA-MAT-20260928-01**,
+reviewed Head `bbca750fab1e760714cf409b8751287db6b93041`, unverändert.
+Unabhängiges Resultat: [WS-PFR-DELTA-20260928-01](results/WS-PFR-DELTA-20260928-01.json),
+**PASS**, 13537 Bytes, SHA-256 `3dbc5884e32529fd4a7097a055b6ab77d5874b398b15e6048e329a42beee9992`,
+byteidentisch übertragen. Separates [Acceptance-Binding](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json)
+unter [WS-EA-20260929-01](../foundation/evidence/pf-delta-integration-authorization.json)
+(Lauf WS-PFDELTA-INT-20260929-01): Harness akzeptiert nur diesen gebundenen
+Post-Review-Übergang und genau einen normalen Mergecommit von PR #4 auf
+`3bdd7439c221b8f8c83e7374c8bb29898891a4fd`. Der aktuelle Request liefert weiter
+den exakten reviewed Request. Externer Sync **PENDING**; nächstes Gate
+`REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE`. Kein Epic Delta,
+Rebinding, F01, Feature Acceptance oder Production.
+
+Die folgenden Review-Anweisungen des Delta-Reviews sind historisch:
 Kanonischer V3-Vertrag und Resultatkanal bleiben unverändert; kein alternativer
 Reviewvertrag für das Delta. Neue Foundation-Subjects besitzen versionierte Locator,
 `foundation/subject.json` bleibt historisch. TF-Preparation-Resultate liegen als

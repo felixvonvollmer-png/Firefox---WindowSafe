@@ -1,0 +1,71 @@
+{
+  "DOCUMENT_TYPE": "PROJECT_FOUNDATION_PASS_INTEGRATION_AUTHORIZATION",
+  "AUTHORIZATION_ID": "WS-EA-20260929-01",
+  "STATUS": "AUTHORIZED",
+  "DATE": "2026-09-29",
+  "INTEGRATION_ID": "WS-PFDELTA-INT-20260929-01",
+  "AUTHORITY": "USER",
+  "USER_AUTHORIZATION_REFERENCE": {
+    "VERBATIM_MESSAGE": "frei",
+    "CONTEXT": "Immediate reply authorizing exact Project-Foundation PASS transfer/integration, normal merge of PR #4, post-merge verification, then STOP at External Project Context Sync gate."
+  },
+  "REPOSITORY": "felixvonvollmer-png/Firefox---WindowSafe",
+  "REPOSITORY_ID": 1374094477,
+  "EXPECTED_MAIN_SHA": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
+  "PR": 4,
+  "BRANCH": "foundation/ws-pf-delta-20260928-01",
+  "EXPECTED_REVIEWED_HEAD": "bbca750fab1e760714cf409b8751287db6b93041",
+  "EXPECTED_REVIEWED_TREE": "ef3f4840ec4aacdd569a6444fac8974de70edb12",
+  "F01_PR": 3,
+  "EXPECTED_F01_HEAD": "7d66ca5b025c8f748d7f97b961c496ee450daaa7",
+  "EXACT_REVIEW_RESULT": {
+    "BYTES": 13537,
+    "SHA256": "3dbc5884e32529fd4a7097a055b6ab77d5874b398b15e6048e329a42beee9992",
+    "VERDICT": "PASS",
+    "TARGET": "reviews/results/WS-PFR-DELTA-20260928-01.json"
+  },
+  "ACTIVE_V6": {
+    "README_BLOB": "c9c0a47d108268059ca5b5825d2d445b44179775",
+    "F1_BLOB": "0c10e10eebcb2b23336cc9cdf4a88305a209fd22",
+    "F2_BLOB": "3034da0fbee6ab79318da25ed65ccdc0933074e5",
+    "CURRENT_META_MAIN_OBSERVED": "47816eecb9df524aa1d91d564496dea5bc4b94b7",
+    "NOTE": "Meta main advanced, but frozen active README/F1/F2 blobs remain unchanged; do not expand this integration to unrelated newer meta changes."
+  },
+  "AUTHORIZED": [
+    "recheck repo/PR4/head/tree/main/worktree and PR3/F01 bindings",
+    "validate exact reviewer bytes with canonical repo-local validate-result before any write",
+    "transfer exact result bytes to canonical result path",
+    "materialize minimum separate accepted Project-Foundation state without editing reviewed subject",
+    "update only minimum routers/context to point to accepted Foundation and next External Context Sync gate",
+    "run full canonical local checks/tests/build/request/schema/result/history/diff checks",
+    "commit/push integration delta on existing foundation branch",
+    "require and inspect exact-head CI success",
+    "normal merge commit PR #4 only if main still exact baseline and all gates pass",
+    "post-merge verify exact result bytes, accepted state, history and unchanged PR #3",
+    "STOP at REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE"
+  ],
+  "NOT_AUTHORIZED": [
+    "rewrite review verdict/provenance/findings",
+    "edit reviewed subject",
+    "overwrite historical originals",
+    "modify/merge/continue PR #3 or F01",
+    "External Project Context Sync or NOT_APPLICABLE disposition",
+    "Epic Delta/Rebinding",
+    "F02/product work",
+    "Feature Acceptance",
+    "squash/rebase/auto-merge/force-push",
+    "release/Production"
+  ],
+  "FAIL_CLOSED_ON": [
+    "review hash/byte mismatch",
+    "validate-result failure",
+    "subject/result mismatch",
+    "unexpected existing result path",
+    "PR4/head/tree/main drift",
+    "foreign work",
+    "PR3/F01 drift",
+    "CI/check failure",
+    "main moves before merge",
+    "normal merge commit unavailable"
+  ]
+}

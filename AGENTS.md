@@ -5,18 +5,21 @@ und [Engineeringregeln](foundation/engineering.md) laden. Aktive finale V6 Found
 `foundation/sources/v6-final-20260918/foundation-2.md`; Foundation 1 daneben trennt
 unabhängige Reviewautorität. Alte `foundation/sources/foundation-[12].md` sind historisch.
 
-Aktueller Lauf: **WS-PFDELTA-MAT-20260928-01**, Autorisierung **WS-EA-20260928-01**.
-Original: `foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Execution_Authorization_WS-EA-20260928-01.json`.
-Nur Project-Foundation-Delta ab main `3bdd7439c221b8f8c83e7374c8bb29898891a4fd`
-auf `foundation/ws-pf-delta-20260928-01`. Stop: **PROJECT_FOUNDATION_READY_FOR_REVIEW**.
-[Subject](foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json), [Evidence und Review-Handoff](foundation/deltas/WS-PFDELTA-MAT-20260928-01/evidence.md).
-Mindestens ELEVATED; kein unabhängiges Selbst-PASS, kein Merge.
+Project Foundation Delta **WS-PFDELTA-MAT-20260928-01** ist angenommen: unabhängiges
+[WS-PFR-DELTA-20260928-01 PASS](reviews/results/WS-PFR-DELTA-20260928-01.json) am
+reviewed Head `bbca750fab1e760714cf409b8751287db6b93041`, integriert durch
+**WS-PFDELTA-INT-20260929-01** unter [WS-EA-20260929-01](foundation/evidence/pf-delta-integration-authorization.json).
+[Acceptance-Binding](foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json); der
+[reviewed Subject](foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json) bleibt unverändert.
+Externer Project-Context-Sync: **PENDING**. Nächstes Gate und aktueller Stop:
+**REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE**; es braucht
+eigene Nutzer-/externe Bestätigung oder begründete Disposition, nicht durch Agenten.
 
 WS-P05 ergänzt Product Truth und TF r6 durch exakt gebundene Originale im Kontextrouter.
 F01 / PR #3 bleibt ausschließlich externe Read-only-Evidence am Head
 `7d66ca5b025c8f748d7f97b961c496ee450daaa7`, Draft/offen/ungemergt.
 Keine F01-Fortsetzung, Browserprobe, Produktimplementation, F02 oder Feature Acceptance.
-Nach unabhängigem Project Foundation PASS folgt zuerst der bestätigte externe
+Nach dem Project Foundation PASS folgt zuerst der bestätigte externe
 Project-Context-Sync oder eine explizit begründete NOT_APPLICABLE-Disposition,
 danach WS-E01 Epic Preparation Delta, kritischer und unabhängiger Review,
 exaktes Epic-Rebinding und neue F01-Ausführungsautorisierung. Hier nichts davon ausführen.

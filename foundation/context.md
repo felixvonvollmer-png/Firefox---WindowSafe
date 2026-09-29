@@ -7,7 +7,11 @@
 materialisiert ausschließlich das Foundation-Delta ab main
 `3bdd7439c221b8f8c83e7374c8bb29898891a4fd`.
 [Versionierter Subject](deltas/WS-PFDELTA-MAT-20260928-01/subject.json) und
-[Evidence/Review-Handoff](deltas/WS-PFDELTA-MAT-20260928-01/evidence.md) sind der aktuelle Einstieg.
+[Evidence](deltas/WS-PFDELTA-MAT-20260928-01/evidence.md) sind am reviewed Head
+`bbca750fab1e760714cf409b8751287db6b93041` durch das unabhängige
+[WS-PFR-DELTA-20260928-01 PASS](../reviews/results/WS-PFR-DELTA-20260928-01.json) angenommen;
+das separate [Acceptance-Binding](deltas/WS-PFDELTA-MAT-20260928-01/binding.json) unter
+[WS-EA-20260929-01](evidence/pf-delta-integration-authorization.json) ist der aktuelle Einstieg.
 Die darunter dokumentierten Bootstrap-/Integrationsaufträge und alten V6-Quellen
 sind historisch; ihre Statusfelder bleiben an die damaligen Subjects gebunden.
 
@@ -29,10 +33,11 @@ F01 / [PR #3](https://github.com/felixvonvollmer-png/Firefox---WindowSafe/pull/3
 am Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7` ist externe Read-only-Evidence.
 WS-P05 beantwortet die materielle Produktfrage; es schließt keine noch offenen
 Zielumgebungs-/Messnachweise und autorisiert keine Wiederaufnahme.
-Der externe ChatGPT-Projektkanal ist in Benutzung. Sein Sync ist
-**PENDING_AFTER_PROJECT_FOUNDATION_REVIEW_PASS**; das historische NOT_APPLICABLE
-unten ist keine aktuelle Disposition. Kein Sync wurde ausgeführt oder bestätigt.
-Nach Foundation-PASS: tatsächlicher Sync/explicit begründetes NOT_APPLICABLE,
+Der externe ChatGPT-Projektkanal ist in Benutzung. Sein Sync ist nach dem
+Foundation-PASS **PENDING**; das historische NOT_APPLICABLE unten ist keine aktuelle
+Disposition. Kein Sync wurde ausgeführt oder bestätigt. Nächstes Gate:
+`REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE` mit
+tatsächlichem Sync/explizit begründetem NOT_APPLICABLE,
 erst danach Epic Delta, kritischer + unabhängiger Review, Rebinding und neue F01-Autorisierung.
 Nach EPIC_CONVERGED: Stop neuer Epic-Arbeit; Project-LLM/Nutzer wählen die nächste
 Richtung vor neuer Epic Preparation. Der Coding-Agent wählt keinen Folge-Epic.

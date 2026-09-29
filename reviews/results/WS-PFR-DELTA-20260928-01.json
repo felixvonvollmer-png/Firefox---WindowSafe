@@ -1,0 +1,161 @@
+{
+  "schema_version": 3,
+  "review_id": "WS-PFR-DELTA-20260928-01",
+  "review_type": "PROJECT_FOUNDATION_REVIEW",
+  "reviewer": {
+    "authority": "INDEPENDENT_PROJECT_LLM",
+    "identity": "OpenAI GPT-5.6 Sol acting as the independent Project-LLM reviewer in this conversation; not CODING_AGENT_WS_PFDELTA_MAT_20260928_01 and not the materialization writer",
+    "run_reference": "Current conversation, independent read-only WindowSafe review WS-PFR-DELTA-20260928-01 on 2026-09-28; uploaded package WindowSafe_Independent_Project_Foundation_Review_Package_WS-PFR-DELTA-20260928-01(1).zip; no separate platform run ID asserted",
+    "independence": "FRESH_OR_SUFFICIENTLY_ISOLATED"
+  },
+  "provenance": {
+    "source_reference": "Independent read-only review WS-PFR-DELTA-20260928-01 performed in the current ChatGPT conversation from the uploaded review package and the connected GitHub read interface; no GitHub writes or review-result transfer were performed. Uploaded package members README_FIRST.txt, SHA256SUMS.json, handoff, start prompt and input binding were byte/hash checked before review. REPOSITORY_OR_REMOTE_VERIFIED: repository felixvonvollmer-png/Firefox---WindowSafe has ID 1374094477; main is 3bdd7439c221b8f8c83e7374c8bb29898891a4fd; PR #4 is open/unmerged with head bbca750fab1e760714cf409b8751287db6b93041 and base main@3bdd7439c221b8f8c83e7374c8bb29898891a4fd. The exact Git commit API object verifies the sole parent 3bdd7439c221b8f8c83e7374c8bb29898891a4fd and tree ef3f4840ec4aacdd569a6444fac8974de70edb12. Compare metadata independently confirms one commit ahead and zero behind. Exact subject verification: foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json blob e34652ac74428962f5888f751fbb3b89e80d205f, 3931 bytes, SHA-256 e3f3ac235addb26af924036ed2ecd5814d35be84e00bbc3b92def3a3cde40f21. Exact evidence: blob 59cc2dac20a9abfd77c4f4e228f325770243e4a0, 7331 bytes, SHA-256 a25e0e7fe56497403f9c220c1d866644dba4b27534fff260bad63e4c547ab0c1. Exact V3 contract: blob 6d92564af1745ddd966e4b3dc3de65b18a16fe64, 3848 bytes, SHA-256 654cdf141ce868d1da288b7eb11423dd14ebd31324315dbc0c50ad0b83cdca21. CANONICAL_REQUEST_AND_PREFLIGHT: the exact-head repository request output was inspected from the successful GitHub Actions request step and independently cross-checked against the exact subject and evidence bindings. It is schema_version 3, review_type PROJECT_FOUNDATION_REVIEW, subject WS-PFDELTA-MAT-20260928-01 at bbca750fab1e760714cf409b8751287db6b93041, implementer CODING_AGENT_WS_PFDELTA_MAT_20260928_01, required authority INDEPENDENT_PROJECT_LLM, 34 evidence bindings, and contract SHA-256 654cdf141ce868d1da288b7eb11423dd14ebd31324315dbc0c50ad0b83cdca21. The canonical schema-preflight at this exact head reports SCHEMA-PREFLIGHT OK in both bound CI jobs; the reviewer independently inspected the exact contract structure and schema-preflight implementation. The local sandbox could not create a network Git clone because direct GitHub DNS is unavailable, so the repository-local CLI was not re-executed by the reviewer; GitHub object verification and exact-head CI evidence were used instead, without treating CI as verdict authority. CI_VERIFIED: push run 36422682803/job 108929004501 and pull_request run 36422738730/job 108929190891 both completed successfully at exact head bbca750fab1e760714cf409b8751287db6b93041. Their logs show checkout of that SHA, CPython 3.14.4, 99 tests, SCHEMA-PREFLIGHT OK, exact historical Epic request, exact versioned Foundation-delta request, deterministic build, append-only history and git diff --check. PRODUCT_AND_TECHNICAL_FIDELITY: base Product Truth and approval remain intact. Approved WS-P05 permits public-API-visible nonprivate data from publicly indistinguishable normal-exposed special windows to use the ordinary data path, while restore is ordinary Firefox windows/tabs only; no native WebApp/Taskbar identity, app shell, OS integration, heuristic identity or privileged Firefox mechanism is promised. TF r6 safety/privacy/container/recovery/resource invariants are preserved. Corrected TF Delta WS-TFP-DELTA-20260928-02 and its binding preserve that boundary, retain F01 as qualification-only, keep remaining platform/measurement gates open, and add the required post-Project-Foundation external-context-sync/NOT_APPLICABLE gate. Prior CORRECTION_REQUIRED evidence is preserved and the independent TF rereview WS-TFPR-DELTA-20260928-02 is PASS with the sole prior MAJOR resolved. FINAL_V6_VERIFIED: meta repository felixvonvollmer-png/projektbeschreibung-und-geruest main is 0dc8f145d27f796ea8ae230fae6ec4b21d6aa921; final active freeze router blob c9c0a47d108268059ca5b5825d2d445b44179775, Foundation 1 blob 0c10e10eebcb2b23336cc9cdf4a88305a209fd22 and Foundation 2 blob 3034da0fbee6ab79318da25ed65ccdc0933074e5 match the project copies. The bound Brownfield migration entry, target Project-LLM description, ChatGPT Project-description contract and AI-agent playbook blobs also match the authorization. Foundation 2 section 35 requires PROJECT_FOUNDATION_REVIEW_PASS -> REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE -> FIRST_EPIC_PREPARATION and forbids claiming a required external sync before user/external confirmation. BROWNFIELD_AND_HISTORY: base-to-head comparison is exactly one linear commit with 31 changed paths, all within the authorized Foundation/router/harness/input scope; no product-code path was introduced. Historical foundation/subject.json, epics/WS-E01/subject.json, epics/WS-E01/binding.json, reviews/results/WS-PFR-20260918-02.json, reviews/results/WS-E01-EPR-20260919-02.json and the old foundation/sources/foundation-1.md and foundation-2.md have identical Git blobs at base and head. Harness changes add the versioned delta request/integrity/history guards and preserve historical request semantics; no scope/history/schema bypass was identified. LIVING_CONTEXT_AND_F01: AGENTS.md, README.md, foundation/context.md, foundation/architecture.md, epics/README.md and reviews/README.md route the active WS-P05/TF-delta/final-V6 state, explicitly keep historical readiness/NOT_APPLICABLE statements historical, and keep the external ChatGPT Project sync pending until Project Foundation PASS. PR #3 remains Draft/open/unmerged at 7d66ca5b025c8f748d7f97b961c496ee450daaa7 and was only read. No F01 continuation, browser probe, F02/product code, Feature Acceptance, merge, release or Production was found or performed. REVIEW_CONCLUSION: no open CRITICAL/BLOCKING/MAJOR finding and no hidden material user decision were identified. PASS applies only to this exact Project-Foundation subject. The next gate is REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE; this review does not execute or disposition it, does not authorize merge, Epic rebinding or F01 continuation. Exact result bytes are returned for later separately authorized transfer.",
+    "transport": "EXACT_AUTHORIZED_TRANSFER"
+  },
+  "subject": {
+    "id": "WS-PFDELTA-MAT-20260928-01",
+    "path": "foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json",
+    "end_sha": "bbca750fab1e760714cf409b8751287db6b93041"
+  },
+  "verdict": "PASS",
+  "findings": [],
+  "reviewed_evidence": [
+    {
+      "path": ".github/workflows/foundation.yml",
+      "sha256": "f51e41e8d3e3e7c8795ff4b1cab704c4d876278fa62786f5072eeaa7652e6cc9"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "6385fa63014204823080ec4278f9bafbb230369131523539884f731b11dca9d9"
+    },
+    {
+      "path": "README.md",
+      "sha256": "01dabc831bbf75417a520feecc6fb3bbcdde191efc38f3910e6946ab55d1106f"
+    },
+    {
+      "path": "epics/README.md",
+      "sha256": "62cdfba13f0ae60de0a5b46aa08c736116d1e0f5e25fda8181ad1d78b3d53f9d"
+    },
+    {
+      "path": "foundation/architecture.md",
+      "sha256": "fe3f77d56929e125ef3b05dc3441ee6b1c0ee525935e4add26571151f7506b58"
+    },
+    {
+      "path": "foundation/context.md",
+      "sha256": "8ef75662c842748b7bfe6a38c9ce195d244175471e227ccb41a1a63c10cfa9d4"
+    },
+    {
+      "path": "foundation/deltas/WS-PFDELTA-MAT-20260928-01/evidence.md",
+      "sha256": "a25e0e7fe56497403f9c220c1d866644dba4b27534fff260bad63e4c547ab0c1"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/README_FIRST.txt",
+      "sha256": "1f0ecfc05ab2a9889ccd134d427dc74220da90f46734a39765b3beda7879e249"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/SHA256SUMS.json",
+      "sha256": "bf6a4832c52860a136090790e3ec973b7a6536546a30dcc54711e0f09f69d757"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WS-TFPR-DELTA-20260928-01(2).json",
+      "sha256": "f0e43b93cd55b007b7c2bd6b2f149e85ae834e65fa2146fc0c13fdda67392adf"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WS-TFPR-DELTA-20260928-02(1).json",
+      "sha256": "ce2b893e6f3c6777bb1e22c51442684d360d05508978963c7da29d9700d597c8"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Execution_Authorization_WS-EA-20260928-01.json",
+      "sha256": "677c3eb9933cb0f6b3313253fff7f9457f0c342bf0e30ea70fc04f5bfc83e2c4"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Product_Definition_Delta_WS-PD-DELTA-20260924-01.md",
+      "sha256": "0caca99a713a0e026af5b63beee5f8abc310ef3d38f20c9653cd3042322aec16"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Product_Delta_Approval_WS-PD-DELTA-APPROVAL-20260928-01.json",
+      "sha256": "9e15db18b095655dfc503d67cad4486998e68493c323f8b2217e9d71e5987ab5"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Project_Foundation_Delta_Materialization_Handoff_WS-PFDELTA-MAT-20260928-01.md",
+      "sha256": "0f8632d743e9ecfdc83f56fc027641ea255f90a7fa4ac5406b444c1ae36d2c21"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Project_Foundation_Delta_Materialization_Scope_20260928.md",
+      "sha256": "73a20bdbfc59e9cb24c43632daafe40918b91d3c52e91caa0bf688ed884dad95"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Project_Foundation_Delta_Materialization_Startprompt_WS-PFDELTA-MAT-20260928-01.txt",
+      "sha256": "bc9bb5595ec9fbd93090d1f5829ea74c19f1a866794c5dbd75d35e105e5668d1"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_TF_Delta_Correction_Disposition_WS-TFP-DELTA-CORR-20260928-01.json",
+      "sha256": "0917047b86dbaedc3893f7265a54dc21e19a599fef6c8ceaa37c23d6fbbe9c7c"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_TF_Delta_Correction_WS-TFP-DELTA-20260928-01_to_02.diff",
+      "sha256": "9080367cfb5d181c768b3d561c233a7c0dcc95e684bb19f0d1b9d56996ef362d"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Technical_Foundation_Delta_Binding_WS-TFP-DELTA-BIND-20260928-01.json",
+      "sha256": "684e759d4f66b8ac73a2e191b6ccaedf1416c9360619f2d89dc1ef2366b60e21"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Technical_Foundation_Delta_Critical_Rereview_WS-TFP-DELTA-CR-20260928-02.md",
+      "sha256": "5fb8a5125ca6e8f6dfca0584a6fcbccb6bf477074540b5a88724baa9406eeb96"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-01.md",
+      "sha256": "fbd2ed1daacccc7c0b26e40e30673b133b1960e4f12a2ff615075505487e62f1"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-02.md",
+      "sha256": "8c687681f9a46cf0782212ebfa5be5d6e22cac77d890b1f436a8395f7b1c5d2c"
+    },
+    {
+      "path": "foundation/inputs/inputs/WindowSafe_Approval_Record_WS-PD-20260917-01.json",
+      "sha256": "a655d1fb0a594997e1f6da00c7e8a36bb6c5807ac844ce9fbf04ccb7d1afd4a5"
+    },
+    {
+      "path": "foundation/inputs/inputs/WindowSafe_Product_Definition_WS-PD-20260917-01.md",
+      "sha256": "fff235b7591f483b9b31c945911a6b5950d29fac931b9136438ae5586c756900"
+    },
+    {
+      "path": "foundation/inputs/inputs/WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r6.md",
+      "sha256": "c461c45c5bd20f12dcffb400acd6f7d5c0f0de0a75616eef3eb1d78dd175dcb6"
+    },
+    {
+      "path": "foundation/sources/v6-final-20260918/README.md",
+      "sha256": "99f2f09df9c3e917f6255ca62798638c8f8dc5c75020d101a616deea5a79112c"
+    },
+    {
+      "path": "foundation/sources/v6-final-20260918/foundation-1.md",
+      "sha256": "2d6952f601dc0468b2d48667f9d1b401a3e22fa2a4934d20aa1163e48cedaa17"
+    },
+    {
+      "path": "foundation/sources/v6-final-20260918/foundation-2.md",
+      "sha256": "9f0ac9c4291b38fe57da25376c3019b5d67757264f8381680a7c63f2b45b5dbc"
+    },
+    {
+      "path": "reviews/README.md",
+      "sha256": "1f50d78084c3d54ba86ec101b60a1fc84b935d670e6fe6be61fb94ac192efcb5"
+    },
+    {
+      "path": "reviews/review-contract.json",
+      "sha256": "654cdf141ce868d1da288b7eb11423dd14ebd31324315dbc0c50ad0b83cdca21"
+    },
+    {
+      "path": "tests/test_foundation.py",
+      "sha256": "260d3736b0fcffd15435ebf0b9f9951d1c2437fe8de4f9ab7da360a84ee33e61"
+    },
+    {
+      "path": "tests/test_foundation_delta.py",
+      "sha256": "c8554dc045d682be1eb1a0a5faa72aab4d0c4ea03379e6007aded804094390de"
+    },
+    {
+      "path": "tools/foundation.py",
+      "sha256": "717b8c7fe46ef743277d5f620dc39524552aad46b0e959998be740d12a9fbfc6"
+    }
+  ],
+  "result_reference": "reviews/results/WS-PFR-DELTA-20260928-01.json"
+}

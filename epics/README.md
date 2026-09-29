@@ -3,13 +3,14 @@
 ## Aktuelle Delta-Sperre
 
 Die nachfolgende READY_FOR_AGENT-Annahme ist historisch und bleibt unverändert.
-WS-P05 erfordert zuerst unabhängigen Review des
-[neuen Foundation-Subjects](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json).
-Danach zwingend `REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE`:
+Der [WS-P05-Foundation-Subject](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json)
+ist per [Acceptance-Binding](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json)
+mit unabhängigem PASS angenommen.
+Jetzt zwingend `REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE`:
 ein erforderlicher Sync braucht reale Nutzer-/externe Bestätigung; NOT_APPLICABLE
 eine explizite nachvollziehbare Begründung. Erst dann WS-E01 Epic Preparation Delta,
 kritische Eigenprüfung, unabhängiger Epic Review, exaktes Rebinding und neue
-F01-Ausführungsautorisierung. Diese Materialisierung führt keinen dieser Schritte aus.
+F01-Ausführungsautorisierung. Die Foundation-Integration führt keinen dieser Schritte aus.
 F01 / PR #3 bleibt Draft/ungemergt, Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`.
 Nach EPIC_CONVERGED stoppt neue Epic-Arbeit bis Project-LLM-/Nutzer-Richtungsreview;
 der Nutzer bestätigt die nächste Epic-Auswahl vor neuer Preparation.

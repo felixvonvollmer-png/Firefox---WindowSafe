@@ -11,18 +11,21 @@ reviewed Head `bbca750fab1e760714cf409b8751287db6b93041`, integriert durch
 **WS-PFDELTA-INT-20260929-01** unter [WS-EA-20260929-01](foundation/evidence/pf-delta-integration-authorization.json).
 [Acceptance-Binding](foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json); der
 [reviewed Subject](foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json) bleibt unverändert.
-Externer Project-Context-Sync: **PENDING**. Nächstes Gate und aktueller Stop:
-**REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE**; es braucht
-eigene Nutzer-/externe Bestätigung oder begründete Disposition, nicht durch Agenten.
+Externer Project-Context-Sync: **CONFIRMED_BY_USER** (WS-EXTCTX-SYNC-20260929-01, separater
+Record im Epic-Delta; das Foundation-Binding bleibt unverändert).
+
+**Aktuelles Gate:** WS-E01 Epic Preparation Delta **WS-E01-EP-DELTA-20260929-02** ist
+materialisiert (WS-E01-EPDELTA-MAT-20260929-01 unter WS-EA-20260929-02) und
+**READY_FOR_INDEPENDENT_REVIEW**: Subject
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json`, Binding REVIEW_REQUIRED.
+Das historische WS-E01-Binding bleibt unverändert erhalten und autorisiert kein F01.
+Danach unabhängiger Epic Review, exaktes Rebinding, separate breite WS-E01-Autorisierung.
 
 WS-P05 ergänzt Product Truth und TF r6 durch exakt gebundene Originale im Kontextrouter.
 F01 / PR #3 bleibt ausschließlich externe Read-only-Evidence am Head
-`7d66ca5b025c8f748d7f97b961c496ee450daaa7`, Draft/offen/ungemergt.
-Keine F01-Fortsetzung, Browserprobe, Produktimplementation, F02 oder Feature Acceptance.
-Nach dem Project Foundation PASS folgt zuerst der bestätigte externe
-Project-Context-Sync oder eine explizit begründete NOT_APPLICABLE-Disposition,
-danach WS-E01 Epic Preparation Delta, kritischer und unabhängiger Review,
-exaktes Epic-Rebinding und neue F01-Ausführungsautorisierung. Hier nichts davon ausführen.
+`7d66ca5b025c8f748d7f97b961c496ee450daaa7`, Draft/offen/ungemergt; F01 ist gestoppt.
+Keine F01-Fortsetzung, Browserprobe, Produktimplementation, F02 oder Feature Acceptance
+ohne diese späteren Gates. Hier nichts davon ausführen.
 
 Repository ist System of Record. Vor Mutation Root, Remote, Ref, HEAD, Worktree und Index
 prüfen; fremde/untracked Arbeit schützen. Nur benannte Pfade stagen. Kein History-Rewrite,

@@ -36,6 +36,45 @@ DELTA_BINDING = "foundation/deltas/" + DELTA_ID + "/binding.json"
 DELTA_INTEGRATION_AUTH = "foundation/evidence/pf-delta-integration-authorization.json"
 DELTA_INTEGRATION_AUTH_SHA = "ca04feb83e3d2053615f7836e8c79cb5909ab98ab6449b24cab3230ac5a965f1"
 DELTA_NEXT_GATE = "REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE"
+# Exactly one versioned WS-E01 preparation delta after the integrated foundation merge.
+EPIC_DELTA_ID = "WS-E01-EP-DELTA-20260929-02"
+EPIC_DELTA_BASE = "1cb82c926903b2fd6b497d008db61c71c5d92aca"
+EPIC_DELTA_DIR = "epics/WS-E01/deltas/" + EPIC_DELTA_ID + "/"
+EPIC_DELTA_SUBJECT = EPIC_DELTA_DIR + "subject.json"
+EPIC_DELTA_BINDING = EPIC_DELTA_DIR + "binding.json"
+EPIC_DELTA_EVIDENCE = EPIC_DELTA_DIR + "evidence.md"
+EPIC_DELTA_AUTH = EPIC_DELTA_DIR + "execution-authorization.json"
+EPIC_DELTA_AUTH_SHA = "68ff10124c40995b8740dbbe4ca6e8dfaaac9bab6f33335980dd4588968728ab"
+# Exact Project-LLM originals and user authorization: materialized path -> (bytes, SHA-256).
+EPIC_DELTA_ORIGINALS = {
+    EPIC_DELTA_DIR + "preparation.md": (13661, "ddd12e52b98790a19d57040da82d8ffeec42184f317d19eff87200c86a0d2115"),
+    EPIC_DELTA_DIR + "critical-self-review.md": (2872, "12d1d400030077da93220cf792f40bf69949ac8106d33e92e36d52b0320fe765"),
+    EPIC_DELTA_DIR + "execution-direction.json": (1012, "5b4f467e2e98a14f36eceec65ca667ee4cafe594a5a81a2a40fc5dc2d186a2de"),
+    EPIC_DELTA_DIR + "external-context-sync.json": (1499, "d4bdc815e281f083acd6222d1ff19dc4255e05d2a52038d42bb360b5c61f2062"),
+    EPIC_DELTA_DIR + "project-description.md": (7607, "647d8fcffff3c55b8e32f33f0cb80e22591bea77835817db87a96659f52f4ba5"),
+    EPIC_DELTA_DIR + "previous-preparation-delta.md": (10859, "e848043bd6cdf8c28e3b9eff72e97ec5c738567a26e5705dfb9851cb65cc074f"),
+    EPIC_DELTA_AUTH: (6930, EPIC_DELTA_AUTH_SHA),
+}
+EPIC_DELTA_FILES = set(EPIC_DELTA_ORIGINALS) | {EPIC_DELTA_SUBJECT, EPIC_DELTA_BINDING, EPIC_DELTA_EVIDENCE}
+# Git blobs that must stay exactly as integrated on EPIC_DELTA_BASE.
+EPIC_DELTA_PINNED_BLOBS = {
+    "epics/WS-E01/preparation.md": "a92fbe87a9640b67367db96631e082864b89e9b3",
+    "epics/WS-E01/subject.json": "f12b4756046febfec07b0426a0129bce482ce2d2",
+    "epics/WS-E01/binding.json": "930b4c3176a9601e44f7a4b04ff1d4530488b6e1",
+    DELTA_BINDING: "8a85ff8481a6bd831b3e2ace3382404762476834",
+    "reviews/results/WS-PFR-DELTA-20260928-01.json": "ff96f8b1cac7d9a664339c7df55ddbf77947e3a8",
+    DELTA_INPUTS + "WindowSafe_Product_Definition_Delta_WS-PD-DELTA-20260924-01.md":
+        "c8d52f1720aa24544b0d24f652e6b9c8d14254ec",
+    DELTA_INPUTS + "WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-02.md":
+        "539dd9d35d40b832c07a779e351e7964af9f8705",
+}
+EPIC_DELTA_SUPPORT = {
+    "AGENTS.md", "README.md", "foundation/context.md", "foundation/engineering.md",
+    "reviews/README.md", "epics/README.md", "tools/foundation.py",
+    "tests/test_epic_delta.py", ".github/workflows/foundation.yml",
+}
+F01_EVIDENCE = {"pr": 3, "head": "7d66ca5b025c8f748d7f97b961c496ee450daaa7",
+                "role": "READ_ONLY_EXTERNAL_QUALIFICATION_EVIDENCE"}
 MANIFEST_SHA = "80203ae9f554aa4dba951d316a685bd20cbe57ef28a2912fd49608cdaf9cb6a8"
 HANDOFF_SHA = "15701c717061773d9017cf3c884a7eb0cebcb0d66b67a93dc13e41acb7d98774"
 BLOBS = {
@@ -267,12 +306,15 @@ def request(sha, path="foundation/subject.json"):
         if reviewed != sha:
             # A current accepted locator still requests the original reviewed bytes.
             return request(reviewed, path)
+    elif kind == "EPIC_PREPARATION_REVIEW" and path == EPIC_DELTA_SUBJECT:
+        # Only this exact versioned locator; it also revalidates foundation acceptance.
+        delta_history(sha)
     else:
         require(path == expected, "subject locator mismatch")
     text(s["implementer"])
     require(isinstance(s["evidence_paths"], list) and s["evidence_paths"], "missing subject evidence")
     require(len(s["evidence_paths"]) == len(set(s["evidence_paths"])), "duplicate evidence")
-    if kind == "EPIC_PREPARATION_REVIEW":
+    if kind == "EPIC_PREPARATION_REVIEW" and path != EPIC_DELTA_SUBJECT:
         epic_preparation(path, lambda name: at(sha, name), sha)
         binding = parse(at(sha, path.replace("subject.json", "binding.json")))
         if binding["status"] == "READY_FOR_AGENT":
@@ -458,6 +500,7 @@ def scope(path):
     allowed |= bool(re.fullmatch(r"reviews/results/" + ID_PATTERN + r"\.json", path))
     allowed |= bool(re.fullmatch(r"reviews/dispositions/" + ID_PATTERN + r"\.json", path))
     allowed |= path in {DELTA_SUBJECT, DELTA_EVIDENCE, DELTA_BINDING} | set(DELTA_SOURCES)
+    allowed |= path in EPIC_DELTA_FILES
     require(allowed, "outside foundation-only path scope")
     require(PurePosixPath(path).name != "manifest.json", "extension manifest prohibited")
 
@@ -528,9 +571,11 @@ def delta_history(head):
     ancestor(DELTA_BASE, head)
     read = lambda name: at(head, name)
     if DELTA_BINDING in tree_snapshot(head):
-        # request(reviewed) inside re-runs the unchanged original delta checks.
-        reviewed, allowed = accepted_delta_binding(read, head)
-        delta_integration_history(reviewed, head, allowed)
+        # request(reviewed) inside re-runs the unchanged original delta checks;
+        # a validated epic delta continuation stops this walk at its exact merge base.
+        integrated = foundation_integration_head(head)
+        reviewed, allowed = accepted_delta_binding(read, integrated)
+        delta_integration_history(reviewed, integrated, allowed)
         return reviewed
     delta_integrity(read)
     manifest = parse(read(DELTA_INPUTS + "SHA256SUMS.json"))["FILES"]
@@ -653,6 +698,158 @@ def delta_scope_head(head):
         return head
     delta_history(head)
     return DELTA_BASE
+
+
+def git_blob(data):
+    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
+
+
+def epic_delta_expected():
+    """Exact pre-review subject/binding values; acceptance needs a new bound transition."""
+    product = "foundation/inputs/inputs/WindowSafe_Product_Definition_WS-PD-20260917-01.md"
+    technical = "foundation/inputs/inputs/WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r6.md"
+    references = {
+        "epic_preparation_delta_reference": EPIC_DELTA_DIR + "preparation.md",
+        "epic_preparation_critical_self_review_reference": EPIC_DELTA_DIR + "critical-self-review.md",
+        "previous_preparation_delta_reference": EPIC_DELTA_DIR + "previous-preparation-delta.md",
+        "project_foundation_binding_reference": DELTA_BINDING,
+        "project_foundation_review_result_reference": "reviews/results/WS-PFR-DELTA-20260928-01.json",
+        "approved_product_definition_reference": product,
+        "approved_product_approval_reference": "foundation/inputs/inputs/WindowSafe_Approval_Record_WS-PD-20260917-01.json",
+        "approved_product_delta_reference":
+            DELTA_INPUTS + "WindowSafe_Product_Definition_Delta_WS-PD-DELTA-20260924-01.md",
+        "approved_product_delta_approval_reference":
+            DELTA_INPUTS + "WindowSafe_Product_Delta_Approval_WS-PD-DELTA-APPROVAL-20260928-01.json",
+        "project_technical_foundation_reference": technical,
+        "technical_foundation_delta_reference":
+            DELTA_INPUTS + "WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-02.md",
+        "technical_foundation_delta_binding_reference":
+            DELTA_INPUTS + "WindowSafe_Technical_Foundation_Delta_Binding_WS-TFP-DELTA-BIND-20260928-01.json",
+        "external_project_context_sync_reference": EPIC_DELTA_DIR + "external-context-sync.json",
+        "external_project_description_reference": EPIC_DELTA_DIR + "project-description.md",
+        "user_execution_direction_reference": EPIC_DELTA_DIR + "execution-direction.json",
+        "execution_authorization_path": EPIC_DELTA_AUTH,
+    }
+    historical = {
+        "epic_preparation_id": "WS-E01-EP-20260919-01",
+        "preparation_path": "epics/WS-E01/preparation.md",
+        "subject_path": "epics/WS-E01/subject.json",
+        "binding_path": "epics/WS-E01/binding.json",
+        "reviewed_end_sha": "644b81f63dcc1990bc894a9c2c9bd8dc24a98c04",
+        "review_result_reference": "reviews/results/WS-E01-EPR-20260919-02.json",
+        "binding_status": "READY_FOR_AGENT__HISTORICAL_PRESERVED_NOT_CURRENT_F01_AUTHORIZATION",
+    }
+    subject = dict(references,
+        subject_id=EPIC_DELTA_ID, epic_id="WS-E01", review_type="EPIC_PREPARATION_REVIEW",
+        status="EPIC_PREPARATION_DELTA_READY_FOR_REVIEW",
+        end_state_binding="EXACT_COMMIT_SUPPLIED_BY_REVIEW_REQUEST_NO_SELF_REFERENTIAL_SHA",
+        epic_preparation_delta_id=EPIC_DELTA_ID,
+        previous_preparation_delta_id="WS-E01-EP-DELTA-20260929-01",
+        current_canonical_baseline_or_main_sha=EPIC_DELTA_BASE,
+        work_branch="prep/ws-e01-delta-20260929-02",
+        execution_authorization_sha256=EPIC_DELTA_AUTH_SHA,
+        historical_epic_preparation=historical,
+        project_foundation_status="PROJECT_FOUNDATION_ACCEPTED",
+        project_foundation_review_verdict="PASS",
+        external_project_context_sync="CONFIRMED_BY_USER",
+        user_execution_direction="USER_CONFIRMED_DIRECTION",
+        epic_research_reuse_or_delta_status="REUSED_NO_MATERIAL_DELTA",
+        epic_preparation_critical_self_review_status=SELF_REVIEW_COMPLETE,
+        open_material_user_decisions_required_before_start=[],
+        independent_review_status="PENDING", risk="ELEVATED",
+        ready_for_agent=False, product_features_started=False,
+        browser_profile_tests_executed=False, f01_continuation_authorized=False,
+        exact_epic_rebinding_created=False, broad_ws_e01_execution_authorization_created=False,
+        feature_acceptance_started=False, f01_evidence_reference=F01_EVIDENCE)
+    binding = {
+        "status": "REVIEW_REQUIRED",
+        "epic_id": "WS-E01",
+        "epic_preparation_subject_id": EPIC_DELTA_ID,
+        "epic_preparation_subject_path": EPIC_DELTA_SUBJECT,
+        "current_canonical_baseline_or_main_sha": EPIC_DELTA_BASE,
+        "project_foundation_binding_reference": DELTA_BINDING,
+        "project_foundation_review_result_reference": references["project_foundation_review_result_reference"],
+        "external_project_context_sync": "CONFIRMED_BY_USER",
+        "epic_research_reuse_or_delta_status": "REUSED_NO_MATERIAL_DELTA",
+        "epic_preparation_critical_self_review_status": SELF_REVIEW_COMPLETE,
+        "independent_epic_preparation_review": "PENDING",
+        "epic_preparation_review_result_reference": None,
+        "exact_epic_rebinding": "PENDING",
+        "open_critical_blocking_major_findings": "NONE_AT_SELF_REVIEW__INDEPENDENT_REVIEW_PENDING",
+        "open_material_user_decisions_required_before_start": "NONE",
+        "ready_for_agent": False,
+        "f01_continuation_authorized": False,
+        "broad_ws_e01_execution_authorization": "NOT_CREATED",
+        "execution_authorization_reference": EPIC_DELTA_AUTH,
+        "execution_authorization_sha256": EPIC_DELTA_AUTH_SHA,
+        "historical_epic_binding_reference": historical["binding_path"],
+        "historical_epic_binding": "PRESERVED",
+        "execution_scope": "EPIC_PREPARATION_DELTA_MATERIALIZATION_ONLY__NO_REVIEW_VERDICT_REBINDING_OR_FEATURE_EXECUTION",
+    }
+    required = set(references.values()) | {historical[k] for k in (
+        "preparation_path", "subject_path", "binding_path", "review_result_reference")}
+    return subject, binding, required
+
+
+def epic_delta_integrity(read):
+    """Mechanical binding of the one versioned WS-E01 delta; never an independent verdict."""
+    for name, (size, digest) in EPIC_DELTA_ORIGINALS.items():
+        raw = read(name)
+        require(len(raw) == size and sha256(raw) == digest, "epic delta original drift")
+    for name, blob in EPIC_DELTA_PINNED_BLOBS.items():
+        require(git_blob(read(name)) == blob, "pinned epic delta reference drift")
+    auth = parse(read(EPIC_DELTA_AUTH))
+    target = auth["MATERIALIZATION_TARGET"]
+    require(auth["STATUS"] == "AUTHORIZED" and auth["AUTHORITY"] == "USER"
+            and auth["TARGET_REPOSITORY"]["EXPECTED_START_MAIN_SHA"] == EPIC_DELTA_BASE
+            and target["SUBJECT_PATH"] == EPIC_DELTA_SUBJECT and target["READY_FOR_AGENT"] is False
+            and auth["MERGE_AUTHORIZED"] is False and auth["F01_CONTINUATION_AUTHORIZED"] is False,
+            "epic delta authorization")
+    bound = {item["SHA256"] for item in auth["BOUND_PROJECT_LLM_ARTIFACTS"].values()}
+    require(bound == {digest for name, (_, digest) in EPIC_DELTA_ORIGINALS.items() if name != EPIC_DELTA_AUTH},
+            "epic delta artifact binding")
+    expected, binding, required = epic_delta_expected()
+    subject = parse(read(EPIC_DELTA_SUBJECT))
+    fields(subject, set(expected) | {"implementer", "materializer", "evidence_paths"})
+    for key, value in expected.items():
+        # Canonical JSON comparison also rejects type drift such as 0 for false.
+        require(json.dumps(subject[key], sort_keys=True) == json.dumps(value, sort_keys=True),
+                "epic delta subject boundary")
+    text(subject["implementer"])
+    text(subject["materializer"])
+    require(json.dumps(parse(read(EPIC_DELTA_BINDING)), sort_keys=True) == json.dumps(binding, sort_keys=True),
+            "epic delta binding must stay pending")
+    evidence = subject["evidence_paths"]
+    required |= (EPIC_DELTA_FILES - {EPIC_DELTA_SUBJECT}) | set(EPIC_DELTA_PINNED_BLOBS)
+    required |= EPIC_DELTA_SUPPORT | set(DELTA_SOURCES) | {CONTRACT_PATH}
+    require(isinstance(evidence, list) and len(evidence) == len(set(evidence))
+            and required <= set(evidence) and EPIC_DELTA_SUBJECT not in evidence, "epic delta evidence incomplete")
+    for name in evidence:
+        scope(name)
+        read(name)
+
+
+def epic_delta_history(head):
+    """Linear exact-scope continuation from the integrated foundation merge only."""
+    ancestor(EPIC_DELTA_BASE, head)
+    previous = tree_snapshot(EPIC_DELTA_BASE)
+    for revision in git("rev-list", "--reverse", EPIC_DELTA_BASE + ".." + head).decode().splitlines():
+        parents = git("rev-list", "--parents", "-n", "1", revision).decode().split()[1:]
+        require(len(parents) == 1, "epic delta merges prohibited")
+        changed = set(git("diff", "--name-only", parents[0], revision).decode().splitlines())
+        require(changed <= EPIC_DELTA_FILES | EPIC_DELTA_SUPPORT, "epic delta scope drift")
+        current = tree_snapshot(revision)
+        check_history_maps(previous, current)
+        previous = current
+    epic_delta_integrity(lambda name: at(head, name))
+
+
+def foundation_integration_head(head):
+    """The integrated foundation state; a later bound epic delta is checked on its own."""
+    if EPIC_DELTA_SUBJECT not in tree_snapshot(head):
+        return head
+    epic_delta_history(head)
+    return EPIC_DELTA_BASE
 
 
 def epic_preparation(path, read, head):
@@ -818,7 +1015,9 @@ def check(root=ROOT):
     for path in epic_paths:
         epic_preparation(path, lambda name: (root / name).read_bytes(), commit("HEAD"))
     if (root / DELTA_BINDING).exists():
-        accepted_delta_binding(lambda name: (root / name).read_bytes(), commit("HEAD"))
+        accepted_delta_binding(lambda name: (root / name).read_bytes(), foundation_integration_head(commit("HEAD")))
+    if (root / EPIC_DELTA_SUBJECT).exists():
+        epic_delta_integrity(lambda name: (root / name).read_bytes())
     for path in files(root):
         rel = path.relative_to(root).as_posix()
         scope(rel)
@@ -856,6 +1055,9 @@ def check(root=ROOT):
     if (root / DELTA_SUBJECT).exists():
         require("foundation.py request --sha HEAD --subject " + DELTA_SUBJECT in workflow,
                 "missing delta CI request")
+    if (root / EPIC_DELTA_SUBJECT).exists():
+        require("foundation.py request --sha HEAD --subject " + EPIC_DELTA_SUBJECT in workflow,
+                "missing epic delta CI request")
     if epic_paths:
         require("ref: ${{ github.event.pull_request.head.sha || github.sha }}" in workflow, "CI exact head required")
         require("foundation.py schema-preflight --sha HEAD --schema reviews/review-contract.json" in workflow,

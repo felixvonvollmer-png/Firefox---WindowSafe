@@ -1,6 +1,26 @@
 # Kanonischer Reviewkanal und aktuelle Review-Locators
 
-## Aktueller Stand: Project Foundation Delta angenommen
+## Aktueller Auftrag: EPIC_PREPARATION_REVIEW des WS-E01-Deltas
+
+Subject **WS-E01-EP-DELTA-20260929-02**, Locator
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json` am vollständigen End-SHA aus
+dem Delivery-Handoff des PR von `prep/ws-e01-delta-20260929-02` (ungemergt; Basis main
+`1cb82c926903b2fd6b497d008db61c71c5d92aca`). Rolle `INDEPENDENT_EPIC_PREPARATION_REVIEWER`,
+Vertrag unverändert V3, Resultat `reviews/results/<REVIEW_ID>.json`. Der Harness kennt genau
+diesen einen versionierten Epic-Locator zusätzlich zu `epics/<EPIC_ID>/subject.json`.
+
+```sh
+python3 tools/foundation.py request --sha <END_SHA> --subject epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json
+python3 tools/foundation.py schema-preflight --sha <END_SHA> --schema reviews/review-contract.json
+python3 tools/foundation.py history --base 1cb82c926903b2fd6b497d008db61c71c5d92aca
+```
+
+Prüfbereich: Delta-Fidelität zu WS-P05/TF-Delta/Foundation-PASS, Sync-Bindung, Nutzerrichtung
+und deren Grenzen, historische Unveränderlichkeit, Harness-Erweiterung, Tests, Exact-Head-CI.
+Kritische Eigenprüfung und grüne CI sind kein unabhängiges PASS. Kein Rebinding, Merge,
+F01-Start, Feature Acceptance oder Production durch diesen Review.
+
+## Historischer Stand: Project Foundation Delta angenommen
 
 [Subject](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json): **WS-PFDELTA-MAT-20260928-01**,
 reviewed Head `bbca750fab1e760714cf409b8751287db6b93041`, unverändert.

@@ -1,0 +1,115 @@
+{
+  "DOCUMENT_TYPE": "EPIC_PREPARATION_DELTA_MATERIALIZATION_AUTHORIZATION",
+  "AUTHORIZATION_ID": "WS-EA-20260929-02",
+  "STATUS": "AUTHORIZED",
+  "DATE": "2026-09-29",
+  "RUN_ID": "WS-E01-EPDELTA-MAT-20260929-01",
+  "AUTHORITY": "USER",
+  "USER_AUTHORIZATION_REFERENCE": {
+    "VERBATIM_MESSAGE": "frei",
+    "CONTEXT": "Immediate reply after the Project-LLM stated that the next V6 step is a fresh Coding-Agent run solely to materialize the critically reviewed WS-E01 Epic Preparation Delta on Git for independent Epic Preparation Review.",
+    "INTERPRETATION": "Authorizes exactly the materialization/review-readiness run below. It does not authorize independent review verdict, Exact Epic Rebinding, F01 continuation, the broad WS-E01 execution run, product implementation, Feature Acceptance or merge."
+  },
+  "TARGET_REPOSITORY": {
+    "FULL_NAME": "felixvonvollmer-png/Firefox---WindowSafe",
+    "REPOSITORY_ID": 1374094477,
+    "EXPECTED_START_MAIN_SHA": "1cb82c926903b2fd6b497d008db61c71c5d92aca",
+    "CREATE_BRANCH": "prep/ws-e01-delta-20260929-02",
+    "PR_TARGET": "main",
+    "EXPECTED_F01_PR": 3,
+    "EXPECTED_F01_HEAD": "7d66ca5b025c8f748d7f97b961c496ee450daaa7",
+    "F01_POLICY": "READ_ONLY__DRAFT_OPEN_UNMERGED_UNCHANGED"
+  },
+  "BOUND_PROJECT_LLM_ARTIFACTS": {
+    "EPIC_PREPARATION_DELTA": {
+      "ID": "WS-E01-EP-DELTA-20260929-02",
+      "FILENAME": "WindowSafe_WS-E01_Epic_Preparation_Delta_WS-E01-EP-DELTA-20260929-02.md",
+      "BYTES": 13661,
+      "SHA256": "ddd12e52b98790a19d57040da82d8ffeec42184f317d19eff87200c86a0d2115"
+    },
+    "CRITICAL_SELF_REVIEW": {
+      "ID": "WS-E01-EP-DELTA-CR-20260929-02",
+      "FILENAME": "WindowSafe_WS-E01_Epic_Preparation_Delta_Critical_Review_WS-E01-EP-DELTA-CR-20260929-02.md",
+      "BYTES": 2872,
+      "SHA256": "12d1d400030077da93220cf792f40bf69949ac8106d33e92e36d52b0320fe765"
+    },
+    "USER_EXECUTION_DIRECTION": {
+      "ID": "WS-UD-WS-E01-EXEC-20260929-01",
+      "FILENAME": "WindowSafe_WS-E01_Epic_Execution_Direction_WS-UD-20260929-01.json",
+      "SHA256": "5b4f467e2e98a14f36eceec65ca667ee4cafe594a5a81a2a40fc5dc2d186a2de"
+    },
+    "EXTERNAL_PROJECT_CONTEXT_SYNC": {
+      "ID": "WS-EXTCTX-SYNC-20260929-01",
+      "FILENAME": "WindowSafe_External_Project_Context_Sync_WS-EXTCTX-SYNC-20260929-01.json",
+      "SHA256": "d4bdc815e281f083acd6222d1ff19dc4255e05d2a52038d42bb360b5c61f2062",
+      "STATUS": "CONFIRMED_BY_USER"
+    },
+    "SYNCED_PROJECT_DESCRIPTION": {
+      "FILENAME": "WindowSafe_Projektbeschreibung_V6_sync_20260929_final.md",
+      "BYTES": 7607,
+      "SHA256": "647d8fcffff3c55b8e32f33f0cb80e22591bea77835817db87a96659f52f4ba5"
+    },
+    "PREVIOUS_PREMATERIALIZATION_DELTA": {
+      "ID": "WS-E01-EP-DELTA-20260929-01",
+      "FILENAME": "WindowSafe_WS-E01_Epic_Preparation_Delta_WS-E01-EP-DELTA-20260929-01.md",
+      "SHA256": "e848043bd6cdf8c28e3b9eff72e97ec5c738567a26e5705dfb9851cb65cc074f"
+    }
+  },
+  "CURRENT_CANONICAL_PROJECT_BINDINGS": {
+    "PROJECT_FOUNDATION_MAIN_SHA": "1cb82c926903b2fd6b497d008db61c71c5d92aca",
+    "PROJECT_FOUNDATION_ACCEPTED_BINDING_PATH": "foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json",
+    "PROJECT_FOUNDATION_ACCEPTED_BINDING_GIT_BLOB": "8a85ff8481a6bd831b3e2ace3382404762476834",
+    "PROJECT_FOUNDATION_REVIEW_RESULT_PATH": "reviews/results/WS-PFR-DELTA-20260928-01.json",
+    "PROJECT_FOUNDATION_REVIEW_RESULT_GIT_BLOB": "ff96f8b1cac7d9a664339c7df55ddbf77947e3a8",
+    "APPROVED_PRODUCT_DELTA_GIT_BLOB": "c8d52f1720aa24544b0d24f652e6b9c8d14254ec",
+    "TECHNICAL_FOUNDATION_DELTA_GIT_BLOB": "539dd9d35d40b832c07a779e351e7964af9f8705"
+  },
+  "HISTORICAL_EPIC_MUST_REMAIN_IMMUTABLE": {
+    "PREPARATION_PATH": "epics/WS-E01/preparation.md",
+    "PREPARATION_GIT_BLOB": "a92fbe87a9640b67367db96631e082864b89e9b3",
+    "SUBJECT_PATH": "epics/WS-E01/subject.json",
+    "SUBJECT_GIT_BLOB": "f12b4756046febfec07b0426a0129bce482ce2d2",
+    "BINDING_PATH": "epics/WS-E01/binding.json",
+    "BINDING_GIT_BLOB": "930b4c3176a9601e44f7a4b04ff1d4530488b6",
+    "REVIEWED_SUBJECT_END_SHA": "644b81f63dcc1990bc894a9c2c9bd8dc24a98c04"
+  },
+  "MATERIALIZATION_TARGET": {
+    "VERSIONED_DELTA_DIRECTORY": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02",
+    "SUBJECT_PATH": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json",
+    "REVIEW_TYPE": "EPIC_PREPARATION_REVIEW",
+    "EXPECTED_STATUS": "EPIC_PREPARATION_DELTA_READY_FOR_REVIEW",
+    "BINDING_STATUS": "REVIEW_REQUIRED",
+    "READY_FOR_AGENT": false
+  },
+  "ALLOWED_ACTIONS": [
+    "Create the exact new branch from exact current main after clean preflight.",
+    "Materialize exact Project-LLM artifacts append-only under the versioned WS-E01 delta namespace.",
+    "Create a versioned Epic Preparation Delta subject, REVIEW_REQUIRED binding and compact evidence/router state.",
+    "Minimally extend the existing WindowSafe review harness, scope guards, tests and CI so this exact versioned Epic delta subject can generate a canonical EPIC_PREPARATION_REVIEW request without altering historical Epic subject semantics.",
+    "Preserve historical epics/WS-E01/preparation.md, subject.json, binding.json and prior review originals byte-for-byte.",
+    "Update only minimal living routers needed to point the current Epic gate to the versioned delta review subject.",
+    "Consult the current Global Guidance Router at the start of this new agent run and apply only materially relevant AI-agent guidance; record the resolved guidance commit/locators without treating guidance as governance.",
+    "Run canonical local checks, full tests, deterministic build, schema-preflight, historical Epic request, new delta request, review history checks and git diff --check.",
+    "Commit and push only the new preparation-delta branch.",
+    "Create or update one PR to main and require exact-head CI success.",
+    "Stop with the versioned Epic Preparation Delta genuinely ready for independent review."
+  ],
+  "PROHIBITED_ACTIONS": [
+    "Do not create an independent EPIC_PREPARATION_REVIEW verdict.",
+    "Do not set the delta binding READY_FOR_AGENT.",
+    "Do not create Exact Epic Rebinding.",
+    "Do not create or execute the broad WS-E01 F01-F05 execution authorization.",
+    "Do not continue or mutate F01/PR #3.",
+    "Do not run browser/profile qualification in this materialization run.",
+    "Do not implement F02/F03/F04/F05 product code.",
+    "Do not perform Feature Acceptance.",
+    "Do not merge the new Epic-delta PR.",
+    "Do not overwrite historical Epic/Product/Foundation/review originals.",
+    "Do not weaken review/history/scope/security guards to pass.",
+    "Do not squash/rebase/force-push, alter repository admin/secrets/visibility, release or enter Production."
+  ],
+  "STOP_CONDITION": "EPIC_PREPARATION_DELTA_READY_FOR_REVIEW or earlier on material drift/blocker.",
+  "MERGE_AUTHORIZED": false,
+  "F01_CONTINUATION_AUTHORIZED": false,
+  "PRODUCT_IMPLEMENTATION_AUTHORIZED": false
+}

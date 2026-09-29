@@ -118,6 +118,16 @@ CI-Jobs und normaler PR-#2-Merge mit unveränderter bisheriger main-Basis erford
 Danach Post-Merge-Prüfung und STOP. Keine Dependencyinstallation, Produkt-/Browser-
 arbeit, kein eigener unabhängiger Verdict, kein Auto-Merge und kein WS-E01-F01.
 
+WS-EA-20260929-02 (WS-E01-EPDELTA-MAT-20260929-01) ergänzt genau einen versionierten
+Epic-Locator `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json` mit
+unabhängig SHA-256-gepinnter Autorisierung, byteexakten Originalen, feldgenauem
+Pre-Review-Subject/-Binding (REVIEW_REQUIRED) und gepinnten Blobs der historischen
+Epic-Dateien, der Foundation-Acceptance und des Product/TF-Deltas. Ist dieser Subject
+vorhanden, prüft die Foundation-Acceptance ihre Strecke bis zum Merge
+`1cb82c926903b2fd6b497d008db61c71c5d92aca` unverändert; die Fortsetzung danach muss
+linear sein und pro Commit in der exakten Delta-/Router-/Harness-Allowlist bleiben.
+Kein allgemeiner Nested-Subject-Bypass, kein Accepted-Übergang vor unabhängigem Review.
+
 Der Inventar-Writer öffnet Root/Ausgabeordner/Blatt mit No-follow und relativen
 Directory-FDs, prüft den geöffneten Dateityp/Linkcount vor dem Trunkieren und
 folgt nach Öffnung keinem Pfad mehr. Es gibt keine automatische Linklöschung.

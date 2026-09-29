@@ -1,17 +1,22 @@
 # Epic-Karte und Preparation-Kanal
 
-## Aktuelle Delta-Sperre
+## Aktuelles Gate: WS-E01 Epic Preparation Delta
 
 Die nachfolgende READY_FOR_AGENT-Annahme ist historisch und bleibt unverändert.
 Der [WS-P05-Foundation-Subject](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json)
 ist per [Acceptance-Binding](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json)
-mit unabhängigem PASS angenommen.
-Jetzt zwingend `REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE`:
-ein erforderlicher Sync braucht reale Nutzer-/externe Bestätigung; NOT_APPLICABLE
-eine explizite nachvollziehbare Begründung. Erst dann WS-E01 Epic Preparation Delta,
-kritische Eigenprüfung, unabhängiger Epic Review, exaktes Rebinding und neue
-F01-Ausführungsautorisierung. Die Foundation-Integration führt keinen dieser Schritte aus.
-F01 / PR #3 bleibt Draft/ungemergt, Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`.
+mit unabhängigem PASS angenommen. Externer Context-Sync: CONFIRMED_BY_USER
+(WS-EXTCTX-SYNC-20260929-01).
+
+**WS-E01-EP-DELTA-20260929-02** (Delta zur historischen WS-E01-EP-20260919-01) liegt unter
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/`: exakte Project-LLM-Originale
+(`preparation.md`, `critical-self-review.md`, Nutzerrichtung, Sync, Beschreibung,
+Vorversion), Autorisierung WS-EA-20260929-02, versionierter `subject.json`, Binding
+REVIEW_REQUIRED mit `ready_for_agent: false` und `evidence.md`. Status
+**READY_FOR_INDEPENDENT_REVIEW** über den kanonischen `EPIC_PREPARATION_REVIEW`-Kanal.
+Danach unabhängiger Epic Review, exaktes Rebinding und separate breite
+WS-E01-Ausführungsautorisierung; nichts davon ist hier erfolgt.
+F01 / PR #3 bleibt Draft/ungemergt und gestoppt, Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`.
 Nach EPIC_CONVERGED stoppt neue Epic-Arbeit bis Project-LLM-/Nutzer-Richtungsreview;
 der Nutzer bestätigt die nächste Epic-Auswahl vor neuer Preparation.
 

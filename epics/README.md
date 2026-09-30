@@ -20,10 +20,18 @@ bleibt unverändert historisch.
 **WS-E01-EP-DELTA-20260929-03** unter `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/`
 korrigiert ausschließlich die drei Reviewfindings (Korrektur, Disposition, Self-Review und
 WS-EA-20260929-03 als Originale; neuer Subject, Binding REVIEW_REQUIRED, `evidence.md`).
-Fachliche Epic-/Product-/TF-Aussage unverändert. Status
-**EPIC_PREPARATION_DELTA_CORRECTED_READY_FOR_REREVIEW**. Danach frischer unabhängiger
-Rereview, exaktes Rebinding und separate breite WS-E01-Ausführungsautorisierung;
-nichts davon ist hier erfolgt.
+Fachliche Epic-/Product-/TF-Aussage unverändert. Am Head `dee7ab5c9c5b53accd8602105e87523510582e40`
+erhielt -03 WS-E01-EPR-DELTA-20260929-02 **BLOCKED** (Reviewer ohne Checkout) und die
+nutzerautorisierte Ersatz-Evidence WS-E01-EPR-DELTA-20260930-04 **CORRECTION_REQUIRED**
+(`RECONSTRUCTED_FROM_REVIEW_TRANSCRIPT`): Autorin der übernommenen -02-Preparation fehlte in
+der Ausschlussmenge. -03 bleibt historisch unverändert.
+
+**WS-E01-EP-DELTA-20260929-04** unter `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/`
+(WS-EA-20260930-01) schließt diese Fehlerklasse: Der Harness leitet die transitiven Autoren
+und Materializer der referenzierten Preparation-/Correction-/Supersession-Linie ab und
+lehnt Request/Check ab, wenn eine davon in `review_excluded_identities` fehlt. Fachlich
+unverändert; Binding REVIEW_REQUIRED. Danach frischer unabhängiger Rereview, exaktes
+Rebinding und separate breite WS-E01-Ausführungsautorisierung.
 F01 / PR #3 bleibt Draft/ungemergt und gestoppt, Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`.
 Nach EPIC_CONVERGED stoppt neue Epic-Arbeit bis Project-LLM-/Nutzer-Richtungsreview;
 der Nutzer bestätigt die nächste Epic-Auswahl vor neuer Preparation.

@@ -14,7 +14,7 @@ import foundation as f
 
 PF_REVIEWED = "bbca750fab1e760714cf409b8751287db6b93041"
 HISTORICAL = "epics/WS-E01/subject.json"
-OTHER = "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json"
+OTHER = "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-05/subject.json"
 TRUNCATED_BLOB = "930b4c3176a9601e44f7a4b04ff1d4530488b6"
 SOURCE = f.ROOT  # Fixtures patch f.ROOT; materialized bytes still come from here.
 

@@ -1,0 +1,111 @@
+{
+  "DOCUMENT_TYPE": "EPIC_PREPARATION_DELTA_SECOND_CORRECTION_AND_WS_E01_AUTONOMY_AUTHORIZATION",
+  "AUTHORIZATION_ID": "WS-EA-20260930-01",
+  "STATUS": "AUTHORIZED",
+  "DATE": "2026-09-30",
+  "RUN_ID": "WS-E01-EPDELTA-CORR-20260929-02",
+  "AUTHORITY": "USER",
+  "USER_AUTHORIZATION_REFERENCE": {
+    "FORM": "DIRECT_USER_CHAT_MESSAGES_IN_CLAUDE_CODE_SESSION_2026-09-30",
+    "RECORDED_BY": "CODING_AGENT_WS_E01_EPDELTA_CORR_20260929_02",
+    "RECORDING_LIMITATION": "Structured transcription of the user's decision by the materializer; not a Project-LLM original and not byte-identical to the chat messages. Verbatim excerpts below are copied from the user messages.",
+    "VERBATIM_EXCERPTS": [
+      "Dies ist eine neue ausdrückliche Nutzerentscheidung und Ausführungsautorisierung für WindowSafe.",
+      "Führe das aktuelle Epic `WS-E01` nach der final aktiven V6-Basis autonom bis `EPIC_CONVERGED` durch.",
+      "Die bisherige pauschale Living-Router-Regel: `Keine Agentendelegation.` ist für den weiteren WS-E01-Lauf aufgehoben.",
+      "Neue Korrektur-Materializeridentität: `CODING_AGENT_WS_E01_EPDELTA_CORR_20260929_02`",
+      "Project-LLM-Implementeridentität des neuen Korrektur-Subjects: `PROJECT_LLM_WS_E01_EP_DELTA_20260929_04`",
+      "Übertrage `WS-E01-EPR-DELTA-20260930-04.json` byteidentisch append-only in den kanonischen Reviewkanal.",
+      "Erhalte transparent, dass es eine vom Nutzer ausdrücklich autorisierte `RECONSTRUCTED_FROM_REVIEW_TRANSCRIPT`-Ersatz-Evidence ist und **nicht** das verlorene ursprüngliche `WS-E01-EPR-DELTA-20260929-03`-Original.",
+      "PR #5 darf nach vollständig erfüllten Gates normal in `main` integriert werden.",
+      "Nach `EPIC_CONVERGED` zwingend stoppen. Keinen Folge-Epic auswählen oder starten."
+    ]
+  },
+  "TARGET_REPOSITORY": {
+    "FULL_NAME": "felixvonvollmer-png/Firefox---WindowSafe",
+    "REPOSITORY_ID": 1374094477,
+    "EXPECTED_MAIN_SHA": "1cb82c926903b2fd6b497d008db61c71c5d92aca",
+    "PR": 5,
+    "BRANCH": "prep/ws-e01-delta-20260929-02",
+    "EXPECTED_START_HEAD": "dee7ab5c9c5b53accd8602105e87523510582e40",
+    "EXPECTED_START_TREE": "a62713f6d34c054d3064d0d6d999fbcc9cd694d3"
+  },
+  "SOURCE_REVIEWS": [
+    {
+      "REVIEW_ID": "WS-E01-EPR-DELTA-20260929-02",
+      "TARGET": "reviews/results/WS-E01-EPR-DELTA-20260929-02.json",
+      "BYTES": 14361,
+      "SHA256": "dd3cc14785f67107a642328b5644fa5a4a7e02ea89834f9c8e731408fae1dfa8",
+      "VERDICT": "BLOCKED",
+      "PROVENANCE_CLASS": "EXACT_ORIGINAL"
+    },
+    {
+      "REVIEW_ID": "WS-E01-EPR-DELTA-20260930-04",
+      "TARGET": "reviews/results/WS-E01-EPR-DELTA-20260930-04.json",
+      "BYTES": 14038,
+      "SHA256": "3096a1fe1333ed89fa8c3e6e588e3a14f38f25157e4fb886afe412726e7649cf",
+      "VERDICT": "CORRECTION_REQUIRED",
+      "PROVENANCE_CLASS": "RECONSTRUCTED_FROM_REVIEW_TRANSCRIPT",
+      "REPLACES_UNAVAILABLE_ORIGINAL": {
+        "REVIEW_ID": "WS-E01-EPR-DELTA-20260929-03",
+        "BYTES": 19012,
+        "SHA256": "e4ab16e75eba6515c8d2bcd958bc079797c742c6cd8284e0203072ebc37f6edd",
+        "STATUS": "LOST_NOT_RECONSTRUCTED_BY_CODING_AGENT"
+      }
+    }
+  ],
+  "CORRECTION": {
+    "CORRECTED_SUBJECT_ID": "WS-E01-EP-DELTA-20260929-04",
+    "CORRECTED_SUBJECT_PATH": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json",
+    "EXPECTED_PROJECT_LLM_IMPLEMENTER": "PROJECT_LLM_WS_E01_EP_DELTA_20260929_04",
+    "EXPECTED_CORRECTION_MATERIALIZER": "CODING_AGENT_WS_E01_EPDELTA_CORR_20260929_02",
+    "FINDING_CLASS": "INCOMPLETE_SELF_VERDICT_AUTHOR_LINEAGE_EXCLUSION",
+    "RULE": "DERIVED_TRANSITIVE_MATERIAL_AUTHOR_AND_MATERIALIZER_PROVENANCE_OF_REVIEWED_SUBJECT SUBSET_OF SUBJECT.review_excluded_identities; otherwise REQUEST_INVALID",
+    "MINIMUM_REVIEW_EXCLUDED_IDENTITIES": [
+      "PROJECT_LLM_WS_E01_PREPARATION_20260919_01",
+      "PROJECT_LLM_WS_E01_EP_DELTA_20260929_02",
+      "PROJECT_LLM_WS_E01_EP_DELTA_20260929_03",
+      "PROJECT_LLM_WS_E01_EP_DELTA_20260929_04",
+      "CODING_AGENT_WS_E01_EPDELTA_MAT_20260929_01",
+      "CODING_AGENT_WS_E01_EPDELTA_CORR_20260929_01",
+      "CODING_AGENT_WS_E01_EPDELTA_CORR_20260929_02"
+    ],
+    "MINIMUM_IS_EXHAUSTIVE": false,
+    "PRODUCT_TRUTH_CHANGE": "NONE",
+    "TECHNICAL_FOUNDATION_CHANGE": "NONE",
+    "EPIC_SCOPE_OR_LIFECYCLE_DIRECTION_CHANGE": "NONE",
+    "NONBLOCKING_FOLLOW_UP": "WS-E01-EPR-DELTA-20260929-03-N01: files() also sees git-ignored local agent configuration; verify canonically in a clean checkout, do not weaken files() or scope/history guards."
+  },
+  "ROUTING_ALIGNMENT": {
+    "AGENT_DELEGATION": "ALLOWED_WITHIN_BOUND_SCOPE__INDEPENDENT_VERDICTS_ONLY_FROM_FRESH_OR_SUFFICIENTLY_ISOLATED_CONTEXT__NO_SELF_PASS",
+    "DEPENDENCY_AND_TOOLCHAIN": "NO_UNNECESSARY_DRIFT_DURING_REVIEW_OR_CORRECTION_TRANSPORT__AFTER_VALID_EPIC_REBINDING_JIT_WITHIN_PRODUCT_TRUTH_AND_TECHNICAL_FOUNDATION_WITH_LICENSE_PROVENANCE_SUPPLY_CHAIN_AND_REPRODUCIBILITY_CHECKS",
+    "STILL_REQUIRES_USER_OR_FOUNDATION_AUTHORITY": [
+      "NEW_EXTERNAL_OR_PAID_PROVIDER",
+      "NEW_SERVER_ACCOUNT_OR_CLOUD_SYNC",
+      "NEW_CREDENTIAL_OR_SECRET",
+      "SENSITIVE_DATA_DISCLOSURE_OR_NEW_DATA_TRUST_BOUNDARY",
+      "NEW_PRIVILEGED_PRODUCT_PERMISSION",
+      "MATERIAL_COST",
+      "MATERIAL_PRODUCT_FOUNDATION_SECURITY_OR_LIFECYCLE_DECISION"
+    ]
+  },
+  "AFTER_INDEPENDENT_PASS": {
+    "EXACT_EPIC_REBINDING": "AUTHORIZED_ONLY_AFTER_INDEPENDENT_PASS_VALIDATED_RESULT_AND_GREEN_EXACT_HEAD_CI",
+    "PR5_NORMAL_MERGE": "AUTHORIZED_ONLY_AFTER_ALL_BOUND_GATES",
+    "BROAD_WS_E01_EXECUTION_AUTHORIZATION": "TO_BE_MATERIALIZED_SEPARATELY_AFTER_VALID_REBINDING",
+    "FEATURE_DIRECTION": "F01 -> F02 -> {F03,F04} -> F05",
+    "STOP_AT": "EPIC_CONVERGED",
+    "NEXT_EPIC_SELECTION_BY_AGENT": false
+  },
+  "PROHIBITED_ACTIONS": [
+    "Self-PASS or any independent verdict by an implementer or materializer.",
+    "Editing or deleting historical subjects, bindings, authorizations or review originals.",
+    "Reconstructing the lost WS-E01-EPR-DELTA-20260929-03 original.",
+    "Force-push, rebase, amend or other history rewrite.",
+    "Weakening review, risk, evidence, history, scope or security gates.",
+    "Real user profiles or browsing data, release, signing, distribution, deployment or production."
+  ],
+  "MERGE_AUTHORIZED": "AFTER_INDEPENDENT_PASS_AND_EXACT_REBINDING_ONLY",
+  "F01_CONTINUATION_AUTHORIZED": false,
+  "PRODUCT_IMPLEMENTATION_AUTHORIZED": false
+}

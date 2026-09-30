@@ -138,6 +138,14 @@ dieser Identitäten als Reviewer oder Sidecar-Autor ab. Requests ohne dieses Fel
 bisherige Implementer-Regel. Der alte Locator liefert den Request am reviewed Head. Der
 historische Binding-Blob ist mit allen 40 Stellen gebunden. Kein Merge, kein READY.
 
+WS-EA-20260930-01 (WS-E01-EPDELTA-CORR-20260929-02) ergänzt genau den Locator
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json` ab dem reviewed Head
+`dee7ab5c9c5b53accd8602105e87523510582e40` mit eigener linearer Allowlist. Für ihn leitet
+`review_exclusion_closure` die Autoren/Materializer aller semantisch referenzierten
+Epic-Preparation-Subjects transitiv ab (ohne `evidence_paths`; Product-/Foundation-/Review-
+inputs sind keine Autorenschaft); fehlt eine davon in `review_excluded_identities`, scheitern
+`request` und `check`. Keine feste Kardinalität; historische Requests unverändert.
+
 Der Inventar-Writer öffnet Root/Ausgabeordner/Blatt mit No-follow und relativen
 Directory-FDs, prüft den geöffneten Dateityp/Linkcount vor dem Trunkieren und
 folgt nach Öffnung keinem Pfad mehr. Es gibt keine automatische Linklöschung.
@@ -193,7 +201,11 @@ Reviewabdeckung, spezialisierte Reviewer, Findings/Entscheidungen/Living-Docs/Fo
 
 ## Agenten- und Modellgrenzen
 
-Dieser Lauf nutzt einen Coding-Agent und deterministische Tools; keine Delegation.
+Historisch nutzten die Läufe bis WS-EA-20260929-03 einen Coding-Agent ohne Delegation. Ab
+WS-EA-20260930-01 dürfen Worker, Subagenten und Reviewer JIT im gebundenen Scope eingesetzt
+werden; unabhängige Verdicts nur aus frischem/isoliertem Kontext, kein Self-PASS.
+Dependency-/Toolchainversionen bleiben in Review-/Correction-Transporten unverändert und
+werden nach gültigem Epic Rebinding JIT innerhalb Product Truth/TF gewählt.
 Shell, Git, gh und lokale Tests sind tatsächlich verfügbar; GitHub meldet push-
 Berechtigung. Technische Capability autorisiert keine Adminaktionen.
 Sessiontools bieten Subagenten-/Modellauswahl, aber es wurde kein Override benutzt

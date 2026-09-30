@@ -14,15 +14,14 @@ reviewed Head `bbca750fab1e760714cf409b8751287db6b93041`, integriert durch
 Externer Project-Context-Sync: **CONFIRMED_BY_USER** (WS-EXTCTX-SYNC-20260929-01, separater
 Record im Epic-Delta; das Foundation-Binding bleibt unverändert).
 
-**Aktuelles Gate:** WS-E01-EP-DELTA-20260929-02 erhielt das unabhängige
-WS-E01-EPR-DELTA-20260929-01 **CORRECTION_REQUIRED**
-(`reviews/results/WS-E01-EPR-DELTA-20260929-01.json`) und bleibt historisch unverändert. Der korrigierte Subject **WS-E01-EP-DELTA-20260929-03**
-(WS-E01-EPDELTA-CORR-20260929-01 unter WS-EA-20260929-03) ist
-**EPIC_PREPARATION_DELTA_CORRECTED_READY_FOR_REREVIEW**: Subject
-`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/subject.json`, Binding REVIEW_REQUIRED,
-drei review-ausschließende Autorenidentitäten. Das historische WS-E01-Binding bleibt
-unverändert und autorisiert kein F01. Danach frischer unabhängiger Rereview, exaktes
-Rebinding, separate breite WS-E01-Autorisierung.
+**Aktuelles Gate:** Historisch: -02 erhielt WS-E01-EPR-DELTA-20260929-01 **CORRECTION_REQUIRED**,
+-03 (`dee7ab5c9c5b53accd8602105e87523510582e40`) erhielt WS-E01-EPR-DELTA-20260929-02 **BLOCKED**
+und die nutzerautorisierte Ersatz-Evidence WS-E01-EPR-DELTA-20260930-04 **CORRECTION_REQUIRED**
+(`RECONSTRUCTED_FROM_REVIEW_TRANSCRIPT`; das Original -20260929-03 ist verloren). Aktuell:
+**WS-E01-EP-DELTA-20260929-04** unter WS-EA-20260930-01, Subject
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json`, Binding REVIEW_REQUIRED; die
+Reviewer-Ausschlussmenge muss die transitiv abgeleitete Autoren-/Materializerlinie enthalten.
+Danach frischer unabhängiger Rereview, exaktes Rebinding, separate breite WS-E01-Autorisierung.
 
 WS-P05 ergänzt Product Truth und TF r6 durch exakt gebundene Originale im Kontextrouter.
 F01 / PR #3 bleibt ausschließlich externe Read-only-Evidence am Head
@@ -33,6 +32,10 @@ ohne diese späteren Gates. Hier nichts davon ausführen.
 Repository ist System of Record. Vor Mutation Root, Remote, Ref, HEAD, Worktree und Index
 prüfen; fremde/untracked Arbeit schützen. Nur benannte Pfade stagen. Kein History-Rewrite,
 Gate-Abschwächen, Überschreiben historischer Inputs/Subjects/Reviews oder Production.
-Keine Dependency-/Lock-/Toolchainversionsänderung. Keine Agentendelegation.
+Während Review-/Correction-Transporten kein Dependency-/Toolchain-Drift; nach gültigem Epic
+Rebinding JIT innerhalb Product Truth/TF (Lizenz, Provenienz, Supply Chain, Reproduzierbarkeit).
+Worker/Subagenten/Reviewer JIT im gebundenen Scope (WS-EA-20260930-01); unabhängige Verdicts
+nur aus frischem/isoliertem Kontext, nie Self-PASS. Neue Provider, Server, Secrets,
+Datenoffenlegung, privilegierte Rechte oder materielle Kosten bleiben Nutzer-/Foundation-Sache.
 Weitere Router: [Architektur](foundation/architecture.md), [Reviews](reviews/README.md),
 [Epic Preparation](epics/README.md). Historische Annahmen gelten nur für ihre Subjects.

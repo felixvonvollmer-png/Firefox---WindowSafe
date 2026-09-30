@@ -40,9 +40,10 @@ synchronisierte Beschreibung daneben); das historische NOT_APPLICABLE unten und 
 PENDING-Feld im Foundation-Binding bleiben unverändert historisch.
 WS-E01 Epic Preparation Delta WS-E01-EP-DELTA-20260929-02 (materialisiert unter
 WS-EA-20260929-02) erhielt CORRECTION_REQUIRED
-(`reviews/results/WS-E01-EPR-DELTA-20260929-01.json`) und bleibt historisch. Aktuelles Gate: korrigierter Subject WS-E01-EP-DELTA-20260929-03 unter
-WS-EA-20260929-03, **EPIC_PREPARATION_DELTA_CORRECTED_READY_FOR_REREVIEW**
-(Subject `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/subject.json`).
+(`reviews/results/WS-E01-EPR-DELTA-20260929-01.json`) und bleibt historisch. Der korrigierte Subject WS-E01-EP-DELTA-20260929-03 (WS-EA-20260929-03) erhielt BLOCKED und
+eine nutzerautorisierte rekonstruierte CORRECTION_REQUIRED-Ersatz-Evidence; er bleibt historisch.
+Aktuelles Gate: WS-E01-EP-DELTA-20260929-04 unter WS-EA-20260930-01 zum unabhängigen Rereview
+(Subject `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json`).
 Danach unabhängiger Rereview, Rebinding und separate breite WS-E01-Autorisierung.
 Nach EPIC_CONVERGED: Stop neuer Epic-Arbeit; Project-LLM/Nutzer wählen die nächste
 Richtung vor neuer Epic Preparation. Der Coding-Agent wählt keinen Folge-Epic.

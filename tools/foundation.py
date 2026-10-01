@@ -153,6 +153,18 @@ EPIC_REBIND_AUTH_SHA = "012bfd8e3267664719a92f8c31d996805219f287f9345b8cc02d53a1
 EPIC_REBIND_FILES = {EPIC_REBINDING, EPIC_REBIND_AUTH, EPIC_REBIND_RESULT}
 EPIC_REBIND_SUPPORT = EPIC_CORR2_SUPPORT | {"tests/test_epic_rebinding.py"}
 EPIC_REBIND_ALLOWED = EPIC_REBIND_FILES | EPIC_REBIND_SUPPORT
+# The single normal merge that integrated the rebound epic into main.
+EPIC_INTEGRATION_MERGE = "714b440c26167f6411420fbbda4be69deb2e9670"
+# Separate broad WS-E01 execution authorization; active only after the integration merge.
+EPIC_EXECUTION_AUTH = "epics/WS-E01/evidence/broad-execution-authorization.json"
+EPIC_EXECUTION_AUTH_SHA = "cced59563b38d5356097ecc2f1efe3da385897023b8ac323882c0d3c5761db6d"
+# Never editable during feature execution (new files in other protected areas stay append-only).
+EXECUTION_FROZEN_PREFIXES = ("foundation/", "epics/WS-E01/deltas/", "reviews/review-contract.json")
+# Living routers inside frozen areas that execution may keep current.
+EXECUTION_LIVING = {"foundation/context.md", "foundation/engineering.md"}
+# Gate code may evolve (each change needs independent technical review) but never disappear.
+EXECUTION_UNDELETABLE_PREFIXES = ("tools/", "tests/", ".github/workflows/")
+FEATURE_ID_PATTERN = r"WS-E01-F0[1-5]"
 EPIC_VERSIONED_SUBJECTS = (EPIC_DELTA_SUBJECT, EPIC_CORR_SUBJECT, EPIC_CORR2_SUBJECT)
 # Superseded locator -> (superseding subject, reviewed head it stays bound to).
 EPIC_SUPERSEDED_AT = {
@@ -401,8 +413,22 @@ def request(sha, path="foundation/subject.json"):
             return request(superseded[1], path)
     else:
         require(path == expected, "subject locator mismatch")
+        if kind == "FEATURE_ACCEPTANCE_REVIEW":
+            require(re.fullmatch(FEATURE_ID_PATTERN, s["subject_id"]) and EPIC_EXECUTION_AUTH in tree_snapshot(sha),
+                    "feature review requires bound WS-E01 execution")
+            delta_history(sha)  # Revalidates foundation, epic rebinding and the execution history.
     text(s["implementer"])
-    if path not in (EPIC_CORR_SUBJECT, EPIC_CORR2_SUBJECT):
+    if kind == "FEATURE_ACCEPTANCE_REVIEW":
+        # Every author of the feature changeset, including workers, is excluded from its verdict.
+        contributors = s.get("contributors", [])
+        require(isinstance(contributors, list), "REQUEST_INVALID: contributors must be a list")
+        authors = [s["implementer"], *([s["materializer"]] if "materializer" in s else []), *contributors]
+        excluded = s.get("review_excluded_identities")
+        require(isinstance(excluded, list) and all(isinstance(v, str) and v.strip() for v in excluded)
+                and all(isinstance(v, str) and v.strip() for v in authors)
+                and {v.strip().casefold() for v in authors} <= {v.strip().casefold() for v in excluded},
+                "REQUEST_INVALID: feature author exclusion incomplete")
+    elif path not in (EPIC_CORR_SUBJECT, EPIC_CORR2_SUBJECT):
         require("review_excluded_identities" not in s, "unbound review exclusion set")
     if path in LINEAGE_CLOSURE_SUBJECTS:
         # Fail closed if any author/materializer of the reviewed lineage is not excluded.
@@ -429,8 +455,8 @@ def request(sha, path="foundation/subject.json"):
         "reviewed_evidence": evidence,
         "contract_sha256": sha256(at(sha, CONTRACT_PATH)),
     }
-    if path in (EPIC_CORR_SUBJECT, EPIC_CORR2_SUBJECT):
-        # Validated by the correction integrity inside delta_history above.
+    if path in (EPIC_CORR_SUBJECT, EPIC_CORR2_SUBJECT) or kind == "FEATURE_ACCEPTANCE_REVIEW":
+        # Validated by the correction integrity inside delta_history or the feature check above.
         req["review_excluded_identities"] = s["review_excluded_identities"]
     return req
 
@@ -660,6 +686,20 @@ def files(root):
             yield path
 
 
+def feature_path(path):
+    """Feature subjects/evidence for the bound WS-E01 features."""
+    return bool(re.fullmatch(r"features/" + FEATURE_ID_PATTERN
+                             + r"/(subject\.json|state\.json|[a-z0-9-]+\.md|evidence/[a-z0-9-]+\.(json|md))", path))
+
+
+def product_path(path):
+    """Text sources of the WindowSafe add-on and its qualification probes; no binaries."""
+    name = r"[A-Za-z0-9_][A-Za-z0-9_.-]*"
+    return bool(re.fullmatch(r"(addon|qualification/ws-e01-f0[1-5])/(" + name + r"/){0,4}" + name
+                             + r"\.(ts|js|mjs|json|html|css|svg|md|py|txt)", path)
+                and "node_modules" not in path)
+
+
 def scope(path):
     safe_path(path)
     allowed_root = {"README.md", "AGENTS.md", ".gitignore", ".gitattributes"}
@@ -674,8 +714,9 @@ def scope(path):
     allowed |= bool(re.fullmatch(r"reviews/dispositions/" + ID_PATTERN + r"\.json", path))
     allowed |= path in {DELTA_SUBJECT, DELTA_EVIDENCE, DELTA_BINDING} | set(DELTA_SOURCES)
     allowed |= path in EPIC_DELTA_FILES | EPIC_CORR_FILES | EPIC_CORR2_FILES | {EPIC_REBINDING, EPIC_REBIND_AUTH}
+    allowed |= feature_path(path) or product_path(path)
     require(allowed, "outside foundation-only path scope")
-    require(PurePosixPath(path).name != "manifest.json", "extension manifest prohibited")
+    require(PurePosixPath(path).name != "manifest.json" or product_path(path), "extension manifest prohibited")
 
 
 def delta_integrity(read):
@@ -1033,12 +1074,21 @@ def epic_delta_history(head):
         require(EPIC_CORR2_SUBJECT in tree, "rebinding requires reviewed subject")
         ancestor(EPIC_CORR2_REVIEWED, head)
         rebound = set(git("rev-list", EPIC_CORR2_REVIEWED + ".." + head).decode().splitlines())
+    executing = set()
+    if EPIC_EXECUTION_AUTH in tree:
+        require(EPIC_REBINDING in tree, "execution requires exact rebinding")
+        ancestor(EPIC_INTEGRATION_MERGE, head)
+        executing = set(git("rev-list", EPIC_INTEGRATION_MERGE + ".." + head).decode().splitlines())
     previous = tree_snapshot(EPIC_DELTA_BASE)
     for revision in git("rev-list", "--reverse", "--topo-order", EPIC_DELTA_BASE + ".." + head).decode().splitlines():
+        if revision in executing:
+            continue  # Checked per parent by execution_history below.
         parents = git("rev-list", "--parents", "-n", "1", revision).decode().split()[1:]
         if len(parents) == 2 and rebound and not merges:
             # Exactly one normal merge of the rebound integration head into the bound main.
-            require(parents[0] == EPIC_DELTA_BASE and revision == head, "authorized epic delta merge required")
+            require(parents[0] == EPIC_DELTA_BASE
+                    and (revision == head or (executing and revision == EPIC_INTEGRATION_MERGE)),
+                    "authorized epic delta merge required")
             ancestor(EPIC_CORR2_REVIEWED, parents[1])
             require(EPIC_REBINDING in tree_snapshot(parents[1])
                     and at(parents[1], EPIC_REBINDING) == at(head, EPIC_REBINDING), "merge rebinding mismatch")
@@ -1068,7 +1118,60 @@ def epic_delta_history(head):
         epic_correction2_integrity(lambda name: at(head, name))
     if rebound:
         epic_rebinding_integrity(lambda name: at(head, name))
+    if executing:
+        require(EPIC_INTEGRATION_MERGE in merges, "execution requires the integration merge")
+        execution_authorization_integrity(lambda name: at(head, name))
+        merges |= execution_history(executing)
     return merges
+
+
+def execution_history(revisions):
+    """Feature execution after the integration merge: scoped, append-only, up-to-date merges only."""
+    merges = set()
+    for revision in revisions:
+        parents = git("rev-list", "--parents", "-n", "1", revision).decode().split()[1:]
+        current = tree_snapshot(revision)
+        if len(parents) == 2:
+            # A PR merge must not combine unreviewed trees: the merged tree is the PR head's tree.
+            require(parents[0] != parents[1], "degenerate execution merge")
+            require(git("rev-parse", revision + "^{tree}") == git("rev-parse", parents[1] + "^{tree}"),
+                    "execution merge must be up to date")
+            ancestor(EPIC_INTEGRATION_MERGE, parents[0])
+            merges.add(revision)
+        else:
+            require(len(parents) == 1, "execution octopus merge prohibited")
+            # --no-renames reports a rename as deletion plus addition, so both paths are checked.
+            for line in git("diff", "--name-status", "--no-renames", parents[0], revision).decode().splitlines():
+                status, path = line.split("\t", 1)
+                scope(path)
+                require(not path.startswith(EXECUTION_FROZEN_PREFIXES) or path in EXECUTION_LIVING,
+                        "frozen path changed during execution")
+                require(not (status == "D" and path.startswith(EXECUTION_UNDELETABLE_PREFIXES)),
+                        "gate code deleted during execution")
+                if status != "D":
+                    # Regular files only: no symlink (120000) or gitlink/submodule (160000) entries.
+                    require(current[path].split()[:2] in ([b"100644", b"blob"], [b"100755", b"blob"]),
+                            "execution file mode")
+        for parent in parents:
+            check_history_maps(tree_snapshot(parent), current)
+    return merges
+
+
+def execution_authorization_integrity(read):
+    """The separate broad WS-E01 authorization; it creates no verdict and no acceptance."""
+    raw = read(EPIC_EXECUTION_AUTH)
+    require(sha256(raw) == EPIC_EXECUTION_AUTH_SHA, "broad execution authorization hash")
+    auth = parse(raw)
+    require(auth["STATUS"] == "AUTHORIZED" and auth["AUTHORITY"] == "USER" and auth["EPIC_ID"] == "WS-E01"
+            and auth["REQUIRED_EPIC_REBINDING"] == {"path": EPIC_REBINDING, "sha256": sha256(read(EPIC_REBINDING))}
+            and auth["INTEGRATION_MERGE"] == EPIC_INTEGRATION_MERGE
+            and auth["FEATURE_DIRECTION"] == "F01 -> F02 -> {F03,F04} -> F05"
+            and auth["STOP_AT"] == "EPIC_CONVERGED" and auth["NEXT_EPIC_SELECTION_BY_AGENT"] is False
+            and auth["SELF_PASS_ALLOWED"] is False and auth["RELEASE_OR_PRODUCTION_AUTHORIZED"] is False,
+            "broad execution authorization")
+    rebinding = parse(read(EPIC_REBINDING))
+    require(rebinding["status"] == "READY_FOR_AGENT" and rebinding["ready_for_agent"] is True,
+            "execution requires READY_FOR_AGENT")
 
 
 def epic_correction_expected():
@@ -1500,6 +1603,8 @@ def check(root=ROOT):
         epic_correction2_integrity(lambda name: (root / name).read_bytes())
     if (root / EPIC_REBINDING).exists():
         epic_rebinding_integrity(lambda name: (root / name).read_bytes())
+    if (root / EPIC_EXECUTION_AUTH).exists():
+        execution_authorization_integrity(lambda name: (root / name).read_bytes())
     for path in files(root):
         rel = path.relative_to(root).as_posix()
         scope(rel)

@@ -33,8 +33,13 @@ lehnt Request/Check ab, wenn eine davon in `review_excluded_identities` fehlt. F
 unverändert; Pending-Binding REVIEW_REQUIRED bleibt erhalten. Unabhängiger Rereview
 WS-E01-EPR-DELTA-20260930-05 am `fa109e1b2cea025918d1cff61a2aaee2ee2b2083`: **PASS**.
 Exaktes Rebinding **READY_FOR_AGENT** in `rebinding.json` (WS-EA-20260930-02); es ist ab jetzt
-das aktuelle WS-E01-Binding. Featurestart erst mit separater breiter WS-E01-Autorisierung.
-F01 / PR #3 bleibt Draft/ungemergt und gestoppt, Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`.
+das aktuelle WS-E01-Binding, integriert in main `714b440c26167f6411420fbbda4be69deb2e9670`.
+Separate breite Ausführungsautorisierung WS-EA-20261001-03:
+`epics/WS-E01/evidence/broad-execution-authorization.json`. Feature-Subjects liegen unter
+`features/WS-E01-F0<n>/subject.json`; Produktquellen unter `addon/`, Qualifikationsproben unter
+`qualification/ws-e01-f0<n>/`.
+PR #3 (Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`) bleibt Draft/ungemergt als historische
+F01-Evidence; F01 wird unter WS-EA-20261001-03 auf neuer Basis fortgesetzt.
 Nach EPIC_CONVERGED stoppt neue Epic-Arbeit bis Project-LLM-/Nutzer-Richtungsreview;
 der Nutzer bestätigt die nächste Epic-Auswahl vor neuer Preparation.
 

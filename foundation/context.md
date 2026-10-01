@@ -44,8 +44,9 @@ WS-EA-20260929-02) erhielt CORRECTION_REQUIRED
 eine nutzerautorisierte rekonstruierte CORRECTION_REQUIRED-Ersatz-Evidence; er bleibt historisch.
 WS-E01-EP-DELTA-20260929-04 (WS-EA-20260930-01) ist mit WS-E01-EPR-DELTA-20260930-05 PASS
 angenommen und exakt rebound (READY_FOR_AGENT,
-`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/rebinding.json`, WS-EA-20260930-02).
-Danach unabhängiger Rereview, Rebinding und separate breite WS-E01-Autorisierung.
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/rebinding.json`, WS-EA-20260930-02), integriert
+in main `714b440c26167f6411420fbbda4be69deb2e9670`. Aktuell: autonome WS-E01-Ausführung unter
+WS-EA-20261001-03 bis EPIC_CONVERGED.
 Nach EPIC_CONVERGED: Stop neuer Epic-Arbeit; Project-LLM/Nutzer wählen die nächste
 Richtung vor neuer Epic Preparation. Der Coding-Agent wählt keinen Folge-Epic.
 

@@ -1,5 +1,12 @@
 # Kanonischer Reviewkanal und aktuelle Review-Locators
 
+## Aktuell: Feature-Reviews in der WS-E01-Ausführung
+
+Feature Acceptance: `features/<FEATURE_ID>/subject.json` am exakten Acceptance-SHA, Rolle
+`INDEPENDENT_ACCEPTANCE_REVIEWER`, Resultat `reviews/results/<REVIEW_ID>.json`. Der Request
+enthält `review_excluded_identities` (Implementer, Materializer, alle Contributors); keine davon
+darf Reviewer sein. Frischer/isolierter Reviewkontext im sauberen Checkout; kein Self-PASS.
+
 ## Abgeschlossen: Rereview des zweifach korrigierten WS-E01-Deltas
 
 WS-E01-EPR-DELTA-20260930-05 (`results/WS-E01-EPR-DELTA-20260930-05.json`, 20849 Bytes) ergab

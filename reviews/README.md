@@ -1,6 +1,41 @@
 # Kanonischer Reviewkanal und aktuelle Review-Locators
 
-## Aktueller Stand: Project Foundation Delta angenommen
+## Abgeschlossen: Rereview des zweifach korrigierten WS-E01-Deltas
+
+WS-E01-EPR-DELTA-20260930-05 (`results/WS-E01-EPR-DELTA-20260930-05.json`, 20849 Bytes) ergab
+**PASS** für `WS-E01-EP-DELTA-20260929-04@fa109e1b2cea025918d1cff61a2aaee2ee2b2083`; offen
+bleiben ein nichtblockierendes MINOR (Lineage-Closure vor dem nächsten Preparation-Subject
+generalisieren) und NITs. Die folgenden Rereview-Anweisungen sind damit historisch.
+
+### Historischer Auftrag: EPIC_PREPARATION_REVIEW (Rereview) des zweifach korrigierten WS-E01-Deltas
+
+Subject **WS-E01-EP-DELTA-20260929-04**, Locator
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json` am vollständigen End-SHA aus
+dem Delivery-Handoff von PR #5 (`prep/ws-e01-delta-20260929-02`, ungemergt; Basis main
+`1cb82c926903b2fd6b497d008db61c71c5d92aca`). Rolle `INDEPENDENT_EPIC_PREPARATION_REVIEWER`,
+Vertrag unverändert V3, Resultat `reviews/results/<REVIEW_ID>.json` mit neuer Review-ID.
+Der Request enthält `review_excluded_identities`; `request` scheitert, wenn eine transitiv aus
+der Preparation-/Correction-/Supersession-Linie abgeleitete Autoren-/Materializeridentität
+fehlt. Keine dieser Identitäten darf als `reviewer.identity` auftreten (Vollgleichheit nach
+Rand-Whitespace/Case-Normalisierung; ersetzt keine Provenienzprüfung). Kanonische Prüfung in
+einem sauberen Checkout des End-SHA (lokale ignorierte Agentenkonfiguration beeinflusst
+sonst `files()`; nichtblockierender Follow-up N01).
+
+```sh
+python3 tools/foundation.py request --sha <END_SHA> --subject epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json
+python3 tools/foundation.py schema-preflight --sha <END_SHA> --schema reviews/review-contract.json
+python3 tools/foundation.py history --base 1cb82c926903b2fd6b497d008db61c71c5d92aca
+```
+
+Prüfbereich: Schließung von WS-E01-EPR-DELTA-20260929-03-F01 aus der Ersatz-Evidence
+`results/WS-E01-EPR-DELTA-20260930-04.json` (`RECONSTRUCTED_FROM_REVIEW_TRANSCRIPT`, nicht das
+verlorene Original) und F04 aus `results/WS-E01-EPR-DELTA-20260929-02.json` (BLOCKED),
+kumulativer Delta-/Harness-Stand seit main, unveränderte fachliche Delta-Aussage, historische
+Unveränderlichkeit, Tests, Exact-Head-CI. Die alten Locators -02/-03 liefern weiter die Requests
+an ihren reviewed Heads `48d7b0f…` bzw. `dee7ab5…`. Kritische Eigenprüfung und grüne CI sind
+kein unabhängiges PASS.
+
+## Historischer Stand: Project Foundation Delta angenommen
 
 [Subject](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json): **WS-PFDELTA-MAT-20260928-01**,
 reviewed Head `bbca750fab1e760714cf409b8751287db6b93041`, unverändert.

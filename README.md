@@ -10,11 +10,15 @@ ist mit dem unabhängigen [WS-PFR-DELTA-20260928-01 PASS](reviews/results/WS-PFR
 angenommen und durch **WS-PFDELTA-INT-20260929-01** / **WS-EA-20260929-01** integriert.
 [Acceptance-Binding](foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json),
 [reviewed Subject](foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json) und [Evidence](foundation/deltas/WS-PFDELTA-MAT-20260928-01/evidence.md).
-Externer Project-Context-Sync: **PENDING**. Stop:
-**REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE**.
+Externer Project-Context-Sync: **CONFIRMED_BY_USER** (WS-EXTCTX-SYNC-20260929-01).
+Aktuell: WS-E01 Epic Preparation Delta **WS-E01-EP-DELTA-20260929-04** ist unabhängig mit
+WS-E01-EPR-DELTA-20260930-05 **PASS** angenommen und exakt rebound (READY_FOR_AGENT,
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/rebinding.json`).
+Die Vorversionen -02 (CORRECTION_REQUIRED) und -03 (BLOCKED, danach CORRECTION_REQUIRED als
+nutzerautorisierte rekonstruierte Ersatz-Evidence) bleiben historisch unter `reviews/results/`.
 Historische WS-E01 Preparation bleibt unverändert angenommen; ihre Annahme ersetzt
 kein Delta-Rebinding. F01 bleibt auf PR #3 am Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`
-Draft/ungemergt und wird nicht fortgesetzt. Kein Produktcode, Epic Delta oder Feature Acceptance.
+Draft/ungemergt, gestoppt und wird nicht fortgesetzt. Kein Produktcode oder Feature Acceptance.
 
 - [Kontext und unveränderte Product Truth](foundation/context.md)
 - [Architektur, Entscheidungen und offene Vorab-Gates](foundation/architecture.md)

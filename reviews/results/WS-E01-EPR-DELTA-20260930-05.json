@@ -1,0 +1,283 @@
+{
+  "schema_version": 3,
+  "review_id": "WS-E01-EPR-DELTA-20260930-05",
+  "review_type": "EPIC_PREPARATION_REVIEW",
+  "reviewer": {
+    "authority": "INDEPENDENT_EPIC_PREPARATION_REVIEWER",
+    "identity": "CLAUDE_SUBAGENT_INDEPENDENT_EPIC_REREVIEWER_WS_E01_EPR_DELTA_20260930_05",
+    "run_reference": "Frischer Claude-Code-Subagent-Kontext (Claude Opus 5.5, claude-opus-5-5), am 2026-10-01 fuer genau diesen Review gestartet; kein uebernommener Gespraechskontext ausser dem Reviewauftrag; die Identitaet der startenden Orchestrierungssitzung ist reviewerseitig nicht verifizierbar; keine Identitaet aus review_excluded_identities verwendet; read-only Pruefung im sauberen detached Worktree /home/felix/projekte/windowsafe-rereview-fa109e1 am fa109e1b2cea025918d1cff61a2aaee2ee2b2083, Experimente nur in Scratch-Clones ausserhalb beider Repositories.",
+    "independence": "FRESH_OR_SUFFICIENTLY_ISOLATED"
+  },
+  "provenance": {
+    "source_reference": "Independent read-only EPIC_PREPARATION_REVIEW WS-E01-EPR-DELTA-20260930-05 am 2026-10-01 in einem sauberen detached Worktree /home/felix/projekte/windowsafe-rereview-fa109e1; vor den Tests verifiziert: HEAD = fa109e1b2cea025918d1cff61a2aaee2ee2b2083, `git status --porcelain --ignored` leer, python3 = CPython 3.14.4. Reviewer-eigene Gates im Worktree: (1) `python3 tools/foundation.py request --sha HEAD --subject epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json` Exit 0 (52 Evidence-Eintraege, sieben review_excluded_identities; subject und reviewed_evidence unveraendert in dieses Resultat uebernommen; zweiter Lauf byteidentisch); (2) `schema-preflight --sha HEAD --schema reviews/review-contract.json` Exit 0; (3) `history --base 1cb82c926903b2fd6b497d008db61c71c5d92aca` Exit 0; (4) `check` Exit 0; `python3 -m unittest discover -s tests` Exit 0 (164 Tests OK, 273,7 s); `python3 -m unittest tests.test_epic_lineage tests.test_epic_correction tests.test_epic_delta` Exit 0 (55 Tests OK). Der erste Volllauf erzeugte git-ignorierte tests/__pycache__ und tools/__pycache__ im Worktree; diese eigenen Artefakte wurden entfernt, danach liefen request/schema-preflight/history/check mit PYTHONDONTWRITEBYTECODE=1 erneut mit Exit 0 und der Worktree war wieder leer (auch --ignored). (5) Exact-Head-CI read-only per gh: Run 36712476866 (push) und 36712481842 (pull_request), Workflow Foundation, Branch prep/ws-e01-delta-20260929-02, headSha fa109e1b2cea025918d1cff61a2aaee2ee2b2083, status completed, conclusion success; Logs zeigen Checkout von fa109e1, Python 3.14.4, CHECK OK, 164 Tests OK, SCHEMA-PREFLIGHT OK, -04-Request mit end_sha fa109e1, BUILD OK, HISTORY OK. Zusaetzliche Reviewerpruefungen: Diffs 1cb82c9..fa109e1 und dee7ab5..fa109e1 (name-status: -02/-03-Namespaces und fruehere Resultate nur hinzugefuegt bzw. seit dee7ab5 unveraendert; keine foundation/inputs- oder sources-Aenderung; kein Produktcode); historische Requests (-03, -02, epics/WS-E01, Foundation-Delta) am HEAD byteidentisch zu den Requests des jeweils alten Harness an dee7ab5 bzw. 48d7b0f bzw. 1cb82c9 (lokale Scratch-Clones ausserhalb beider Repositories); review_exclusion_closure auf den echten Bytes ergibt exakt die sieben gebundenen Identitaeten; Repo-weite Suche nach Identitaetsmustern fand keine weitere Autoren-/Materializeridentitaet der Epic-Linie; git-gestuetzter Reader: fehlende Kandidaten werfen CalledProcessError und werden uebersprungen, unbekannte epics/-Referenz scheitert mit 'lineage reference without owning subject'. Mutationsproben im Scratch-Clone gegen tests.test_epic_lineage (16 Tests): nur-direkte Referenzen 1 Fehlschlag; materializer aus AUTHOR_FIELDS entfernt 4; Closure-Pruefung in epic_correction2_integrity entfernt 14; Vorgaenger-Ausschlusssets ignoriert 1; Closure-require in request() entfernt 0 (redundant zu delta_history->epic_correction2_integrity, Request scheitert weiterhin). Grenzen: Authentizitaet der Nutzer-Chatentscheidungen hinter WS-EA-20260930-01 und das verlorene Original WS-E01-EPR-DELTA-20260929-03 sind nicht reviewerseitig pruefbar; build --verify-repeat nicht im Worktree ausgefuehrt (schreibt build/), stattdessen CI-Log BUILD OK; kein Browser, keine Profile, keine Repository- oder GitHub-Mutation. Nach dem Schreiben dieses Resultats: Kopien mit reviewer.identity gleich jeder der sieben ausgeschlossenen Identitaeten, kleingeschrieben und mit Rand-Whitespace/Title-Case (21 Varianten) wurden per validate-result CLI mit Exit 1 und per foundation.validate_result jeweils mit 'self verdict' abgelehnt, das unveraenderte Resultat validierte. Informativ im Scratch-Clone: ein Commit, der nur dieses Resultat unter reviews/results/ auf fa109e1 ergaenzt, laesst request (-04) und history mit 'epic delta scope drift' scheitern, weil EPIC_CORR2_ALLOWED nur die zwei bestehenden Resultatpfade enthaelt; der spaetere Transfer braucht daher wie bei d2bb4cb eine eigene autorisierte Harness-Erweiterung, ohne Guards abzuschwaechen.",
+    "transport": "EXACT_AUTHORIZED_TRANSFER"
+  },
+  "subject": {
+    "id": "WS-E01-EP-DELTA-20260929-04",
+    "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json",
+    "end_sha": "fa109e1b2cea025918d1cff61a2aaee2ee2b2083"
+  },
+  "verdict": "PASS",
+  "findings": [
+    {
+      "id": "WS-E01-EPR-DELTA-20260929-03-F01",
+      "severity": "MAJOR",
+      "status": "RESOLVED",
+      "description": "Das MAJOR-Finding der Ersatz-Evidence WS-E01-EPR-DELTA-20260930-04 (fehlende Autorin PROJECT_LLM_WS_E01_EP_DELTA_20260929_02 der uebernommenen -02-Preparation in der Ausschlussmenge) ist fuer den Subject -04 geschlossen. review_exclusion_closure leitet aus allen semantischen epics/-Referenzen (ohne evidence_paths) transitiv die besitzenden Epic-Preparation-Subjects ab und sammelt implementer, materializer und die gebundenen Ausschlusssets der Vorgaenger; die eigene Liste des geprueften Subjects ist nie Quelle. Auf den Bytes am fa109e1 ergibt sie exakt die sieben gebundenen Identitaeten (-04, -03, -02, historische Preparation sowie MAT_01, CORR_01, CORR_02). request und check scheitern fail-closed mit 'closure incomplete', sobald eine abgeleitete Identitaet fehlt; validate-result und Sidecar lehnen jede Identitaet samt Case-/Whitespace-Varianten ab, laengere Identitaeten mit Teilstring bleiben zulaessig. Zyklen werden ueber seen abgefangen; Referenzen ohne besitzenden Epic-Preparation-Subject scheitern.",
+      "disposition": "RESOLVED_IN_REVIEWED_SUBJECT: Mechanische Linienableitung, exakte Subject-/Binding-Bindung in epic_correction2_integrity und Regressionstests in tests/test_epic_lineage.py decken die Linie von -04 vollstaendig ab; historische Requests bleiben byteidentisch."
+    },
+    {
+      "id": "WS-E01-EPR-DELTA-20260929-02-F04",
+      "severity": "BLOCKING",
+      "status": "RESOLVED",
+      "description": "Das BLOCKING-Finding (Reviewer ohne exakten Checkout, keine reviewer-eigenen Pflichtgates) verlangte keine Subject-Korrektur. Dieser Rereview lief in einem sauberen detached Checkout des reviewed SHA fa109e1 und hat request, schema-preflight, history, check, Testsuite und abschliessend validate-result selbst ausgefuehrt (Exitcodes in provenance.source_reference).",
+      "disposition": "RESOLVED_BY_REVIEW_EXECUTION: Pflichtgates reviewer-eigen am exakten Checkout erfolgreich; keine Aenderung am Subject erforderlich oder erfolgt."
+    },
+    {
+      "id": "WS-E01-EPR-DELTA-20260930-05-F01",
+      "severity": "MINOR",
+      "status": "OPEN",
+      "description": "Die Schliessung der Fehlerklasse INCOMPLETE_SELF_VERDICT_AUTHOR_LINEAGE_EXCLUSION ist an genau einen Locator gebunden: LINEAGE_CLOSURE_SUBJECTS = {-04}. Der generische Pfad epics/<ID>/subject.json verbietet weiterhin review_excluded_identities und schliesst in self_verdict nur den implementer aus; ein kuenftiger generischer Epic-Preparation-Subject mit separatem Materializer oder uebernommener Vorgaengerlinie waere mechanisch nicht ausgeschlossen. foundation/engineering.md beschreibt den Locator-Bezug korrekt, evidence.md und epics/README.md sprechen allgemeiner von geschlossener Fehlerklasse. Fuer den reviewten Subject -04 ist die Ableitung vollstaendig; historische Requests muessen unveraendert bleiben.",
+      "disposition": "EXPLICIT_NONBLOCKING_FOLLOW_UP: Vor dem naechsten neuen Epic-Preparation- oder Korrektur-Subject die Linienableitung auf dessen Locator bzw. den generischen Pfad erweitern (implementer, materializer und Vorgaengerlinie), ohne historische Requests zu aendern; bis dahin bleibt die externe Provenienzpruefung der Reviewerunabhaengigkeit massgeblich."
+    },
+    {
+      "id": "WS-E01-EPR-DELTA-20260930-05-N01",
+      "severity": "NIT_OR_SUGGESTION",
+      "status": "OPEN",
+      "description": "evidence.md berichtet, eine nicht-transitive Ableitung lasse 12 Lineage-Tests scheitern. Eine reviewerseitige Mutation, die nur direkte Referenzen des geprueften Subjects verfolgt, laesst genau einen Test scheitern (test_closure_is_transitive_and_cardinality_free): Fuer -04 sind alle Vorgaenger-Subjects direkt referenziert, Transitivitaet wird daher nur durch den synthetischen Test bewacht. Das Entfernen des Closure-require in request() wird von keinem Test bemerkt, ist aber redundant, weil delta_history ueber epic_correction2_integrity dieselbe Pruefung fail-closed erzwingt.",
+      "disposition": "NONBLOCKING_SUGGESTION: Mutationsangabe in kuenftiger Evidence praezisieren (welche Mutation, welche Tests) und optional einen gezielten Test fuer die request-eigene Pruefung ergaenzen; kein Einfluss auf die Korrektheit."
+    },
+    {
+      "id": "WS-E01-EPR-DELTA-20260930-05-N02",
+      "severity": "NIT_OR_SUGGESTION",
+      "status": "OPEN",
+      "description": "semantic_references folgt nur Stringwerten, die mit 'epics/' beginnen; Dict-Schluessel, eingebettete Pfade in Freitext und Identitaeten in Nicht-Subject-Dokumenten (Bindings, Autorisierungen) werden nicht ausgewertet, und Autorenschaft wird nur aus den Feldern implementer/materializer gelesen. Fuer -04 ohne Auswirkung: alle Liniensubjects sind direkt als Werte referenziert und die in Autorisierungen genannten Identitaeten sind enthalten.",
+      "disposition": "NONBLOCKING_SUGGESTION: Bei Erweiterung der Ableitung auf weitere Subjects die Referenzform festlegen oder Schluessel/Autorisierungs-Identitaeten einbeziehen; keine Aenderung am reviewten Subject erforderlich."
+    },
+    {
+      "id": "WS-E01-EPR-DELTA-20260930-05-N03",
+      "severity": "NIT_OR_SUGGESTION",
+      "status": "OPEN",
+      "description": "Die Router-Neuausrichtung zu Dependencies/Toolchain (AGENTS.md, foundation/engineering.md) stuetzt sich nur auf den strukturierten ROUTING_ALIGNMENT-Block und den woertlichen Auszug zur autonomen V6-Ausfuehrung von WS-E01; anders als die Aufhebung von 'Keine Agentendelegation.' gibt es dafuer keinen eigenen woertlichen Auszug. Die Regel verbietet weiterhin Drift in Review-/Correction-Transporten, wirkt erst nach gueltigem Epic Rebinding und entspricht Foundation 2 (Dependency-Pflege mit Lizenz-/Provenienz-/Supply-Chain-Pruefung); die Autorisierung ist ehrlich als Materializer-Transkription gekennzeichnet.",
+      "disposition": "NONBLOCKING_SUGGESTION: Bei der separaten breiten WS-E01-Autorisierung die Dependency-/Toolchain-Richtung ausdruecklich vom Nutzer bestaetigen lassen bzw. woertlich belegen."
+    },
+    {
+      "id": "WS-E01-EPR-DELTA-20260929-03-N01",
+      "severity": "NIT_OR_SUGGESTION",
+      "status": "OPEN",
+      "description": "Weiterhin offen und in -04 korrekt als nichtblockierend gefuehrt: files() sieht git-ignorierte lokale Dateien. Dieser Review lief in einem sauberen Checkout; von Testlaeufen erzeugte __pycache__-Verzeichnisse stoerten check nicht, der Fall .claude/settings.local.json wurde nicht erneut getestet.",
+      "disposition": "NONBLOCKING_FOLLOW_UP: Kanonische Pruefung weiter im sauberen Checkout; eine spaetere eng begrenzte Harness-Verbesserung separat pruefen, ohne Scope-/History-Guards abzuschwaechen."
+    }
+  ],
+  "reviewed_evidence": [
+    {
+      "path": ".github/workflows/foundation.yml",
+      "sha256": "aeb1430c393338da25b7c99f95602ecabd092fa3a72339f5496b25056f4c2c6a"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "2c168a108061a29a991dfa6f7198b351e5ef4124d90ec04db9b2499cd2d9b689"
+    },
+    {
+      "path": "README.md",
+      "sha256": "1cdb74a91d9a806fe11b2dc6b38dd57da1efed23479fecc8bb2b26078cfe17ba"
+    },
+    {
+      "path": "epics/README.md",
+      "sha256": "151f8705751f996993dc3ff07c4e8303aa03efbb2098ef3e9b2520a3af86051f"
+    },
+    {
+      "path": "epics/WS-E01/binding.json",
+      "sha256": "83ca6ecba6ef77846cb4049ff3dc1818c3b4813124b9b3a4b60f7387e6378414"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/binding.json",
+      "sha256": "d25134bfc6fd6b08dd1433aad25d2680e23ed60a4e2a60f3420132b9afeb7484"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/critical-self-review.md",
+      "sha256": "12d1d400030077da93220cf792f40bf69949ac8106d33e92e36d52b0320fe765"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/evidence.md",
+      "sha256": "5b878311d55d4aeb81b524050ca3ad20afeb6e94dbe6efdd3ce02cdef6a99341"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/execution-authorization.json",
+      "sha256": "68ff10124c40995b8740dbbe4ca6e8dfaaac9bab6f33335980dd4588968728ab"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/execution-direction.json",
+      "sha256": "5b4f467e2e98a14f36eceec65ca667ee4cafe594a5a81a2a40fc5dc2d186a2de"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/external-context-sync.json",
+      "sha256": "d4bdc815e281f083acd6222d1ff19dc4255e05d2a52038d42bb360b5c61f2062"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/preparation.md",
+      "sha256": "ddd12e52b98790a19d57040da82d8ffeec42184f317d19eff87200c86a0d2115"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/previous-preparation-delta.md",
+      "sha256": "e848043bd6cdf8c28e3b9eff72e97ec5c738567a26e5705dfb9851cb65cc074f"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/project-description.md",
+      "sha256": "647d8fcffff3c55b8e32f33f0cb80e22591bea77835817db87a96659f52f4ba5"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json",
+      "sha256": "2f5b09d36791cb0ec1719b637da88b611bda64a205e892f3920ac666f947af9f"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/binding.json",
+      "sha256": "6a203fb796909212d5e17575f1847306da9ccfada81e78e264cde05d4792f5b0"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/correction-critical-self-review.md",
+      "sha256": "30254913d37577f5766e95904d17738c05d69006af76b939ec2e9d549fad0692"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/correction-disposition.json",
+      "sha256": "9f268ea37fc7716fe2ed4ea8a8270adb780235a376961279f08271989767c1aa"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/correction.md",
+      "sha256": "aee88ae816f85489982176fba0089e3555f0cab95585a5f55152d6050e977b3e"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/evidence.md",
+      "sha256": "09dcd649b0456176b3ae8d2a7793fb4459e1ea3d60fccfaf77d1d61ed6b4f425"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/execution-authorization.json",
+      "sha256": "1672b45700ffc5b4aa1846521e2faf1af06b2334d759f6eeb30af22ed06d16ef"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/subject.json",
+      "sha256": "ec5293bcc71497d811a6205843d6774b00bd9eaaa11cd87c5fea7fb641d22ab6"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/binding.json",
+      "sha256": "5076c11731bd35a2137a193258ee2181d97b7184a28984b1d1921db75398e42c"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/evidence.md",
+      "sha256": "490463099fff429c4666b8064e66d148d23a5330d211450e04f52c1b32ca7739"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/execution-authorization.json",
+      "sha256": "638b3ab5cb4bc91d55eda0d530b695470d16adda612943d14f75bf337a85a621"
+    },
+    {
+      "path": "epics/WS-E01/preparation.md",
+      "sha256": "9854362a8dc864965bf8347bfc93fe742e10dcbd906c5afcd24d4309f39e03f7"
+    },
+    {
+      "path": "epics/WS-E01/subject.json",
+      "sha256": "38017502284d1b1452feb389441e3c4e9677bfffed00324d33237ebb7fa7ba4f"
+    },
+    {
+      "path": "foundation/architecture.md",
+      "sha256": "fe3f77d56929e125ef3b05dc3441ee6b1c0ee525935e4add26571151f7506b58"
+    },
+    {
+      "path": "foundation/context.md",
+      "sha256": "8c233418659a796fad762f2a0e67ab1698b0cf0e18ff7f2f9db006f5929a3595"
+    },
+    {
+      "path": "foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json",
+      "sha256": "a8ccd82ded633214556dcec6101e0bfa3d9590a7851e625acab18c64fb8fc2d4"
+    },
+    {
+      "path": "foundation/engineering.md",
+      "sha256": "cb79c4679a37990af6470519d09df8041833ddee25caca8b2750d8d090e375e5"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Product_Definition_Delta_WS-PD-DELTA-20260924-01.md",
+      "sha256": "0caca99a713a0e026af5b63beee5f8abc310ef3d38f20c9653cd3042322aec16"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Product_Delta_Approval_WS-PD-DELTA-APPROVAL-20260928-01.json",
+      "sha256": "9e15db18b095655dfc503d67cad4486998e68493c323f8b2217e9d71e5987ab5"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Technical_Foundation_Delta_Binding_WS-TFP-DELTA-BIND-20260928-01.json",
+      "sha256": "684e759d4f66b8ac73a2e191b6ccaedf1416c9360619f2d89dc1ef2366b60e21"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-02.md",
+      "sha256": "8c687681f9a46cf0782212ebfa5be5d6e22cac77d890b1f436a8395f7b1c5d2c"
+    },
+    {
+      "path": "foundation/inputs/inputs/WindowSafe_Approval_Record_WS-PD-20260917-01.json",
+      "sha256": "a655d1fb0a594997e1f6da00c7e8a36bb6c5807ac844ce9fbf04ccb7d1afd4a5"
+    },
+    {
+      "path": "foundation/inputs/inputs/WindowSafe_Product_Definition_WS-PD-20260917-01.md",
+      "sha256": "fff235b7591f483b9b31c945911a6b5950d29fac931b9136438ae5586c756900"
+    },
+    {
+      "path": "foundation/inputs/inputs/WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r6.md",
+      "sha256": "c461c45c5bd20f12dcffb400acd6f7d5c0f0de0a75616eef3eb1d78dd175dcb6"
+    },
+    {
+      "path": "foundation/sources/v6-final-20260918/README.md",
+      "sha256": "99f2f09df9c3e917f6255ca62798638c8f8dc5c75020d101a616deea5a79112c"
+    },
+    {
+      "path": "foundation/sources/v6-final-20260918/foundation-1.md",
+      "sha256": "2d6952f601dc0468b2d48667f9d1b401a3e22fa2a4934d20aa1163e48cedaa17"
+    },
+    {
+      "path": "foundation/sources/v6-final-20260918/foundation-2.md",
+      "sha256": "9f0ac9c4291b38fe57da25376c3019b5d67757264f8381680a7c63f2b45b5dbc"
+    },
+    {
+      "path": "reviews/README.md",
+      "sha256": "f8595cf21815f5c625da58d8c4174a9db2dbcbeea2705d040d14e815539ebc8e"
+    },
+    {
+      "path": "reviews/results/WS-E01-EPR-20260919-02.json",
+      "sha256": "1b59d6fc89c293e738ea4e9f16e4004abef5736da527e5c2f7c60533260977d7"
+    },
+    {
+      "path": "reviews/results/WS-E01-EPR-DELTA-20260929-01.json",
+      "sha256": "e438cc1fba49bc472e78adbf4b12aa9475e24c2dac0cd187c8a29c5682f16048"
+    },
+    {
+      "path": "reviews/results/WS-E01-EPR-DELTA-20260929-02.json",
+      "sha256": "dd3cc14785f67107a642328b5644fa5a4a7e02ea89834f9c8e731408fae1dfa8"
+    },
+    {
+      "path": "reviews/results/WS-E01-EPR-DELTA-20260930-04.json",
+      "sha256": "3096a1fe1333ed89fa8c3e6e588e3a14f38f25157e4fb886afe412726e7649cf"
+    },
+    {
+      "path": "reviews/results/WS-PFR-DELTA-20260928-01.json",
+      "sha256": "3dbc5884e32529fd4a7097a055b6ab77d5874b398b15e6048e329a42beee9992"
+    },
+    {
+      "path": "reviews/review-contract.json",
+      "sha256": "654cdf141ce868d1da288b7eb11423dd14ebd31324315dbc0c50ad0b83cdca21"
+    },
+    {
+      "path": "tests/test_epic_correction.py",
+      "sha256": "ca0c99706647991da74d34bf97db06ff53e57eff87d933ce3d64763fa339994b"
+    },
+    {
+      "path": "tests/test_epic_delta.py",
+      "sha256": "0d378f8b1798ebfcc3cb940fd5c08422432337ea45d5d7716970948130ebb622"
+    },
+    {
+      "path": "tests/test_epic_lineage.py",
+      "sha256": "1dc8761fbe2309cabfb3fe4e0140ef6ccb17a655aaaa2ec877a98c6b58ee42e4"
+    },
+    {
+      "path": "tools/foundation.py",
+      "sha256": "2b9bf2bd886c3790acf049552a066387c2e32762efe013c6be1abbd5eb494128"
+    }
+  ],
+  "result_reference": "reviews/results/WS-E01-EPR-DELTA-20260930-05.json"
+}

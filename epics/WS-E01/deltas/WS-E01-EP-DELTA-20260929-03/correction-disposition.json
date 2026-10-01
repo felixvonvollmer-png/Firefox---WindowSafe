@@ -1,0 +1,53 @@
+{
+  "DOCUMENT_TYPE": "EPIC_PREPARATION_REVIEW_CORRECTION_DISPOSITION",
+  "DISPOSITION_ID": "WS-E01-EP-CORR-DISP-20260929-02",
+  "STATUS": "READY_FOR_CORRECTION_MATERIALIZATION",
+  "EPIC_ID": "WS-E01",
+  "SOURCE_REVIEW": {
+    "review_id": "WS-E01-EPR-DELTA-20260929-01",
+    "review_type": "EPIC_PREPARATION_REVIEW",
+    "verdict": "CORRECTION_REQUIRED",
+    "bytes": 13760,
+    "sha256": "e438cc1fba49bc472e78adbf4b12aa9475e24c2dac0cd187c8a29c5682f16048",
+    "subject_id": "WS-E01-EP-DELTA-20260929-02",
+    "subject_path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json",
+    "subject_end_sha": "48d7b0f97eacecd7515f7cbf064955303b0d5767"
+  },
+  "CORRECTED_SUBJECT": {
+    "id": "WS-E01-EP-DELTA-20260929-03",
+    "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/subject.json",
+    "review_excluded_identities": [
+      "PROJECT_LLM_WS_E01_EP_DELTA_20260929_03",
+      "CODING_AGENT_WS_E01_EPDELTA_MAT_20260929_01",
+      "CODING_AGENT_WS_E01_EPDELTA_CORR_20260929_01"
+    ]
+  },
+  "MATERIAL_USER_DECISION_REQUIRED": false,
+  "FINDINGS": [
+    {
+      "id": "WS-E01-EPR-DELTA-20260929-01-F01",
+      "severity": "MAJOR",
+      "status": "PLANNED_FOR_CORRECTION",
+      "required_action": "Bind complete review_excluded_identities into the corrected subject/request and mechanically reject reviewer.identity against Project-LLM author, original materializer and correction materializer; preserve external provenance checks."
+    },
+    {
+      "id": "WS-E01-EPR-DELTA-20260929-01-F02",
+      "severity": "MINOR",
+      "status": "PLANNED_FOR_CORRECTION",
+      "required_action": "Preserve old authorization and bind full historical epics/WS-E01/binding.json blob 930b4c3176a9601e44f7a4b04ff1d4530488b6e1 in the new correction authorization/superseding record."
+    },
+    {
+      "id": "WS-E01-EPR-DELTA-20260929-01-F03",
+      "severity": "MINOR",
+      "status": "PLANNED_FOR_CORRECTION",
+      "required_action": "Actually read architecture + final V6 README/F1/F2 before first mutation, record this in evidence, and include foundation/architecture.md in corrected review evidence."
+    }
+  ],
+  "UNCHANGED_PRODUCT_AND_EPIC_DIRECTION": {
+    "single_v1_epic": "WS-E01",
+    "dependency": "F01 -> F02 -> {F03,F04} -> F05",
+    "ws_e02_selected": false
+  },
+  "NEXT_GATE": "CODING_AGENT_CORRECTION_MATERIALIZATION",
+  "NO_EXECUTION_AUTHORITY_CREATED": true
+}

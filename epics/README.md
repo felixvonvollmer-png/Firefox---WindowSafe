@@ -1,17 +1,40 @@
 # Epic-Karte und Preparation-Kanal
 
-## Aktuelle Delta-Sperre
+## Aktuelles Gate: WS-E01 Epic Preparation Delta
 
 Die nachfolgende READY_FOR_AGENT-Annahme ist historisch und bleibt unverändert.
 Der [WS-P05-Foundation-Subject](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json)
 ist per [Acceptance-Binding](../foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json)
-mit unabhängigem PASS angenommen.
-Jetzt zwingend `REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE`:
-ein erforderlicher Sync braucht reale Nutzer-/externe Bestätigung; NOT_APPLICABLE
-eine explizite nachvollziehbare Begründung. Erst dann WS-E01 Epic Preparation Delta,
-kritische Eigenprüfung, unabhängiger Epic Review, exaktes Rebinding und neue
-F01-Ausführungsautorisierung. Die Foundation-Integration führt keinen dieser Schritte aus.
-F01 / PR #3 bleibt Draft/ungemergt, Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`.
+mit unabhängigem PASS angenommen. Externer Context-Sync: CONFIRMED_BY_USER
+(WS-EXTCTX-SYNC-20260929-01).
+
+**WS-E01-EP-DELTA-20260929-02** (Delta zur historischen WS-E01-EP-20260919-01) liegt unter
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/`: exakte Project-LLM-Originale
+(`preparation.md`, `critical-self-review.md`, Nutzerrichtung, Sync, Beschreibung,
+Vorversion), Autorisierung WS-EA-20260929-02, versionierter `subject.json`, Binding
+REVIEW_REQUIRED mit `ready_for_agent: false` und `evidence.md`. Der unabhängige
+WS-E01-EPR-DELTA-20260929-01 (`reviews/results/WS-E01-EPR-DELTA-20260929-01.json`) ergab
+**CORRECTION_REQUIRED** am Head `48d7b0f97eacecd7515f7cbf064955303b0d5767`; dieser Namespace
+bleibt unverändert historisch.
+
+**WS-E01-EP-DELTA-20260929-03** unter `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/`
+korrigiert ausschließlich die drei Reviewfindings (Korrektur, Disposition, Self-Review und
+WS-EA-20260929-03 als Originale; neuer Subject, Binding REVIEW_REQUIRED, `evidence.md`).
+Fachliche Epic-/Product-/TF-Aussage unverändert. Am Head `dee7ab5c9c5b53accd8602105e87523510582e40`
+erhielt -03 WS-E01-EPR-DELTA-20260929-02 **BLOCKED** (Reviewer ohne Checkout) und die
+nutzerautorisierte Ersatz-Evidence WS-E01-EPR-DELTA-20260930-04 **CORRECTION_REQUIRED**
+(`RECONSTRUCTED_FROM_REVIEW_TRANSCRIPT`): Autorin der übernommenen -02-Preparation fehlte in
+der Ausschlussmenge. -03 bleibt historisch unverändert.
+
+**WS-E01-EP-DELTA-20260929-04** unter `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/`
+(WS-EA-20260930-01) schließt diese Fehlerklasse: Der Harness leitet die transitiven Autoren
+und Materializer der referenzierten Preparation-/Correction-/Supersession-Linie ab und
+lehnt Request/Check ab, wenn eine davon in `review_excluded_identities` fehlt. Fachlich
+unverändert; Pending-Binding REVIEW_REQUIRED bleibt erhalten. Unabhängiger Rereview
+WS-E01-EPR-DELTA-20260930-05 am `fa109e1b2cea025918d1cff61a2aaee2ee2b2083`: **PASS**.
+Exaktes Rebinding **READY_FOR_AGENT** in `rebinding.json` (WS-EA-20260930-02); es ist ab jetzt
+das aktuelle WS-E01-Binding. Featurestart erst mit separater breiter WS-E01-Autorisierung.
+F01 / PR #3 bleibt Draft/ungemergt und gestoppt, Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`.
 Nach EPIC_CONVERGED stoppt neue Epic-Arbeit bis Project-LLM-/Nutzer-Richtungsreview;
 der Nutzer bestätigt die nächste Epic-Auswahl vor neuer Preparation.
 

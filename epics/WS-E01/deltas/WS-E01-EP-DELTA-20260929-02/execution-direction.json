@@ -1,0 +1,23 @@
+{
+  "DOCUMENT_TYPE": "EPIC_EXECUTION_DIRECTION_RECORD",
+  "DECISION_ID": "WS-UD-WS-E01-EXEC-20260929-01",
+  "STATUS": "USER_CONFIRMED_DIRECTION",
+  "EPIC_ID": "WS-E01",
+  "USER_REFERENCE": {
+    "VERBATIM_MESSAGE": "ok machen wir so. vergiss deine rolle nach v6 nicht",
+    "CONTEXT": "User confirmed the Project-LLM proposal to keep WS-E01 as the single V1 Epic and, after Epic delta review/rebinding, use one broad bounded execution authorization for autonomous F01–F05 convergence."
+  },
+  "DIRECTION": {
+    "V1_EPICS_PLANNED_NOW": [
+      "WS-E01"
+    ],
+    "FEATURE_SEQUENCE": "F01 -> F02 -> {F03,F04} -> F05",
+    "BROAD_EXECUTION_AUTHORIZATION_AFTER_REBINDING": true,
+    "PROJECT_LLM_GATE_BETWEEN_NORMAL_FEATURES": false,
+    "INDEPENDENT_REVIEW_AND_FEATURE_ACCEPTANCE_GATES_PRESERVED": true,
+    "STOP_ON_NEW_MATERIAL_USER_DECISION_OR_UNSATISFIABLE_BOUND_GATE": true,
+    "POST_EPIC_USER_DIRECTION_REVIEW_REQUIRED": true,
+    "WS_E02_SELECTED": false
+  },
+  "NO_EXECUTION_AUTHORITY_CREATED": true
+}

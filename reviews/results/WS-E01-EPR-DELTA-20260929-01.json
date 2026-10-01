@@ -1,0 +1,187 @@
+{
+  "schema_version": 3,
+  "review_id": "WS-E01-EPR-DELTA-20260929-01",
+  "review_type": "EPIC_PREPARATION_REVIEW",
+  "reviewer": {
+    "authority": "INDEPENDENT_EPIC_PREPARATION_REVIEWER",
+    "identity": "OpenAI GPT-5.6 Sol als unabhängiger read-only Reviewer in der aktuellen vom Nutzer gestarteten Review-Konversation; weder PROJECT_LLM_WS_E01_EP_DELTA_20260929_02 noch CODING_AGENT_WS_E01_EPDELTA_MAT_20260929_01",
+    "run_reference": "Aktuelle Nutzerkonversation am 2026-09-29, Review WS-E01-EPR-DELTA-20260929-01; hochgeladenes Review-Paket WindowSafe_Independent_Epic_Preparation_Review_Package_WS-E01-EPR-DELTA-20260929-01(1).zip; keine separate Plattform-Run-ID behauptet",
+    "independence": "FRESH_OR_SUFFICIENTLY_ISOLATED"
+  },
+  "provenance": {
+    "source_reference": "Unabhängiger read-only EPIC_PREPARATION_REVIEW WS-E01-EPR-DELTA-20260929-01 in der aktuellen Nutzerkonversation. Das hochgeladene ZIP (8348 Bytes, SHA-256 49c9108090f3e4b2f2f49087b38cfa2b0c6d46f0534340fb38a916d5957b756a) und alle vier im Manifest gebundenen Paketdateien wurden vor dem Review nach Länge/SHA-256 geprüft. Über die verbundene GitHub-Leseschnittstelle wurden Repository-ID 1374094477, main/base 1cb82c926903b2fd6b497d008db61c71c5d92aca, PR #5 offen/ungemergt, Head 48d7b0f97eacecd7515f7cbf064955303b0d5767, Tree 3393b5c6de0dd0c11988b702ca602698f736e290, genau ein Parent auf der Base, 1 ahead/0 behind sowie PR #3 Draft/offen/ungemergt bei 7d66ca5b025c8f748d7f97b961c496ee450daaa7 verifiziert. Subject, Binding, Evidence und Execution Authorization wurden aus den exakten Git-Bytes unabhängig nachgehasht; Subject 6467 Bytes/SHA-256 2f5b09d36791cb0ec1719b637da88b611bda64a205e892f3920ac666f947af9f. Die kanonische V3-Requestausgabe und der V3-Vertrag am Subject-Head wurden geprüft; beide Exact-Head-CI-Jobs 109574106694 und 109574000680 wurden in den tatsächlichen Logs gelesen: Checkout 48d7b0f97eacecd7515f7cbf064955303b0d5767, CPython 3.14.4, 125 Tests OK, Schema-/Request-/Build-/History-Gates erfolgreich, Inventory SHA-256 69d564036f5ecd83d8b5a3edaeab34dffa168968d37b806e1bdc4f7b75e1520f. Historische Epic-/Foundation-Originalblobs sind gegenüber der Base unverändert. Product WS-P05, Technical-Foundation-Delta, finale aktive V6 README/F1/F2 sowie foundation/architecture.md wurden unabhängig gelesen; architecture.md ist zusätzliches geprüftes Repositorymaterial, aber nicht Teil der 35 kanonischen reviewed_evidence-Einträge. Der Reviewer ist weder der Project-LLM-Autor noch der Coding-Agent-Materializer. Keine GitHub-Mutation, kein Merge, Rebinding, F01-Lauf oder Resultattransfer. Der exakte kanonische validate-result-CLI konnte im Sandbox-Container nicht ausgeführt werden, weil dort kein exakter Repositorycheckout vorhanden ist und GitHub-DNS/Clone nicht verfügbar ist; die Resultatbytes wurden deshalb lokal gegen die exakten V3-Feld-, Subject-, Authority-, Evidence-, Verdict- und MINOR-Disposition-Regeln sowie die aus dem Exact-Head-CI gelesene kanonische Requestbindung geprüft.",
+    "transport": "EXACT_AUTHORIZED_TRANSFER"
+  },
+  "subject": {
+    "id": "WS-E01-EP-DELTA-20260929-02",
+    "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json",
+    "end_sha": "48d7b0f97eacecd7515f7cbf064955303b0d5767"
+  },
+  "verdict": "CORRECTION_REQUIRED",
+  "findings": [
+    {
+      "id": "WS-E01-EPR-DELTA-20260929-01-F01",
+      "severity": "MAJOR",
+      "status": "OPEN",
+      "description": "Der versionierte Epic-Delta-Subject nennt neben dem Project-LLM-implementer ausdrücklich den materializer CODING_AGENT_WS_E01_EPDELTA_MAT_20260929_01, der die zu reviewenden Harness-/Routing-Änderungen geschrieben hat. Der kanonische request() transportiert jedoch nur implementer=PROJECT_LLM_WS_E01_EP_DELTA_20260929_02; validate_result() verbietet ein Self-Verdict ausschließlich durch Vergleich reviewer.identity gegen diesen einen req[implementer]. Ein Resultat mit exakt der Materializer-Identität würde daher den mechanischen Self-Verdict-Guard passieren. Für diesen mindestens ELEVATED Review-/Lifecycle-Delta ist das mit der V6-Grenze unvereinbar, nach der externe Verdict-Autorität vom implementierenden Coding-Agent getrennt bleiben muss. Externe Provenienzprüfung bleibt erforderlich, macht den bekannten mechanischen Fail-Closed-Pfad aber nicht vollständig, sobald zwei getrennte Autorenrollen im Subject geführt werden.",
+      "disposition": "CORRECTION_REQUIRED: Den Materializer oder eine äquivalente vollständige Menge review-ausschließender Autorenidentitäten für diesen versionierten Subject in Request/Resultat-Konsum binden, reviewer.identity gegen Project-LLM-Implementer und Coding-Agent-Materializer ablehnen, einen negativen Regressionstest für Materializer-Self-Review ergänzen und anschließend einen neuen immutable Subject/Head frisch unabhängig rereviewen. Externe Provenienz-/Unabhängigkeitsprüfung bleibt zusätzlich bestehen und darf nicht durch den mechanischen Check ersetzt werden."
+    },
+    {
+      "id": "WS-E01-EPR-DELTA-20260929-01-F02",
+      "severity": "MINOR",
+      "status": "OPEN",
+      "description": "Die immutable Materialisierungsautorisierung WS-EA-20260929-02 enthält unter HISTORICAL_EPIC_MUST_REMAIN_IMMUTABLE für epics/WS-E01/binding.json nur den 38-stelligen Git-Blob 930b4c3176a9601e44f7a4b04ff1d4530488b6 statt des tatsächlichen vollständigen Blobs 930b4c3176a9601e44f7a4b04ff1d4530488b6e1. Der Fehler ist real, führte am geprüften Head aber zu keiner beobachteten Scope-/History-Abweichung: Pfad und Base sind exakt, Preparation und Review-Input nennen den vollen Blob, EPIC_DELTA_PINNED_BLOBS pinnt den vollen Wert und die historischen Git-Bytes sind gegenüber der Base unverändert.",
+      "disposition": "EXPLICIT_NONBLOCKING_FOLLOW_UP: Das Original append-only erhalten und im ohnehin erforderlichen Korrekturzyklus den vollständigen 40-stelligen historischen Binding-Blob in einem neuen korrekt autorisierten Korrektur-/Superseding-Record oder einer gleichwertigen eindeutigen Referenz binden; künftige Exact-Locator-Konsumenten dürfen sich nicht auf den verkürzten Wert stützen. Dieser Punkt allein blockiert die Epic Preparation nicht, weil exakter Pfad, Baseline, unabhängig verifizierter historischer Blob und Harness-Pin auf genau denselben Zustand zeigen."
+    },
+    {
+      "id": "WS-E01-EPR-DELTA-20260929-01-F03",
+      "severity": "MINOR",
+      "status": "OPEN",
+      "description": "Der Materializer hat laut PR-Addendum die im Handoff geforderten Reads von foundation/architecture.md sowie foundation/sources/v6-final-20260918/{README,foundation-1,foundation-2}.md vor der Materialisierung ausgelassen. Die drei finalen V6-Dateien sind im kanonischen Request gebunden; foundation/architecture.md ist entgegen der pauschalen Addendum-Aussage nicht in den 35 evidence_paths enthalten. Der unabhängige Reviewer hat alle vier exakten, unveränderten Quellen nachträglich gelesen. Sie bestätigen WS-P05, die offenen Plattform-/Messgates, die Review-Unabhängigkeit und den Post-Epic-Nutzerstop; außer F01 wurde daraus kein weiterer materieller Widerspruch des Epic-Deltas abgeleitet.",
+      "disposition": "EXPLICIT_NONBLOCKING_FOLLOW_UP: Im Korrektur-/Materialisierungslauf die vier vorgeschriebenen Quellen vor jeder Mutation tatsächlich lesen und diese Preflight-Erfüllung in der Delivery-Evidence korrekt ausweisen; foundation/architecture.md zusätzlich in die gebundene Review-Evidence aufnehmen, falls sie weiterhin als verpflichtender Reviewinput verlangt wird. Da der unabhängige Reviewer die exakten Quellen selbst geprüft hat und kein zusätzlicher Product-/Foundation-Konflikt entstanden ist, ist diese Prozess-/Provenienzabweichung für sich kein zweiter blockierender Gate-Fehler."
+    }
+  ],
+  "reviewed_evidence": [
+    {
+      "path": ".github/workflows/foundation.yml",
+      "sha256": "e9ecdbbb1b834cee358679d0348aef4b062bd419234c9343fe1703489f63b034"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "a012594606789d1edf74074af67443031112475f8732bcd89b6078572a6c0c7b"
+    },
+    {
+      "path": "README.md",
+      "sha256": "8021cea5322f476c08dba1cdcff28cc87284833335d2d93daf8841d8069cd62d"
+    },
+    {
+      "path": "epics/README.md",
+      "sha256": "7d403a94c4c1f2a94aea66eaa28f5ae0396c593adc9c18e9b8a0a765baf1f43c"
+    },
+    {
+      "path": "epics/WS-E01/binding.json",
+      "sha256": "83ca6ecba6ef77846cb4049ff3dc1818c3b4813124b9b3a4b60f7387e6378414"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/binding.json",
+      "sha256": "d25134bfc6fd6b08dd1433aad25d2680e23ed60a4e2a60f3420132b9afeb7484"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/critical-self-review.md",
+      "sha256": "12d1d400030077da93220cf792f40bf69949ac8106d33e92e36d52b0320fe765"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/evidence.md",
+      "sha256": "5b878311d55d4aeb81b524050ca3ad20afeb6e94dbe6efdd3ce02cdef6a99341"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/execution-authorization.json",
+      "sha256": "68ff10124c40995b8740dbbe4ca6e8dfaaac9bab6f33335980dd4588968728ab"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/execution-direction.json",
+      "sha256": "5b4f467e2e98a14f36eceec65ca667ee4cafe594a5a81a2a40fc5dc2d186a2de"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/external-context-sync.json",
+      "sha256": "d4bdc815e281f083acd6222d1ff19dc4255e05d2a52038d42bb360b5c61f2062"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/preparation.md",
+      "sha256": "ddd12e52b98790a19d57040da82d8ffeec42184f317d19eff87200c86a0d2115"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/previous-preparation-delta.md",
+      "sha256": "e848043bd6cdf8c28e3b9eff72e97ec5c738567a26e5705dfb9851cb65cc074f"
+    },
+    {
+      "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/project-description.md",
+      "sha256": "647d8fcffff3c55b8e32f33f0cb80e22591bea77835817db87a96659f52f4ba5"
+    },
+    {
+      "path": "epics/WS-E01/preparation.md",
+      "sha256": "9854362a8dc864965bf8347bfc93fe742e10dcbd906c5afcd24d4309f39e03f7"
+    },
+    {
+      "path": "epics/WS-E01/subject.json",
+      "sha256": "38017502284d1b1452feb389441e3c4e9677bfffed00324d33237ebb7fa7ba4f"
+    },
+    {
+      "path": "foundation/context.md",
+      "sha256": "d678b934a7e25ed669bfd7eeddd744cf3087286a2564ae887f1e6bde7486695b"
+    },
+    {
+      "path": "foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json",
+      "sha256": "a8ccd82ded633214556dcec6101e0bfa3d9590a7851e625acab18c64fb8fc2d4"
+    },
+    {
+      "path": "foundation/engineering.md",
+      "sha256": "3d67006860930cdb5ddd7c77cefcc4c71ecec2cda98f02a0f091d99c1d7f9a70"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Product_Definition_Delta_WS-PD-DELTA-20260924-01.md",
+      "sha256": "0caca99a713a0e026af5b63beee5f8abc310ef3d38f20c9653cd3042322aec16"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Product_Delta_Approval_WS-PD-DELTA-APPROVAL-20260928-01.json",
+      "sha256": "9e15db18b095655dfc503d67cad4486998e68493c323f8b2217e9d71e5987ab5"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Technical_Foundation_Delta_Binding_WS-TFP-DELTA-BIND-20260928-01.json",
+      "sha256": "684e759d4f66b8ac73a2e191b6ccaedf1416c9360619f2d89dc1ef2366b60e21"
+    },
+    {
+      "path": "foundation/inputs/WS-PFDELTA-MAT-20260928-01/WindowSafe_Technical_Foundation_Delta_Preparation_WS-TFP-DELTA-20260928-02.md",
+      "sha256": "8c687681f9a46cf0782212ebfa5be5d6e22cac77d890b1f436a8395f7b1c5d2c"
+    },
+    {
+      "path": "foundation/inputs/inputs/WindowSafe_Approval_Record_WS-PD-20260917-01.json",
+      "sha256": "a655d1fb0a594997e1f6da00c7e8a36bb6c5807ac844ce9fbf04ccb7d1afd4a5"
+    },
+    {
+      "path": "foundation/inputs/inputs/WindowSafe_Product_Definition_WS-PD-20260917-01.md",
+      "sha256": "fff235b7591f483b9b31c945911a6b5950d29fac931b9136438ae5586c756900"
+    },
+    {
+      "path": "foundation/inputs/inputs/WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r6.md",
+      "sha256": "c461c45c5bd20f12dcffb400acd6f7d5c0f0de0a75616eef3eb1d78dd175dcb6"
+    },
+    {
+      "path": "foundation/sources/v6-final-20260918/README.md",
+      "sha256": "99f2f09df9c3e917f6255ca62798638c8f8dc5c75020d101a616deea5a79112c"
+    },
+    {
+      "path": "foundation/sources/v6-final-20260918/foundation-1.md",
+      "sha256": "2d6952f601dc0468b2d48667f9d1b401a3e22fa2a4934d20aa1163e48cedaa17"
+    },
+    {
+      "path": "foundation/sources/v6-final-20260918/foundation-2.md",
+      "sha256": "9f0ac9c4291b38fe57da25376c3019b5d67757264f8381680a7c63f2b45b5dbc"
+    },
+    {
+      "path": "reviews/README.md",
+      "sha256": "514a6fcd32ad54787d7e66dcb3b02beefdcac6c2e7c785000f40fc28e287e9d2"
+    },
+    {
+      "path": "reviews/results/WS-E01-EPR-20260919-02.json",
+      "sha256": "1b59d6fc89c293e738ea4e9f16e4004abef5736da527e5c2f7c60533260977d7"
+    },
+    {
+      "path": "reviews/results/WS-PFR-DELTA-20260928-01.json",
+      "sha256": "3dbc5884e32529fd4a7097a055b6ab77d5874b398b15e6048e329a42beee9992"
+    },
+    {
+      "path": "reviews/review-contract.json",
+      "sha256": "654cdf141ce868d1da288b7eb11423dd14ebd31324315dbc0c50ad0b83cdca21"
+    },
+    {
+      "path": "tests/test_epic_delta.py",
+      "sha256": "50b95d7c1a43ed78db23451944ec2c26c34092348a8e8b539145fc0a8abb0ea8"
+    },
+    {
+      "path": "tools/foundation.py",
+      "sha256": "5219a80d2704dad9f32eb1c6f355aaac1f61a99f9ff97e0d504b52e0e0639e66"
+    }
+  ],
+  "result_reference": "reviews/results/WS-E01-EPR-DELTA-20260929-01.json"
+}

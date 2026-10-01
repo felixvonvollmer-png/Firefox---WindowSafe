@@ -118,6 +118,41 @@ CI-Jobs und normaler PR-#2-Merge mit unveränderter bisheriger main-Basis erford
 Danach Post-Merge-Prüfung und STOP. Keine Dependencyinstallation, Produkt-/Browser-
 arbeit, kein eigener unabhängiger Verdict, kein Auto-Merge und kein WS-E01-F01.
 
+WS-EA-20260929-02 (WS-E01-EPDELTA-MAT-20260929-01) ergänzt genau einen versionierten
+Epic-Locator `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/subject.json` mit
+unabhängig SHA-256-gepinnter Autorisierung, byteexakten Originalen, feldgenauem
+Pre-Review-Subject/-Binding (REVIEW_REQUIRED) und gepinnten Blobs der historischen
+Epic-Dateien, der Foundation-Acceptance und des Product/TF-Deltas. Ist dieser Subject
+vorhanden, prüft die Foundation-Acceptance ihre Strecke bis zum Merge
+`1cb82c926903b2fd6b497d008db61c71c5d92aca` unverändert; die Fortsetzung danach muss
+linear sein und pro Commit in der exakten Delta-/Router-/Harness-Allowlist bleiben.
+Kein allgemeiner Nested-Subject-Bypass, kein Accepted-Übergang vor unabhängigem Review.
+
+WS-EA-20260929-03 (WS-E01-EPDELTA-CORR-20260929-01) ergänzt nach dem CORRECTION_REQUIRED
+WS-E01-EPR-DELTA-20260929-01 genau den Korrektur-Locator
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-03/subject.json`. Ist er vorhanden, gilt ab dem
+reviewed Head `48d7b0f97eacecd7515f7cbf064955303b0d5767` (Tree gepinnt) nur die lineare
+Korrektur-Allowlist; der alte Namespace bleibt bytegleich und außerhalb davon. Der Request
+dieses Subjects transportiert `review_excluded_identities`; `validate-result` lehnt jede
+dieser Identitäten als Reviewer oder Sidecar-Autor ab. Requests ohne dieses Feld behalten die
+bisherige Implementer-Regel. Der alte Locator liefert den Request am reviewed Head. Der
+historische Binding-Blob ist mit allen 40 Stellen gebunden. Kein Merge, kein READY.
+
+WS-EA-20260930-01 (WS-E01-EPDELTA-CORR-20260929-02) ergänzt genau den Locator
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json` ab dem reviewed Head
+`dee7ab5c9c5b53accd8602105e87523510582e40` mit eigener linearer Allowlist. Für ihn leitet
+`review_exclusion_closure` die Autoren/Materializer aller semantisch referenzierten
+Epic-Preparation-Subjects transitiv ab (ohne `evidence_paths`; Product-/Foundation-/Review-
+inputs sind keine Autorenschaft); fehlt eine davon in `review_excluded_identities`, scheitern
+`request` und `check`. Keine feste Kardinalität; historische Requests unverändert.
+
+WS-EA-20260930-02 bindet nach dem unabhängigen PASS WS-E01-EPR-DELTA-20260930-05 am reviewed
+Head `fa109e1b2cea025918d1cff61a2aaee2ee2b2083` genau: byteidentischen Resultattransfer,
+`rebinding.json` (aus dem unveränderten Pending-Binding abgeleitet, READY_FOR_AGENT) und genau
+einen normalen Merge-Commit von PR #5 mit erstem Elternteil main
+`1cb82c926903b2fd6b497d008db61c71c5d92aca` und identischem Baum. Der -04-Locator liefert danach
+den reviewed Request. Keine Feature-Autorität; die breite WS-E01-Autorisierung ist separat.
+
 Der Inventar-Writer öffnet Root/Ausgabeordner/Blatt mit No-follow und relativen
 Directory-FDs, prüft den geöffneten Dateityp/Linkcount vor dem Trunkieren und
 folgt nach Öffnung keinem Pfad mehr. Es gibt keine automatische Linklöschung.
@@ -173,7 +208,11 @@ Reviewabdeckung, spezialisierte Reviewer, Findings/Entscheidungen/Living-Docs/Fo
 
 ## Agenten- und Modellgrenzen
 
-Dieser Lauf nutzt einen Coding-Agent und deterministische Tools; keine Delegation.
+Historisch nutzten die Läufe bis WS-EA-20260929-03 einen Coding-Agent ohne Delegation. Ab
+WS-EA-20260930-01 dürfen Worker, Subagenten und Reviewer JIT im gebundenen Scope eingesetzt
+werden; unabhängige Verdicts nur aus frischem/isoliertem Kontext, kein Self-PASS.
+Dependency-/Toolchainversionen bleiben in Review-/Correction-Transporten unverändert und
+werden nach gültigem Epic Rebinding JIT innerhalb Product Truth/TF gewählt.
 Shell, Git, gh und lokale Tests sind tatsächlich verfügbar; GitHub meldet push-
 Berechtigung. Technische Capability autorisiert keine Adminaktionen.
 Sessiontools bieten Subagenten-/Modellauswahl, aber es wurde kein Override benutzt

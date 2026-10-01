@@ -33,12 +33,19 @@ F01 / [PR #3](https://github.com/felixvonvollmer-png/Firefox---WindowSafe/pull/3
 am Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7` ist externe Read-only-Evidence.
 WS-P05 beantwortet die materielle Produktfrage; es schließt keine noch offenen
 Zielumgebungs-/Messnachweise und autorisiert keine Wiederaufnahme.
-Der externe ChatGPT-Projektkanal ist in Benutzung. Sein Sync ist nach dem
-Foundation-PASS **PENDING**; das historische NOT_APPLICABLE unten ist keine aktuelle
-Disposition. Kein Sync wurde ausgeführt oder bestätigt. Nächstes Gate:
-`REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE` mit
-tatsächlichem Sync/explizit begründetem NOT_APPLICABLE,
-erst danach Epic Delta, kritischer + unabhängiger Review, Rebinding und neue F01-Autorisierung.
+Der externe ChatGPT-Projektkanal ist in Benutzung. Sein Sync nach dem Foundation-PASS ist
+**CONFIRMED_BY_USER** durch den separaten Record WS-EXTCTX-SYNC-20260929-01
+(`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-02/external-context-sync.json`, gebunden an die
+synchronisierte Beschreibung daneben); das historische NOT_APPLICABLE unten und das
+PENDING-Feld im Foundation-Binding bleiben unverändert historisch.
+WS-E01 Epic Preparation Delta WS-E01-EP-DELTA-20260929-02 (materialisiert unter
+WS-EA-20260929-02) erhielt CORRECTION_REQUIRED
+(`reviews/results/WS-E01-EPR-DELTA-20260929-01.json`) und bleibt historisch. Der korrigierte Subject WS-E01-EP-DELTA-20260929-03 (WS-EA-20260929-03) erhielt BLOCKED und
+eine nutzerautorisierte rekonstruierte CORRECTION_REQUIRED-Ersatz-Evidence; er bleibt historisch.
+WS-E01-EP-DELTA-20260929-04 (WS-EA-20260930-01) ist mit WS-E01-EPR-DELTA-20260930-05 PASS
+angenommen und exakt rebound (READY_FOR_AGENT,
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/rebinding.json`, WS-EA-20260930-02).
+Danach unabhängiger Rereview, Rebinding und separate breite WS-E01-Autorisierung.
 Nach EPIC_CONVERGED: Stop neuer Epic-Arbeit; Project-LLM/Nutzer wählen die nächste
 Richtung vor neuer Epic Preparation. Der Coding-Agent wählt keinen Folge-Epic.
 

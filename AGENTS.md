@@ -11,22 +11,33 @@ reviewed Head `bbca750fab1e760714cf409b8751287db6b93041`, integriert durch
 **WS-PFDELTA-INT-20260929-01** unter [WS-EA-20260929-01](foundation/evidence/pf-delta-integration-authorization.json).
 [Acceptance-Binding](foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json); der
 [reviewed Subject](foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json) bleibt unverändert.
-Externer Project-Context-Sync: **PENDING**. Nächstes Gate und aktueller Stop:
-**REQUIRED_EXTERNAL_REVIEW_BOOTSTRAP_INSTALL_SYNC_OR_NOT_APPLICABLE**; es braucht
-eigene Nutzer-/externe Bestätigung oder begründete Disposition, nicht durch Agenten.
+Externer Project-Context-Sync: **CONFIRMED_BY_USER** (WS-EXTCTX-SYNC-20260929-01, separater
+Record im Epic-Delta; das Foundation-Binding bleibt unverändert).
+
+**Aktuelles Gate:** Historisch: -02 erhielt WS-E01-EPR-DELTA-20260929-01 **CORRECTION_REQUIRED**,
+-03 (`dee7ab5c9c5b53accd8602105e87523510582e40`) erhielt WS-E01-EPR-DELTA-20260929-02 **BLOCKED**
+und die nutzerautorisierte Ersatz-Evidence WS-E01-EPR-DELTA-20260930-04 **CORRECTION_REQUIRED**
+(`RECONSTRUCTED_FROM_REVIEW_TRANSCRIPT`; das Original -20260929-03 ist verloren). Aktuell:
+**WS-E01-EP-DELTA-20260929-04** (WS-EA-20260930-01) am reviewed Head
+`fa109e1b2cea025918d1cff61a2aaee2ee2b2083` erhielt das unabhängige WS-E01-EPR-DELTA-20260930-05
+**PASS**. Exaktes Rebinding READY_FOR_AGENT:
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/rebinding.json` unter WS-EA-20260930-02 (der
+Pending-Binding und das historische WS-E01-Binding bleiben unverändert). Feature-Arbeit erst
+mit der separaten breiten WS-E01 Execution Authorization.
 
 WS-P05 ergänzt Product Truth und TF r6 durch exakt gebundene Originale im Kontextrouter.
 F01 / PR #3 bleibt ausschließlich externe Read-only-Evidence am Head
-`7d66ca5b025c8f748d7f97b961c496ee450daaa7`, Draft/offen/ungemergt.
-Keine F01-Fortsetzung, Browserprobe, Produktimplementation, F02 oder Feature Acceptance.
-Nach dem Project Foundation PASS folgt zuerst der bestätigte externe
-Project-Context-Sync oder eine explizit begründete NOT_APPLICABLE-Disposition,
-danach WS-E01 Epic Preparation Delta, kritischer und unabhängiger Review,
-exaktes Epic-Rebinding und neue F01-Ausführungsautorisierung. Hier nichts davon ausführen.
+`7d66ca5b025c8f748d7f97b961c496ee450daaa7`, Draft/offen/ungemergt; F01 ist gestoppt.
+Keine F01-Fortsetzung, Browserprobe, Produktimplementation, F02 oder Feature Acceptance
+ohne diese späteren Gates. Hier nichts davon ausführen.
 
 Repository ist System of Record. Vor Mutation Root, Remote, Ref, HEAD, Worktree und Index
 prüfen; fremde/untracked Arbeit schützen. Nur benannte Pfade stagen. Kein History-Rewrite,
 Gate-Abschwächen, Überschreiben historischer Inputs/Subjects/Reviews oder Production.
-Keine Dependency-/Lock-/Toolchainversionsänderung. Keine Agentendelegation.
+Während Review-/Correction-Transporten kein Dependency-/Toolchain-Drift; nach gültigem Epic
+Rebinding JIT innerhalb Product Truth/TF (Lizenz, Provenienz, Supply Chain, Reproduzierbarkeit).
+Worker/Subagenten/Reviewer JIT im gebundenen Scope (WS-EA-20260930-01); unabhängige Verdicts
+nur aus frischem/isoliertem Kontext, nie Self-PASS. Neue Provider, Server, Secrets,
+Datenoffenlegung, privilegierte Rechte oder materielle Kosten bleiben Nutzer-/Foundation-Sache.
 Weitere Router: [Architektur](foundation/architecture.md), [Reviews](reviews/README.md),
 [Epic Preparation](epics/README.md). Historische Annahmen gelten nur für ihre Subjects.

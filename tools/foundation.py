@@ -689,7 +689,7 @@ def files(root):
 def feature_path(path):
     """Feature subjects/evidence for the bound WS-E01 features."""
     return bool(re.fullmatch(r"features/" + FEATURE_ID_PATTERN
-                             + r"/(subject\.json|state\.json|[a-z0-9-]+\.md|evidence/[a-z0-9-]+\.(json|md))", path))
+                             + r"/(subject\.json|state\.json|start\.json|[a-z0-9-]+\.md|evidence/[a-z0-9-]+\.(json|md))", path))
 
 
 def product_path(path):

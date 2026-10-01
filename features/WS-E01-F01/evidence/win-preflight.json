@@ -1,0 +1,31 @@
+{
+  "evidence_class": "REPOSITORY_OR_REMOTE_VERIFIED",
+  "run_id": "WS-E01-F01-WIN-20260924-01",
+  "repository_id": 1374094477,
+  "repository": "felixvonvollmer-png/Firefox---WindowSafe",
+  "root": "D:/Projekt/WindowSafe-F01-Windows",
+  "origin": "https://github.com/felixvonvollmer-png/Firefox---WindowSafe.git",
+  "start_head": "7b52f6655e4478caa4864801b24877d22c33fa83",
+  "start_tree": "b5107a356aa5f86645a110a029adb2b11072af1f",
+  "main_and_origin_main_and_remote_main": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
+  "branch": "feature/ws-e01-f01-qualification",
+  "initial_worktree_and_index": "CLEAN",
+  "initial_worktrees": 1,
+  "pr": {
+    "number": 3,
+    "draft": true,
+    "state": "open",
+    "merged": false,
+    "head": "7b52f6655e4478caa4864801b24877d22c33fa83"
+  },
+  "lock_sha256": "1d6f6b41f6a87d1890695247e6610f60199518b22e87f12f1ee1002661563834",
+  "original_continuation_inventory": {
+    "manifest_sha256": "3630d67fb40a72f5c48301ddf6628596e1b14258af36adbe92dcf81795d63a70",
+    "files_including_manifest": 153,
+    "status": "HASH_BOUND_INPUTS_VERIFIED",
+    "hash_source": "Observed manifest at exact user-bound Git start; not an independently supplied digest"
+  },
+  "host_binding_drift": "NONE in bound numeric build/CPU/RAM/GPU/Python/Git/display dimensions; registry ProductName is stale Windows 10 label, OS caption identifies Windows 11; two displays newly enumerated",
+  "input_desktop_accessible": true,
+  "browser_profiles": "NEW_SYNTHETIC_DISPOSABLE_ONLY"
+}

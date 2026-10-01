@@ -1,0 +1,30 @@
+{
+  "base": "0f83be2550f34698fe95da4df88b5eb918649973",
+  "paths": [
+    "AGENTS.md",
+    "README.md",
+    "features/WS-E01-F01/evidence/target-authorization.json",
+    "features/WS-E01-F01/evidence/target-changed-paths.json",
+    "features/WS-E01-F01/evidence/target-continuation-manifest.json",
+    "features/WS-E01-F01/evidence/target-continuation.md",
+    "features/WS-E01-F01/evidence/target-handoff.md",
+    "features/WS-E01-F01/evidence/target-local-verification.json",
+    "features/WS-E01-F01/evidence/target-package-manifest.json",
+    "features/WS-E01-F01/evidence/target-qualification.json",
+    "features/WS-E01-F01/evidence/target-qualification.md",
+    "features/WS-E01-F01/evidence/target-research-snapshot.json",
+    "features/WS-E01-F01/evidence/target-runtime-artifacts.json",
+    "features/WS-E01-F01/evidence/target-ubuntu-native-memory.json",
+    "features/WS-E01-F01/evidence/target-ubuntu-restart.json",
+    "features/WS-E01-F01/evidence/target-unbranded-download.json",
+    "features/WS-E01-F01/evidence/target-windows-build-locator.json",
+    "features/WS-E01-F01/state.json",
+    "qualification/ws-e01-f01/README.md",
+    "qualification/ws-e01-f01/continuation.py",
+    "qualification/ws-e01-f01/pages/video.html",
+    "qualification/ws-e01-f01/run_probe.py",
+    "qualification/ws-e01-f01/target_probe.py",
+    "tests/test_target_qualification.py"
+  ],
+  "scope": "qualification-only code/tests, additive evidence, mutable F01 state, minimal truthful routing; no package/lock/toolchain/CI change"
+}

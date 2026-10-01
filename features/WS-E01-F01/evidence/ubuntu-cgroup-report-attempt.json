@@ -1,0 +1,62 @@
+{
+  "run_id": "synthetic-hloz529l",
+  "profile_class": "NEW_SYNTHETIC_DISPOSABLE",
+  "profile": "/home/felix/projekte/firefox WindowsSaver addon/build/f01/runs/synthetic-hloz529l/profile",
+  "binary": "/home/felix/projekte/firefox WindowsSaver addon/build/f01/firefox/firefox",
+  "binary_sha256": "7ea3daf0cdbe5ec27e4f2e7c644c25032169f8a2f2f15e438ff4379bf737a78a",
+  "version": "156.0",
+  "build_id": "20260909172920",
+  "source_stamp": "a80bd15ddee3b4bf3679aeba340e9d2db933c467",
+  "evidence_class": "UBUNTU_RUNTIME_VERIFIED",
+  "runtime_scope": "TARGET_STABLE",
+  "headless": false,
+  "prefs_sha256": "9a8441265f3024887bcb210c16880e886b61c5940d2761c3760754e8ee7748ea",
+  "launches": [
+    {
+      "command": [
+        "/home/felix/projekte/firefox WindowsSaver addon/build/f01/firefox/firefox",
+        "--no-remote",
+        "--new-instance",
+        "--profile",
+        "/home/felix/projekte/firefox WindowsSaver addon/build/f01/runs/synthetic-hloz529l/profile",
+        "--marionette"
+      ],
+      "pid": 236048,
+      "cgroup": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-59b3054efb5e42a4bfb2fb393d976e00.service",
+      "session_binding": {
+        "browserVersion": "156.0",
+        "moz:processID": 236048,
+        "moz:profile": "/home/felix/projekte/firefox WindowsSaver addon/build/f01/runs/synthetic-hloz529l/profile",
+        "moz:buildID": "20260909172920"
+      },
+      "exit_code": 0
+    }
+  ],
+  "probe_packages": {
+    "helper": "3ab770e66634f58801896b61f1a3365a29c19ddfd981351232c322ec7742bc9d",
+    "probe": "ea6112584478d2eabedc8109e48fac916b9bab9503805cc55c135ccf5a8b94d1"
+  },
+  "reports": [],
+  "cleanup": "OWN_PROFILE_REMOVED__OWN_LAUNCHES_EXITED",
+  "status": "PROBE_FAILED",
+  "error": "Expecting value: line 1 column 1 (char 0)",
+  "measurement": {
+    "evidence_class": "SYNTHETIC_DRY_RUN_MEASUREMENT",
+    "wall_seconds": 0.52746857099919,
+    "observed_cpu_seconds": 1.05,
+    "percent_one_core": 199.06399314199376,
+    "peak_sum_rss_bytes": 1886203904,
+    "observed_process_identities": 21,
+    "limitation": "Sampled CPU lower bound: short-lived processes/final ticks may be missed. RSS sums shared pages. Not attributable addon JS/DOM RAM. Not final acceptance instrumentation.",
+    "product_performance_verdict": "NOT_EVALUATED"
+  },
+  "cgroup_measurement_intervals": [
+    {
+      "cgroup": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-59b3054efb5e42a4bfb2fb393d976e00.service",
+      "wall_seconds": 0.52746857099919,
+      "cpu_seconds": 1.153716,
+      "percent_one_core": 218.7269656302938,
+      "coverage": "OWN_FIREFOX_CGROUP_INCLUDING_EXITED_DESCENDANTS"
+    }
+  ]
+}

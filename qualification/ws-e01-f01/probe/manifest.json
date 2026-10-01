@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "WindowSafe F01 qualification ONLY",
+  "version": "0.0.1",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "f01-probe@windowsafe.invalid",
+      "strict_min_version": "156.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "incognito": "not_allowed",
+  "permissions": [
+    "tabs",
+    "storage",
+    "sessions",
+    "alarms",
+    "downloads",
+    "tabGroups",
+    "cookies",
+    "contextualIdentities",
+    "unlimitedStorage"
+  ],
+  "background": {
+    "scripts": [
+      "config.js",
+      "background.js"
+    ]
+  }
+}

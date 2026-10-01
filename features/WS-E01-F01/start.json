@@ -1,0 +1,33 @@
+{
+  "document_type": "WINDOWSAFE_FEATURE_START",
+  "feature_id": "WS-E01-F01",
+  "epic_id": "WS-E01",
+  "title": "Plattform-, Toolchain- und Messqualifikation",
+  "feature_type": "TECHNICAL_ENABLER",
+  "status": "AUTHORIZED_NOT_STARTED",
+  "start_baseline_sha": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
+  "start_baseline_tree": "034b79c80d9e1e6ae2b57268e6dbaf94bfb31b58",
+  "epic_binding_reference": "epics/WS-E01/binding.json",
+  "epic_preparation_subject_reference": {
+    "path": "epics/WS-E01/subject.json",
+    "end_sha": "644b81f63dcc1990bc894a9c2c9bd8dc24a98c04"
+  },
+  "epic_preparation_review_reference": "reviews/results/WS-E01-EPR-20260919-02.json",
+  "execution_authorization_reference": "features/WS-E01-F01/evidence/execution-authorization.json",
+  "required_predecessors": [
+    "WS-E01 READY_FOR_AGENT"
+  ],
+  "required_successors_blocked_until_complete": [
+    "WS-E01-F02",
+    "WS-E01-F03",
+    "WS-E01-F04",
+    "WS-E01-F05"
+  ],
+  "risk_floor": "ELEVATED",
+  "external_feature_concurrency": "ONE",
+  "product_implementation_started": false,
+  "browser_qualification_authorized": "DISPOSABLE_SYNTHETIC_PROFILES_ONLY",
+  "open_material_user_decisions_required_before_start": [],
+  "feature_acceptance_review_status": "NOT_READY",
+  "ready_for_acceptance_review": false
+}

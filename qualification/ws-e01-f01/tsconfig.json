@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2022",
+    "module": "preserve",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "types": [
+      "firefox-webext-browser"
+    ],
+    "typeRoots": [
+      "../../build/f01/dev/node_modules/@types"
+    ],
+    "outDir": "../../build/f01/compiled",
+    "noEmitOnError": true,
+    "rootDir": "probe"
+  },
+  "include": [
+    "probe/background.ts"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "name": "WindowSafe F01 TEST_ONLY hidden-state helper",
+  "version": "0.0.1",
+  "browser_specific_settings": {"gecko": {"id": "f01-helper@windowsafe.invalid", "strict_min_version": "156.0", "data_collection_permissions": {"required": ["none"]}}},
+  "incognito": "not_allowed",
+  "permissions": ["tabHide", "tabs"],
+  "background": {"scripts": ["background.js"]}
+}

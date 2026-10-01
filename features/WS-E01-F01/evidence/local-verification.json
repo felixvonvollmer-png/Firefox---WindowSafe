@@ -1,0 +1,26 @@
+{
+  "evidence_class": "LOCAL_AGENT_REPORTED",
+  "tests": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "count": 105,
+    "status": "PASS"
+  },
+  "foundation_check": "PASS",
+  "schema_preflight": "PASS",
+  "deterministic_foundation_build": "PASS",
+  "typecheck": "PASS",
+  "repeated_compile": "PASS",
+  "probe_lint": "PASS",
+  "helper_lint": "PASS",
+  "image_parser_security_smoke": "PASS",
+  "npm_audit_initial_patched_lock": "PASS_ZERO_FINDINGS",
+  "npm_audit_final": "BLOCKED_HTTP_503_TWO_ATTEMPTS",
+  "registry_signatures": {
+    "verified": 332,
+    "attestations": 34
+  },
+  "browser": "UBUNTU_STABLE_AND_DEVELOPER_TESTBUILD_OBSERVED",
+  "windows_desktop": "NOT_EXECUTED",
+  "independent_verdict": "NOT_ISSUED",
+  "exact_committed_history_and_ci": "TO_BE_VERIFIED_AT_PUBLISHED_HEAD_IN_DELIVERY_REPORT"
+}

@@ -1,0 +1,52 @@
+{
+  "evidence_class": "PRIMARY_DOCUMENTATION",
+  "sources": [
+    {
+      "name": "windows",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/Window",
+      "status": 200,
+      "sha256": "7241a05fae7aa578dd502270908d03f049ce4e6f496fee79578757a5def30a2d"
+    },
+    {
+      "name": "groups",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabGroups/TabGroup",
+      "status": 200,
+      "sha256": "e419fe0053ec4c90aee1452530e7ba75f3293e28d5e770617087cc9d1871e9c9"
+    },
+    {
+      "name": "tabs-create",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/create",
+      "status": 200,
+      "sha256": "1c7901ceb19edda3f0ddbe811872a5988c0c283cee21cd9301ce3e61bf929d4f"
+    },
+    {
+      "name": "split",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Working_with_the_Tabs_API",
+      "status": 200,
+      "sha256": "174f8fa1f7ba93e4b7c41719302dd05595b509ea917cbfc2148c61f06b81614d"
+    },
+    {
+      "name": "session-tab",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/sessions/setTabValue",
+      "status": 200,
+      "sha256": "e48992a9ad5919138607ac7ea1b09d990a311b088da261235f0ad9a38c7993b2"
+    },
+    {
+      "name": "startup",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onStartup",
+      "status": 200,
+      "sha256": "9192166101bd2907a59f25d740420de5bd303fec71b7ef3a5470bf24a54a19a9"
+    },
+    {
+      "name": "memory",
+      "url": "https://firefox-source-docs.mozilla.org/performance/memory/about_colon_memory.html",
+      "status": 200,
+      "sha256": "bd7c9f428592b4e062ea0e4bdc82e887f117b7cc26d60d35c0d673b4a207c5d8"
+    },
+    {
+      "name": "image-size-fix",
+      "url": "https://raw.githubusercontent.com/image-size/image-size/v2.0.4/lib/types/icns.ts",
+      "error": "HTTPError"
+    }
+  ]
+}

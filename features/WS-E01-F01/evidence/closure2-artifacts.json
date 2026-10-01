@@ -1,0 +1,22 @@
+{
+  "evidence_class": "LOCAL_AGENT_REPORTED",
+  "semantics": "SHA-256 of raw local run artifacts retained under build/f01/runs (git-ignored); repository copies are the evidence.json records only.",
+  "artifacts": {
+    "closure-4qlcrec0/evidence.json": "8dab8f8998758774343d824d97db30262f855d1687ddeb6765b5dbacdef65322",
+    "closure-4qlcrec0/m0-baseline-memory.json": "56119f205ade3c0438262bbbef688c4854039f7c9fbf8a71d4ad304c183afd4c",
+    "closure-4qlcrec0/m1-map-cache-memory.json": "10c6f161be750cd8c36a5f97d18f8c176e5899a496f36cc48d2f9bb3f6b0ccaf",
+    "closure-4qlcrec0/m2-idb-memory.json": "7fa61938970288cd15cad96e2c41fd50ffee6058aa46005855bfcc7d3e780698",
+    "closure-4qlcrec0/m3-released-memory.json": "4ffa1be3c59e9ed107c21641e5d931c0a9f5c8bf669ba4105b5643ddcb3ec688",
+    "closure-4qlcrec0/m4-before-pulse-memory.json": "74c74e1f0a252bc9bb2492cfe2bf2abce9149f1eee70b800c2cfb9c466fdf84f",
+    "closure-4qlcrec0/m5-after-pulse-memory.json": "4aea3d12aff6af9e8ea4a03d24e573b93855995e5494231da5d24097f96095f0",
+    "closure-4qlcrec0/closure.xpi": "36bda31350b1107c0fe45dfedb64e0d40737c8b178fc02e91034d7e23d2bd728",
+    "closure-xug2fzgt/evidence.json": "4289951f1e16859766482657974d199c1ee7b09111e080badae0e980aa98f654",
+    "closure-xug2fzgt/m0-baseline-memory.json": "254f3d5d0a48d2aec4ec3870e9f209b93320a5f64c38057306a8191765aa2407",
+    "closure-xug2fzgt/m1-map-cache-memory.json": "de3989c55606764ed2012718ca82d9c8b9fd24f33319bc78fb7b92fc62600c39",
+    "closure-xug2fzgt/m2-idb-memory.json": "88d15878b607de860571230e66b94a5f5d252da7a6b2f1f26d020025682644f3",
+    "closure-xug2fzgt/m3-released-memory.json": "001f419716a774e48ea6c496c6776d431f8613b173c724faf5c40f781789e2db",
+    "closure-xug2fzgt/m4-before-pulse-memory.json": "e26d7cfa12b7af3e8aefbdd3934473c7eb8285b0559db2f1a751f84873bf756d",
+    "closure-xug2fzgt/m5-after-pulse-memory.json": "c5af8658efefa5732c26b137760a28d41f3de6df1c1d857f40f45b95bdf6a0df",
+    "closure-xug2fzgt/closure.xpi": "36bda31350b1107c0fe45dfedb64e0d40737c8b178fc02e91034d7e23d2bd728"
+  }
+}

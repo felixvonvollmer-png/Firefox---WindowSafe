@@ -1,0 +1,535 @@
+{
+  "run_id": "synthetic-4n8ufwpg",
+  "profile_class": "NEW_SYNTHETIC_DISPOSABLE",
+  "profile": "D:\\Projekt\\WindowSafe-F01-Windows\\build\\f01\\runs\\synthetic-4n8ufwpg\\profile",
+  "driver_sources": {
+    "run_probe.py": "43f670bcff81ab75e962520b31fb10e9515faf7dac2da14d9858081be4711337",
+    "target_probe.py": "1f5531953e9c4686da97ab758adb1eff1d8c5c38a3f9939867f77be4146bcf58",
+    "measure.py": "d4e7b322ec870a47ae130a0c692e28527b560f8ed574f2930e260be6cab8f094",
+    "windows_job.py": "61512c629784d92ca555fb6f45070a12a7bc97019a6eb52eef433de256d94bb3"
+  },
+  "driver_source_sha256": "43f670bcff81ab75e962520b31fb10e9515faf7dac2da14d9858081be4711337",
+  "binary": "D:\\Projekt\\WindowSafe-F01-Windows\\build\\f01\\windows-download\\stable\\core\\firefox.exe",
+  "binary_sha256": "ce320f543a353bb55c6804af320df0b7807eb3feb822ea093a1ae7164c066970",
+  "version": "156.0",
+  "build_id": "20260909172920",
+  "source_stamp": "a80bd15ddee3b4bf3679aeba340e9d2db933c467",
+  "evidence_class": "WINDOWS_RUNTIME_VERIFIED",
+  "runtime_scope": "TARGET_STABLE",
+  "release_equivalent_binding_sha256": null,
+  "headless": false,
+  "prefs_sha256": "33b78c41ebf0ecdd2362f53d791b88332637464814ba37057bcf0027d889cec7",
+  "launches": [
+    {
+      "command": [
+        "D:\\Projekt\\WindowSafe-F01-Windows\\build\\f01\\windows-download\\stable\\core\\firefox.exe",
+        "--no-remote",
+        "--new-instance",
+        "--profile",
+        "D:\\Projekt\\WindowSafe-F01-Windows\\build\\f01\\runs\\synthetic-4n8ufwpg\\profile",
+        "--marionette"
+      ],
+      "pid": 12548,
+      "job_before_resume": {
+        "monotonic": 4206.9959323,
+        "user_seconds": 0.0,
+        "kernel_seconds": 0.0,
+        "total_processes": 1,
+        "active_processes": 1,
+        "io": {
+          "read_ops": 0,
+          "write_ops": 0,
+          "other_ops": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "other_bytes": 0
+        },
+        "peak_job_commit_bytes": 442368,
+        "peak_process_commit_bytes": 442368,
+        "members": [
+          {
+            "pid": 12548,
+            "creation_filetime": 134347113000962120,
+            "in_job": true,
+            "image": "D:\\Projekt\\WindowSafe-F01-Windows\\build\\f01\\windows-download\\stable\\core\\firefox.exe"
+          }
+        ],
+        "limit_flags": 8192,
+        "semantics": "Lifetime job CPU/IO including exited children; OS commit peaks, not working set or addon peak."
+      },
+      "launcher_in_parent_job": true,
+      "protocol_capabilities": {
+        "acceptInsecureCerts": false,
+        "browserName": "firefox",
+        "browserVersion": "156.0",
+        "platformName": "windows",
+        "setWindowRect": true,
+        "unhandledPromptBehavior": "dismiss and notify",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:156.0) Gecko/20100101 Firefox/156.0",
+        "moz:buildID": "20260909172920",
+        "moz:headless": false,
+        "moz:platformVersion": "10.0",
+        "moz:processID": 8216,
+        "moz:profile": "D:\\Projekt\\WindowSafe-F01-Windows\\build\\f01\\runs\\synthetic-4n8ufwpg\\profile",
+        "moz:shutdownTimeout": 60000,
+        "pageLoadStrategy": "normal",
+        "timeouts": {
+          "implicit": 0,
+          "pageLoad": 300000,
+          "script": 30000
+        },
+        "strictFileInteractability": false,
+        "moz:accessibilityChecks": false,
+        "moz:webdriverClick": true,
+        "moz:windowless": false,
+        "capabilities": {
+          "alwaysMatch": {
+            "acceptInsecureCerts": false
+          }
+        },
+        "proxy": {}
+      },
+      "browser_job_binding": {
+        "pid": 8216,
+        "creation_filetime": 134347113001050676,
+        "in_job": true,
+        "image": "D:\\Projekt\\WindowSafe-F01-Windows\\build\\f01\\windows-download\\stable\\core\\firefox.exe"
+      },
+      "session_binding": {
+        "browserVersion": "156.0",
+        "moz:processID": 8216,
+        "moz:profile": "D:\\Projekt\\WindowSafe-F01-Windows\\build\\f01\\runs\\synthetic-4n8ufwpg\\profile",
+        "moz:buildID": "20260909172920"
+      },
+      "observed_processes": [
+        212,
+        1480,
+        1692,
+        3288,
+        5248,
+        5772,
+        6116,
+        8216,
+        10776,
+        12488,
+        12528,
+        12548,
+        13932,
+        15700,
+        15744,
+        15848,
+        15984
+      ],
+      "exit_code": 0,
+      "job_final": {
+        "monotonic": 4217.2139984,
+        "user_seconds": 3.328125,
+        "kernel_seconds": 1.546875,
+        "total_processes": 18,
+        "active_processes": 0,
+        "io": {
+          "read_ops": 23493,
+          "write_ops": 26612,
+          "other_ops": 33850,
+          "read_bytes": 39125746,
+          "write_bytes": 67549147,
+          "other_bytes": 982856
+        },
+        "peak_job_commit_bytes": 1091665920,
+        "peak_process_commit_bytes": 404267008,
+        "members": [],
+        "limit_flags": 8192,
+        "semantics": "Lifetime job CPU/IO including exited children; OS commit peaks, not working set or addon peak."
+      },
+      "observed_job_identities": [
+        [
+          12548,
+          134347113000962120
+        ],
+        [
+          12528,
+          134347113001749445
+        ],
+        [
+          8216,
+          134347113001050676
+        ],
+        [
+          5772,
+          134347113003715544
+        ],
+        [
+          1692,
+          134347113003843470
+        ],
+        [
+          10776,
+          134347113007160372
+        ],
+        [
+          13932,
+          134347113008246294
+        ],
+        [
+          15848,
+          134347113010315730
+        ],
+        [
+          6116,
+          134347113018948399
+        ],
+        [
+          5248,
+          134347113019029908
+        ],
+        [
+          15984,
+          134347113021125554
+        ],
+        [
+          212,
+          134347113021211234
+        ],
+        [
+          1480,
+          134347113028916555
+        ],
+        [
+          3288,
+          134347113029250030
+        ],
+        [
+          12488,
+          134347113035984736
+        ],
+        [
+          15700,
+          134347113036057847
+        ],
+        [
+          15744,
+          134347113036139889
+        ]
+      ]
+    }
+  ],
+  "probe_packages": {
+    "helper": "2f960ad8d11fcd8fd4d898b7466b337fc4782eae1e968ce04d425088e6362df7",
+    "probe": "9e2363203b081eae9ff62e222392a49a80fec581232ee76811058d14e21b4f6c"
+  },
+  "reports": [
+    {
+      "qualificationOnly": true,
+      "trigger": "onInstalled",
+      "marker": {
+        "run": "synthetic-4n8ufwpg",
+        "trigger": "onInstalled",
+        "ordinal": 1
+      },
+      "browser": {
+        "name": "Firefox",
+        "vendor": "Mozilla",
+        "version": "156.0",
+        "buildID": "20260909172920"
+      },
+      "observations": [
+        {
+          "name": "previous-probe-marker",
+          "outcome": "OBSERVED",
+          "value": {}
+        },
+        {
+          "name": "previous-session-hints",
+          "outcome": "OBSERVED",
+          "value": {
+            "initial": true
+          }
+        },
+        {
+          "name": "private-access",
+          "outcome": "OBSERVED",
+          "value": {
+            "allowed": false,
+            "context": false
+          }
+        },
+        {
+          "name": "normal-window",
+          "outcome": "OBSERVED",
+          "value": {
+            "type": "normal",
+            "incognito": false,
+            "width": 800,
+            "height": 600,
+            "state": "normal"
+          }
+        },
+        {
+          "name": "popup-window",
+          "outcome": "OBSERVED",
+          "value": {
+            "type": "popup",
+            "incognito": false
+          }
+        },
+        {
+          "name": "private-window-exclusion",
+          "outcome": "REJECTED",
+          "error": "Error: Extension does not have permission for incognito mode"
+        },
+        {
+          "name": "combination-pfalse-dfalse-mfalse",
+          "outcome": "OBSERVED",
+          "value": {
+            "id": 3,
+            "windowId": 29,
+            "incognito": false,
+            "hidden": false,
+            "discarded": false,
+            "pinned": false,
+            "muted": false,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "splitViewId": -1,
+            "isInReaderMode": false
+          }
+        },
+        {
+          "name": "combination-pfalse-dfalse-mtrue",
+          "outcome": "OBSERVED",
+          "value": {
+            "id": 4,
+            "windowId": 29,
+            "incognito": false,
+            "hidden": false,
+            "discarded": false,
+            "pinned": false,
+            "muted": true,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "splitViewId": -1,
+            "isInReaderMode": false
+          }
+        },
+        {
+          "name": "combination-pfalse-dtrue-mfalse",
+          "outcome": "OBSERVED",
+          "value": {
+            "id": 5,
+            "windowId": 29,
+            "incognito": false,
+            "hidden": false,
+            "discarded": true,
+            "pinned": false,
+            "muted": false,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "splitViewId": -1,
+            "isInReaderMode": false
+          }
+        },
+        {
+          "name": "combination-pfalse-dtrue-mtrue",
+          "outcome": "OBSERVED",
+          "value": {
+            "id": 6,
+            "windowId": 29,
+            "incognito": false,
+            "hidden": false,
+            "discarded": true,
+            "pinned": false,
+            "muted": true,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "splitViewId": -1,
+            "isInReaderMode": false
+          }
+        },
+        {
+          "name": "combination-ptrue-dfalse-mfalse",
+          "outcome": "OBSERVED",
+          "value": {
+            "id": 7,
+            "windowId": 29,
+            "incognito": false,
+            "hidden": false,
+            "discarded": false,
+            "pinned": true,
+            "muted": false,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "splitViewId": -1,
+            "isInReaderMode": false
+          }
+        },
+        {
+          "name": "combination-ptrue-dfalse-mtrue",
+          "outcome": "OBSERVED",
+          "value": {
+            "id": 8,
+            "windowId": 29,
+            "incognito": false,
+            "hidden": false,
+            "discarded": false,
+            "pinned": true,
+            "muted": true,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "splitViewId": -1,
+            "isInReaderMode": false
+          }
+        },
+        {
+          "name": "combination-ptrue-dtrue-mfalse",
+          "outcome": "REJECTED",
+          "error": "Error: Pinned tabs cannot be created and discarded."
+        },
+        {
+          "name": "combination-ptrue-dtrue-mtrue",
+          "outcome": "REJECTED",
+          "error": "Error: Pinned tabs cannot be created and discarded."
+        },
+        {
+          "name": "hidden-by-helper",
+          "outcome": "OBSERVED",
+          "value": {
+            "id": 9,
+            "windowId": 29,
+            "incognito": false,
+            "hidden": true,
+            "discarded": false,
+            "pinned": false,
+            "muted": false,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "splitViewId": -1,
+            "isInReaderMode": false
+          }
+        },
+        {
+          "name": "container",
+          "outcome": "OBSERVED",
+          "value": {
+            "available": true,
+            "count": 4,
+            "tab": {
+              "id": 10,
+              "windowId": 29,
+              "incognito": false,
+              "hidden": false,
+              "discarded": true,
+              "pinned": false,
+              "muted": false,
+              "cookieStoreId": "firefox-container-1",
+              "groupId": -1,
+              "splitViewId": -1,
+              "isInReaderMode": false
+            }
+          }
+        },
+        {
+          "name": "missing-container",
+          "outcome": "REJECTED",
+          "error": "Error: No cookie store exists with ID firefox-container-99999"
+        },
+        {
+          "name": "native-group",
+          "outcome": "OBSERVED",
+          "value": {
+            "group": {
+              "collapsed": false,
+              "color": "blue",
+              "id": 1790237703042088,
+              "title": "F01 synthetic",
+              "windowId": 29
+            },
+            "tabs": [
+              {
+                "id": 1,
+                "windowId": 29,
+                "incognito": false,
+                "hidden": false,
+                "discarded": false,
+                "pinned": false,
+                "muted": false,
+                "cookieStoreId": "firefox-default",
+                "groupId": 1790237703042088,
+                "splitViewId": -1,
+                "isInReaderMode": false,
+                "isArticle": true
+              },
+              {
+                "id": 3,
+                "windowId": 29,
+                "incognito": false,
+                "hidden": false,
+                "discarded": false,
+                "pinned": false,
+                "muted": false,
+                "cookieStoreId": "firefox-default",
+                "groupId": 1790237703042088,
+                "splitViewId": -1,
+                "isInReaderMode": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "reader-intent",
+          "outcome": "OBSERVED",
+          "value": {
+            "id": 12,
+            "windowId": 29,
+            "incognito": false,
+            "hidden": false,
+            "discarded": false,
+            "pinned": false,
+            "muted": false,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "splitViewId": -1,
+            "isInReaderMode": true
+          }
+        },
+        {
+          "name": "privileged-url-rejection",
+          "outcome": "REJECTED",
+          "error": "Error: Illegal URL: chrome://browser/content/browser.xhtml"
+        },
+        {
+          "name": "session-hints",
+          "outcome": "OBSERVED",
+          "value": {
+            "tab": "synthetic-4n8ufwpg",
+            "window": "synthetic-4n8ufwpg"
+          }
+        },
+        {
+          "name": "surface",
+          "outcome": "OBSERVED",
+          "value": {
+            "windowsOnBoundsChanged": false,
+            "splitConstant": true,
+            "nativeGroup": true,
+            "startupEvent": true,
+            "restoreCompleteSignal": "NOT_ESTABLISHED__NO_TIMER_INFERENCE"
+          }
+        }
+      ]
+    }
+  ],
+  "cleanup": "OWN_PROFILE_REMOVED__OWN_LAUNCHES_EXITED",
+  "status": "OBSERVATIONS_COLLECTED__MATRIX_REVIEW_REQUIRED",
+  "measurement": {
+    "evidence_class": "SYNTHETIC_DRY_RUN_MEASUREMENT",
+    "wall_seconds": 3.6530995000002804,
+    "observed_cpu_seconds": 1.09375,
+    "percent_one_core": 29.940328753703973,
+    "peak_sum_rss_bytes": 985399296,
+    "observed_process_identities": 17,
+    "limitation": "Sampled CPU lower bound: short-lived processes/final ticks may be missed. RSS sums shared pages. Not attributable addon JS/DOM RAM. Not final acceptance instrumentation.",
+    "product_performance_verdict": "NOT_EVALUATED"
+  },
+  "cgroup_measurement_intervals": [],
+  "remaining_owned_processes": []
+}

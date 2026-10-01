@@ -1,0 +1,40 @@
+{
+  "evidence_class": "LOCAL_AGENT_REPORTED",
+  "runs": [
+    {
+      "run_id": "synthetic-hx0dk3jj",
+      "profile_exists": false,
+      "observed_owned_processes_still_present": []
+    },
+    {
+      "run_id": "synthetic-gul5th24",
+      "profile_exists": false,
+      "observed_owned_processes_still_present": []
+    },
+    {
+      "run_id": "synthetic-j3vjbocz",
+      "profile_exists": false,
+      "observed_owned_processes_still_present": []
+    },
+    {
+      "run_id": "synthetic-m1zty4j4",
+      "profile_exists": false,
+      "owned_cgroups_still_present": []
+    },
+    {
+      "run_id": "synthetic-hloz529l",
+      "profile_exists": false,
+      "owned_cgroups_still_present": []
+    },
+    {
+      "run_id": "synthetic-y37a2dum",
+      "profile_exists": false,
+      "owned_cgroups_still_present": []
+    },
+    {
+      "run_id": "synthetic-_9eq9znk",
+      "profile_exists": false,
+      "owned_cgroups_still_present": []
+    }
+  ]
+}

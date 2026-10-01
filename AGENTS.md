@@ -22,14 +22,18 @@ und die nutzerautorisierte Ersatz-Evidence WS-E01-EPR-DELTA-20260930-04 **CORREC
 `fa109e1b2cea025918d1cff61a2aaee2ee2b2083` erhielt das unabhängige WS-E01-EPR-DELTA-20260930-05
 **PASS**. Exaktes Rebinding READY_FOR_AGENT:
 `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/rebinding.json` unter WS-EA-20260930-02 (der
-Pending-Binding und das historische WS-E01-Binding bleiben unverändert). Feature-Arbeit erst
-mit der separaten breiten WS-E01 Execution Authorization.
+Pending-Binding und das historische WS-E01-Binding bleiben unverändert), integriert in main
+`714b440c26167f6411420fbbda4be69deb2e9670`. Separate breite WS-E01 Execution Authorization
+WS-EA-20261001-03: `epics/WS-E01/evidence/broad-execution-authorization.json` (autonom
+F01 -> F02 -> {F03,F04} -> F05 bis EPIC_CONVERGED, dann STOP; kein Folge-Epic).
 
 WS-P05 ergänzt Product Truth und TF r6 durch exakt gebundene Originale im Kontextrouter.
 F01 / PR #3 bleibt ausschließlich externe Read-only-Evidence am Head
 `7d66ca5b025c8f748d7f97b961c496ee450daaa7`, Draft/offen/ungemergt; F01 ist gestoppt.
-Keine F01-Fortsetzung, Browserprobe, Produktimplementation, F02 oder Feature Acceptance
-ohne diese späteren Gates. Hier nichts davon ausführen.
+Ab WS-EA-20261001-03 wird F01 auf neuer Basis fortgesetzt (PR #3 bleibt Read-only-Evidence).
+Produktimplementation erst hinter den gebundenen Plattform-/Messgates (TF §7.1, §§9.1/9.3);
+Browserproben nur in künstlichen Wegwerfprofilen; Feature Acceptance nur durch frische
+unabhängige Reviewer mit vollständiger Autoren-Ausschlussmenge.
 
 Repository ist System of Record. Vor Mutation Root, Remote, Ref, HEAD, Worktree und Index
 prüfen; fremde/untracked Arbeit schützen. Nur benannte Pfade stagen. Kein History-Rewrite,

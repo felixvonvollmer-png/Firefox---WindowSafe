@@ -153,6 +153,16 @@ einen normalen Merge-Commit von PR #5 mit erstem Elternteil main
 `1cb82c926903b2fd6b497d008db61c71c5d92aca` und identischem Baum. Der -04-Locator liefert danach
 den reviewed Request. Keine Feature-Autorität; die breite WS-E01-Autorisierung ist separat.
 
+WS-EA-20261001-03 (`epics/WS-E01/evidence/broad-execution-authorization.json`, SHA-256 im
+Harness gepinnt, an das exakte Rebinding und den Merge `714b440…` gebunden) öffnet die
+Ausführungsphase. Jeder Commit danach wird gegen jeden eigenen Elternteil append-only geprüft;
+Einzelcommits ändern nur Pfade innerhalb `scope()` und keine eingefrorenen Bereiche
+(`foundation/inputs|sources|deltas|evidence`, `epics/WS-E01/deltas`, Reviewvertrag). PR-Merges
+sind nur up to date zulässig (Merge-Baum = PR-Head-Baum). Feature-Requests verlangen die aktive
+Ausführungsphase und eine `review_excluded_identities`-Menge, die Implementer, Materializer und
+alle `contributors` enthält. Produktquellen: `addon/`; Proben: `qualification/ws-e01-f0<n>/`;
+nur Textdateien, kein `node_modules`. Toolchain-Installationen bleiben unter `build/`.
+
 Der Inventar-Writer öffnet Root/Ausgabeordner/Blatt mit No-follow und relativen
 Directory-FDs, prüft den geöffneten Dateityp/Linkcount vor dem Trunkieren und
 folgt nach Öffnung keinem Pfad mehr. Es gibt keine automatische Linklöschung.

@@ -13,7 +13,9 @@ angenommen und durch **WS-PFDELTA-INT-20260929-01** / **WS-EA-20260929-01** inte
 Externer Project-Context-Sync: **CONFIRMED_BY_USER** (WS-EXTCTX-SYNC-20260929-01).
 Aktuell: WS-E01 Epic Preparation Delta **WS-E01-EP-DELTA-20260929-04** ist unabhängig mit
 WS-E01-EPR-DELTA-20260930-05 **PASS** angenommen und exakt rebound (READY_FOR_AGENT,
-`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/rebinding.json`).
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/rebinding.json`), integriert in main
+`714b440c26167f6411420fbbda4be69deb2e9670`. Breite WS-E01-Ausführung unter WS-EA-20261001-03
+(`epics/WS-E01/evidence/broad-execution-authorization.json`).
 Die Vorversionen -02 (CORRECTION_REQUIRED) und -03 (BLOCKED, danach CORRECTION_REQUIRED als
 nutzerautorisierte rekonstruierte Ersatz-Evidence) bleiben historisch unter `reviews/results/`.
 Historische WS-E01 Preparation bleibt unverändert angenommen; ihre Annahme ersetzt

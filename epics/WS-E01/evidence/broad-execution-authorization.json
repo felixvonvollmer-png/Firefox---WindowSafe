@@ -1,0 +1,67 @@
+{
+  "DOCUMENT_TYPE": "WS_E01_BROAD_EPIC_EXECUTION_AUTHORIZATION",
+  "AUTHORIZATION_ID": "WS-EA-20261001-03",
+  "STATUS": "AUTHORIZED",
+  "DATE": "2026-10-01",
+  "AUTHORITY": "USER",
+  "EPIC_ID": "WS-E01",
+  "USER_AUTHORIZATION_REFERENCE": {
+    "FORM": "DIRECT_USER_CHAT_MESSAGES_IN_CLAUDE_CODE_SESSION_2026-09-30",
+    "RECORDED_BY": "CODING_AGENT_WS_E01_EXECUTION_LEAD",
+    "RECORDING_LIMITATION": "Structured transcription of the user's decision by the lead coding agent; not byte-identical to the chat messages. Verbatim excerpts are copied from the user messages. The decision was given before the rebinding existed and becomes active only after it, as the user specified.",
+    "VERBATIM_EXCERPTS": [
+      "Führe das aktuelle Epic `WS-E01` nach der final aktiven V6-Basis autonom bis `EPIC_CONVERGED` durch.",
+      "Nach gültigem Exact Rebinding materialisiere eine separate breite WS-E01 Execution Authorization.",
+      "Diese aktuelle Nutzerentscheidung darf als Authority für diese Autorisierung verwendet werden.",
+      "Sie wird erst nach gültigem Rebinding aktiv.",
+      "Bindende Feature-Richtung: `F01 -> F02 -> {F03,F04} -> F05`",
+      "Keine Mikro-Epics erzeugen.",
+      "nach gültigem Epic Rebinding darf der Coding-Agent innerhalb WS-E01 konkrete Toolchain-/Compiler-/web-ext-/Development-Dependency-Versionen JIT wählen oder ändern, soweit Product Truth und Technical Foundation dies zulassen",
+      "Nach `EPIC_CONVERGED` zwingend stoppen. Keinen Folge-Epic auswählen oder starten."
+    ]
+  },
+  "REQUIRED_EPIC_REBINDING": {
+    "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/rebinding.json",
+    "sha256": "aacc8cce51e0ef7caf29d8d85bc3b5a2df7c8a628d255e6edd47a50d8796528f"
+  },
+  "REVIEWED_EPIC_SUBJECT": {
+    "id": "WS-E01-EP-DELTA-20260929-04",
+    "path": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json",
+    "end_sha": "fa109e1b2cea025918d1cff61a2aaee2ee2b2083"
+  },
+  "INTEGRATION_MERGE": "714b440c26167f6411420fbbda4be69deb2e9670",
+  "FEATURE_DIRECTION": "F01 -> F02 -> {F03,F04} -> F05",
+  "AUTHORIZED_SCOPE": [
+    "Autonomous JIT structuring of features, tasks, bugs, technical detail planning and F03/F04 order after dependencies.",
+    "Workers, subagents, technical reviewers and fresh independent feature-acceptance reviewers; no self-PASS.",
+    "Tests, CI, correction/rereview loops, PR creation/update and normal integration after review/acceptance/CI gates.",
+    "Toolchain/development-dependency selection within Product Truth and Technical Foundation with license, provenance, supply-chain and reproducibility checks.",
+    "F01 remaining qualification (WS-P05 fallback, Ubuntu display/geometry/state, cross-OS measurement method), then F02-F05 product work behind the bound pre-implementation gates.",
+    "Synthetic disposable browser profiles and local synthetic fixtures only."
+  ],
+  "HARD_LIMITS": [
+    "Never capture or keep private windows/data.",
+    "No automatic opening at browser start; missing startup windows/tabs are not a deletion signal.",
+    "Firefox Session Restore stays authoritative for natively restored physical windows.",
+    "URL/title/Firefox IDs are not durable identity; container ambiguity is never silently mapped to default.",
+    "No polling/full-scan idle default.",
+    "No real user profiles or browsing data; no private Firefox/Chrome internals or heuristic fake WebApp identity.",
+    "No new provider, server, account, cloud sync, paid service, secret or private key.",
+    "No weakening of review/risk/evidence/history/security gates; no force-push or history rewrite; historical originals append-only.",
+    "No release, signing, distribution or production."
+  ],
+  "STOP_AND_REPORT_ON": [
+    "NEW_MATERIAL_USER_DECISION_REQUIRED",
+    "PRODUCT_OR_PROJECT_FOUNDATION_REBINDING_REQUIRED",
+    "SECURITY_OR_TRUST_BOUNDARY_MATERIALLY_CHANGES",
+    "NEW_PROVIDER_COST_SECRET_OR_DATA_DISCLOSURE_REQUIRED",
+    "INDEPENDENT_REVIEW_CANNOT_ACTUALLY_BE_ESTABLISHED",
+    "BOUND_GATE_CANNOT_BE_SAFELY_SATISFIED_WITHOUT_WEAKENING_IT",
+    "PRODUCTION_OR_REAL_USER_DATA_REQUIRED"
+  ],
+  "OUT_OF_SCOPE_CANDIDATE": "Releasing memory by discarding suitable inactive tabs via public Firefox APIs may only be recorded as OPEN_LATER / epic candidate; not part of WS-E01.",
+  "STOP_AT": "EPIC_CONVERGED",
+  "NEXT_EPIC_SELECTION_BY_AGENT": false,
+  "SELF_PASS_ALLOWED": false,
+  "RELEASE_OR_PRODUCTION_AUTHORIZED": false
+}

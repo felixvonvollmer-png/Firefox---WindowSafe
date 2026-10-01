@@ -159,8 +159,11 @@ EPIC_INTEGRATION_MERGE = "714b440c26167f6411420fbbda4be69deb2e9670"
 EPIC_EXECUTION_AUTH = "epics/WS-E01/evidence/broad-execution-authorization.json"
 EPIC_EXECUTION_AUTH_SHA = "cced59563b38d5356097ecc2f1efe3da385897023b8ac323882c0d3c5761db6d"
 # Never editable during feature execution (new files in other protected areas stay append-only).
-EXECUTION_FROZEN_PREFIXES = ("foundation/inputs/", "foundation/sources/", "foundation/deltas/",
-                             "foundation/evidence/", "epics/WS-E01/deltas/", "reviews/review-contract.json")
+EXECUTION_FROZEN_PREFIXES = ("foundation/", "epics/WS-E01/deltas/", "reviews/review-contract.json")
+# Living routers inside frozen areas that execution may keep current.
+EXECUTION_LIVING = {"foundation/context.md", "foundation/engineering.md"}
+# Gate code may evolve (each change needs independent technical review) but never disappear.
+EXECUTION_UNDELETABLE_PREFIXES = ("tools/", "tests/", ".github/workflows/")
 FEATURE_ID_PATTERN = r"WS-E01-F0[1-5]"
 EPIC_VERSIONED_SUBJECTS = (EPIC_DELTA_SUBJECT, EPIC_CORR_SUBJECT, EPIC_CORR2_SUBJECT)
 # Superseded locator -> (superseding subject, reviewed head it stays bound to).
@@ -417,8 +420,9 @@ def request(sha, path="foundation/subject.json"):
     text(s["implementer"])
     if kind == "FEATURE_ACCEPTANCE_REVIEW":
         # Every author of the feature changeset, including workers, is excluded from its verdict.
-        authors = [s["implementer"], *([s["materializer"]] if "materializer" in s else []),
-                   *s.get("contributors", [])]
+        contributors = s.get("contributors", [])
+        require(isinstance(contributors, list), "REQUEST_INVALID: contributors must be a list")
+        authors = [s["implementer"], *([s["materializer"]] if "materializer" in s else []), *contributors]
         excluded = s.get("review_excluded_identities")
         require(isinstance(excluded, list) and all(isinstance(v, str) and v.strip() for v in excluded)
                 and all(isinstance(v, str) and v.strip() for v in authors)
@@ -1129,15 +1133,25 @@ def execution_history(revisions):
         current = tree_snapshot(revision)
         if len(parents) == 2:
             # A PR merge must not combine unreviewed trees: the merged tree is the PR head's tree.
+            require(parents[0] != parents[1], "degenerate execution merge")
             require(git("rev-parse", revision + "^{tree}") == git("rev-parse", parents[1] + "^{tree}"),
                     "execution merge must be up to date")
             ancestor(EPIC_INTEGRATION_MERGE, parents[0])
             merges.add(revision)
         else:
             require(len(parents) == 1, "execution octopus merge prohibited")
-            for path in git("diff", "--name-only", parents[0], revision).decode().splitlines():
+            # --no-renames reports a rename as deletion plus addition, so both paths are checked.
+            for line in git("diff", "--name-status", "--no-renames", parents[0], revision).decode().splitlines():
+                status, path = line.split("\t", 1)
                 scope(path)
-                require(not path.startswith(EXECUTION_FROZEN_PREFIXES), "frozen path changed during execution")
+                require(not path.startswith(EXECUTION_FROZEN_PREFIXES) or path in EXECUTION_LIVING,
+                        "frozen path changed during execution")
+                require(not (status == "D" and path.startswith(EXECUTION_UNDELETABLE_PREFIXES)),
+                        "gate code deleted during execution")
+                if status != "D":
+                    # Regular files only: no symlink (120000) or gitlink/submodule (160000) entries.
+                    require(current[path].split()[:2] in ([b"100644", b"blob"], [b"100755", b"blob"]),
+                            "execution file mode")
         for parent in parents:
             check_history_maps(tree_snapshot(parent), current)
     return merges

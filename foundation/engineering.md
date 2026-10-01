@@ -162,6 +162,14 @@ sind nur up to date zulässig (Merge-Baum = PR-Head-Baum). Feature-Requests verl
 Ausführungsphase und eine `review_excluded_identities`-Menge, die Implementer, Materializer und
 alle `contributors` enthält. Produktquellen: `addon/`; Proben: `qualification/ws-e01-f0<n>/`;
 nur Textdateien, kein `node_modules`. Toolchain-Installationen bleiben unter `build/`.
+Ganz `foundation/` ist eingefroren außer `context.md`/`engineering.md`; nur reguläre Dateien
+(keine Symlinks/Submodule); Umbenennungen zählen als Löschen plus Anlegen; `tools/`, `tests/`
+und Workflows dürfen geändert, aber nicht gelöscht werden. Jede Änderung an Harness, Tests oder
+CI ist ein ELEVATED-Inkrement mit unabhängigem technischem Review vor Integration.
+Merge-Ablauf: Feature-Concurrency ONE; ein PR-Branch startet am aktuellen main und wird mit
+`gh pr merge --merge --match-head-commit <head>` integriert, solange main nicht weitergezogen ist.
+Kein GitHub-„Update branch“-Merge: ein zurückliegender PR wird als neuer Branch vom aktuellen
+main neu aufgebaut, nie durch Merge von main in den Branch.
 
 Der Inventar-Writer öffnet Root/Ausgabeordner/Blatt mit No-follow und relativen
 Directory-FDs, prüft den geöffneten Dateityp/Linkcount vor dem Trunkieren und

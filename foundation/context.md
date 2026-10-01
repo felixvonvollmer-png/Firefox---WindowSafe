@@ -47,7 +47,6 @@ angenommen und exakt rebound (READY_FOR_AGENT,
 `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/rebinding.json`, WS-EA-20260930-02), integriert
 in main `714b440c26167f6411420fbbda4be69deb2e9670`. Aktuell: autonome WS-E01-Ausführung unter
 WS-EA-20261001-03 bis EPIC_CONVERGED.
-Danach unabhängiger Rereview, Rebinding und separate breite WS-E01-Autorisierung.
 Nach EPIC_CONVERGED: Stop neuer Epic-Arbeit; Project-LLM/Nutzer wählen die nächste
 Richtung vor neuer Epic Preparation. Der Coding-Agent wählt keinen Folge-Epic.
 

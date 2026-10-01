@@ -19,8 +19,9 @@ WS-E01-EPR-DELTA-20260930-05 **PASS** angenommen und exakt rebound (READY_FOR_AG
 Die Vorversionen -02 (CORRECTION_REQUIRED) und -03 (BLOCKED, danach CORRECTION_REQUIRED als
 nutzerautorisierte rekonstruierte Ersatz-Evidence) bleiben historisch unter `reviews/results/`.
 Historische WS-E01 Preparation bleibt unverändert angenommen; ihre Annahme ersetzt
-kein Delta-Rebinding. F01 bleibt auf PR #3 am Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`
-Draft/ungemergt, gestoppt und wird nicht fortgesetzt. Kein Produktcode oder Feature Acceptance.
+kein Delta-Rebinding. PR #3 (`7d66ca5b025c8f748d7f97b961c496ee450daaa7`) bleibt Draft/ungemergt als
+historische Read-only-Evidence; F01 wird unter WS-EA-20261001-03 auf neuer Basis fortgesetzt.
+Produktcode erst hinter den gebundenen Plattform-/Messgates; Feature Acceptance nur unabhängig.
 
 - [Kontext und unveränderte Product Truth](foundation/context.md)
 - [Architektur, Entscheidungen und offene Vorab-Gates](foundation/architecture.md)

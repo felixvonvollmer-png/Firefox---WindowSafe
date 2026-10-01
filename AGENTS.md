@@ -29,7 +29,7 @@ F01 -> F02 -> {F03,F04} -> F05 bis EPIC_CONVERGED, dann STOP; kein Folge-Epic).
 
 WS-P05 ergänzt Product Truth und TF r6 durch exakt gebundene Originale im Kontextrouter.
 F01 / PR #3 bleibt ausschließlich externe Read-only-Evidence am Head
-`7d66ca5b025c8f748d7f97b961c496ee450daaa7`, Draft/offen/ungemergt; F01 ist gestoppt.
+`7d66ca5b025c8f748d7f97b961c496ee450daaa7`, Draft/offen/ungemergt (historisch).
 Ab WS-EA-20261001-03 wird F01 auf neuer Basis fortgesetzt (PR #3 bleibt Read-only-Evidence).
 Produktimplementation erst hinter den gebundenen Plattform-/Messgates (TF §7.1, §§9.1/9.3);
 Browserproben nur in künstlichen Wegwerfprofilen; Feature Acceptance nur durch frische
@@ -40,7 +40,7 @@ prüfen; fremde/untracked Arbeit schützen. Nur benannte Pfade stagen. Kein Hist
 Gate-Abschwächen, Überschreiben historischer Inputs/Subjects/Reviews oder Production.
 Während Review-/Correction-Transporten kein Dependency-/Toolchain-Drift; nach gültigem Epic
 Rebinding JIT innerhalb Product Truth/TF (Lizenz, Provenienz, Supply Chain, Reproduzierbarkeit).
-Worker/Subagenten/Reviewer JIT im gebundenen Scope (WS-EA-20260930-01); unabhängige Verdicts
+Worker/Subagenten/Reviewer JIT im gebundenen Scope (WS-EA-20260930-01, WS-EA-20261001-03); unabhängige Verdicts
 nur aus frischem/isoliertem Kontext, nie Self-PASS. Neue Provider, Server, Secrets,
 Datenoffenlegung, privilegierte Rechte oder materielle Kosten bleiben Nutzer-/Foundation-Sache.
 Weitere Router: [Architektur](foundation/architecture.md), [Reviews](reviews/README.md),

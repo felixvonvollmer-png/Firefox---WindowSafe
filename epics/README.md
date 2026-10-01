@@ -38,7 +38,8 @@ Separate breite Ausführungsautorisierung WS-EA-20261001-03:
 `epics/WS-E01/evidence/broad-execution-authorization.json`. Feature-Subjects liegen unter
 `features/WS-E01-F0<n>/subject.json`; Produktquellen unter `addon/`, Qualifikationsproben unter
 `qualification/ws-e01-f0<n>/`.
-F01 / PR #3 bleibt Draft/ungemergt und gestoppt, Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`.
+PR #3 (Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`) bleibt Draft/ungemergt als historische
+F01-Evidence; F01 wird unter WS-EA-20261001-03 auf neuer Basis fortgesetzt.
 Nach EPIC_CONVERGED stoppt neue Epic-Arbeit bis Project-LLM-/Nutzer-Richtungsreview;
 der Nutzer bestätigt die nächste Epic-Auswahl vor neuer Preparation.
 

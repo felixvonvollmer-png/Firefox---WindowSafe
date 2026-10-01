@@ -146,6 +146,13 @@ Epic-Preparation-Subjects transitiv ab (ohne `evidence_paths`; Product-/Foundati
 inputs sind keine Autorenschaft); fehlt eine davon in `review_excluded_identities`, scheitern
 `request` und `check`. Keine feste Kardinalität; historische Requests unverändert.
 
+WS-EA-20260930-02 bindet nach dem unabhängigen PASS WS-E01-EPR-DELTA-20260930-05 am reviewed
+Head `fa109e1b2cea025918d1cff61a2aaee2ee2b2083` genau: byteidentischen Resultattransfer,
+`rebinding.json` (aus dem unveränderten Pending-Binding abgeleitet, READY_FOR_AGENT) und genau
+einen normalen Merge-Commit von PR #5 mit erstem Elternteil main
+`1cb82c926903b2fd6b497d008db61c71c5d92aca` und identischem Baum. Der -04-Locator liefert danach
+den reviewed Request. Keine Feature-Autorität; die breite WS-E01-Autorisierung ist separat.
+
 Der Inventar-Writer öffnet Root/Ausgabeordner/Blatt mit No-follow und relativen
 Directory-FDs, prüft den geöffneten Dateityp/Linkcount vor dem Trunkieren und
 folgt nach Öffnung keinem Pfad mehr. Es gibt keine automatische Linklöschung.

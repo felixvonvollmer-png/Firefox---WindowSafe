@@ -1,0 +1,45 @@
+{
+  "DOCUMENT_TYPE": "EPIC_PREPARATION_DELTA_PASS_REBINDING_AND_INTEGRATION_AUTHORIZATION",
+  "AUTHORIZATION_ID": "WS-EA-20260930-02",
+  "STATUS": "AUTHORIZED",
+  "DATE": "2026-10-01",
+  "RUN_ID": "WS-E01-EPDELTA-INT-20261001-01",
+  "AUTHORITY": "USER",
+  "USER_AUTHORIZATION_REFERENCE": {
+    "PARENT_AUTHORIZATION": "WS-EA-20260930-01",
+    "PARENT_AUTHORIZATION_PATH": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/execution-authorization.json",
+    "PARENT_CLAUSE": "AFTER_INDEPENDENT_PASS: EXACT_EPIC_REBINDING and PR5_NORMAL_MERGE after all bound gates",
+    "RECORDED_BY": "CODING_AGENT_WS_E01_EPDELTA_CORR_20260929_02",
+    "RECORDING_LIMITATION": "Derived record that binds the user decision of WS-EA-20260930-01 to the exact independent PASS bytes, which did not exist when that decision was recorded. It creates no verdict and no feature authority."
+  },
+  "EXPECTED_MAIN_SHA": "1cb82c926903b2fd6b497d008db61c71c5d92aca",
+  "PR": 5,
+  "BRANCH": "prep/ws-e01-delta-20260929-02",
+  "REVIEWED_SUBJECT_PATH": "epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json",
+  "EXPECTED_REVIEWED_HEAD": "fa109e1b2cea025918d1cff61a2aaee2ee2b2083",
+  "EXPECTED_REVIEWED_TREE": "58883dc1db31f8d3f5aecbfb41564508c1f53aed",
+  "EXACT_REVIEW_RESULT": {
+    "REVIEW_ID": "WS-E01-EPR-DELTA-20260930-05",
+    "TARGET": "reviews/results/WS-E01-EPR-DELTA-20260930-05.json",
+    "BYTES": 20849,
+    "SHA256": "222a82f0bd4573d93eef05515276cbfbbd081b3baaeb699d9b3987045e7b427b",
+    "VERDICT": "PASS",
+    "REVIEWER_IDENTITY": "CLAUDE_SUBAGENT_INDEPENDENT_EPIC_REREVIEWER_WS_E01_EPR_DELTA_20260930_05",
+    "REVIEW_CONTEXT": "Fresh subagent context without implementer transcript, clean detached worktree of the reviewed SHA; canonical validate-result exit 0 by reviewer and again by the integrator."
+  },
+  "ALLOWED_ACTIONS": [
+    "Transfer the exact PASS original append-only.",
+    "Materialize the exact epic rebinding READY_FOR_AGENT for WS-E01 bound to the reviewed -04 subject.",
+    "Minimal harness/test/CI/router changes for this bound transition.",
+    "Exactly one normal merge commit of PR #5 into the expected main after green exact-head CI."
+  ],
+  "PROHIBITED_ACTIONS": [
+    "Changing the reviewed -04 subject, its pending binding or any historical original.",
+    "Creating the broad WS-E01 execution authorization in this transition.",
+    "F01 continuation, product implementation, feature acceptance, release or production.",
+    "Squash, rebase, force-push or any history rewrite."
+  ],
+  "MERGE": "ONE_NORMAL_MERGE_COMMIT_OF_PR5_INTO_EXPECTED_MAIN",
+  "F01_CONTINUATION_AUTHORIZED": false,
+  "PRODUCT_IMPLEMENTATION_AUTHORIZED": false
+}

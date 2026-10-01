@@ -1,6 +1,13 @@
 # Kanonischer Reviewkanal und aktuelle Review-Locators
 
-## Aktueller Auftrag: EPIC_PREPARATION_REVIEW (Rereview) des zweifach korrigierten WS-E01-Deltas
+## Abgeschlossen: Rereview des zweifach korrigierten WS-E01-Deltas
+
+WS-E01-EPR-DELTA-20260930-05 (`results/WS-E01-EPR-DELTA-20260930-05.json`, 20849 Bytes) ergab
+**PASS** für `WS-E01-EP-DELTA-20260929-04@fa109e1b2cea025918d1cff61a2aaee2ee2b2083`; offen
+bleiben ein nichtblockierendes MINOR (Lineage-Closure vor dem nächsten Preparation-Subject
+generalisieren) und NITs. Die folgenden Rereview-Anweisungen sind damit historisch.
+
+### Historischer Auftrag: EPIC_PREPARATION_REVIEW (Rereview) des zweifach korrigierten WS-E01-Deltas
 
 Subject **WS-E01-EP-DELTA-20260929-04**, Locator
 `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json` am vollständigen End-SHA aus

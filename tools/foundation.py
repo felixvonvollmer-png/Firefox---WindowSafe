@@ -142,11 +142,24 @@ EPIC_CORR2_ALLOWED = EPIC_CORR2_FILES | EPIC_CORR2_SUPPORT | set(EPIC_CORR_RESUL
 # Subjects whose request must satisfy the mechanical lineage closure (historical ones keep their semantics).
 LINEAGE_CLOSURE_SUBJECTS = {EPIC_CORR2_SUBJECT}
 AUTHOR_FIELDS = ("implementer", "materializer")
+# Exact epic rebinding of -04 after its independent PASS, plus one normal PR #5 merge into main.
+EPIC_CORR2_REVIEWED = "fa109e1b2cea025918d1cff61a2aaee2ee2b2083"
+EPIC_CORR2_REVIEWED_TREE = "58883dc1db31f8d3f5aecbfb41564508c1f53aed"
+EPIC_REBIND_RESULT = "reviews/results/WS-E01-EPR-DELTA-20260930-05.json"
+EPIC_REBIND_RESULT_ORIGINAL = (20849, "222a82f0bd4573d93eef05515276cbfbbd081b3baaeb699d9b3987045e7b427b")
+EPIC_REBINDING = EPIC_CORR2_DIR + "rebinding.json"
+EPIC_REBIND_AUTH = EPIC_CORR2_DIR + "integration-authorization.json"
+EPIC_REBIND_AUTH_SHA = "012bfd8e3267664719a92f8c31d996805219f287f9345b8cc02d53a17b58d7d2"
+EPIC_REBIND_FILES = {EPIC_REBINDING, EPIC_REBIND_AUTH, EPIC_REBIND_RESULT}
+EPIC_REBIND_SUPPORT = EPIC_CORR2_SUPPORT | {"tests/test_epic_rebinding.py"}
+EPIC_REBIND_ALLOWED = EPIC_REBIND_FILES | EPIC_REBIND_SUPPORT
 EPIC_VERSIONED_SUBJECTS = (EPIC_DELTA_SUBJECT, EPIC_CORR_SUBJECT, EPIC_CORR2_SUBJECT)
 # Superseded locator -> (superseding subject, reviewed head it stays bound to).
 EPIC_SUPERSEDED_AT = {
     EPIC_DELTA_SUBJECT: (EPIC_CORR_SUBJECT, EPIC_DELTA_REVIEWED),
     EPIC_CORR_SUBJECT: (EPIC_CORR2_SUBJECT, EPIC_CORR_REVIEWED),
+    # Accepted, not superseded: the rebound locator still requests the reviewed bytes.
+    EPIC_CORR2_SUBJECT: (EPIC_REBINDING, EPIC_CORR2_REVIEWED),
 }
 MANIFEST_SHA = "80203ae9f554aa4dba951d316a685bd20cbe57ef28a2912fd49608cdaf9cb6a8"
 HANDOFF_SHA = "15701c717061773d9017cf3c884a7eb0cebcb0d66b67a93dc13e41acb7d98774"
@@ -660,7 +673,7 @@ def scope(path):
     allowed |= bool(re.fullmatch(r"reviews/results/" + ID_PATTERN + r"\.json", path))
     allowed |= bool(re.fullmatch(r"reviews/dispositions/" + ID_PATTERN + r"\.json", path))
     allowed |= path in {DELTA_SUBJECT, DELTA_EVIDENCE, DELTA_BINDING} | set(DELTA_SOURCES)
-    allowed |= path in EPIC_DELTA_FILES | EPIC_CORR_FILES | EPIC_CORR2_FILES
+    allowed |= path in EPIC_DELTA_FILES | EPIC_CORR_FILES | EPIC_CORR2_FILES | {EPIC_REBINDING, EPIC_REBIND_AUTH}
     require(allowed, "outside foundation-only path scope")
     require(PurePosixPath(path).name != "manifest.json", "extension manifest prohibited")
 
@@ -849,7 +862,16 @@ def delta_integration_merges(head):
     if DELTA_BINDING not in tree_snapshot(head):
         return set()
     reviewed = delta_history(head)
-    return set(git("rev-list", "--min-parents=2", reviewed + ".." + head).decode().splitlines())
+    # Only up to the integrated foundation state; a later epic merge is validated separately.
+    integrated = EPIC_DELTA_BASE if EPIC_DELTA_SUBJECT in tree_snapshot(head) else head
+    return set(git("rev-list", "--min-parents=2", reviewed + ".." + integrated).decode().splitlines())
+
+
+def epic_delta_merges(head):
+    """The validated normal merge of the rebound epic delta, if one exists."""
+    if EPIC_REBINDING not in tree_snapshot(head):
+        return set()
+    return epic_delta_history(head)
 
 
 def delta_scope_head(head):
@@ -1006,12 +1028,30 @@ def epic_delta_history(head):
         require(EPIC_CORR_SUBJECT in tree, "second correction requires first")
         ancestor(EPIC_CORR_REVIEWED, head)
         corrected2 = set(git("rev-list", EPIC_CORR_REVIEWED + ".." + head).decode().splitlines())
+    rebound, merges = set(), set()
+    if EPIC_REBINDING in tree:
+        require(EPIC_CORR2_SUBJECT in tree, "rebinding requires reviewed subject")
+        ancestor(EPIC_CORR2_REVIEWED, head)
+        rebound = set(git("rev-list", EPIC_CORR2_REVIEWED + ".." + head).decode().splitlines())
     previous = tree_snapshot(EPIC_DELTA_BASE)
-    for revision in git("rev-list", "--reverse", EPIC_DELTA_BASE + ".." + head).decode().splitlines():
+    for revision in git("rev-list", "--reverse", "--topo-order", EPIC_DELTA_BASE + ".." + head).decode().splitlines():
         parents = git("rev-list", "--parents", "-n", "1", revision).decode().split()[1:]
+        if len(parents) == 2 and rebound and not merges:
+            # Exactly one normal merge of the rebound integration head into the bound main.
+            require(parents[0] == EPIC_DELTA_BASE and revision == head, "authorized epic delta merge required")
+            ancestor(EPIC_CORR2_REVIEWED, parents[1])
+            require(EPIC_REBINDING in tree_snapshot(parents[1])
+                    and at(parents[1], EPIC_REBINDING) == at(head, EPIC_REBINDING), "merge rebinding mismatch")
+            require(git("rev-parse", revision + "^{tree}") == git("rev-parse", parents[1] + "^{tree}"),
+                    "epic delta integration tree drift")
+            merges.add(revision)
+            previous = tree_snapshot(parents[1])
+            continue
         require(len(parents) == 1, "epic delta merges prohibited")
         changed = set(git("diff", "--name-only", parents[0], revision).decode().splitlines())
-        if revision in corrected2:
+        if revision in rebound:
+            allowed = EPIC_REBIND_ALLOWED
+        elif revision in corrected2:
             allowed = EPIC_CORR2_ALLOWED
         elif revision in corrected:
             allowed = EPIC_CORR_ALLOWED
@@ -1026,6 +1066,9 @@ def epic_delta_history(head):
         epic_correction_integrity(lambda name: at(head, name))
     if corrected2:
         epic_correction2_integrity(lambda name: at(head, name))
+    if rebound:
+        epic_rebinding_integrity(lambda name: at(head, name))
+    return merges
 
 
 def epic_correction_expected():
@@ -1224,6 +1267,59 @@ def epic_correction2_integrity(read):
         read(name)
 
 
+def epic_rebinding_expected(read, req, result):
+    """Accepted state derived from the unchanged pending -04 binding; no feature authority."""
+    pending = parse(read(EPIC_CORR2_BINDING))
+    return dict(pending,
+        status="READY_FOR_AGENT", ready_for_agent=True,
+        independent_epic_preparation_review="PASS", exact_epic_rebinding="CREATED",
+        epic_preparation_subject_immutable_reference=req["subject"],
+        epic_preparation_review_result_reference=EPIC_REBIND_RESULT,
+        epic_preparation_review_result_sha256=EPIC_REBIND_RESULT_ORIGINAL[1],
+        open_critical_blocking_major_findings="NONE",
+        open_nonblocking_finding_ids=[item["id"] for item in result["findings"] if item["status"] == "OPEN"],
+        pending_binding_reference=EPIC_CORR2_BINDING,
+        current_epic_binding_for="WS-E01",
+        historical_epic_binding="PRESERVED_SUPERSEDED_AS_CURRENT_BY_THIS_REBINDING",
+        execution_authorization_reference=EPIC_REBIND_AUTH,
+        execution_authorization_sha256=EPIC_REBIND_AUTH_SHA,
+        broad_ws_e01_execution_authorization="NOT_CREATED__SEPARATE_RECORD_REQUIRED",
+        f01_continuation_authorized=False,
+        execution_scope="EXACT_EPIC_REBINDING_AND_PR5_NORMAL_MERGE_ONLY__NO_FEATURE_EXECUTION")
+
+
+def epic_rebinding_integrity(read):
+    """Consume the independent PASS of -04 and bind the accepted epic state; never a verdict."""
+    require(commit(EPIC_CORR2_REVIEWED) == EPIC_CORR2_REVIEWED
+            and git("rev-parse", EPIC_CORR2_REVIEWED + "^{tree}").decode().strip() == EPIC_CORR2_REVIEWED_TREE
+            and EPIC_REBINDING not in tree_snapshot(EPIC_CORR2_REVIEWED), "reviewed rebinding head")
+    for name in EPIC_DELTA_FILES | EPIC_CORR_FILES | EPIC_CORR2_FILES | {EPIC_DELTA_RESULT} | set(EPIC_CORR_RESULTS):
+        require(read(name) == at(EPIC_CORR2_REVIEWED, name), "reviewed subject namespace drift")
+    raw = read(EPIC_REBIND_AUTH)
+    require(sha256(raw) == EPIC_REBIND_AUTH_SHA, "rebinding authorization hash")
+    auth = parse(raw)
+    exact = auth["EXACT_REVIEW_RESULT"]
+    require(auth["STATUS"] == "AUTHORIZED" and auth["AUTHORITY"] == "USER"
+            and auth["EXPECTED_MAIN_SHA"] == EPIC_DELTA_BASE
+            and auth["EXPECTED_REVIEWED_HEAD"] == EPIC_CORR2_REVIEWED
+            and auth["EXPECTED_REVIEWED_TREE"] == EPIC_CORR2_REVIEWED_TREE
+            and auth["REVIEWED_SUBJECT_PATH"] == EPIC_CORR2_SUBJECT
+            and (exact["TARGET"], exact["BYTES"], exact["SHA256"], exact["VERDICT"])
+                == (EPIC_REBIND_RESULT, *EPIC_REBIND_RESULT_ORIGINAL, "PASS")
+            and auth["MERGE"] == "ONE_NORMAL_MERGE_COMMIT_OF_PR5_INTO_EXPECTED_MAIN"
+            and auth["F01_CONTINUATION_AUTHORIZED"] is False
+            and auth["PRODUCT_IMPLEMENTATION_AUTHORIZED"] is False, "rebinding authorization")
+    result_raw = read(EPIC_REBIND_RESULT)
+    require((len(result_raw), sha256(result_raw)) == EPIC_REBIND_RESULT_ORIGINAL, "rebinding original result drift")
+    result = parse(result_raw)
+    req = request(EPIC_CORR2_REVIEWED, EPIC_CORR2_SUBJECT)
+    validate_result(result, req, parse(at(EPIC_CORR2_REVIEWED, CONTRACT_PATH)), PurePosixPath(EPIC_REBIND_RESULT).name)
+    require(result["verdict"] == "PASS" and result["review_type"] == "EPIC_PREPARATION_REVIEW", "epic PASS required")
+    expected = epic_rebinding_expected(read, req, result)
+    # Canonical JSON comparison also rejects type drift such as 1 for true.
+    require(json.dumps(parse(read(EPIC_REBINDING)), sort_keys=True) == json.dumps(expected, sort_keys=True),
+            "epic rebinding mismatch")
+
 def foundation_integration_head(head):
     """The integrated foundation state; a later bound epic delta is checked on its own."""
     if EPIC_DELTA_SUBJECT not in tree_snapshot(head):
@@ -1402,6 +1498,8 @@ def check(root=ROOT):
         epic_correction_integrity(lambda name: (root / name).read_bytes())
     if (root / EPIC_CORR2_SUBJECT).exists():
         epic_correction2_integrity(lambda name: (root / name).read_bytes())
+    if (root / EPIC_REBINDING).exists():
+        epic_rebinding_integrity(lambda name: (root / name).read_bytes())
     for path in files(root):
         rel = path.relative_to(root).as_posix()
         scope(rel)
@@ -1597,7 +1695,7 @@ def preparation_integration(head, cumulative):
     """
     paths = git("ls-tree", "-r", "--name-only", head, "--", "epics").decode().splitlines()
     # Only the exact merge already validated against the accepted delta binding.
-    delta_merges = delta_integration_merges(head)
+    delta_merges = delta_integration_merges(head) | epic_delta_merges(head)
     integrations = set(delta_merges)
     for path in epic_subject_paths(paths):
         baseline, reviewed, reference = epic_preparation(path, lambda name: at(head, name), head)

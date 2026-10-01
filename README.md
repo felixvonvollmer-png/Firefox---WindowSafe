@@ -11,8 +11,9 @@ angenommen und durch **WS-PFDELTA-INT-20260929-01** / **WS-EA-20260929-01** inte
 [Acceptance-Binding](foundation/deltas/WS-PFDELTA-MAT-20260928-01/binding.json),
 [reviewed Subject](foundation/deltas/WS-PFDELTA-MAT-20260928-01/subject.json) und [Evidence](foundation/deltas/WS-PFDELTA-MAT-20260928-01/evidence.md).
 Externer Project-Context-Sync: **CONFIRMED_BY_USER** (WS-EXTCTX-SYNC-20260929-01).
-Aktuelles Gate: zweifach korrigiertes WS-E01 Epic Preparation Delta **WS-E01-EP-DELTA-20260929-04**
-zum unabhängigen Rereview, Subject `epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json`.
+Aktuell: WS-E01 Epic Preparation Delta **WS-E01-EP-DELTA-20260929-04** ist unabhängig mit
+WS-E01-EPR-DELTA-20260930-05 **PASS** angenommen und exakt rebound (READY_FOR_AGENT,
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/rebinding.json`).
 Die Vorversionen -02 (CORRECTION_REQUIRED) und -03 (BLOCKED, danach CORRECTION_REQUIRED als
 nutzerautorisierte rekonstruierte Ersatz-Evidence) bleiben historisch unter `reviews/results/`.
 Historische WS-E01 Preparation bleibt unverändert angenommen; ihre Annahme ersetzt

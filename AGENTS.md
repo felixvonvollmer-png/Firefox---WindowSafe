@@ -18,10 +18,12 @@ Record im Epic-Delta; das Foundation-Binding bleibt unverändert).
 -03 (`dee7ab5c9c5b53accd8602105e87523510582e40`) erhielt WS-E01-EPR-DELTA-20260929-02 **BLOCKED**
 und die nutzerautorisierte Ersatz-Evidence WS-E01-EPR-DELTA-20260930-04 **CORRECTION_REQUIRED**
 (`RECONSTRUCTED_FROM_REVIEW_TRANSCRIPT`; das Original -20260929-03 ist verloren). Aktuell:
-**WS-E01-EP-DELTA-20260929-04** unter WS-EA-20260930-01, Subject
-`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/subject.json`, Binding REVIEW_REQUIRED; die
-Reviewer-Ausschlussmenge muss die transitiv abgeleitete Autoren-/Materializerlinie enthalten.
-Danach frischer unabhängiger Rereview, exaktes Rebinding, separate breite WS-E01-Autorisierung.
+**WS-E01-EP-DELTA-20260929-04** (WS-EA-20260930-01) am reviewed Head
+`fa109e1b2cea025918d1cff61a2aaee2ee2b2083` erhielt das unabhängige WS-E01-EPR-DELTA-20260930-05
+**PASS**. Exaktes Rebinding READY_FOR_AGENT:
+`epics/WS-E01/deltas/WS-E01-EP-DELTA-20260929-04/rebinding.json` unter WS-EA-20260930-02 (der
+Pending-Binding und das historische WS-E01-Binding bleiben unverändert). Feature-Arbeit erst
+mit der separaten breiten WS-E01 Execution Authorization.
 
 WS-P05 ergänzt Product Truth und TF r6 durch exakt gebundene Originale im Kontextrouter.
 F01 / PR #3 bleibt ausschließlich externe Read-only-Evidence am Head

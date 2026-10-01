@@ -30,8 +30,10 @@ der Ausschlussmenge. -03 bleibt historisch unverändert.
 (WS-EA-20260930-01) schließt diese Fehlerklasse: Der Harness leitet die transitiven Autoren
 und Materializer der referenzierten Preparation-/Correction-/Supersession-Linie ab und
 lehnt Request/Check ab, wenn eine davon in `review_excluded_identities` fehlt. Fachlich
-unverändert; Binding REVIEW_REQUIRED. Danach frischer unabhängiger Rereview, exaktes
-Rebinding und separate breite WS-E01-Ausführungsautorisierung.
+unverändert; Pending-Binding REVIEW_REQUIRED bleibt erhalten. Unabhängiger Rereview
+WS-E01-EPR-DELTA-20260930-05 am `fa109e1b2cea025918d1cff61a2aaee2ee2b2083`: **PASS**.
+Exaktes Rebinding **READY_FOR_AGENT** in `rebinding.json` (WS-EA-20260930-02); es ist ab jetzt
+das aktuelle WS-E01-Binding. Featurestart erst mit separater breiter WS-E01-Autorisierung.
 F01 / PR #3 bleibt Draft/ungemergt und gestoppt, Head `7d66ca5b025c8f748d7f97b961c496ee450daaa7`.
 Nach EPIC_CONVERGED stoppt neue Epic-Arbeit bis Project-LLM-/Nutzer-Richtungsreview;
 der Nutzer bestätigt die nächste Epic-Auswahl vor neuer Preparation.

@@ -29,6 +29,7 @@ jobs:
           python3 tools/foundation.py validate-result --file reviews/results/WS-E01-EPR-DELTA-20260929-01.json
           python3 tools/foundation.py validate-result --file reviews/results/WS-E01-EPR-DELTA-20260929-02.json
           python3 tools/foundation.py validate-result --file reviews/results/WS-E01-EPR-DELTA-20260930-04.json
+          python3 tools/foundation.py validate-result --file reviews/results/WS-E01-EPR-DELTA-20260930-05.json
       - name: Exact epic preparation request
         run: python3 tools/foundation.py request --sha HEAD --subject epics/WS-E01/subject.json
       - name: Exact versioned foundation delta request

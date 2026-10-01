@@ -168,6 +168,9 @@ und Workflows dürfen geändert, aber nicht gelöscht werden. Jede Änderung an 
 CI ist ein ELEVATED-Inkrement mit unabhängigem technischem Review vor Integration.
 Merge-Ablauf: Feature-Concurrency ONE; ein PR-Branch startet am aktuellen main und wird mit
 `gh pr merge --merge --match-head-commit <head>` integriert, solange main nicht weitergezogen ist.
+Der Harness verlangt dafür: erster Elternteil ist Vorfahre des PR-Heads und Merge-Baum = PR-Head-
+Baum (TR-PR6-02-F1); geänderte Pfade werden per `diff-tree` unabhängig von Nutzer-Diff-Konfiguration
+ermittelt, und `check` lehnt nicht reguläre getrackte Dateimodi ab.
 Kein GitHub-„Update branch“-Merge: ein zurückliegender PR wird als neuer Branch vom aktuellen
 main neu aufgebaut, nie durch Merge von main in den Branch.
 

@@ -9,8 +9,8 @@ disposable profile, no real profile, no product code, no installer/default/signi
 ## Start
 
 On the Windows host previously bound for F01 (Windows 11, host `Boss`), in a clean checkout of
-`felixvonvollmer-png/Firefox---WindowSafe`, branch `feature/ws-e01-f01-closure` at the head named
-in the PR description. Verify repository, branch, head, clean worktree/index, Python 3.14.4.
+`felixvonvollmer-png/Firefox---WindowSafe`: create a new branch from the current `main` (which
+contains this handoff). Verify repository, main head, clean worktree/index, Python 3.14.4.
 Use the already bound Firefox 156.0 Stable Windows binary (build 20260909172920, SHA-256
 `ce320f543a353bb55c6804af320df0b7807eb3feb822ea093a1ae7164c066970`, see
 [win-stable-download.json](win-stable-download.json)); re-download into `build/f01` only with
@@ -46,4 +46,5 @@ Reuse `closure_probe.py` (driver operations `map-cache`, `idb-fill`, `release`, 
 Add `features/WS-E01-F01/evidence/closure2-windows-run1.json`, `-run2.json`, an artifact-hash
 file and a short `closure2-windows.md` (environment, results, limits). Run
 `python3 tools/foundation.py check` and the qualification tests, commit only those paths plus
-the instrument source, push the same branch, and stop. No verdict, no acceptance, no merge.
+the instrument source, push the new branch, open a PR to main, and stop. No verdict, no
+acceptance, no merge.

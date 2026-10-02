@@ -14,8 +14,11 @@ named by the Epic delta: (a) WS-P05 fallback, (b) Ubuntu display/geometry/state,
 
 **Correction after independent technical review WS-E01-TR-PR7-20261002-01.** The first version
 of this report overstated two results: it called the VmHWM delta a conservative upper bound
-without testing undercount, and it said sizes requested after creation are ignored (a read-back
-race). Runs 3 and 4 below use a corrected instrument; runs 1 and 2 remain as historical evidence.
+without testing undercount, and it said sizes requested after creation are ignored, which no
+committed run supports (an error of the report, not of the runs). After the second review
+WS-E01-TR-PR7-20261002-02 the deferral of measurement-uncertainty and Windows interval items to
+F05 was withdrawn: they are F01 pre-implementation work (TF §§9.3/10.2). Runs 3 and 4 use a
+corrected instrument; runs 1 and 2 remain as historical evidence.
 
 ## Environment and instrument
 
@@ -49,9 +52,10 @@ visible general limitation remains a product/UX obligation for F03/F05.
 - Position: reported `left/top` is always 0 on this Wayland session; requested positions
   (including off-screen -1800/-10000) have no observable effect.
 - Size: initial size at creation is honored (952x702 for a 900x650 request including
-  decorations); sizes requested later are applied (800x600, 850x600 in runs 3/4, stable after
-  three equal read-backs 100 ms apart). Run 2's immediate read-back of 952x702 was a race.
-- States: `maximized`, `normal`, `fullscreen` complete and report correctly.
+  decorations); sizes requested later are applied in all four runs (800x600, then 850x600; in
+  runs 3/4 immediate and settled read-backs are equal).
+- States: `maximized`, `normal`, `fullscreen` complete and report correctly. The maximized size
+  was 1920x1080 in runs 1/2 and 1853x1048 in runs 3/4; the cause is not determined.
   `windows.update({state:'minimized'})` does not resolve within 3 s (runs 3/4) or 30 s (runs 1/2)
   and the window stays `normal`; the browser remains usable.
 
@@ -84,24 +88,52 @@ condition, not claimed everyday behavior):
    - Detection: a 24 MiB typed-array pulse gave +25.5 to +25.8 MB (runs 1–4); a point reporter
      sample after the pulse never sees it.
    - Undercount risk (free-but-resident reuse), runs 3/4: after dropping 32 MiB of small strings,
-     a 24 MiB small-string pulse gave only +29.1/+29.2 MB **without** minimize before the reset,
-     but +39.9/+40.9 MB **with** minimize. Reuse of resident freed memory therefore causes real
-     undercount, and the minimize condition removed it in these trials.
+     a 24 MiB small-string pulse gave +29.1/+29.2 MB **without** minimize before the reset, but
+     +39.9/+40.9 MB **with** minimize (an independent rerun: 32.2/36.1 vs 40.9/41.4 MB). Reuse of
+     resident freed memory causes real undercount; the condition **reduced** it in these trials.
+     There is no fresh-state control, the trial order was fixed and n is small, so absence of
+     residual undercount is not shown. Repetitions with order alternation and a fresh-state
+     control are part of the open calibration below.
    - Status: a measured procedure with a stated condition and demonstrated sensitivity, **not** a
-     proven upper bound. Final F05 peak claims must additionally cross-check against paired
-     whole-cgroup `memory.peak`/RSS evidence; an unexplained discrepancy blocks a PASS.
+     proven upper bound. Binding cross-check rule for every later peak claim: the paired
+     whole-cgroup `memory.peak` difference (B−A, same operation) is reported next to the VmHWM
+     delta; if it exceeds the VmHWM delta by more than max(2 MiB, 25 %), the peak claim is not a
+     PASS until the difference is explained.
 4. **Native/shared residual:** paired A/B cgroup `memory.current`/`memory.peak` and process RSS,
    reported separately and never as zero; not interchangeable with (1) or (3).
 5. CPU/I-O/latency/load protocol unchanged from METHOD-01.
+
+## (d) Platform finding: API-created discarded tabs in tab groups load the parent process
+
+Found while building the calibration driver (`calibration_probe.py`, smoke runs in
+[closure2-calibration-smoke.json](closure2-calibration-smoke.json)). On this Ubuntu/Wayland host
+with Firefox 156, a window whose tab group contains several tabs that an extension created with
+`tabs.create({discarded:true})` keeps the **parent process at about 113-134 % of one core**,
+measured repeatedly after 15 s to 240 s of rest. Isolation (one window each, 10 s per-process
+CPU samples): one group of 9 such tabs is enough; collapsing the groups, removing containers,
+mute state or titles does not change it; a group of 2 such tabs and groups formed from loaded
+tabs that are discarded afterwards stay quiet. After a normal quit and native session restore of
+the same windows (same groups, 45-451 pending tabs) the parent process is at about 0.1-1.4 %.
+
+Consequences, within existing Product Truth and Technical Foundation (no new decision):
+- The calibration and later A/B workloads realize R500/R2000 through a native restart, so the
+  measured browser is in the state a user's browser has after start; the API-path load is
+  recorded in every run (`api_realized_settled_10s` vs `native_restored_settled_10s`).
+- F03 restore must not leave the browser in this state. Creating background tabs discarded and
+  grouping them is exactly the planned restore path (WS-RESTORE: background tabs unloaded,
+  groups reconstructed). F03 must qualify a restore order that is both unloaded and quiet, or
+  show the limitation visibly; silently loading all background tabs is not allowed
+  (WS-RESTORE, TF §6.3). This is recorded as a bound F03 qualification obligation, not solved here.
+- Windows was not tested for this; the Windows handoff includes it.
 
 ## Dispositions of remaining measurement work
 
 | Item | Disposition |
 |---|---|
-| A/B paired runs without/with WindowSafe | Bound protocol (METHOD-01/02); executed with the real add-on in F05 (r6 §9.1: implementation measurements follow later, before Feature Acceptance). Not run here. |
-| Instrument overhead and paired uncertainty | Minimize/report run outside measured intervals by protocol; `clear_refs` is a single write. Overhead on/off and pair variance are measured and reported in F05; OPEN until then. |
-| Windows add-on hard-peak instrument | OPEN — the only F01 gate left; [handoff](closure2-windows-handoff.md). |
-| Windows complete short-lived PID identity coverage, final interval boundaries | OPEN for F05 Windows measurements; Job aggregate lifetime accounting is already qualified. |
+| A/B paired runs with the real add-on | Executed in F05 against the bound protocol (r6 §9.1: implementation measurements before Feature Acceptance). |
+| Ubuntu calibration: instrument/driver overhead and known uncertainty | **F01 OPEN** (TF §9.3: bound before F02). Instrument ready: [smoke run](closure2-calibration-smoke.json) R500, 2 pairs, shortened intervals (L10 20 s, idle 10 s), all 2000 events on time; the valid pair differs by 0.27 % (L10), 0.10 % (B300), 0.001 % (idle) of one core; the other pair was correctly rejected for 5-11 % foreign host load. Reuse trials: with-minimize equals the fresh-state control within 1 MB, without-minimize is about 11 MB lower. Smoke values are instrument evidence, not the calibration; A/A pairs (both without add-on) over the real L10 600 s interval, B300 window and idle 600 s for R500 and R2000, plus repeated reuse trials with order alternation and a fresh-state control; instrument [calibration_probe.py](../../../qualification/ws-e01-f01/calibration_probe.py). Needs a multi-hour quiet visible-desktop window on the Ubuntu host. |
+| Windows add-on hard-peak instrument | **F01 OPEN**; [handoff](closure2-windows-handoff.md). |
+| Windows calibration, interval boundaries, short-lived PID identity coverage | **F01 OPEN**; same handoff. Job aggregate lifetime accounting is already qualified. |
 
 ## Gate dispositions
 
@@ -110,9 +142,10 @@ condition, not claimed everyday behavior):
 | WS-P05 fallback | CLOSED on Ubuntu; Windows reused (same API class and path) |
 | SPECIAL_NATIVE_GUI_CASES (Ubuntu display/state) | CLOSED with recorded Wayland limits |
 | WINDOWS_DESKTOP | Its WebApp boundary part is answered by WS-P05 and (a); its remaining measurement part is tracked as the Windows peak gate below |
-| MEASUREMENT_FINAL_ATTRIBUTION | Ubuntu: method qualified with conditions (METHOD-02); Windows add-on hard peak OPEN |
+| MEASUREMENT_FINAL_ATTRIBUTION | Ubuntu: memory method defined with conditions (METHOD-02), calibration OPEN; Windows OPEN |
 | TARGET_EQUIVALENT_RESTART | Remains CLOSED, not repeated |
 
 Pre-implementation consequence (TF §§9.1/9.3): the measurement method must be bound for both
-target OSes before the affected product implementation (F02). F01 therefore stays open until the
-Windows peak instrument run is recorded. No F02 product code starts before that.
+target OSes, including known uncertainty, before the affected product implementation (F02). F01
+therefore stays open until the Ubuntu calibration and the Windows runs are recorded. No F02 product
+code starts before that.

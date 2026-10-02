@@ -1,7 +1,7 @@
 {
   "feature_id": "WS-E01-F01",
   "start_baseline_sha": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
-  "status": "WS-E01-F01_OPEN__WINDOWS_PEAK_INSTRUMENT_RUN_REQUIRED",
+  "status": "WS-E01-F01_OPEN__CALIBRATION_AND_WINDOWS_RUNS_REQUIRED",
   "risk_class": "ELEVATED",
   "product_implementation_started": false,
   "independent_technical_review": "PENDING",
@@ -15,6 +15,7 @@
     "features/WS-E01-F01/evidence/changed-paths.json",
     "features/WS-E01-F01/evidence/cleanup-verification.json",
     "features/WS-E01-F01/evidence/closure2-artifacts.json",
+    "features/WS-E01-F01/evidence/closure2-calibration-smoke.json",
     "features/WS-E01-F01/evidence/closure2-ubuntu-run1.json",
     "features/WS-E01-F01/evidence/closure2-ubuntu-run2.json",
     "features/WS-E01-F01/evidence/closure2-ubuntu-run3.json",
@@ -61,6 +62,8 @@
     "features/WS-E01-F01/evidence/target-ubuntu-restart.json",
     "features/WS-E01-F01/evidence/target-unbranded-download.json",
     "features/WS-E01-F01/evidence/target-windows-build-locator.json",
+    "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261002-01.md",
+    "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261002-02.md",
     "features/WS-E01-F01/evidence/toolchain-check.md",
     "features/WS-E01-F01/evidence/toolchain-decision.md",
     "features/WS-E01-F01/evidence/ubuntu-cgroup-cleanup-attempt-samples.json",
@@ -112,6 +115,7 @@
     "foundation/inputs/inputs/WindowSafe_Product_Definition_WS-PD-20260917-01.md",
     "foundation/inputs/inputs/WindowSafe_Technical_Foundation_WS-TFP-20260917-01_r6.md",
     "qualification/ws-e01-f01/README.md",
+    "qualification/ws-e01-f01/calibration_probe.py",
     "qualification/ws-e01-f01/cgroup_dry_run.py",
     "qualification/ws-e01-f01/closure_probe.py",
     "qualification/ws-e01-f01/continuation.py",
@@ -136,7 +140,9 @@
     "tests/test_windows_job.py"
   ],
   "open_gates": [
-    "MEASUREMENT_FINAL_ATTRIBUTION__WINDOWS_ADDON_HARD_PEAK"
+    "MEASUREMENT_UBUNTU_CALIBRATION__OVERHEAD_AND_KNOWN_UNCERTAINTY",
+    "MEASUREMENT_FINAL_ATTRIBUTION__WINDOWS_ADDON_HARD_PEAK",
+    "MEASUREMENT_WINDOWS_CALIBRATION_INTERVALS_AND_PID_COVERAGE"
   ],
   "target_environments": {
     "Ubuntu Desktop": "QUALIFIED_FOR_F01_SCOPE",
@@ -148,7 +154,7 @@
     "Execution-phase harness and routers merged via PR #6 (main f83845a1dd4b78bd010e6477612d95a99b1a8152)",
     "Harness fixes for TR-PR6-02 in this PR (tools/foundation.py, tests/test_epic_execution.py, foundation/engineering.md)"
   ],
-  "required_next_gate": "One Windows run of the nested-Job add-on peak instrument per closure2-windows-handoff.md; then independent F01 technical review and Feature Acceptance",
+  "required_next_gate": "Ubuntu calibration runs (multi-hour quiet visible desktop) and the Windows session per closure2-windows-handoff.md; then independent F01 technical review and Feature Acceptance",
   "merge_authorized": false,
   "current_report": "features/WS-E01-F01/evidence/closure2.md",
   "continuation_manifest": "features/WS-E01-F01/evidence/closure2-artifacts.json",
@@ -178,9 +184,8 @@
     }
   },
   "execution_authorization": "epics/WS-E01/evidence/broad-execution-authorization.json",
-  "open_for_f05": [
-    "A/B paired runs with the real add-on",
-    "instrument overhead and paired uncertainty",
-    "Windows short-lived PID identity coverage and final interval boundaries"
-  ]
+  "bound_obligations_for_later_features": {
+    "F03": "Qualify an unloaded and quiet restore order for grouped background tabs (closure2 (d)) or show the limitation; no silent mass loading",
+    "F05": "A/B paired runs with the real add-on under METHOD-01/02 and the peak cross-check rule"
+  }
 }

@@ -1,0 +1,595 @@
+{
+  "evidence_class": "UBUNTU_RUNTIME_VERIFIED",
+  "qualification_only": true,
+  "kind": "A_A_CALIBRATION",
+  "host": "felix-A320M-S2H-V2",
+  "os": "Linux-7.0.0-34-generic-x86_64-with-glibc2.43",
+  "cpus": 6,
+  "session": {
+    "XDG_SESSION_TYPE": "wayland",
+    "XDG_CURRENT_DESKTOP": "ubuntu:GNOME"
+  },
+  "firefox": {
+    "version": "156.0",
+    "build_id": "20260909172920",
+    "binary_sha256": "7ea3daf0cdbe5ec27e4f2e7c644c25032169f8a2f2f15e438ff4379bf737a78a"
+  },
+  "driver_sources": {
+    "run_probe.py": "43f670bcff81ab75e962520b31fb10e9515faf7dac2da14d9858081be4711337",
+    "target_probe.py": "7ec69283ffc4b27baaf6327cfffebbb8f3f5c541205f4bfe6b94b38f2afae1ae",
+    "measure.py": "d4e7b322ec870a47ae130a0c692e28527b560f8ed574f2930e260be6cab8f094",
+    "windows_job.py": "61512c629784d92ca555fb6f45070a12a7bc97019a6eb52eef433de256d94bb3"
+  },
+  "calibration_probe_sha256": "a6d987063581e763ef64bad5006274495d3b6500d3dbd7a8ede6fa552ac9a831",
+  "profile": "R500",
+  "pairs": 2,
+  "interference_pct": 5.0,
+  "runs": [
+    {
+      "run": "p0-first",
+      "profile": "R500",
+      "addon_under_test": "NONE_A_A_CALIBRATION",
+      "probe_sha256": "58164cac91132bca68f94c61439691f4d40580a81389bc0550fb1c475f44f1ba",
+      "fixture_tabs": 500,
+      "settings": {
+        "warmup": 20,
+        "l10_seconds": 20,
+        "idle_seconds": 10,
+        "reuse_trials": true,
+        "reuse_order": [
+          "without-minimize",
+          "with-minimize",
+          "fresh-control"
+        ]
+      },
+      "intervals": {
+        "api_realized_settled_10s": {
+          "wall_s": 10.000068302999352,
+          "cgroup_cpu_s": 11.012188,
+          "cgroup_cpu_pct_one_core": 110.12112783966766,
+          "compositor_cpu_pct_one_core": 14.599900278302075,
+          "host_busy_pct_all_cores": 25.922804651946738,
+          "other_host_pct_all_cores": 5.135966632285115,
+          "driver": null
+        },
+        "native_restored_settled_10s": {
+          "wall_s": 10.000069145999078,
+          "cgroup_cpu_s": 0.007682,
+          "cgroup_cpu_pct_one_core": 0.07681946882410795,
+          "compositor_cpu_pct_one_core": 14.399900430449811,
+          "host_busy_pct_all_cores": 7.778521244563399,
+          "other_host_pct_all_cores": 5.365734594684413,
+          "driver": null
+        },
+        "pre_host_30s": {
+          "wall_s": 30.000062589000663,
+          "cgroup_cpu_s": 0.360561,
+          "cgroup_cpu_pct_one_core": 1.2018674925438237,
+          "compositor_cpu_pct_one_core": 13.86663773670005,
+          "host_busy_pct_all_cores": 7.222997488138431,
+          "other_host_pct_all_cores": 4.711579949931119,
+          "driver": null
+        },
+        "L10": {
+          "wall_s": 21.00006640799984,
+          "cgroup_cpu_s": 5.565954,
+          "cgroup_cpu_pct_one_core": 26.504459042470867,
+          "compositor_cpu_pct_one_core": 16.380900579864615,
+          "host_busy_pct_all_cores": 12.515964240102171,
+          "other_host_pct_all_cores": 5.368404303046257,
+          "driver": {
+            "kind": "L10",
+            "scheduled": 200,
+            "delivered": 200,
+            "failed": 0,
+            "late": 0,
+            "observedEvents": 218,
+            "elapsedMs": 19903
+          }
+        },
+        "B300": {
+          "wall_s": 10.000066231999881,
+          "cgroup_cpu_s": 1.775507,
+          "cgroup_cpu_pct_one_core": 17.75495240539944,
+          "compositor_cpu_pct_one_core": 15.499897341080114,
+          "host_busy_pct_all_cores": 11.107393777183004,
+          "other_host_pct_all_cores": 5.5649188194364125,
+          "driver": {
+            "kind": "B300",
+            "scheduled": 300,
+            "delivered": 300,
+            "failed": 0,
+            "late": 0,
+            "observedEvents": 306,
+            "elapsedMs": 3004
+          }
+        },
+        "idle": {
+          "wall_s": 10.000064369000029,
+          "cgroup_cpu_s": 0.010815,
+          "cgroup_cpu_pct_one_core": 0.1081493038537457,
+          "compositor_cpu_pct_one_core": 14.299907952922457,
+          "host_busy_pct_all_cores": 7.839195979899498,
+          "other_host_pct_all_cores": 5.437853103770131,
+          "driver": null
+        }
+      },
+      "cgroup_realize": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-d686fc2edad1462b8443704bfc7100a2.service",
+      "realize": {
+        "windows": 10,
+        "created": 500,
+        "tabsTotal": 502,
+        "workloadTabs": 482,
+        "seconds": 29.780130869999994
+      },
+      "cgroup": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-8f6832b76b6749049282ce053ed453c8.service",
+      "adopted": {
+        "tabsTotal": 503,
+        "workloadTabs": 500,
+        "groups": 50,
+        "nonSynthetic": [
+          "chrome://browser/content/blanktab.html",
+          "moz-extension://9fb2290e-58d6-4e09-9f0d-2d2aca5317e7/driver.",
+          "moz-extension://9fb2290e-58d6-4e09-9f0d-2d2aca5317e7/driver."
+        ],
+        "discarded": 451,
+        "windows": 11,
+        "missingSyntheticIds": []
+      },
+      "reuse_trials": [
+        {
+          "kind": "without-minimize",
+          "hwm_delta_bytes": 30724096
+        },
+        {
+          "kind": "with-minimize",
+          "hwm_delta_bytes": 40361984
+        },
+        {
+          "kind": "fresh-control",
+          "hwm_delta_bytes": 40415232
+        }
+      ],
+      "status": "COMPLETED",
+      "cleanup": "OWN_PROFILE_REMOVED__OWN_CGROUP_EXITED"
+    },
+    {
+      "run": "p0-second",
+      "profile": "R500",
+      "addon_under_test": "NONE_A_A_CALIBRATION",
+      "probe_sha256": "58164cac91132bca68f94c61439691f4d40580a81389bc0550fb1c475f44f1ba",
+      "fixture_tabs": 500,
+      "settings": {
+        "warmup": 20,
+        "l10_seconds": 20,
+        "idle_seconds": 10,
+        "reuse_trials": true,
+        "reuse_order": [
+          "fresh-control",
+          "with-minimize",
+          "without-minimize"
+        ]
+      },
+      "intervals": {
+        "api_realized_settled_10s": {
+          "wall_s": 10.000063104000219,
+          "cgroup_cpu_s": 11.009437,
+          "cgroup_cpu_pct_one_core": 110.0936752648692,
+          "compositor_cpu_pct_one_core": 14.799906606669024,
+          "host_busy_pct_all_cores": 27.504244482173174,
+          "other_host_pct_all_cores": 6.688647503583468,
+          "driver": null
+        },
+        "native_restored_settled_10s": {
+          "wall_s": 10.000066010999944,
+          "cgroup_cpu_s": 0.006689,
+          "cgroup_cpu_pct_one_core": 0.06688955845533606,
+          "compositor_cpu_pct_one_core": 14.099906925104476,
+          "host_busy_pct_all_cores": 7.53516409912927,
+          "other_host_pct_all_cores": 5.174031351869301,
+          "driver": null
+        },
+        "pre_host_30s": {
+          "wall_s": 30.000067644999945,
+          "cgroup_cpu_s": 0.371039,
+          "cgroup_cpu_pct_one_core": 1.2367938779026066,
+          "compositor_cpu_pct_one_core": 14.133301465094107,
+          "host_busy_pct_all_cores": 8.416531875732055,
+          "other_host_pct_all_cores": 5.854849318565936,
+          "driver": null
+        },
+        "L10": {
+          "wall_s": 21.00006732700058,
+          "cgroup_cpu_s": 5.584182,
+          "cgroup_cpu_pct_one_core": 26.59125760430399,
+          "compositor_cpu_pct_one_core": 17.14280218221655,
+          "host_busy_pct_all_cores": 13.794757033248082,
+          "other_host_pct_all_cores": 6.505747068827993,
+          "driver": {
+            "kind": "L10",
+            "scheduled": 200,
+            "delivered": 200,
+            "failed": 0,
+            "late": 0,
+            "observedEvents": 218,
+            "elapsedMs": 19903
+          }
+        },
+        "B300": {
+          "wall_s": 10.000067504000981,
+          "cgroup_cpu_s": 1.787785,
+          "cgroup_cpu_pct_one_core": 17.877729318174257,
+          "compositor_cpu_pct_one_core": 16.09989131929206,
+          "host_busy_pct_all_cores": 15.128162171217959,
+          "other_host_pct_all_cores": 9.465225398306906,
+          "driver": {
+            "kind": "B300",
+            "scheduled": 300,
+            "delivered": 300,
+            "failed": 0,
+            "late": 0,
+            "observedEvents": 306,
+            "elapsedMs": 3003
+          }
+        },
+        "idle": {
+          "wall_s": 10.00006590400153,
+          "cgroup_cpu_s": 0.019071,
+          "cgroup_cpu_pct_one_core": 0.19070874315306993,
+          "compositor_cpu_pct_one_core": 14.9999011446492,
+          "host_busy_pct_all_cores": 13.353413654618475,
+          "other_host_pct_all_cores": 10.821645339984762,
+          "driver": null
+        }
+      },
+      "cgroup_realize": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-338b4330a2504394a5dc3eacb3b724a6.service",
+      "realize": {
+        "windows": 10,
+        "created": 500,
+        "tabsTotal": 502,
+        "workloadTabs": 482,
+        "seconds": 30.58029896900007
+      },
+      "cgroup": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-bef2adfa5f2f4774aff926836866fd26.service",
+      "adopted": {
+        "tabsTotal": 503,
+        "workloadTabs": 500,
+        "groups": 50,
+        "nonSynthetic": [
+          "chrome://browser/content/blanktab.html",
+          "moz-extension://24f08fa9-60be-441d-b044-7cdf6a7f45a7/driver.",
+          "moz-extension://24f08fa9-60be-441d-b044-7cdf6a7f45a7/driver."
+        ],
+        "discarded": 451,
+        "windows": 11,
+        "missingSyntheticIds": []
+      },
+      "reuse_trials": [
+        {
+          "kind": "fresh-control",
+          "hwm_delta_bytes": 42070016
+        },
+        {
+          "kind": "with-minimize",
+          "hwm_delta_bytes": 40837120
+        },
+        {
+          "kind": "without-minimize",
+          "hwm_delta_bytes": 31084544
+        }
+      ],
+      "status": "COMPLETED",
+      "cleanup": "OWN_PROFILE_REMOVED__OWN_CGROUP_EXITED"
+    },
+    {
+      "run": "p1-first",
+      "profile": "R500",
+      "addon_under_test": "NONE_A_A_CALIBRATION",
+      "probe_sha256": "58164cac91132bca68f94c61439691f4d40580a81389bc0550fb1c475f44f1ba",
+      "fixture_tabs": 500,
+      "settings": {
+        "warmup": 20,
+        "l10_seconds": 20,
+        "idle_seconds": 10,
+        "reuse_trials": true,
+        "reuse_order": [
+          "with-minimize",
+          "fresh-control",
+          "without-minimize"
+        ]
+      },
+      "intervals": {
+        "api_realized_settled_10s": {
+          "wall_s": 10.00003730500066,
+          "cgroup_cpu_s": 11.423511,
+          "cgroup_cpu_pct_one_core": 114.23468384750437,
+          "compositor_cpu_pct_one_core": 12.599952995874517,
+          "host_busy_pct_all_cores": 23.19134550371873,
+          "other_host_pct_all_cores": 2.052239363155582,
+          "driver": null
+        },
+        "native_restored_settled_10s": {
+          "wall_s": 10.000065143000029,
+          "cgroup_cpu_s": 0.009389,
+          "cgroup_cpu_pct_one_core": 0.09388938837635702,
+          "compositor_cpu_pct_one_core": 11.399925737463736,
+          "host_busy_pct_all_cores": 4.543176883247035,
+          "other_host_pct_all_cores": 2.627541028940353,
+          "driver": null
+        },
+        "pre_host_30s": {
+          "wall_s": 30.000064472000304,
+          "cgroup_cpu_s": 0.351187,
+          "cgroup_cpu_pct_one_core": 1.170620817591143,
+          "compositor_cpu_pct_one_core": 10.399977649754593,
+          "host_busy_pct_all_cores": 3.392568659127625,
+          "other_host_pct_all_cores": 1.4641355812366692,
+          "driver": null
+        },
+        "L10": {
+          "wall_s": 21.000065829999585,
+          "cgroup_cpu_s": 5.257884,
+          "cgroup_cpu_pct_one_core": 25.03746437065385,
+          "compositor_cpu_pct_one_core": 13.380910434984363,
+          "host_busy_pct_all_cores": 7.621173469387755,
+          "other_host_pct_all_cores": 1.218111001781386,
+          "driver": {
+            "kind": "L10",
+            "scheduled": 200,
+            "delivered": 200,
+            "failed": 0,
+            "late": 0,
+            "observedEvents": 218,
+            "elapsedMs": 19903
+          }
+        },
+        "B300": {
+          "wall_s": 10.000066392000008,
+          "cgroup_cpu_s": 1.701706,
+          "cgroup_cpu_pct_one_core": 17.016947021085326,
+          "compositor_cpu_pct_one_core": 12.19991900229775,
+          "host_busy_pct_all_cores": 6.444593237361902,
+          "other_host_pct_all_cores": 1.5751155667980559,
+          "driver": {
+            "kind": "B300",
+            "scheduled": 300,
+            "delivered": 300,
+            "failed": 0,
+            "late": 0,
+            "observedEvents": 306,
+            "elapsedMs": 3004
+          }
+        },
+        "idle": {
+          "wall_s": 10.000065459000325,
+          "cgroup_cpu_s": 0.009524,
+          "cgroup_cpu_pct_one_core": 0.0952393765725618,
+          "compositor_cpu_pct_one_core": 10.299932577671004,
+          "host_busy_pct_all_cores": 2.837116154873164,
+          "other_host_pct_all_cores": 1.1045874958325699,
+          "driver": null
+        }
+      },
+      "cgroup_realize": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-0985b0f975ce4b5b8cf37872972b94c8.service",
+      "realize": {
+        "windows": 10,
+        "created": 500,
+        "tabsTotal": 502,
+        "workloadTabs": 482,
+        "seconds": 31.626500840999142
+      },
+      "cgroup": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-9220f14a52d5456ca3072f234d4da2dc.service",
+      "adopted": {
+        "tabsTotal": 503,
+        "workloadTabs": 500,
+        "groups": 50,
+        "nonSynthetic": [
+          "chrome://browser/content/blanktab.html",
+          "moz-extension://f62644bb-1d66-4714-b474-310bf5686dad/driver.",
+          "moz-extension://f62644bb-1d66-4714-b474-310bf5686dad/driver."
+        ],
+        "discarded": 451,
+        "windows": 11,
+        "missingSyntheticIds": []
+      },
+      "reuse_trials": [
+        {
+          "kind": "with-minimize",
+          "hwm_delta_bytes": 40214528
+        },
+        {
+          "kind": "fresh-control",
+          "hwm_delta_bytes": 41426944
+        },
+        {
+          "kind": "without-minimize",
+          "hwm_delta_bytes": 29966336
+        }
+      ],
+      "status": "COMPLETED",
+      "cleanup": "OWN_PROFILE_REMOVED__OWN_CGROUP_EXITED"
+    },
+    {
+      "run": "p1-second",
+      "profile": "R500",
+      "addon_under_test": "NONE_A_A_CALIBRATION",
+      "probe_sha256": "58164cac91132bca68f94c61439691f4d40580a81389bc0550fb1c475f44f1ba",
+      "fixture_tabs": 500,
+      "settings": {
+        "warmup": 20,
+        "l10_seconds": 20,
+        "idle_seconds": 10,
+        "reuse_trials": true,
+        "reuse_order": [
+          "without-minimize",
+          "with-minimize",
+          "fresh-control"
+        ]
+      },
+      "intervals": {
+        "api_realized_settled_10s": {
+          "wall_s": 10.000061515998823,
+          "cgroup_cpu_s": 11.451359,
+          "cgroup_cpu_pct_one_core": 114.51288556254666,
+          "compositor_cpu_pct_one_core": 10.89993294797376,
+          "host_busy_pct_all_cores": 21.802473318651533,
+          "other_host_pct_all_cores": 0.9003369002314621,
+          "driver": null
+        },
+        "native_restored_settled_10s": {
+          "wall_s": 10.000066168000558,
+          "cgroup_cpu_s": 0.00665,
+          "cgroup_cpu_pct_one_core": 0.06649955998570778,
+          "compositor_cpu_pct_one_core": 10.599929862383496,
+          "host_busy_pct_all_cores": 2.8871829105473967,
+          "other_host_pct_all_cores": 1.1094446734858627,
+          "driver": null
+        },
+        "pre_host_30s": {
+          "wall_s": 30.00006369000039,
+          "cgroup_cpu_s": 0.348399,
+          "cgroup_cpu_pct_one_core": 1.1613275345016292,
+          "compositor_cpu_pct_one_core": 10.266644870579473,
+          "host_busy_pct_all_cores": 2.931995540691193,
+          "other_host_pct_all_cores": 1.027333473177676,
+          "driver": null
+        },
+        "L10": {
+          "wall_s": 21.00006596899948,
+          "cgroup_cpu_s": 5.314318,
+          "cgroup_cpu_pct_one_core": 25.306196694072543,
+          "compositor_cpu_pct_one_core": 13.571385938535624,
+          "host_busy_pct_all_cores": 7.943477566661344,
+          "other_host_pct_all_cores": 1.4638804612266494,
+          "driver": {
+            "kind": "L10",
+            "scheduled": 200,
+            "delivered": 200,
+            "failed": 0,
+            "late": 0,
+            "observedEvents": 218,
+            "elapsedMs": 19904
+          }
+        },
+        "B300": {
+          "wall_s": 10.000065019999965,
+          "cgroup_cpu_s": 1.711387,
+          "cgroup_cpu_pct_one_core": 17.11375872634082,
+          "compositor_cpu_pct_one_core": 11.899922626703122,
+          "host_busy_pct_all_cores": 5.970898143502258,
+          "other_host_pct_all_cores": 1.1352845846616013,
+          "driver": {
+            "kind": "B300",
+            "scheduled": 300,
+            "delivered": 300,
+            "failed": 0,
+            "late": 0,
+            "observedEvents": 306,
+            "elapsedMs": 3002
+          }
+        },
+        "idle": {
+          "wall_s": 10.00006485800077,
+          "cgroup_cpu_s": 0.00962,
+          "cgroup_cpu_pct_one_core": 0.09619937607007928,
+          "compositor_cpu_pct_one_core": 10.499931899540877,
+          "host_busy_pct_all_cores": 2.90629697678303,
+          "other_host_pct_all_cores": 1.140275097514537,
+          "driver": null
+        }
+      },
+      "cgroup_realize": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-ab763e101a454994b0a5a59f6522c07b.service",
+      "realize": {
+        "windows": 10,
+        "created": 500,
+        "tabsTotal": 502,
+        "workloadTabs": 482,
+        "seconds": 29.458038684999337
+      },
+      "cgroup": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-7947893ef82548a0bbad39b0c9a029ef.service",
+      "adopted": {
+        "tabsTotal": 503,
+        "workloadTabs": 500,
+        "groups": 50,
+        "nonSynthetic": [
+          "chrome://browser/content/blanktab.html",
+          "moz-extension://282d0682-0a59-4d00-9329-bf0bdeddcec8/driver.",
+          "moz-extension://282d0682-0a59-4d00-9329-bf0bdeddcec8/driver."
+        ],
+        "discarded": 451,
+        "windows": 11,
+        "missingSyntheticIds": []
+      },
+      "reuse_trials": [
+        {
+          "kind": "without-minimize",
+          "hwm_delta_bytes": 29458432
+        },
+        {
+          "kind": "with-minimize",
+          "hwm_delta_bytes": 40308736
+        },
+        {
+          "kind": "fresh-control",
+          "hwm_delta_bytes": 41431040
+        }
+      ],
+      "status": "COMPLETED",
+      "cleanup": "OWN_PROFILE_REMOVED__OWN_CGROUP_EXITED"
+    }
+  ],
+  "summary": {
+    "L10": {
+      "valid_pair_diffs_pct_one_core": [
+        0.2687323234186927
+      ],
+      "invalid": [
+        {
+          "diff": 0.08679856183312396,
+          "invalid_runs": [
+            "p0-first",
+            "p0-second"
+          ]
+        }
+      ],
+      "median": 0.2687323234186927,
+      "max_abs": 0.2687323234186927,
+      "stdev": null
+    },
+    "B300": {
+      "valid_pair_diffs_pct_one_core": [
+        0.09681170525549376
+      ],
+      "invalid": [
+        {
+          "diff": 0.1227769127748175,
+          "invalid_runs": [
+            "p0-first",
+            "p0-second"
+          ]
+        }
+      ],
+      "median": 0.09681170525549376,
+      "max_abs": 0.09681170525549376,
+      "stdev": null
+    },
+    "idle": {
+      "valid_pair_diffs_pct_one_core": [
+        0.0009599994975174747
+      ],
+      "invalid": [
+        {
+          "diff": 0.08255943929932423,
+          "invalid_runs": [
+            "p0-first",
+            "p0-second"
+          ]
+        }
+      ],
+      "median": 0.0009599994975174747,
+      "max_abs": 0.0009599994975174747,
+      "stdev": null
+    }
+  },
+  "semantics": "A/A pair differences estimate noise of the bound CPU protocol; not a WindowSafe result."
+}

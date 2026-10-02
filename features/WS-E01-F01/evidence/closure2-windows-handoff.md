@@ -1,8 +1,8 @@
 # F01 closure — Windows add-on hard-peak instrument run (handoff)
 
-Purpose: close the only remaining F01 item that cannot be produced on Ubuntu: an add-on-only
-hard-peak memory instrument on the bound Windows Desktop target. Everything else in F01 is
-closed or reused ([closure2.md](closure2.md)). Authorization: WS-EA-20261001-03
+Purpose: close the F01 items that need the bound Windows Desktop target: an add-on-only
+hard-peak memory instrument, Windows calibration (known uncertainty), measurement interval
+boundaries and short-lived PID identity coverage. Status of all F01 items: [closure2.md](closure2.md). Authorization: WS-EA-20261001-03
 (`epics/WS-E01/evidence/broad-execution-authorization.json`). Qualification only: synthetic
 disposable profile, no real profile, no product code, no installer/default/signing changes.
 
@@ -39,12 +39,29 @@ Reuse `closure_probe.py` (driver operations `map-cache`, `idb-fill`, `release`, 
 
 - Pulse: measurement-Job peak delta >= 25,165,824 bytes and the post-pulse point reporter
   sample does not see the pulse (shows peak capture beyond sampling).
-- Reuse trials: with minimize, the string-pulse delta must not be materially below the logical
-  string bytes; record the without-minimize value to show sensitivity, as on Ubuntu.
+- Reuse trials (at least three repetitions, alternating order, plus a fresh-state control
+  without prior hold/drop): the with-minimize delta must be >= the fresh-state control delta
+  minus 2 MiB and >= the without-minimize delta; record all values. A with-minimize delta below
+  the fresh-state control by more than 2 MiB is residual undercount and keeps the gate OPEN.
 - Baseline repeat without operation: peak delta small relative to 8 MiB (record value).
 - Contrasts: reporters see Map and IndexedDB data, release returns to baseline.
 - Two complete runs with consistent results. If nested assignment, peak semantics or extension
   process identification fail, record the failure as OPEN evidence; do not substitute sampling.
+
+## Windows calibration and intervals (same session)
+
+Run `calibration_probe.py` on Windows with the owned launch Job: A/A pairs (both without
+add-on) for R500 and R2000 over L10 600 s, the B300 window and (R500) idle 600 s, at least five
+pairs each, alternating order, host load recorded. Record interval boundaries as Job counter
+reads (`QueryInformationJobObject` basic accounting) at exact start/end, and the lifetime vs
+sampled process identity counts per interval; any uncovered short-lived process is reported,
+not dropped. Quiet visible desktop, no other user activity during runs.
+
+## Discarded tabs in groups (platform finding check)
+
+Repeat the closure2 (d) observation on Windows: one window, one tab group of 9 tabs created with
+`tabs.create({discarded:true})`, 60 s rest, 10 s parent-process CPU; then quit and native
+session restore, 60 s rest, 10 s again. `calibration_probe.py` records both values per run.
 
 ## Deliver
 

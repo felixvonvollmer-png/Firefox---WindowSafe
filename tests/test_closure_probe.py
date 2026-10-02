@@ -47,5 +47,24 @@ class ClosureHelperTests(unittest.TestCase):
                     c.status_kib(1, "VmPeak")
 
 
+class MeasurementConditionTests(unittest.TestCase):
+    """The method's peak condition: minimize immediately before the high-water reset."""
+
+    def source(self, name):
+        return (Path(__file__).resolve().parents[1] / "qualification/ws-e01-f01" / name).read_text()
+
+    def test_closure_pulse_minimizes_immediately_before_reset(self):
+        lines = [l.strip() for l in self.source("closure_probe.py").splitlines() if l.strip()]
+        resets = [i for i, l in enumerate(lines) if l.startswith("reset_high_water(ext_pid); hwm_reset")]
+        self.assertEqual(1, len(resets))
+        self.assertTrue(lines[resets[0] - 1].startswith("minimize()"), lines[resets[0] - 1])
+
+    def test_calibration_with_minimize_trial_minimizes_before_reset(self):
+        text = self.source("calibration_probe.py")
+        block = text[text.index("for kind in order:"):text.index("trials.append(")]
+        self.assertIn("if kind == 'with-minimize':\n                        minimize()", block)
+        self.assertLess(block.index("if kind == 'with-minimize'"), block.index("reset_high_water(ext)"))
+
+
 if __name__ == "__main__":
     unittest.main()

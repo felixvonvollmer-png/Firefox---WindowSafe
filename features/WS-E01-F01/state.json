@@ -17,6 +17,8 @@
     "features/WS-E01-F01/evidence/closure2-artifacts.json",
     "features/WS-E01-F01/evidence/closure2-ubuntu-run1.json",
     "features/WS-E01-F01/evidence/closure2-ubuntu-run2.json",
+    "features/WS-E01-F01/evidence/closure2-ubuntu-run3.json",
+    "features/WS-E01-F01/evidence/closure2-ubuntu-run4.json",
     "features/WS-E01-F01/evidence/closure2-windows-handoff.md",
     "features/WS-E01-F01/evidence/closure2.md",
     "features/WS-E01-F01/evidence/continuation-followup-manifest.json",
@@ -141,14 +143,17 @@
     "Windows Desktop": "QUALIFIED_EXCEPT_ADDON_HARD_PEAK_INSTRUMENT"
   },
   "end_candidate_binding": "Git commit containing this state; exact delivery Head/Tree and CI are verified externally in the terminal delivery report",
-  "feature_changeset": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd..candidate",
-  "non_feature_intervening_changes": "NONE",
+  "feature_changeset": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd..7d66ca5b025c8f748d7f97b961c496ee450daaa7 (historical, PR #3) + f83845a1dd4b78bd010e6477612d95a99b1a8152..candidate (this continuation)",
+  "non_feature_intervening_changes": [
+    "Execution-phase harness and routers merged via PR #6 (main f83845a1dd4b78bd010e6477612d95a99b1a8152)",
+    "Harness fixes for TR-PR6-02 in this PR (tools/foundation.py, tests/test_epic_execution.py, foundation/engineering.md)"
+  ],
   "required_next_gate": "One Windows run of the nested-Job add-on peak instrument per closure2-windows-handoff.md; then independent F01 technical review and Feature Acceptance",
   "merge_authorized": false,
   "current_report": "features/WS-E01-F01/evidence/closure2.md",
-  "continuation_manifest": "features/WS-E01-F01/evidence/ubuntu-closure-manifest.json",
+  "continuation_manifest": "features/WS-E01-F01/evidence/closure2-artifacts.json",
   "current_run_id": "WS-E01-F01-CLOSURE2-20261001",
-  "continuation_start_head": "ead93411b37dcb0885be018f0a865f236dc52ff2",
+  "continuation_start_head": "f83845a1dd4b78bd010e6477612d95a99b1a8152",
   "closed_gates": {
     "TARGET_EQUIVALENT_RESTART": {
       "basis": "Exact official release-equivalent Firefox 156 restart observed independently on each target OS; qualification closure only",
@@ -163,10 +168,19 @@
       "basis": "WS-P05 answers WebApp; Ubuntu display/state observed with recorded Wayland limits",
       "evidence": "features/WS-E01-F01/evidence/closure2.md"
     },
-    "MEASUREMENT_FINAL_ATTRIBUTION__UBUNTU": {
-      "basis": "METHOD-02 coverage contrasts and VmHWM peak bound, two runs",
+    "WINDOWS_DESKTOP__WEBAPP_BOUNDARY": {
+      "basis": "Answered by WS-P05 and the Ubuntu ordinary-window fallback; Windows classification/path reused",
+      "evidence": "features/WS-E01-F01/evidence/closure2.md"
+    },
+    "MEASUREMENT_FINAL_ATTRIBUTION__UBUNTU_METHOD": {
+      "basis": "METHOD-02 qualified with conditions (minimize before reset; reuse trials); not a proven upper bound; F05 cross-check required",
       "evidence": "features/WS-E01-F01/evidence/closure2.md"
     }
   },
-  "execution_authorization": "epics/WS-E01/evidence/broad-execution-authorization.json"
+  "execution_authorization": "epics/WS-E01/evidence/broad-execution-authorization.json",
+  "open_for_f05": [
+    "A/B paired runs with the real add-on",
+    "instrument overhead and paired uncertainty",
+    "Windows short-lived PID identity coverage and final interval boundaries"
+  ]
 }

@@ -257,6 +257,13 @@ class ExecutionHistoryTests(unittest.TestCase):
         with self.assertRaisesRegex(f.Invalid, "contributors must be a list"):
             f.request(self.save(), FEATURE)
 
+    def test_check_rejects_non_regular_tracked_modes(self):
+        # Only staged, not committed: isolates the check() mode guard from the history guards.
+        self.git("checkout", "--detach", self.authorized)
+        self.git("update-index", "--add", "--cacheinfo", "160000," + f.EPIC_INTEGRATION_MERGE + ",addon/sub.js")
+        with self.assertRaisesRegex(f.Invalid, "tracked file mode"):
+            f.check(self.repo)
+
     def test_hand_built_merge_cannot_drop_main_changes(self):
         # main gains a test module; a stale branch is merged with its own tree via commit-tree.
         self.write("tests/test_execution_marker.py", b"VALUE = 1\n")

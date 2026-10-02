@@ -39,14 +39,20 @@ window.closureOperation = async (op, arg) => {
   if (op === 'snapshot') return (await browser.windows.getAll({populate:true})).map(win);
   if (op === 'create') return win(await browser.windows.create(arg));
   if (op === 'update') {
-    const requested = arg.spec; await browser.windows.update(arg.id, requested);
-    let current;
-    for (let i = 0; i < 40; i++) {
-      current = await browser.windows.get(arg.id);
-      if (!requested.state || current.state === requested.state) break;
-      await wait(50);
+    // Bounded wait: on Wayland the minimized update promise may never resolve.
+    const requested = arg.spec;
+    const promise = await Promise.race([browser.windows.update(arg.id, requested).then(() => 'RESOLVED'),
+                                        wait(3000).then(() => 'TIMEOUT_3S')]);
+    const immediate = win(await browser.windows.get(arg.id));
+    // Read back until three consecutive equal observations (100 ms apart) or 3 s: avoids a settle race.
+    let settled = immediate, stable = 0;
+    for (let i = 0; i < 30 && stable < 2; i++) {
+      await wait(100);
+      const next = win(await browser.windows.get(arg.id));
+      stable = ['state','left','top','width','height'].every(k => next[k] === settled[k]) ? stable + 1 : 0;
+      settled = next;
     }
-    return {requested, result: win(current)};
+    return {requested, promise, immediate, settled, settledStable: stable >= 2};
   }
   if (op === 'remove') { await browser.windows.remove(arg); return true; }
   if (op === 'ordinary-restore') {
@@ -83,6 +89,21 @@ window.closureOperation = async (op, arg) => {
     if (window.fixtureDb) { window.fixtureDb.close(); delete window.fixtureDb; }
     return {released:true};
   }
+  if (op === 'hold-strings') {
+    // Many small flat strings: the GC-heap/allocator case where freed memory can stay resident.
+    window.held = []; const b = new Uint8Array(512);
+    for (let i = 0; i < arg * 1024; i++) { crypto.getRandomValues(b);
+      window.held.push(Array.from(b, x => x.toString(16).padStart(2, '0')).join('')); }
+    return {strings:window.held.length};
+  }
+  if (op === 'drop') { delete window.held; return {dropped:true}; }
+  if (op === 'pulse-strings') {
+    const x = []; const b = new Uint8Array(512);
+    for (let i = 0; i < arg * 1024; i++) { crypto.getRandomValues(b);
+      x.push(Array.from(b, y => y.toString(16).padStart(2, '0')).join('')); }
+    await wait(50);
+    return {strings:x.length, logicalStringBytes:x.length * 1024};
+  }
   if (op === 'pulse') {
     // Held only for the duration of this call; a point sample afterwards cannot see it.
     const x = new Uint8Array(arg * 1024 * 1024); x.fill(42); await wait(50);
@@ -115,7 +136,7 @@ def api(client, operation, arg=None):
 
 
 def extension_process(client, root_pid):
-    """The single WebExtension child of the owned browser: Firefox process info, verified in /proc."""
+    """The single WebExtension child per Firefox process info; caller verifies owned-cgroup membership."""
     info = execute(client, 'const done=arguments[arguments.length-1];ChromeUtils.requestProcInfo().then('
                    'i=>done(i.children.map(c=>({pid:c.pid,type:c.type}))),e=>done({error:String(e)}));',
                    async_script=True)
@@ -167,7 +188,8 @@ def process_explicit(rows, pid):
             'process_names': sorted({r['process'] for r in leaves})}
 
 
-def indexeddb_rows(rows):
+def storage_rows(rows):
+    """Explicit storage-like leaves across ALL processes (IndexedDB/storage paths); coarse context only."""
     return sum(r['amount'] for r in rows if r['units'] == 0 and r['path'].startswith('explicit/')
                and ('indexeddb' in r['path'].lower() or 'idb' in r['path'].lower() or '/storage/' in r['path']))
 
@@ -236,10 +258,13 @@ def main():
         except Exception as error:
             record['observations'].append({'name': name, 'outcome': 'OPEN', 'error': repr(error)}); return None
 
-    def reports(label, minimize=True):
-        if minimize:
-            execute(client, 'const done=arguments[arguments.length-1];Cc["@mozilla.org/memory-reporter-manager;1"]'
-                    '.getService(Ci.nsIMemoryReporterManager).minimizeMemoryUsage(()=>done(true));', async_script=True)
+    def minimize():
+        execute(client, 'const done=arguments[arguments.length-1];Cc["@mozilla.org/memory-reporter-manager;1"]'
+                '.getService(Ci.nsIMemoryReporterManager).minimizeMemoryUsage(()=>done(true));', async_script=True)
+
+    def reports(label, minimize_first=True):
+        if minimize_first:
+            minimize()
         rows = execute(client, MEMORY, async_script=True)
         artifact = owned / (label + '-memory.json'); artifact.write_text(json.dumps(rows) + '\n')
         return rows, digest(artifact)
@@ -291,20 +316,21 @@ def main():
         if str(ext_pid) not in (proc.group / 'cgroup.procs').read_text().split():
             raise RuntimeError('extension process outside the owned cgroup')
         record['extension_process'] = {'pid': ext_pid, 'in_owned_cgroup': True}
-        rows, base_hash = reports('m0-baseline'); base = origin_explicit(rows, origin); base_idb = indexeddb_rows(rows)
+        rows, base_hash = reports('m0-baseline'); base = origin_explicit(rows, origin); base_idb = storage_rows(rows)
         memory = {'baseline': {'origin_explicit': base, 'process_explicit': process_explicit(rows, ext_pid),
-                               'indexeddb_explicit': base_idb, 'report_sha256': base_hash,
+                               'storage_explicit_all_processes': base_idb, 'report_sha256': base_hash,
                                'rss_kib': status_kib(ext_pid, 'VmRSS')}}
         observe('map-cache-8mib', lambda: api(client, 'map-cache', 8192))
         rows, h = reports('m1-map-cache'); memory['map_cache_held'] = {'origin_explicit': origin_explicit(rows, origin), 'process_explicit': process_explicit(rows, ext_pid), 'report_sha256': h}
         observe('idb-fill-8mib', lambda: api(client, 'idb-fill', 8192))
         rows, h = reports('m2-idb'); memory['idb_held'] = {'origin_explicit': origin_explicit(rows, origin), 'process_explicit': process_explicit(rows, ext_pid),
-                                                           'indexeddb_explicit': indexeddb_rows(rows), 'report_sha256': h}
+                                                           'storage_explicit_all_processes': storage_rows(rows), 'report_sha256': h}
         observe('release', lambda: api(client, 'release'))
         time.sleep(1)
         rows, h = reports('m3-released'); memory['released'] = {'origin_explicit': origin_explicit(rows, origin), 'process_explicit': process_explicit(rows, ext_pid), 'report_sha256': h}
         rss_before = status_kib(ext_pid, 'VmRSS')
-        rows, h = reports('m4-before-pulse', minimize=False); before_pulse = process_explicit(rows, ext_pid)
+        rows, h = reports('m4-before-pulse', minimize_first=False); before_pulse = process_explicit(rows, ext_pid)
+        minimize()  # Measurement condition: minimize immediately before the reset, nothing in between.
         reset_high_water(ext_pid); hwm_reset = status_kib(ext_pid, 'VmHWM')
         observe('pulse-24mib', lambda: api(client, 'pulse', 24))
         rows, h = reports('m5-after-pulse'); after_pulse = process_explicit(rows, ext_pid)
@@ -312,8 +338,22 @@ def main():
         memory['pulse'] = {'logical_bytes': 24 * MIB, 'rss_before_kib': rss_before, 'hwm_after_reset_kib': hwm_reset,
                            'hwm_after_pulse_kib': hwm_after, 'hwm_delta_bytes': (hwm_after - hwm_reset) * 1024,
                            'reporter_point_before': before_pulse, 'reporter_point_after': after_pulse,
-                           'semantics': 'VmHWM delta of the dedicated extension process is a conservative upper-bound '
-                                        'candidate for additional peak; reporter point samples cannot see a held-only pulse.'}
+                           'semantics': 'VmHWM delta after minimize+reset of the dedicated extension process; '
+                                        'reporter point samples cannot see a held-only pulse. Bound validity is '
+                                        'qualified only by the reuse trials below, not assumed.'}
+        # Free-but-resident reuse: 32 MiB of small strings dropped, then a 24 MiB string pulse.
+        for trial, clean in (('reuse-without-minimize', False), ('reuse-with-minimize', True)):
+            observe(trial + '-hold', lambda: api(client, 'hold-strings', 32))
+            observe(trial + '-drop', lambda: api(client, 'drop'))
+            if clean:
+                minimize()
+            rss_reset = status_kib(ext_pid, 'VmRSS'); reset_high_water(ext_pid); hwm0 = status_kib(ext_pid, 'VmHWM')
+            observe(trial + '-pulse', lambda: api(client, 'pulse-strings', 24))
+            hwm1 = status_kib(ext_pid, 'VmHWM')
+            memory[trial] = {'minimize_before_reset': clean, 'rss_at_reset_kib': rss_reset, 'hwm_at_reset_kib': hwm0,
+                             'hwm_after_pulse_kib': hwm1, 'hwm_delta_bytes': (hwm1 - hwm0) * 1024,
+                             'pulse_logical_string_bytes': 24 * MIB}
+            minimize()
         record['memory'] = memory
         record['status'] = 'OBSERVATIONS_COLLECTED__NO_GATE_SELF_ACCEPTANCE'
         client.command('Marionette:Quit', {'flags': ['eForceQuit']}); proc.wait(20)

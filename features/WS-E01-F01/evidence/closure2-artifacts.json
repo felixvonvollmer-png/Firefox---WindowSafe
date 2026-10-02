@@ -17,6 +17,22 @@
     "closure-xug2fzgt/m3-released-memory.json": "001f419716a774e48ea6c496c6776d431f8613b173c724faf5c40f781789e2db",
     "closure-xug2fzgt/m4-before-pulse-memory.json": "e26d7cfa12b7af3e8aefbdd3934473c7eb8285b0559db2f1a751f84873bf756d",
     "closure-xug2fzgt/m5-after-pulse-memory.json": "c5af8658efefa5732c26b137760a28d41f3de6df1c1d857f40f45b95bdf6a0df",
-    "closure-xug2fzgt/closure.xpi": "36bda31350b1107c0fe45dfedb64e0d40737c8b178fc02e91034d7e23d2bd728"
+    "closure-xug2fzgt/closure.xpi": "36bda31350b1107c0fe45dfedb64e0d40737c8b178fc02e91034d7e23d2bd728",
+    "closure-a5aa8nyl/closure.xpi": "2a99d9b75a027a04102b334325447f085fac480191a22a554cf471d4b31431bc",
+    "closure-a5aa8nyl/evidence.json": "8f18eb83390c09519e226c7dddd37b98ac87368b496d89074f12d919e27665c2",
+    "closure-a5aa8nyl/m0-baseline-memory.json": "826298e6872ac9b4c0d43199f5beb1a8722cc22517f38f8ad1540ff7ae584663",
+    "closure-a5aa8nyl/m1-map-cache-memory.json": "79d70260fd733009c21da014f13bdf1040df812f006a08a40d0b25eb6df488bd",
+    "closure-a5aa8nyl/m2-idb-memory.json": "f18eb739f6cb56da77ad9ffcc8a8abf3950ca9923fef111afa780e31ac9753fd",
+    "closure-a5aa8nyl/m3-released-memory.json": "cf2f4bfe729358074947d01b321f20b1da4de51b1af75bac88223c8903f35bca",
+    "closure-a5aa8nyl/m4-before-pulse-memory.json": "1b19fce6fc52b04626ace46cc006ada3818a7add35d43bd782d8e7f489532e2b",
+    "closure-a5aa8nyl/m5-after-pulse-memory.json": "26e432bc9e0e5d19a81b2a0725c96b3149cddccc955a20a28d3dacd38f92420e",
+    "closure-e_6dqspj/closure.xpi": "2a99d9b75a027a04102b334325447f085fac480191a22a554cf471d4b31431bc",
+    "closure-e_6dqspj/evidence.json": "df3e1f15c6039a91abef131e33e843521281ff35a912c1d92521c50d7a804170",
+    "closure-e_6dqspj/m0-baseline-memory.json": "865083bda0018b9122792153071089f520d7ec77b2581bafd798d845fe5202d0",
+    "closure-e_6dqspj/m1-map-cache-memory.json": "ed5647040e06759e99aa237e749a89c47b4f76ffaf27a984a849c72597bb6445",
+    "closure-e_6dqspj/m2-idb-memory.json": "fee36d2e9884ff29e3e74deb3f3ee181384b76ee1aa708c7ed743b213ad1baa4",
+    "closure-e_6dqspj/m3-released-memory.json": "09302f96aa4732108c51d2cd24aa6fda9797c0172b657def428edd55317e6855",
+    "closure-e_6dqspj/m4-before-pulse-memory.json": "6bf4d461f25312d99aea5dd9a185dd7578d9ba326cde21ecadd31cb9abb92838",
+    "closure-e_6dqspj/m5-after-pulse-memory.json": "f283791115d8ae5057b80640258adf0b4dfc88fac56eafd0b092696e9cbd1988"
   }
 }

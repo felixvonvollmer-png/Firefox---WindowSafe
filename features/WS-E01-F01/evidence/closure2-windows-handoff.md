@@ -23,19 +23,24 @@ Reuse `closure_probe.py` (driver operations `map-cache`, `idb-fill`, `release`, 
 
 1. Identify the single `extension` child via `ChromeUtils.requestProcInfo()`; verify it belongs to
    the owned launch Job (`IsProcessInJob`).
-2. Before each measured operation, create a new measurement Job, assign only the extension
-   process to it (nested Job), read `PagefileUsage`/`PrivateUsage` at assignment, run the
-   operation, then read `JOBOBJECT_EXTENDED_LIMIT_INFORMATION.PeakProcessMemoryUsed`. Report
-   `peak - commit_at_assignment` as the candidate add-on additional-peak upper bound. Close the
-   measurement Job without kill-on-close.
+2. Before each measured operation, call `minimizeMemoryUsage` and immediately afterwards (nothing
+   in between) create a new measurement Job, assign only the extension process to it (nested Job),
+   read `PagefileUsage`/`PrivateUsage` at assignment, run the operation, then read
+   `JOBOBJECT_EXTENDED_LIMIT_INFORMATION.PeakProcessMemoryUsed`. Report
+   `peak - commit_at_assignment` as the measured additional peak under that condition (not a proven
+   upper bound). Close the measurement Job without kill-on-close.
 3. Same coverage contrasts as Ubuntu with `minimizeMemoryUsage` before each report: baseline,
-   8 MiB flat Map strings, 8 MiB IndexedDB read-back, release (back to baseline), and a 24 MiB
-   held-only pulse.
+   8 MiB flat Map strings, 8 MiB IndexedDB read-back, release (back to baseline), a 24 MiB
+   held-only typed-array pulse, and the two reuse trials of runs 3/4 (`hold-strings` 32 MiB,
+   `drop`, then a 24 MiB `pulse-strings`, once without and once with minimize before the Job
+   assignment).
 
 ## Pass criteria for the instrument (not a product claim)
 
 - Pulse: measurement-Job peak delta >= 25,165,824 bytes and the post-pulse point reporter
-  sample does not see the pulse (proves peak capture beyond sampling).
+  sample does not see the pulse (shows peak capture beyond sampling).
+- Reuse trials: with minimize, the string-pulse delta must not be materially below the logical
+  string bytes; record the without-minimize value to show sensitivity, as on Ubuntu.
 - Baseline repeat without operation: peak delta small relative to 8 MiB (record value).
 - Contrasts: reporters see Map and IndexedDB data, release returns to baseline.
 - Two complete runs with consistent results. If nested assignment, peak semantics or extension

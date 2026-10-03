@@ -50,8 +50,14 @@ Reuse `closure_probe.py` (driver operations `map-cache`, `idb-fill`, `release`, 
 
 ## Windows calibration and intervals (same session)
 
-`calibration_probe.py` is a Linux-only, not yet qualified candidate (see closure2 dispositions); it is Linux-only (cgroup v2, /proc, Wayland compositor). Port it for Windows
-before running it, keeping the protocol constants and invalidity rules unchanged: owned launch Job
+**Precondition:** do not run this section until the Ubuntu calibration instrument is qualified,
+in particular until the two-mode workload cost of closure2 (e) is explained and controlled or
+detected as an invalidity, and the instrument revision that does so is on `main`. The peak
+instrument above and the platform check below do not depend on this and may run first.
+
+`calibration_probe.py` is a Linux-only (cgroup v2, /proc, Wayland compositor), not yet qualified
+candidate (see closure2 dispositions). Port the qualified revision for Windows before running it,
+keeping its protocol constants and invalidity rules unchanged: owned launch Job
 (`windows_job.py`) instead of the cgroup; Job basic accounting (`TotalUserTime+TotalKernelTime`) at
 exact interval boundaries instead of `cpu.stat`; parent-process CPU via `GetProcessTimes`; the
 desktop compositor (`dwm.exe`) reported separately instead of gnome-shell/Xwayland; foreign host load

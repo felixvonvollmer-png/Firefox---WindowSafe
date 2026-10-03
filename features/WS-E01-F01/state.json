@@ -68,6 +68,7 @@
     "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261002-02.md",
     "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261002-03.md",
     "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261003-04.md",
+    "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261003-05.md",
     "features/WS-E01-F01/evidence/toolchain-check.md",
     "features/WS-E01-F01/evidence/toolchain-decision.md",
     "features/WS-E01-F01/evidence/ubuntu-cgroup-cleanup-attempt-samples.json",
@@ -158,7 +159,7 @@
     "Execution-phase harness and routers merged via PR #6 (main f83845a1dd4b78bd010e6477612d95a99b1a8152)",
     "Harness fixes for TR-PR6-02 in this PR (tools/foundation.py, tests/test_epic_execution.py, foundation/engineering.md)"
   ],
-  "required_next_gate": "Ubuntu calibration runs (multi-hour quiet visible desktop) and the Windows session per closure2-windows-handoff.md; then independent F01 technical review and Feature Acceptance",
+  "required_next_gate": "1) On an exclusive quiet Ubuntu desktop: explain and control or detect the two-mode workload cost (closure2 (e)), close the listed instrument gaps, then run the Ubuntu calibration; 2) Windows session per closure2-windows-handoff.md: hard-peak instrument and platform check may run first, Windows calibration only after 1) is on main; 3) then independent F01 technical review and Feature Acceptance. No F02 product code before.",
   "merge_authorized": false,
   "current_report": "features/WS-E01-F01/evidence/closure2.md",
   "continuation_manifest": "features/WS-E01-F01/evidence/closure2-artifacts.json",

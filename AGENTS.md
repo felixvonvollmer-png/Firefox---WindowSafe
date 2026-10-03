@@ -27,7 +27,7 @@ Pending-Binding und das historische WS-E01-Binding bleiben unverändert), integr
 WS-EA-20261001-03: `epics/WS-E01/evidence/broad-execution-authorization.json` (autonom
 F01 -> F02 -> {F03,F04} -> F05 bis EPIC_CONVERGED, dann STOP; kein Folge-Epic). Ausstehend:
 Nutzerentscheidung WS-UD-20261003-01 (`epics/WS-E01/evidence/user-decision-ws-ud-20261003-01.json`,
-Windows ohne Performance-Nachweis) wirkt erst nach TF-Delta, Review und Binding; bis dahin sind die
+Windows ohne Performance-Nachweis) wirkt erst nach TF-Delta (ggf. Product-Delta), Epic-Preparation-Delta, unabhängigem Rereview und exaktem Rebinding; bis dahin sind die
 Windows-Messarbeiten pausiert und die bisherige Bindung gilt.
 
 WS-P05 ergänzt Product Truth und TF r6 durch exakt gebundene Originale im Kontextrouter.

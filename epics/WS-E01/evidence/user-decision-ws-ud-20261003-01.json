@@ -3,7 +3,7 @@
   "DECISION_ID": "WS-UD-20261003-01",
   "DATE": "2026-10-03",
   "AUTHORITY": "USER",
-  "STATUS": "RECORDED__NO_BINDING_EFFECT_UNTIL_TECHNICAL_FOUNDATION_DELTA_IS_PREPARED_REVIEWED_AND_BOUND",
+  "STATUS": "RECORDED__NO_BINDING_EFFECT_UNTIL_THE_FULL_REBINDING_CHAIN_COMPLETES",
   "RECORDED_BY": "CODING_AGENT_WS_E01_EXECUTION_LEAD",
   "RECORDING_LIMITATION": "Transcription of a direct chat decision in the Claude Code session; the user's reply is verbatim, the options are the agent's own wording as presented to the user.",
   "CONTEXT": "During F01 the user asked whether Windows testing is needed at all for a Firefox add-on. The agent explained the technical position (mostly platform-neutral public APIs; observed platform differences in window geometry, WebApp/Taskbar Tab windows and resource behavior) and that the bound Technical Foundation (T01; r6 §§9.1/9.3, measurement 'je Lastprofil und Betriebssystem') requires both operating systems, so a change is a material Technical Foundation change. Three options were presented.",
@@ -27,10 +27,10 @@
     "Whether Product Truth WS-AC-11 or WS-QUALITY wording needs a visible-limitation note, or whether the Technical Foundation delta alone suffices."
   ],
   "REQUIRED_NEXT_STEPS": [
-    "Project-LLM prepares a Technical Foundation delta (and any Product Truth or Epic Preparation delta it finds necessary) with critical self-review.",
-    "Independent review and exact binding.",
-    "Coding agent then materializes the bound delta and adjusts F01/F05 gates; until then the current binding applies unchanged."
+    "Project-LLM prepares a Technical Foundation delta (and a Product Truth delta for user approval if needed) with critical self-review; independent review and exact binding.",
+    "Because the bound WS-E01 Epic Preparation itself names Windows in the V1 test matrix and the F05 measurements (epics/WS-E01/preparation.md), a WS-E01 Epic Preparation delta is required, followed by an independent Epic Preparation rereview and exact epic rebinding (V6 F1 §21, F2 §21).",
+    "Only after that chain may the coding agent materialize the bound deltas and change F01/F05 gates; until then the current binding applies unchanged."
   ],
   "UNAFFECTED_WORK_MAY_CONTINUE": "Ubuntu calibration and the explanation of the two-mode workload cost (closure2 (e)) are required under both the current and the intended binding.",
-  "AFFECTED_WORK_PAUSED": "Windows hard-peak instrument run and Windows calibration under closure2-windows-handoff.md."
+  "AFFECTED_WORK_PAUSED": "All Windows work under closure2-windows-handoff.md: the hard-peak instrument run, the Windows calibration and the closure2 (d) Windows platform check (the latter pending the open question above)."
 }

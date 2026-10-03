@@ -1,10 +1,10 @@
 # F01 closure — Windows add-on hard-peak instrument run (handoff)
 
 > **PAUSED (2026-10-03):** user decision WS-UD-20261003-01
-> (`epics/WS-E01/evidence/user-decision-ws-ud-20261003-01.json`, option 2) removes Windows
-> performance/resource evidence once a Technical Foundation delta is prepared, reviewed and bound.
-> Until that binding, do not start any section of this handoff; after it, this handoff is expected to
-> be superseded.
+> (`epics/WS-E01/evidence/user-decision-ws-ud-20261003-01.json`, option 2) would remove Windows
+> performance/resource evidence if the resulting Technical Foundation delta, WS-E01 Epic Preparation
+> delta, independent rereview and exact rebinding complete. Until then, do not start any section of
+> this handoff (including the closure2 (d) platform check); it may be superseded afterwards.
 
 Purpose: close the F01 items that need the bound Windows Desktop target: an add-on-only
 hard-peak memory instrument, Windows calibration (known uncertainty), measurement interval

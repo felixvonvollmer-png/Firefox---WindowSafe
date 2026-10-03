@@ -1,0 +1,24 @@
+{
+  "FILES": {
+    "README_FIRST.txt": {
+      "sha256": "4f8be880e317c6742e54ee843c40574a6097b7616ed562dbc5b9567ee4715845",
+      "bytes": 564
+    },
+    "WindowSafe_Execution_Authorization_WS-EA-20260919-08.json": {
+      "sha256": "4d5a6bd7d2db848d96b356db45e37ddfa27b437cd58ca98b4f7dd073ab125e9d",
+      "bytes": 5397
+    },
+    "WindowSafe_F01_Target_Qualification_Handoff_WS-E01-F01-TARGET-QUAL-20260919-01.md": {
+      "sha256": "d19c8b77ddcadfa176dc8ac62c7257d20a0a24b409ebc201d13a920a8f596dfa",
+      "bytes": 4760
+    },
+    "WindowSafe_F01_Target_Qualification_Research_Snapshot.json": {
+      "sha256": "02992d3f71f924678a2546750a74e13d2493ee05e4c09d872d8a4a9213d68735",
+      "bytes": 1653
+    },
+    "WindowSafe_F01_Target_Qualification_Startprompt_WS-E01-F01-TARGET-QUAL-20260919-01.txt": {
+      "sha256": "b9a09123f6fefe1380c149baa0b70afb272ad340955b89a56a6ad49a98770426",
+      "bytes": 1693
+    }
+  }
+}

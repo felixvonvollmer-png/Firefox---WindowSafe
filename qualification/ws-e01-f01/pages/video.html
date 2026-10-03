@@ -1,0 +1,19 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>F01 synthetic video only</title>
+<canvas width="320" height="180"></canvas>
+<video controls muted autoplay width="320" height="180"></video>
+<script>
+const canvas = document.querySelector('canvas');
+const context = canvas.getContext('2d');
+let frame = 0;
+function paint() {
+  context.fillStyle = frame++ % 2 ? '#204080' : '#408020';
+  context.fillRect(0, 0, 320, 180);
+  requestAnimationFrame(paint);
+}
+paint();
+const video = document.querySelector('video');
+video.srcObject = canvas.captureStream(10);
+video.play();
+</script>

@@ -1,0 +1,95 @@
+{
+  "DOCUMENT_TYPE": "WINDOWSAFE_F01_TARGET_QUALIFICATION_AUTHORIZATION",
+  "AUTHORIZATION_ID": "WS-EA-20260919-08",
+  "STATUS": "AUTHORIZED",
+  "DATE": "2026-09-19",
+  "AUTHORITY": "USER",
+  "USER_AUTHORIZATION_REFERENCE": {
+    "VERBATIM_MESSAGE": "frei",
+    "CONTEXT": "Immediate authorization after the Project LLM stated that WS-E01-F01 remains at PARTIAL/STOP until a separate Windows-/remaining-qualification envelope is authorized.",
+    "INTERPRETATION": "Authorizes only continuation of WS-E01-F01 to close the four currently open qualification gates using synthetic disposable target environments. It does not authorize V6 Brownfield migration, independent review, Feature Acceptance, merge, product implementation, WS-E01-F02, release, signing or production."
+  },
+  "REPOSITORY": "felixvonvollmer-png/Firefox---WindowSafe",
+  "REPOSITORY_ID": 1374094477,
+  "PR": 3,
+  "BRANCH": "feature/ws-e01-f01-qualification",
+  "EXPECTED_START_HEAD": "0f83be2550f34698fe95da4df88b5eb918649973",
+  "EXPECTED_START_TREE": "2db2d133b8aeb43f8ce7444d6192e55aa2d49c12",
+  "EXPECTED_MAIN": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
+  "EXPECTED_LOCKFILE_SHA256": "1d6f6b41f6a87d1890695247e6610f60199518b22e87f12f1ee1002661563834",
+  "FEATURE_ID": "WS-E01-F01",
+  "START_STATUS": "WS-E01-F01_PARTIAL_QUALIFICATION__TARGET_ENVIRONMENT_REQUIRED",
+  "RISK_FLOOR": "ELEVATED",
+  "OPEN_GATES_AT_START": [
+    "WINDOWS_DESKTOP",
+    "SPECIAL_NATIVE_GUI_CASES",
+    "TARGET_EQUIVALENT_RESTART",
+    "MEASUREMENT_FINAL_ATTRIBUTION"
+  ],
+  "AUTHORIZED_SCOPE": [
+    "Execute the full relevant Firefox-156 capability matrix on a real Windows Desktop environment using only synthetic disposable profiles and localhost/synthetic data.",
+    "Execute remaining native GUI/API special-case qualification on Windows Desktop and, where still required, on Ubuntu Desktop; never substitute evidence from one OS for the other.",
+    "Qualify Windows process-tree/accounting instrumentation for measurement-method binding using native Windows Job Object accounting or an equally strong native method.",
+    "Qualify the addon-attributable memory/peak-observation method sufficiently for later F05 use without claiming product performance acceptance.",
+    "Attempt a target-equivalent Firefox-156 persistent restart path using an official Mozilla unbranded Release-equivalent 156 build if a trustworthy exact build can be located and verified; otherwise leave the gate open.",
+    "Add or modify qualification-only code under qualification/ws-e01-f01 and its tests/evidence as necessary.",
+    "Use the existing exact Node/npm/TypeScript/web-ext toolchain and unchanged package lock.",
+    "Run required local checks and CI after changes, preserving all historical evidence byte-for-byte.",
+    "Update mutable F01 state/evidence only to reflect actually executed evidence and remaining gates.",
+    "Update PR #3 description to the current truthful state after repository state is committed.",
+    "If all four gates close on both target desktop OSes, prepare a technical-review-ready feature state and handoff, then stop before any independent review or merge.",
+    "If any gate remains, keep PARTIAL/BLOCKED truthfully and return an exact continuation handoff."
+  ],
+  "TEST_ENVELOPE": {
+    "REAL_USER_FIREFOX_PROFILE": "PROHIBITED",
+    "REAL_USER_BROWSER_DATA": "PROHIBITED",
+    "FIREFOX_SYNC_OR_LOGIN": "PROHIBITED",
+    "AMO_UPLOAD_OR_SIGNING": "PROHIBITED",
+    "SYSTEM_FIREFOX_INSTALL_OR_DEFAULT_BROWSER_CHANGE": "PROHIBITED",
+    "GLOBAL_SIGNATURE_POLICY_CHANGE": "PROHIBITED",
+    "DISPOSABLE_PROFILE_ONLY": true,
+    "SYNTHETIC_LOCALHOST_DATA_ONLY": true,
+    "VISIBLE_DESKTOP_RUNTIME_REQUIRED_FOR_GUI_GATES": true,
+    "WINDOWS_SERVER_CI_COUNTS_AS_DESKTOP_RUNTIME": false,
+    "TERMINATE_ONLY_OWN_CREATED_TEST_PROCESSES": true,
+    "DO_NOT_KILL_EXISTING_FIREFOX": true
+  },
+  "MUTATION_BOUNDARY": {
+    "PREFERRED_PATHS": [
+      "qualification/ws-e01-f01/**",
+      "features/WS-E01-F01/evidence/**",
+      "features/WS-E01-F01/state.json",
+      "tests/**"
+    ],
+    "CONDITIONAL_MINIMAL_PATHS": [
+      "tools/foundation.py",
+      ".github/workflows/foundation.yml",
+      "README.md",
+      "AGENTS.md"
+    ],
+    "CONDITION": "Only if required to validate the new qualification evidence or keep current routing truthful; no weakening or unrelated refactor.",
+    "PROHIBITED_PATH_CLASSES": [
+      "product implementation paths/source code",
+      "foundation/inputs/**",
+      "foundation/sources/**",
+      "reviews/results/**",
+      "epics/WS-E01/subject.json",
+      "epics/WS-E01/binding.json"
+    ]
+  },
+  "NOT_AUTHORIZED": [
+    "final V6 Brownfield migration or Technical Foundation Delta materialization",
+    "WS-E01-F02 or later feature start",
+    "WindowSafe product capture/recovery/IndexedDB/UI/backup/import implementation",
+    "package.json/package-lock/dependency/toolchain version changes",
+    "audit bypass or CI weakening",
+    "real user profile or data access",
+    "independent technical review verdict by an implementer",
+    "FEATURE_ACCEPTANCE_REVIEW",
+    "merge/auto-merge/squash/rebase/force-push",
+    "release/signing/AMO/production"
+  ],
+  "SUCCESS_STATE": "WS-E01-F01_READY_FOR_INDEPENDENT_TECHNICAL_REVIEW",
+  "PARTIAL_STATE": "WS-E01-F01_PARTIAL_QUALIFICATION__TARGET_ENVIRONMENT_REQUIRED",
+  "BLOCKED_STATE": "WS-E01-F01_BLOCKED__QUALIFICATION_GATE_FAILED"
+}

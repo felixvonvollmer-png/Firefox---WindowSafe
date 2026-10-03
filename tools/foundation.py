@@ -525,8 +525,10 @@ def self_verdict(identity, req):
     if "review_excluded_identities" not in req:
         return identity.casefold() == req["implementer"].casefold()
     excluded = req["review_excluded_identities"]
-    require(isinstance(excluded, list) and excluded and req["implementer"] in excluded
-            and all(isinstance(value, str) and value.strip() for value in excluded), "review exclusion set")
+    require(isinstance(excluded, list) and excluded
+            and all(isinstance(value, str) and value.strip() for value in excluded)
+            and req["implementer"].strip().casefold() in {value.strip().casefold() for value in excluded},
+            "review exclusion set")
     return identity.strip().casefold() in {value.strip().casefold() for value in excluded}
 
 
@@ -689,7 +691,7 @@ def files(root):
 def feature_path(path):
     """Feature subjects/evidence for the bound WS-E01 features."""
     return bool(re.fullmatch(r"features/" + FEATURE_ID_PATTERN
-                             + r"/(subject\.json|state\.json|[a-z0-9-]+\.md|evidence/[a-z0-9-]+\.(json|md))", path))
+                             + r"/(subject\.json|state\.json|start\.json|[a-z0-9-]+\.md|evidence/[a-z0-9-]+\.(json|md))", path))
 
 
 def product_path(path):
@@ -1137,12 +1139,15 @@ def execution_history(revisions):
             require(git("rev-parse", revision + "^{tree}") == git("rev-parse", parents[1] + "^{tree}"),
                     "execution merge must be up to date")
             ancestor(EPIC_INTEGRATION_MERGE, parents[0])
+            # The PR head must contain the current main: nothing on main can be dropped silently.
+            ancestor(parents[0], parents[1])
             merges.add(revision)
         else:
             require(len(parents) == 1, "execution octopus merge prohibited")
             # --no-renames reports a rename as deletion plus addition, so both paths are checked.
-            for line in git("diff", "--name-status", "--no-renames", parents[0], revision).decode().splitlines():
-                status, path = line.split("\t", 1)
+            raw = git("diff-tree", "-r", "-z", "--no-renames", "--ignore-submodules=none", "--name-status",
+                      parents[0], revision).decode().split("\0")
+            for status, path in zip(raw[0::2], raw[1::2]):
                 scope(path)
                 require(not path.startswith(EXECUTION_FROZEN_PREFIXES) or path in EXECUTION_LIVING,
                         "frozen path changed during execution")
@@ -1659,8 +1664,10 @@ def check(root=ROOT):
             require("foundation.py request --sha HEAD --subject " + path in workflow, "missing epic CI request")
     if root == ROOT and (root / ".git").exists():
         # Ignored build/cache directories cannot hide tracked out-of-scope files.
-        for name in git("ls-files", "--cached", "-z").split(b"\0"):
-            if name:
+        for entry in git("ls-files", "--cached", "-s", "-z").split(b"\0"):
+            if entry:
+                meta, name = entry.split(b"\t", 1)
+                require(meta.split()[0] in (b"100644", b"100755"), "tracked file mode")
                 scope(name.decode())
 
 

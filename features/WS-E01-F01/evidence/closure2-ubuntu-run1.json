@@ -1,0 +1,631 @@
+{
+  "evidence_class": "UBUNTU_RUNTIME_VERIFIED",
+  "qualification_only": true,
+  "host": "felix-A320M-S2H-V2",
+  "os": "Linux-7.0.0-34-generic-x86_64-with-glibc2.43",
+  "session": {
+    "XDG_SESSION_TYPE": "wayland",
+    "XDG_CURRENT_DESKTOP": "ubuntu:GNOME",
+    "WAYLAND_DISPLAY": "wayland-0",
+    "DISPLAY": ":0"
+  },
+  "driver_sources": {
+    "run_probe.py": "43f670bcff81ab75e962520b31fb10e9515faf7dac2da14d9858081be4711337",
+    "target_probe.py": "7ec69283ffc4b27baaf6327cfffebbb8f3f5c541205f4bfe6b94b38f2afae1ae",
+    "measure.py": "d4e7b322ec870a47ae130a0c692e28527b560f8ed574f2930e260be6cab8f094",
+    "windows_job.py": "61512c629784d92ca555fb6f45070a12a7bc97019a6eb52eef433de256d94bb3"
+  },
+  "closure_probe_sha256": "d07f83c1f2ca5cad4fcfc85ad8f894254d35bf42100cd5d6a5e79ad14dc2d3b6",
+  "version": "156.0",
+  "build_id": "20260909172920",
+  "binary": "/home/felix/projekte/firefox WindowsSaver addon/build/f01/firefox/firefox",
+  "binary_sha256": "7ea3daf0cdbe5ec27e4f2e7c644c25032169f8a2f2f15e438ff4379bf737a78a",
+  "profile_class": "NEW_SYNTHETIC_DISPOSABLE",
+  "probe_sha256": "36bda31350b1107c0fe45dfedb64e0d40737c8b178fc02e91034d7e23d2bd728",
+  "observations": [
+    {
+      "name": "display-topology",
+      "outcome": "OBSERVED",
+      "value": {
+        "screensIterable": "undefined",
+        "primary": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "avail": {
+            "x": 0,
+            "y": 0,
+            "width": 1920,
+            "height": 1080
+          },
+          "scale": 1,
+          "defaultCSSScale": 1
+        },
+        "forOrigin": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "avail": {
+            "x": 0,
+            "y": 0,
+            "width": 1920,
+            "height": 1080
+          },
+          "scale": 1,
+          "defaultCSSScale": 1
+        },
+        "forFarAway": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080,
+          "avail": {
+            "x": 0,
+            "y": 0,
+            "width": 1920,
+            "height": 1080
+          },
+          "scale": 1,
+          "defaultCSSScale": 1
+        },
+        "windowProtocol": "wayland",
+        "devicePixelRatio": 1,
+        "screen": {
+          "width": 1920,
+          "height": 1080,
+          "availWidth": 1920,
+          "availHeight": 1080,
+          "left": 0,
+          "top": 0
+        }
+      }
+    },
+    {
+      "name": "geometry-create",
+      "outcome": "OBSERVED",
+      "value": {
+        "id": 23,
+        "type": "normal",
+        "state": "normal",
+        "incognito": false,
+        "left": 0,
+        "top": 0,
+        "width": 952,
+        "height": 702,
+        "focused": false,
+        "tabs": [
+          {
+            "id": 2,
+            "windowId": 23,
+            "index": 0,
+            "url": "about:blank",
+            "title": "New Tab",
+            "active": true,
+            "pinned": false,
+            "discarded": false,
+            "muted": false,
+            "incognito": false,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "hidden": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "geometry-step-0",
+      "outcome": "OBSERVED",
+      "value": {
+        "requested": {
+          "state": "maximized"
+        },
+        "result": {
+          "id": 23,
+          "type": "normal",
+          "state": "maximized",
+          "incognito": false,
+          "left": 0,
+          "top": 0,
+          "width": 1920,
+          "height": 1080,
+          "focused": true,
+          "tabs": []
+        }
+      }
+    },
+    {
+      "name": "geometry-step-1",
+      "outcome": "OBSERVED",
+      "value": {
+        "requested": {
+          "state": "normal"
+        },
+        "result": {
+          "id": 23,
+          "type": "normal",
+          "state": "normal",
+          "incognito": false,
+          "left": 0,
+          "top": 0,
+          "width": 952,
+          "height": 702,
+          "focused": true,
+          "tabs": []
+        }
+      }
+    },
+    {
+      "name": "geometry-step-2",
+      "outcome": "OPEN",
+      "error": "RuntimeError('{\"error\": \"script timeout\", \"message\": \"Timed out after 30000 ms\", \"stacktrace\": \"RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8\\\\nWebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:169:5\\\\nScriptTimeoutError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:797:5\\\\nevaluate.sandbox/timeoutPromise</scriptTimeoutID<@chrome://remote/content/marionette/evaluate.sys.mjs:97:11\\\\nnotify@resource://gre/modules/Timer.sys.mjs:66:16\\\\n\"}')"
+    },
+    {
+      "name": "geometry-step-3",
+      "outcome": "OBSERVED",
+      "value": {
+        "requested": {
+          "state": "normal"
+        },
+        "result": {
+          "id": 23,
+          "type": "normal",
+          "state": "normal",
+          "incognito": false,
+          "left": 0,
+          "top": 0,
+          "width": 952,
+          "height": 702,
+          "focused": false,
+          "tabs": []
+        }
+      }
+    },
+    {
+      "name": "geometry-step-4",
+      "outcome": "OBSERVED",
+      "value": {
+        "requested": {
+          "state": "fullscreen"
+        },
+        "result": {
+          "id": 23,
+          "type": "normal",
+          "state": "fullscreen",
+          "incognito": false,
+          "left": 0,
+          "top": 0,
+          "width": 1920,
+          "height": 1080,
+          "focused": false,
+          "tabs": []
+        }
+      }
+    },
+    {
+      "name": "geometry-step-5",
+      "outcome": "OBSERVED",
+      "value": {
+        "requested": {
+          "state": "normal"
+        },
+        "result": {
+          "id": 23,
+          "type": "normal",
+          "state": "normal",
+          "incognito": false,
+          "left": 0,
+          "top": 0,
+          "width": 952,
+          "height": 702,
+          "focused": true,
+          "tabs": []
+        }
+      }
+    },
+    {
+      "name": "geometry-step-6",
+      "outcome": "OBSERVED",
+      "value": {
+        "requested": {
+          "left": 200,
+          "top": 150,
+          "width": 800,
+          "height": 600
+        },
+        "result": {
+          "id": 23,
+          "type": "normal",
+          "state": "normal",
+          "incognito": false,
+          "left": 0,
+          "top": 0,
+          "width": 800,
+          "height": 600,
+          "focused": true,
+          "tabs": []
+        }
+      }
+    },
+    {
+      "name": "geometry-step-7",
+      "outcome": "OBSERVED",
+      "value": {
+        "requested": {
+          "left": -1800,
+          "top": 80,
+          "width": 850,
+          "height": 600
+        },
+        "result": {
+          "id": 23,
+          "type": "normal",
+          "state": "normal",
+          "incognito": false,
+          "left": 0,
+          "top": 0,
+          "width": 800,
+          "height": 600,
+          "focused": true,
+          "tabs": []
+        }
+      }
+    },
+    {
+      "name": "geometry-step-8",
+      "outcome": "OBSERVED",
+      "value": {
+        "requested": {
+          "left": -10000,
+          "top": -10000,
+          "width": 850,
+          "height": 600
+        },
+        "result": {
+          "id": 23,
+          "type": "normal",
+          "state": "normal",
+          "incognito": false,
+          "left": 0,
+          "top": 0,
+          "width": 850,
+          "height": 600,
+          "focused": true,
+          "tabs": []
+        }
+      }
+    },
+    {
+      "name": "geometry-remove",
+      "outcome": "OBSERVED",
+      "value": true
+    },
+    {
+      "name": "webapp-native-open",
+      "outcome": "OBSERVED",
+      "value": {
+        "type": "navigator:browser",
+        "taskbarTab": "c930c827-57af-4119-a8e6-88808019f001",
+        "tabs": 1
+      }
+    },
+    {
+      "name": "webapp-api-snapshot",
+      "outcome": "OBSERVED",
+      "value": [
+        {
+          "id": 1,
+          "type": "normal",
+          "state": "normal",
+          "incognito": false,
+          "left": 0,
+          "top": 0,
+          "width": 1332,
+          "height": 1024,
+          "focused": false,
+          "tabs": [
+            {
+              "id": 1,
+              "windowId": 1,
+              "index": 0,
+              "url": "moz-extension://68d22797-4352-43b2-ac76-603e8a87a18d/driver.html",
+              "title": "F01 closure driver",
+              "active": true,
+              "pinned": false,
+              "discarded": false,
+              "muted": false,
+              "incognito": false,
+              "cookieStoreId": "firefox-default",
+              "groupId": -1,
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "type": "normal",
+          "state": "normal",
+          "incognito": false,
+          "left": 0,
+          "top": 0,
+          "width": 1332,
+          "height": 1024,
+          "focused": true,
+          "tabs": [
+            {
+              "id": 3,
+              "windowId": 29,
+              "index": 0,
+              "url": "http://127.0.0.1:46199/article.html?webapp=1",
+              "title": "F01 synthetic article",
+              "active": true,
+              "pinned": false,
+              "discarded": false,
+              "muted": false,
+              "incognito": false,
+              "cookieStoreId": "firefox-default",
+              "groupId": -1,
+              "hidden": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "webapp-ordinary-restore",
+      "outcome": "OBSERVED",
+      "value": {
+        "id": 35,
+        "type": "normal",
+        "state": "normal",
+        "incognito": false,
+        "left": 0,
+        "top": 0,
+        "width": 1332,
+        "height": 1024,
+        "focused": true,
+        "tabs": [
+          {
+            "id": 4,
+            "windowId": 35,
+            "index": 0,
+            "url": "http://127.0.0.1:46199/article.html?webapp=1",
+            "title": "F01 synthetic article",
+            "active": true,
+            "pinned": false,
+            "discarded": false,
+            "muted": false,
+            "incognito": false,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "hidden": false
+          },
+          {
+            "id": 5,
+            "windowId": 35,
+            "index": 1,
+            "url": "http://127.0.0.1:46199/article.html?second=1",
+            "title": "synthetic",
+            "active": false,
+            "pinned": false,
+            "discarded": true,
+            "muted": false,
+            "incognito": false,
+            "cookieStoreId": "firefox-default",
+            "groupId": -1,
+            "hidden": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "native-window-kinds",
+      "outcome": "OBSERVED",
+      "value": [
+        {
+          "taskbarTab": null,
+          "tabs": 1,
+          "urls": [
+            "moz-extension://68d22797-4352-43b2-ac76-603e8a87a18d/driver.html"
+          ]
+        },
+        {
+          "taskbarTab": "c930c827-57af-4119-a8e6-88808019f001",
+          "tabs": 1,
+          "urls": [
+            "http://127.0.0.1:46199/article.html?webapp=1"
+          ]
+        },
+        {
+          "taskbarTab": null,
+          "tabs": 2,
+          "urls": [
+            "http://127.0.0.1:46199/article.html?webapp=1",
+            "http://127.0.0.1:46199/article.html?second=1"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "webapp-native-close",
+      "outcome": "OBSERVED",
+      "value": true
+    },
+    {
+      "name": "map-cache-8mib",
+      "outcome": "OBSERVED",
+      "value": {
+        "entries": 8192,
+        "logicalStringBytes": 8388608
+      }
+    },
+    {
+      "name": "idb-fill-8mib",
+      "outcome": "OBSERVED",
+      "value": {
+        "records": 8192,
+        "logicalBytes": 8388608
+      }
+    },
+    {
+      "name": "release",
+      "outcome": "OBSERVED",
+      "value": {
+        "released": true
+      }
+    },
+    {
+      "name": "pulse-24mib",
+      "outcome": "OBSERVED",
+      "value": {
+        "logicalAllocationBytes": 25165824
+      }
+    }
+  ],
+  "cleanup": "OWN_PROFILE_REMOVED__OWN_CGROUP_EXITED",
+  "pid": 2717396,
+  "command": [
+    "/home/felix/projekte/firefox WindowsSaver addon/build/f01/firefox/firefox",
+    "--no-remote",
+    "--new-instance",
+    "--profile",
+    "/home/felix/projekte/windowsafe-f01/build/f01/runs/closure-4qlcrec0/profile",
+    "--marionette",
+    "--remote-allow-system-access"
+  ],
+  "cgroup": "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/windowsafe-f01-browser-c2ff66f9125346debcf6fe873b2eef88.service",
+  "extension_origin_host": "68d22797-4352-43b2-ac76-603e8a87a18d",
+  "webapp_public_view": [
+    {
+      "id": 29,
+      "type": "normal",
+      "state": "normal",
+      "incognito": false,
+      "left": 0,
+      "top": 0,
+      "width": 1332,
+      "height": 1024,
+      "focused": true,
+      "tabs": [
+        {
+          "id": 3,
+          "windowId": 29,
+          "index": 0,
+          "url": "http://127.0.0.1:46199/article.html?webapp=1",
+          "title": "F01 synthetic article",
+          "active": true,
+          "pinned": false,
+          "discarded": false,
+          "muted": false,
+          "incognito": false,
+          "cookieStoreId": "firefox-default",
+          "groupId": -1,
+          "hidden": false
+        }
+      ]
+    }
+  ],
+  "extension_process": {
+    "pid": 2718544,
+    "in_owned_cgroup": true
+  },
+  "memory": {
+    "baseline": {
+      "origin_explicit": {
+        "dom": 9536,
+        "other": 90112,
+        "js": 423792,
+        "total": 523440
+      },
+      "process_explicit": {
+        "total": 12646056,
+        "strings": 883840,
+        "js": 6297400,
+        "process_names": [
+          "extension (pid 2718544)"
+        ]
+      },
+      "indexeddb_explicit": 7155632,
+      "report_sha256": "56119f205ade3c0438262bbbef688c4854039f7c9fbf8a71d4ad304c183afd4c",
+      "rss_kib": 121376
+    },
+    "map_cache_held": {
+      "origin_explicit": {
+        "dom": 9536,
+        "other": 90112,
+        "js": 11420448,
+        "total": 11520096
+      },
+      "process_explicit": {
+        "total": 24097432,
+        "strings": 11828232,
+        "js": 6751824,
+        "process_names": [
+          "extension (pid 2718544)"
+        ]
+      },
+      "report_sha256": "10c6f161be750cd8c36a5f97d18f8c176e5899a496f36cc48d2f9bb3f6b0ccaf"
+    },
+    "idb_held": {
+      "origin_explicit": {
+        "dom": 9536,
+        "other": 90112,
+        "js": 20120208,
+        "total": 20219856
+      },
+      "process_explicit": {
+        "total": 32877272,
+        "strings": 20453776,
+        "js": 6768240,
+        "process_names": [
+          "extension (pid 2718544)"
+        ]
+      },
+      "indexeddb_explicit": 7348144,
+      "report_sha256": "7fa61938970288cd15cad96e2c41fd50ffee6058aa46005855bfcc7d3e780698"
+    },
+    "released": {
+      "origin_explicit": {
+        "dom": 9536,
+        "other": 90112,
+        "js": 448736,
+        "total": 548384
+      },
+      "process_explicit": {
+        "total": 12705064,
+        "strings": 884944,
+        "js": 6309488,
+        "process_names": [
+          "extension (pid 2718544)"
+        ]
+      },
+      "report_sha256": "4ffa1be3c59e9ed107c21641e5d931c0a9f5c8bf669ba4105b5643ddcb3ec688"
+    },
+    "pulse": {
+      "logical_bytes": 25165824,
+      "rss_before_kib": 122976,
+      "hwm_after_reset_kib": 122976,
+      "hwm_after_pulse_kib": 147860,
+      "hwm_delta_bytes": 25481216,
+      "reporter_point_before": {
+        "total": 12705064,
+        "strings": 884944,
+        "js": 6309488,
+        "process_names": [
+          "extension (pid 2718544)"
+        ]
+      },
+      "reporter_point_after": {
+        "total": 12705064,
+        "strings": 884944,
+        "js": 6309488,
+        "process_names": [
+          "extension (pid 2718544)"
+        ]
+      },
+      "semantics": "VmHWM delta of the dedicated extension process is a conservative upper-bound candidate for additional peak; reporter point samples cannot see a held-only pulse."
+    }
+  },
+  "status": "OBSERVATIONS_COLLECTED__NO_GATE_SELF_ACCEPTANCE"
+}

@@ -1,0 +1,11 @@
+{
+  "evidence_class": "LOCAL_STATIC_TOOLCHAIN",
+  "command": "npm audit --json",
+  "exit_code": 1,
+  "http_status": 503,
+  "category": "NPM_REGISTRY_MAINTENANCE",
+  "lockfile_changed": false,
+  "previous_audit": "supply-chain-final-audit.json",
+  "gate": "BLOCKED__REQUIRED_LIVE_AUDIT_UNAVAILABLE",
+  "failed_attempts": 2
+}

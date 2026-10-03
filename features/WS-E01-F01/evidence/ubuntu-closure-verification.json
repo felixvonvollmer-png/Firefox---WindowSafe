@@ -1,0 +1,202 @@
+{
+  "evidence_class": "LOCAL_AGENT_REPORTED",
+  "subject": "Working candidate based on ead93411b37dcb0885be018f0a865f236dc52ff2; exact committed Head/Tree and final checks reported externally",
+  "results": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_target_qualification.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.085,
+      "log": "build/f01/ubuntu-closure-20260924/check-0.log",
+      "log_sha256": "c9c3868e0ca15aca6b11ae65873e87fbb5f8bb288c4bca0f66673ea83c590631",
+      "log_bytes": 1384,
+      "log_gzip_base64": "H4sIAAAAAAAC/62SPXKEMAyFe05BmRRhtkiRO6TIJLO9RosFaDA2K9u7ye0jTP7YZhMIjbFGfu97GkUKEdAYMsAuRLQWI3sHDVuCBtmG8iZOPRGlpQjHhJYbrnNXtc/F55+1vTaHKl6VvS2rqip9X+RWesU6QpOsXfYf2Bl27XqGK8JLCqHRSySBkIYB5U1f1zYZCmDSaCdxgiikd3RzMEkDuZgl1zNusr1MoBllOo+J9aI/aCHX0pifzwMZhb2AmvUkW8D/7rbkDTgQWEyu7jS/4aYh0WRArmW3eQF/o77kSe7gk3Irbt2ha3V/hWovZivKFeElxVmX05/D55J+z3ceZ8TQA0rd8YnylEdd6sbLsB5vreMFt3h9+2GvSb2wDnpOCHQipz6x00WIqpRd8gQ6DN0G9PWmX/TF3b98xQu68qGcsELJrtxVu919KIqnx+IdIGR2+GgFAAA="
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 48.894,
+      "log": "build/f01/ubuntu-closure-20260924/check-1.log",
+      "log_sha256": "776145b3e0fb61c7dcdf72e9bbdfeae0d2ce944561fa369435aae442b23f00c5",
+      "log_bytes": 17328,
+      "log_gzip_base64": "H4sIAAAAAAAC/7VbTa/jthXdv1/xdkkWfWimRZsuuigmSYu2QNokQJYCLdE2xxKpkJT9PL++916SMkVTsiins5kZWzzniOT9JG25sVU9aM2lrfac2UHz6sR5byqlxUFI1la8F3Wl+a8DPstkUx2FsUpfX7+0+Ikf9fa9+/sf7suPrfgZvjVv9gmGr17f3t5e1emFQIS0XHe8Eczy21jNL1rABzWTUlkY2fBqx48CUDQ/c20LZG5kmMqkl9nBt0Ie4IGOCWkq0XWDZbuW59VEGpaHJ1TvrLaVsUy7aWN1zXvLGwJ5zLQ0ekoU1q3hLT8wK5T0SxgWFiZC8Eu1u8Lj1U4NsnlIvwEzLwoea7isecX6nsN7KNleV7PnBk9pOmEMroXSfidYLis22CNsEPuYaHn4lEqqyvB271eCoSwY1qoLh8HCnB6SPQKY0indH5mslD3C1x70IUVu0BS2x11LkxvJMMPuE4ftBgYjq4uwR5gN1lyrumWie0haDplKUs1Q+22ud8Jqpq9Vz+wRtlurDG9WSHgEMaU0Q9+3Aqwp+JESJ7A0eEpDdlH1qh9aZ0PedZLOwe6/qVouDyAy4fzpKmEFragj1tVYUwl1P4DZgH9UuD6IINAzDoav4JwfPCVpFWtgkWWjLmteJX482Qrg4dEk4fUM75mmN12BmB03hY72ZnDgPmbs8AW7Do2/gf/s8WWFvUXAwI8LQMBvf/PO+DvwxdlYtZ0sJxqePILxoKEZrs/cxOHvFpdZ246bYscMN5uFbyVMdv8YJ12IhlWTPihPwrWQadJSILicJPXquoPX6rg+cBhnKaKPs2A157msqkBgGcFUHEz/0Nr/7wQWc0wlDlJzcEjwKu4NyUt4bwzJg2WQw4gW9w2Gg5srL1BYSjFjQmGnuDzG5S/wcQhUiCqV3LWqPuFje/f4st6c5WzjyZtOvAL+QQhoEOJhGtDiWiHJOCsuMfpA1sjrIfaZD2U/zZSEGwbvJmpyFLSvzqwVTkHkATXvW1bjXF1DtvWZFcl+kmcqOvgw9G0C8HzyjZHvwq5go0waQdBu64FTlHZMTldrfo5mNu91i9TELppmhDx0/NIrbTCfHpezpOmsHxfbAbxjCNa3XN+VVff52EO12ylyhVsIdPWR16fYRd/M4V7ZrA9bjflwmaeTTcmfjDKKMRzOLfWsxKe5kgVvG+froEocVwbnG7FMrl5HH6+pYLA0HwXanydLA2+nzvhubt0oGQqLB/NjYAE7VtWiOmAzYsNkbyNIRbrnIR03cVJJJTmjBggOi79rtNjbIpnbKJZzBGEeJgWrk4E7rCT6T3ZwHBlCtW+pKid3MVphXs9/bq4kjvubGBbDvZC0Lad9gkac8YVLpBXAJnowOYEpvrEEd++hfBIQOdciXeXwiYcOjjz4rEEatudVM0BhXqPF4N4U6Kv6ltuiSSvFTtpet1fqmTHggwztBjLz9jpGdYg+rqDHQFQibxNBElTQ9QnIlz7zaXwUvpPnAiefyX/ntRUBz6QH8TDvZnS2ebhG0HrUbO8tHrXsquboZ2ESPurXUQrrWszwN7lcwzoeUlswVuqjqYt8lDQvSHqKKWmi1aqfGCnNJK0xWYxoTIm0FXBpE8+lea3Y8/pat84yqcFoqj0TbdI9XCViJWbiLwcBCQjs8objGYWQELlgbmmokhbtEYwSk/tzxhd9P/7z7wPTjYk9ZQHwVNJBhJZhiOHiIBVWHRelT9R2sKzrwV5zNr4gqQR4KumTgTWdulEo4qDYFIs51IKWVYhJq3K6sD7BoqRlm4Y1gDO+Tsh+sC6PgpC4M0W8syj55vpetNxse8M8RGKL1w7SmtM2gnTwFNrtJt64F93GMIORpqnkZ+jUoAg9Hpikn5SY0kmZvfa5ivFH+vYjGLOGAB7nlcnQbF5rr/BGDccw5s7JXGsM8jyW7UzMs63BSw83VMshvEH+aJYj5CzrHMSU6GbgY2NqA9cCSpJcsvoIXrVjEl3tXvC2CS2bEr4lmHz7qYZthRYdHVyu4MmMzsN3qhF7nIFQy+PZrt24cutB04aGpLNW3wFrhOmVa3oVkM+DJL4PE+RQoUJyIX3loUvscB4k26uHfAr9pMR0Cp7DZKqAbB4kTb2oPwDJ0r4VhyOAD+Auag9YQLgMlM+3cJnHKmk31yafp1yASR3ySWIOSsazyehnEKY0LhsGH9QIWOMC9OnAxEE3DWVlo6WEM3AoRtiVTkBDw8p5+UB8ZFpygx0VrUEsCvj2tsE/QtUJqnYC7Tz238V0yTEY3fI4c29bUMlp8Q7+GUDCZjAUkigWEVYyYdt0P8F7dzvjoOHrPcMKB+v23ZXagqKhhprbdM9pXUWRuCDlknO8yRN6ZsF/VKzWClRMXg3j4HNTuo0ydWbRxhnk2A/GximsWH3F1TFDx/VTUtfTZN1fSBt6Jmg5fL/febKnhK0hSJIUkN7iM5DQ7KtGwfRiJ6uGV8RTVaYPfEHSD4OFvPQXPIHVcc6yAjSRIRASHYC5sL5ie+xyU9TyrTXIPuiRio57yxWV4S+K87cfaHTi2zcLymGmpztYQ4c5DaVHdNMBiik8J3Cz6/YiPFEsbCNP0k4UezW+B/l0GFZdmLDjrTV3jlAsbzVykkxCljmp1cKMWw32G7ej1ktZgZnU8DSjtP/sk9tnHiptG0jsWCtCiTZdWM8NzI8QZ29Gca1hfaZzxKOdhaljsZxC/DRc9JzOZFy/6r5ZZaC4JE9B5MXiCvGTYIHfOXfkQp5Q7hVNsY55qLtOwtD3KAlSXHkWWsmOblgz0Zows+F4slhFEfpU2AWePUSbzUVaMIG4O7FeyTLcjN9tOP7tKkaJF42wpSrpakGl4L/+2CwRs1dtqy5D//bd7Y2pEZNzuSspcnMD290KKLv8MIq0JgbcoGslcnpvyQ4M282i0kpRr8QaSIj70VnnDgHuZM3c8ivCTq74+CyNKn066FHWu206WZk9bI/O9NfJfIopCaRDdFcRtykZMSTtatA1n3Xjy/rWgm6409GIg3N82bi2LGsLQb6XAQUYtn6pb0rJirtulznkLhJYDp/IG+R4tp1eSgndhU0zVwKcBBm62E9DWE8dUyxjao4k0S0Ts01XMXq+ceMn1l9GoDsn+AMEMpkAV6arADjXc/nMtQIzQUs5CzWYqh/M0V0pS/oZRbJKwXOX9m9tcHvr4kKcU9rVp2GbYNAd9F3sHAX+m+rYnzzC3X3+UprEFYMDhz0KIVePp3EOF82pZto12eiKEbrMuyO/9XK3U+Uu17mJj+5vmrjdc2tLhMq7WO42mvSehD7xsScl4OUHWosI9fxhXVPsseBnyHKyW6Q9f33rBt2GhmGQTVvqJwDw+Q8bFRfzPLgWevvJ13gi5e530bFqRFSsdztV6uqnZuqdH+aVGoOYu2KBGOW7oAA7rTicaYJqvBEXYOhN/NSbq7TsvVjSauS7/reL6xY2hEs7sG50RYoX4Vsfv0IuOh4ivf1MH/43/mza556HzXkaytEmz09PLDZoeAB8Vxq70tQMXYc/SuPvaNqY+Y8HknhpwteTgKcHrCHipH6Dxqdo75JB+hXqeN5GXVv6bOgjr99rQR189ArPCC9nS+yTTs0YtpM53m/c7zn9YpVLMP+nN+Aa9NQ0XZyM0nFv3U9KeQCcVLfu53bRpe3JjxAsM6eK6fpILhzb3LCp90p32+VtZcxV5Z4ey3fy4r7XcftxKcRNQCIWmoEjM8cnpG8nTbwgVGKHW3cGfyPryn+oNPDnNaINhUCYrU9q9/aL+/c/1S72fI+hHLc5ib6HAuMLD/Mq6YTtldW1whYEuD68WPeFz3bBvk4Mf3+SVCYPBd2P3MKP16eoLcLfBZZZ9CL0w1Oh/HVRdloraRXYFpUQKxEPiCsNEdNUQ79WU2boFgXqIj0KhmO5nv9u4BZ27LyoWrXJbz4wf9ActiX9MNjXK2ys1h5qK4QtVP7yu9/kz8uPTL5+/eH3ryjZvAr5+sdv3v78lw/m5eWHf71+6eX89U9fvfwPlPrqmLBDAAA="
+    },
+    {
+      "command": [
+        "python3",
+        "tools/foundation.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 2.684,
+      "log": "build/f01/ubuntu-closure-20260924/check-2.log",
+      "log_sha256": "a7b5648b647d49b2d94c52038f9b004d2a9c315e9bdad7eb718f8bf9dc4ab2f8",
+      "log_bytes": 36,
+      "log_gzip_base64": "H4sIAAAAAAAC/3P2cHX2VvD3VtDITU3OSMzLTE7MUUgty0xJzUtOVcjPy6nU5AIA1F4uDyQAAAA="
+    },
+    {
+      "command": [
+        "python3",
+        "tools/foundation.py",
+        "build",
+        "--verify-repeat"
+      ],
+      "exit_code": 0,
+      "seconds": 3.959,
+      "log": "build/f01/ubuntu-closure-20260924/check-3.log",
+      "log_sha256": "171bf6afcd75de67312c71d27e5e8cb77e24150684b64a7cea98a893d328f18b",
+      "log_bytes": 129,
+      "log_gzip_base64": "H4sIAAAAAAAC/wXBvQrCMBAA4L1PkVE375qf3thSxaIkoK3gVJLLFQs1boJv7/edwuT7dhyCnwf/OPox3J7z/dyisUrTAkY3GFkApGYiyanO9uDIZkPMCRtyLjobkRMsGjAmAkRDTiRT1U3DtVfhonZv4VcsK8dNyXfNUljUp2y/ffUHDTp/wYEAAAA="
+    },
+    {
+      "command": [
+        "python3",
+        "tools/foundation.py",
+        "history",
+        "--base",
+        "3bdd7439c221b8f8c83e7374c8bb29898891a4fd"
+      ],
+      "exit_code": 0,
+      "seconds": 4.358,
+      "log": "build/f01/ubuntu-closure-20260924/check-4.log",
+      "log_sha256": "e47d9b5a6f085cc60c83f2da4f6e46db6f817f88e5e1b687aa66f6f817fb0289",
+      "log_bytes": 38,
+      "log_gzip_base64": "H4sIAAAAAAAC//PwDA7xD4pU8PdW0MhNTc5IzMtMTsxRSC3LTEnNS05VyM/LqdTkAgAXjShuJgAAAA=="
+    },
+    {
+      "command": [
+        "python3",
+        "tools/foundation.py",
+        "schema-preflight",
+        "--sha",
+        "HEAD",
+        "--schema",
+        "reviews/review-contract.json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.052,
+      "log": "build/f01/ubuntu-closure-20260924/check-5.log",
+      "log_sha256": "776f90e1aff319af20db6ef89f159730d6b8265e1d30b9e610ae5a86f9311792",
+      "log_bytes": 47,
+      "log_gzip_base64": "H4sIAAAAAAAC/wt29nD1ddQNCHJ18/F09whR8PdW0MhNTc5IzMtMTsxRSC3LTEnNS05VyM/LqdTkAgDouln+LwAAAA=="
+    },
+    {
+      "command": [
+        "python3",
+        "tools/foundation.py",
+        "request",
+        "--sha",
+        "HEAD",
+        "--subject",
+        "epics/WS-E01/subject.json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.405,
+      "log": "build/f01/ubuntu-closure-20260924/check-6.log",
+      "log_sha256": "3703af82dc7da732861b90bc13c97bcc2ed4a2fd76357afd7278ebfdf69dc338",
+      "log_bytes": 3951,
+      "log_gzip_base64": "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"
+    },
+    {
+      "command": [
+        "python3",
+        "qualification/ws-e01-f01/toolchain.py"
+      ],
+      "exit_code": 0,
+      "seconds": 3.678,
+      "log": "build/f01/ubuntu-closure-20260924/check-7.log",
+      "log_sha256": "3384b7a8237e48d2ec2065c426e0f3e32ef9916d5505f164d8c5de9961611c65",
+      "log_bytes": 230,
+      "log_gzip_base64": "H4sIAAAAAAAC/03Ou2rDQBCF4T5PYbZ2MbPamZ1NZ0QgwY1B7sXsDYusrGA7lfG7R+pSn5+P8zSPZWnpotPVvO/McD6cv/qx//zoj8N4OgyD2e9MW9L3eL+oJd4izFw5Oqys4jNKAA5knS/MCJUBQyCUaG0RX9FWLAUB7LoSd9K5jUzL/DO1kv+x2QGSZPARrQDFahM5B14sqY9eATVzKiqigs4zhy5ldqSVeT2kG3v7vT6muYyp6TSvaNV2L6+3P6crsSfmAAAA"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.003,
+      "log": "build/f01/ubuntu-closure-20260924/check-8.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log_bytes": 0,
+      "log_gzip_base64": "H4sIAAAAAAAC/wMAAAAAAAAAAAA="
+    }
+  ],
+  "tests": {
+    "discovered": 120,
+    "passed": 114,
+    "skipped": 6,
+    "skip_reason": "Windows-native Job tests not executable on Ubuntu; no Windows runtime substitution"
+  },
+  "targeted_tests_passed": 8,
+  "audit": {
+    "auditReportVersion": 2,
+    "vulnerabilities": {},
+    "metadata": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "dependencies": {
+        "prod": 1,
+        "dev": 351,
+        "optional": 20,
+        "peer": 0,
+        "peerOptional": 0,
+        "total": 351
+      }
+    }
+  },
+  "code_bindings": {
+    "qualification/ws-e01-f01/target_probe.py": "7ec69283ffc4b27baaf6327cfffebbb8f3f5c541205f4bfe6b94b38f2afae1ae",
+    "qualification/ws-e01-f01/continuation.py": "fd5b77949f324f7b7fb41e9dd94cc4466c0220c6a0e35dfbac90cb89519fc5be"
+  },
+  "historical_evidence_files_byte_unchanged": 82,
+  "packed_new_payloads_hash_verified": 20,
+  "changed_paths": [
+    "AGENTS.md",
+    "README.md",
+    "features/WS-E01-F01/state.json",
+    "qualification/ws-e01-f01/README.md",
+    "qualification/ws-e01-f01/continuation.py",
+    "qualification/ws-e01-f01/target_probe.py",
+    "features/WS-E01-F01/evidence/ubuntu-closure-artifacts.json",
+    "features/WS-E01-F01/evidence/ubuntu-closure-inputs.json",
+    "features/WS-E01-F01/evidence/ubuntu-closure-manifest.json",
+    "features/WS-E01-F01/evidence/ubuntu-closure-preflight.json",
+    "features/WS-E01-F01/evidence/ubuntu-closure-research.json",
+    "features/WS-E01-F01/evidence/ubuntu-closure-runtime.json",
+    "features/WS-E01-F01/evidence/ubuntu-closure-verification.json",
+    "features/WS-E01-F01/evidence/ubuntu-closure.md"
+  ],
+  "limits": [
+    "Runtime topology API failure and geometry timeout retained; no runtime success inferred from static checks",
+    "No new measurement experiment after material WebApp stop",
+    "Schema/request checks bind the historical accepted Epic, not a feature acceptance subject",
+    "Check/build logs precede final evidence and inventory serialization; final candidate structural checks and committed-history/schema/request are repeated and reported at delivery"
+  ],
+  "independent_review": "NOT_PERFORMED",
+  "feature_acceptance": "NOT_READY"
+}

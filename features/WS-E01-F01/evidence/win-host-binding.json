@@ -1,0 +1,45 @@
+{
+  "DOCUMENT_TYPE": "WINDOWSAFE_F01_WINDOWS_HOST_BINDING",
+  "RUN_ID": "WS-E01-F01-WIN-20260924-01",
+  "AUTHORIZATION_REFERENCE": "WS-EA-20260919-08",
+  "WORKSPACE": "D:\\Projekt\\WindowSafe-F01-Windows",
+  "EXPECTED_HEAD": "7b52f6655e4478caa4864801b24877d22c33fa83",
+  "EXPECTED_TREE": "b5107a356aa5f86645a110a029adb2b11072af1f",
+  "EXPECTED_MAIN": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd",
+  "EXPECTED_BRANCH": "feature/ws-e01-f01-qualification",
+  "EXPECTED_LOCKFILE_SHA256": "1d6f6b41f6a87d1890695247e6610f60199518b22e87f12f1ee1002661563834",
+  "HOST": {
+    "os_reported_product": "Windows 10 Pro",
+    "windows_version_field": "2009",
+    "os_build_number": "22631",
+    "architecture": "64-Bit",
+    "cpu": "AMD Ryzen 5 3600 6-Core Processor",
+    "physical_cores": 6,
+    "logical_processors": 6,
+    "ram_gb": 15.93,
+    "gpu": "NVIDIA GeForce GTX 980 Ti",
+    "gpu_driver": "32.0.15.8228",
+    "monitor": "PnP-Monitor (Standard)",
+    "screen": "1920x1080",
+    "installed_firefox": {
+      "path": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+      "product_version": "156.0.1",
+      "file_version": "156.0.1",
+      "primary_f01_target_evidence": false
+    },
+    "git": "2.55.0.windows.3",
+    "python": "3.14.4",
+    "vscode": "1.139.0"
+  },
+  "PRECHECK": {
+    "head_exact": true,
+    "tracking_up_to_date": true,
+    "worktree_clean": true
+  },
+  "NOTES": [
+    "Bind numeric Windows build 22631; recollect DisplayVersion/ProductName in-agent.",
+    "Do not use Chrome/Chromium for WindowSafe V1 qualification.",
+    "Do not open or inspect the user's normal Firefox profile.",
+    "Do not modify the installed system Firefox or default-browser settings."
+  ]
+}

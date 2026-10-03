@@ -37,6 +37,14 @@ class ExecutionScopeTests(unittest.TestCase):
             with self.subTest(path=path), self.assertRaises(f.Invalid):
                 f.scope(path)
 
+    def test_self_verdict_normalizes_like_the_request(self):
+        req = {"implementer": " Lead ", "review_excluded_identities": ["LEAD", "worker"]}
+        self.assertTrue(f.self_verdict("lead", req))
+        self.assertTrue(f.self_verdict(" WORKER ", req))
+        self.assertFalse(f.self_verdict("independent", req))
+        with self.assertRaisesRegex(f.Invalid, "exclusion set"):
+            f.self_verdict("x", {"implementer": "other", "review_excluded_identities": ["LEAD"]})
+
     def test_authorization_is_pinned_and_bound_to_rebinding(self):
         data = {p.relative_to(f.ROOT).as_posix(): p.read_bytes() for p in f.files(f.ROOT)}
         f.execution_authorization_integrity(data.__getitem__)
@@ -248,6 +256,41 @@ class ExecutionHistoryTests(unittest.TestCase):
         self.write(FEATURE, dump(subject))
         with self.assertRaisesRegex(f.Invalid, "contributors must be a list"):
             f.request(self.save(), FEATURE)
+
+    def test_check_rejects_non_regular_tracked_modes(self):
+        # Only staged, not committed: isolates the check() mode guard from the history guards.
+        self.git("checkout", "--detach", self.authorized)
+        self.git("update-index", "--add", "--cacheinfo", "160000," + f.EPIC_INTEGRATION_MERGE + ",addon/sub.js")
+        with self.assertRaisesRegex(f.Invalid, "tracked file mode"):
+            f.check(self.repo)
+
+    def test_hand_built_merge_cannot_drop_main_changes(self):
+        # main gains a test module; a stale branch is merged with its own tree via commit-tree.
+        self.write("tests/test_execution_marker.py", b"VALUE = 1\n")
+        main = self.save()
+        self.git("checkout", "--detach", self.authorized)
+        self.write("addon/src/x.ts", b"export {};\n")
+        stale = self.save()
+        tree = self.git("rev-parse", stale + "^{tree}")
+        merge = self.git("-c", "commit.gpgsign=false", "commit-tree", tree, "-p", main, "-p", stale, "-m", "synthetic drop")
+        with self.assertRaises((f.Invalid, subprocess.CalledProcessError)):
+            f.request(merge, f.EPIC_CORR2_SUBJECT)
+
+    def test_forged_initial_authorization_rejected(self):
+        self.git("checkout", "--detach", f.EPIC_INTEGRATION_MERGE)
+        for name in EXECUTION_FILES:
+            shutil.copyfile(SOURCE / name, self.repo / name)
+        value = f.parse((self.repo / f.EPIC_EXECUTION_AUTH).read_bytes())
+        value["RELEASE_OR_PRODUCTION_AUTHORIZED"] = True
+        self.write(f.EPIC_EXECUTION_AUTH, dump(value))
+        self.rejected("authorization hash", self.save())
+
+    def test_gitlink_rejected_even_with_permissive_diff_config(self):
+        self.git("config", "diff.ignoreSubmodules", "all")
+        self.git("checkout", "--detach", self.authorized)
+        self.git("update-index", "--add", "--cacheinfo", "160000," + f.EPIC_INTEGRATION_MERGE + ",addon/sub.js")
+        self.git("-c", "commit.gpgsign=false", "commit", "-m", "synthetic gitlink")
+        self.rejected("file mode")
 
     def test_up_to_date_pr_merge_accepted_and_stale_merge_rejected(self):
         self.git("switch", "-c", "synthetic-feature")

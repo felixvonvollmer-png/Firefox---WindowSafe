@@ -1,0 +1,158 @@
+{
+  "evidence_class": "LOCAL_AGENT_REPORTED",
+  "completed_at": "2026-09-19T18:39:49.879614+00:00",
+  "status": "PASS__MECHANICAL_ONLY",
+  "scope": "Uncommitted target-qualification candidate before final evidence inventory. Committed-head request/history/schema are rechecked before push; exact new-head CI is external after push.",
+  "results": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a666a2014223d45d69801a8b91525bf46aecd6a0b1c2ccaf8c8ded5c1a314716",
+      "test_summary": [
+        "----------------------------------------------------------------------",
+        "Ran 113 tests in 49.234s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "command": [
+        "python3",
+        "tools/foundation.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "a7b5648b647d49b2d94c52038f9b004d2a9c315e9bdad7eb718f8bf9dc4ab2f8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/foundation.py",
+        "build",
+        "--verify-repeat"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "2348d4d210efdd0bed83d5d77ac794e706d20194f7347f3cdf4a78ce4694dec5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/foundation.py",
+        "history",
+        "--base",
+        "3bdd7439c221b8f8c83e7374c8bb29898891a4fd"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e47d9b5a6f085cc60c83f2da4f6e46db6f817f88e5e1b687aa66f6f817fb0289",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/foundation.py",
+        "request",
+        "--sha",
+        "HEAD",
+        "--subject",
+        "epics/WS-E01/subject.json"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "3703af82dc7da732861b90bc13c97bcc2ed4a2fd76357afd7278ebfdf69dc338",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/foundation.py",
+        "schema-preflight",
+        "--sha",
+        "HEAD",
+        "--schema",
+        "reviews/review-contract.json"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "776f90e1aff319af20db6ef89f159730d6b8265e1d30b9e610ae5a86f9311792",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "python3",
+        "qualification/ws-e01-f01/toolchain.py"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "3384b7a8237e48d2ec2065c426e0f3e32ef9916d5505f164d8c5de9961611c65",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "audit": {
+        "auditReportVersion": 2,
+        "vulnerabilities": {},
+        "metadata": {
+          "vulnerabilities": {
+            "info": 0,
+            "low": 0,
+            "moderate": 0,
+            "high": 0,
+            "critical": 0,
+            "total": 0
+          },
+          "dependencies": {
+            "prod": 1,
+            "dev": 351,
+            "optional": 20,
+            "peer": 0,
+            "peerOptional": 0,
+            "total": 351
+          }
+        }
+      }
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "target_probe_lint": {
+    "count": 0,
+    "summary": {
+      "errors": 0,
+      "notices": 0,
+      "warnings": 0
+    },
+    "metadata": {
+      "id": "f01-target@windowsafe.invalid",
+      "manifestVersion": 3,
+      "name": "F01 target qualification ONLY",
+      "type": 1,
+      "version": "0.0.1",
+      "firefoxMinVersion": "156.0",
+      "firefoxStrictMinVersion": 156,
+      "experimentApiPaths": {},
+      "totalScannedFileSize": 3508,
+      "emptyFiles": [],
+      "jsLibs": {},
+      "unknownMinifiedFiles": []
+    },
+    "errors": [],
+    "notices": [],
+    "warnings": []
+  },
+  "exact_runtime_artifact_count": 43,
+  "toolchain_package_lock_source_unchanged": true,
+  "runtime_acceptance_claim": false
+}

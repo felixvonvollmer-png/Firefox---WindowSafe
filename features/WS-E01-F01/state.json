@@ -67,6 +67,7 @@
     "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261002-01.md",
     "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261002-02.md",
     "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261002-03.md",
+    "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261003-04.md",
     "features/WS-E01-F01/evidence/toolchain-check.md",
     "features/WS-E01-F01/evidence/toolchain-decision.md",
     "features/WS-E01-F01/evidence/ubuntu-cgroup-cleanup-attempt-samples.json",
@@ -148,7 +149,7 @@
     "MEASUREMENT_WINDOWS_CALIBRATION_INTERVALS_AND_PID_COVERAGE"
   ],
   "target_environments": {
-    "Ubuntu Desktop": "F01 scope qualified except calibration runs (instrument candidate ready)",
+    "Ubuntu Desktop": "F01 scope qualified except calibration: instrument candidate NOT qualified (unexplained two-mode workload cost, gaps per TR-PR7-04)",
     "Windows Desktop": "Hard-peak instrument, port of calibration instrument, calibration, intervals and PID coverage OPEN"
   },
   "end_candidate_binding": "Git commit containing this state; exact delivery Head/Tree and CI are verified externally in the terminal delivery report",

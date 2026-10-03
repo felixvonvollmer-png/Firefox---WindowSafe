@@ -50,13 +50,13 @@ Reuse `closure_probe.py` (driver operations `map-cache`, `idb-fill`, `release`, 
 
 ## Windows calibration and intervals (same session)
 
-`calibration_probe.py` is Linux-only (cgroup v2, /proc, Wayland compositor). Port it for Windows
+`calibration_probe.py` is a Linux-only, not yet qualified candidate (see closure2 dispositions); it is Linux-only (cgroup v2, /proc, Wayland compositor). Port it for Windows
 before running it, keeping the protocol constants and invalidity rules unchanged: owned launch Job
 (`windows_job.py`) instead of the cgroup; Job basic accounting (`TotalUserTime+TotalKernelTime`) at
 exact interval boundaries instead of `cpu.stat`; parent-process CPU via `GetProcessTimes`; the
 desktop compositor (`dwm.exe`) reported separately instead of gnome-shell/Xwayland; foreign host load
 from `GetSystemTimes` over 5 s windows. Then run it: A/A pairs (both without
-add-on) for R500 and R2000 over L10 600 s, the B300 window and (R500) idle 600 s, at least five
+add-on) for R500 and R2000 over L10 600 s, the B300 window and idle 600 s (both profiles), at least five
 pairs each, alternating order, host load recorded. Record interval boundaries as Job counter
 reads (`QueryInformationJobObject` basic accounting) at exact start/end, and the lifetime vs
 sampled process identity counts per interval; any uncovered short-lived process is reported,

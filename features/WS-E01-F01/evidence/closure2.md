@@ -91,11 +91,11 @@ condition, not claimed everyday behavior):
      a 24 MiB small-string pulse gave +29.1/+29.2 MB **without** minimize before the reset, but
      +39.9/+40.9 MB **with** minimize (an independent rerun: 32.2/36.1 vs 40.9/41.4 MB). Reuse of
      resident freed memory causes real undercount; the condition **reduced** it in these trials.
-     In the calibration smoke runs with-minimize was 1.1-1.2 MB below the fresh-state control and
-     about 11 MB above without-minimize.
-     There is no fresh-state control, the trial order was fixed and n is small, so absence of
-     residual undercount is not shown. Repetitions with order alternation and a fresh-state
-     control are part of the open calibration below.
+     Runs 3/4 had no fresh-state control and a fixed order. The 12 committed calibration smoke runs
+     add alternating order and a fresh-state control: with-minimize was between 1.23 MB below and
+     2.97 MB above the fresh-state control and 9.6 to 16.7 MB above without-minimize; all 12 meet
+     the declared reuse pass rule by manual evaluation (the instrument does not evaluate it yet).
+     Small n; absence of residual undercount is not shown.
    - Status: a measured procedure with a stated condition and demonstrated sensitivity, **not** a
      proven upper bound. Binding cross-check rule for every later peak claim: the paired
      whole-cgroup `memory.peak` difference (B−A, same operation) is reported next to the VmHWM
@@ -135,23 +135,27 @@ Consequences, within existing Product Truth and Technical Foundation (no new dec
   browser loaded is an allowed agent fallback.
 - Windows was not tested for this; the Windows handoff includes it.
 
-## (e) Measurement-method finding: window stacking and occlusion change the workload cost
+## (e) Measurement-method finding: the same workload runs in two cost modes (cause undetermined)
 
-On this Wayland session all browser windows report and keep position 0,0, so they overlap. In
-smoke2 the same L10 workload cost either about 2 % or about 24 % of one core depending on run,
-consistent with whether the windows whose tab strips the workload changes were visible. The
-instrument now focuses a fixed fixture window before the intervals (`front`, verified in every
-smoke3 run); the valid smoke3 pairs differ by 0.01 % (L10), 0.3 % (B300) and 0.08/0.03 % (idle).
-The one remaining low-cost L10 run (smoke3 `p0-first`, 1.95 %) coincided with foreign host load
-from other desktop use and was rejected. Declared condition for calibration and A/B runs: an
-exclusive desktop with no other application window above the browser and no other workload.
+In the smoke runs the same R500 L10 workload cost either about 2 % or about 24 % of one core per
+run (smoke2: both modes inside one pair, p0 at 2.18 % vs 24.05 %; smoke3 `p0-first` 1.95 %). On
+this Wayland session all browser windows report and keep position 0,0 and overlap; a plausible
+but **unverified** explanation is whether the windows whose tab strips the workload changes are
+actually visible (other application windows or browser stacking). The instrument's `front` step
+asks Firefox to focus a fixed fixture window and reads Firefox's own focus state; it does **not**
+verify what is on top of the desktop, and smoke3 `p0-first` ran in the low mode despite
+`front.ok`. The cause is therefore undetermined and **not controlled**; the instrument does not
+detect the mode, and smoke2 even accepted the mixed pair p0 as valid (21.9 pp difference). Until
+the cause is identified and either controlled or detected as an invalidity, no calibration result
+from this instrument can bind the known uncertainty. Working condition for that investigation and
+for the calibration: an exclusive, quiet desktop with no other application windows or workloads.
 
 ## Dispositions of remaining measurement work
 
 | Item | Disposition |
 |---|---|
 | A/B paired runs with the real add-on | Executed in F05 against the bound protocol (r6 §9.1: implementation measurements before Feature Acceptance). |
-| Ubuntu calibration: instrument/driver overhead and known uncertainty | **F01 OPEN** (TF §9.3: bound before F02). Instrument candidate implementing the METHOD-01 invalidity rules below, unit-tested per rule ([smoke run](closure2-calibration-smoke.json), shortened intervals; smoke values are instrument evidence, not the calibration). Declared calibration constants: at most 0.1 % of scheduled events late by more than 100 ms; foreign host load (beyond the owned cgroup and the compositor) judged over every 5 s window against 5 % of all cores; quiescence acknowledgement below 3 % of one core over 10 s (max 6 attempts) instead of a bare timer; one `minimizeMemoryUsage` before the CPU intervals as a declared condition; driver errors, lost events, tab/window/group/container mismatches and failed runs make the pair invalid and are listed. Instrument overhead: the sampler runs outside the owned cgroup and reports its own CPU per interval (`instrument_self_cpu_pct_one_core`); Marionette's idle session inside the browser is identical in A and B and is not separately quantified. Reuse-trial pass rule (Ubuntu and Windows): with-minimize >= fresh-state control − 2 MiB and >= without-minimize; A/A pairs (both without add-on) over the real L10 600 s interval, B300 window and idle 600 s for R500 and R2000, plus repeated reuse trials with order alternation and a fresh-state control; instrument [calibration_probe.py](../../../qualification/ws-e01-f01/calibration_probe.py). Needs a multi-hour quiet visible-desktop window on the Ubuntu host. |
+| Ubuntu calibration: instrument/driver overhead and known uncertainty | **F01 OPEN** (TF §9.3: bound before F02). Instrument **candidate, not qualified**: the unexplained two-mode workload cost (e) must be resolved first; further known gaps from TR-PR7-04: post-restart state checks are incomplete (container baseline, window count, per-tab container/pinned/muted/discarded state, extra tabs, `observedEvents` not compared), the reuse pass rule is not evaluated by the summary, L10 runs 601 s and B300 ends on a 1 s sample (10.1 s) without declaration, power/thermal state and timer resolution are not recorded, and smoke2 was produced by an uncommitted instrument version (calibration probe SHA-256 `01e654d5…` in its record). Already implemented and unit-tested per rule ([smoke run](closure2-calibration-smoke.json), shortened intervals; smoke values are instrument evidence, not the calibration). Declared calibration constants: at most 0.1 % of scheduled events late by more than 100 ms; foreign host load (beyond the owned cgroup and the compositor) judged over every 5 s window against 5 % of all cores; quiescence acknowledgement below 3 % of one core over 10 s (max 6 attempts) instead of a bare timer; one `minimizeMemoryUsage` before the CPU intervals as a declared condition; driver errors, lost events, tab/window/group/container mismatches and failed runs make the pair invalid and are listed. Instrument overhead: the sampler runs outside the owned cgroup and reports its own CPU per interval (`instrument_self_cpu_pct_one_core`); Marionette's idle session inside the browser is identical in A and B and is not separately quantified. Reuse-trial pass rule (Ubuntu and Windows): with-minimize >= fresh-state control − 2 MiB and >= without-minimize; A/A pairs (both without add-on) over the real L10 600 s interval, B300 window and idle 600 s for R500 and R2000, plus repeated reuse trials with order alternation and a fresh-state control; instrument [calibration_probe.py](../../../qualification/ws-e01-f01/calibration_probe.py). Needs a multi-hour quiet visible-desktop window on the Ubuntu host. |
 | Windows add-on hard-peak instrument | **F01 OPEN**; [handoff](closure2-windows-handoff.md). |
 | Windows calibration, interval boundaries, short-lived PID identity coverage | **F01 OPEN**; same handoff. Job aggregate lifetime accounting is already qualified. |
 

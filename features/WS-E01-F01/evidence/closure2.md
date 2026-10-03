@@ -91,6 +91,8 @@ condition, not claimed everyday behavior):
      a 24 MiB small-string pulse gave +29.1/+29.2 MB **without** minimize before the reset, but
      +39.9/+40.9 MB **with** minimize (an independent rerun: 32.2/36.1 vs 40.9/41.4 MB). Reuse of
      resident freed memory causes real undercount; the condition **reduced** it in these trials.
+     In the calibration smoke runs with-minimize was 1.1-1.2 MB below the fresh-state control and
+     about 11 MB above without-minimize.
      There is no fresh-state control, the trial order was fixed and n is small, so absence of
      residual undercount is not shown. Repetitions with order alternation and a fresh-state
      control are part of the open calibration below.
@@ -103,35 +105,53 @@ condition, not claimed everyday behavior):
    reported separately and never as zero; not interchangeable with (1) or (3).
 5. CPU/I-O/latency/load protocol unchanged from METHOD-01.
 
-## (d) Platform finding: API-created discarded tabs in tab groups load the parent process
+## (d) Platform finding: API-created discarded tabs in tab groups load the browser
 
-Found while building the calibration driver (`calibration_probe.py`, smoke runs in
-[closure2-calibration-smoke.json](closure2-calibration-smoke.json)). On this Ubuntu/Wayland host
-with Firefox 156, a window whose tab group contains several tabs that an extension created with
-`tabs.create({discarded:true})` keeps the **parent process at about 113-134 % of one core**,
-measured repeatedly after 15 s to 240 s of rest. Isolation (one window each, 10 s per-process
-CPU samples): one group of 9 such tabs is enough; collapsing the groups, removing containers,
-mute state or titles does not change it; a group of 2 such tabs and groups formed from loaded
-tabs that are discarded afterwards stay quiet. After a normal quit and native session restore of
-the same windows (same groups, 45-451 pending tabs) the parent process is at about 0.1-1.4 %.
+Recorded in the calibration smoke runs ([smoke](closure2-calibration-smoke.json),
+[smoke2](closure2-calibration-smoke2.json), [smoke3](closure2-calibration-smoke3.json); fields
+`api_realized_settled_10s` and `native_restored_settled_10s`, smoke2/3 also with parent-process CPU):
+after an extension realizes R500 with `tabs.create({discarded:true})` and groups those tabs, the
+owned browser stays at about 110-115 % of one core after 60 s of rest in all 12 smoke runs, and in
+smoke2/3 the parent process carries essentially all of it (e.g. 114.1 of 114.5 %). After a normal
+quit and native session restore of the same windows, groups and discarded tabs it was near idle in
+11 of 12 runs (0.05-1.2 %), but in one run (smoke2 `p1-second`) the same load appeared after the
+native restore (124 %, parent 124 %) and persisted through all later intervals. The trigger is
+therefore not shown to be exclusive to the API path.
+
+Exploratory isolation runs during development (one window; group size, collapse, containers, mute,
+titles, discard-after-grouping) are LOCAL_AGENT_REPORTED only and were not committed; they are not
+evidence here. Their indications (a group of about nine such tabs suffices; grouping loaded tabs and
+discarding afterwards stays quiet) must be reproduced as committed evidence before anything relies
+on them.
 
 Consequences, within existing Product Truth and Technical Foundation (no new decision):
-- The calibration and later A/B workloads realize R500/R2000 through a native restart, so the
-  measured browser is in the state a user's browser has after start; the API-path load is
-  recorded in every run (`api_realized_settled_10s` vs `native_restored_settled_10s`).
-- F03 restore must not leave the browser in this state. Creating background tabs discarded and
-  grouping them is exactly the planned restore path (WS-RESTORE: background tabs unloaded,
-  groups reconstructed). F03 must qualify a restore order that is both unloaded and quiet, or
-  show the limitation visibly; silently loading all background tabs is not allowed
-  (WS-RESTORE, TF §6.3). This is recorded as a bound F03 qualification obligation, not solved here.
+- Calibration and later A/B workloads realize R500/R2000 through a native restart, so the measured
+  browser is in a state after start; the load is recorded in every run, and a run that is not
+  quiescent before the intervals is invalid (smoke2 `p1-second` was rejected this way).
+- **Bound F03 pre-implementation obligation (TF §7.1):** before the F03 restore implementation
+  starts, qualify a restore order that keeps background tabs unloaded (WS-RESTORE) **and** leaves
+  the browser quiet (r6 §9.1 idle target). If no such order exists on the target builds, F03 restore
+  of grouped background tabs STOPs for a user decision; neither silent mass loading nor leaving the
+  browser loaded is an allowed agent fallback.
 - Windows was not tested for this; the Windows handoff includes it.
+
+## (e) Measurement-method finding: window stacking and occlusion change the workload cost
+
+On this Wayland session all browser windows report and keep position 0,0, so they overlap. In
+smoke2 the same L10 workload cost either about 2 % or about 24 % of one core depending on run,
+consistent with whether the windows whose tab strips the workload changes were visible. The
+instrument now focuses a fixed fixture window before the intervals (`front`, verified in every
+smoke3 run); the valid smoke3 pairs differ by 0.01 % (L10), 0.3 % (B300) and 0.08/0.03 % (idle).
+The one remaining low-cost L10 run (smoke3 `p0-first`, 1.95 %) coincided with foreign host load
+from other desktop use and was rejected. Declared condition for calibration and A/B runs: an
+exclusive desktop with no other application window above the browser and no other workload.
 
 ## Dispositions of remaining measurement work
 
 | Item | Disposition |
 |---|---|
 | A/B paired runs with the real add-on | Executed in F05 against the bound protocol (r6 §9.1: implementation measurements before Feature Acceptance). |
-| Ubuntu calibration: instrument/driver overhead and known uncertainty | **F01 OPEN** (TF §9.3: bound before F02). Instrument ready: [smoke run](closure2-calibration-smoke.json) R500, 2 pairs, shortened intervals (L10 20 s, idle 10 s), all 2000 events on time; the valid pair differs by 0.27 % (L10), 0.10 % (B300), 0.001 % (idle) of one core; the other pair was correctly rejected for 5-11 % foreign host load. Reuse trials: with-minimize equals the fresh-state control within 1 MB, without-minimize is about 11 MB lower. Smoke values are instrument evidence, not the calibration; A/A pairs (both without add-on) over the real L10 600 s interval, B300 window and idle 600 s for R500 and R2000, plus repeated reuse trials with order alternation and a fresh-state control; instrument [calibration_probe.py](../../../qualification/ws-e01-f01/calibration_probe.py). Needs a multi-hour quiet visible-desktop window on the Ubuntu host. |
+| Ubuntu calibration: instrument/driver overhead and known uncertainty | **F01 OPEN** (TF §9.3: bound before F02). Instrument candidate implementing the METHOD-01 invalidity rules below, unit-tested per rule ([smoke run](closure2-calibration-smoke.json), shortened intervals; smoke values are instrument evidence, not the calibration). Declared calibration constants: at most 0.1 % of scheduled events late by more than 100 ms; foreign host load (beyond the owned cgroup and the compositor) judged over every 5 s window against 5 % of all cores; quiescence acknowledgement below 3 % of one core over 10 s (max 6 attempts) instead of a bare timer; one `minimizeMemoryUsage` before the CPU intervals as a declared condition; driver errors, lost events, tab/window/group/container mismatches and failed runs make the pair invalid and are listed. Instrument overhead: the sampler runs outside the owned cgroup and reports its own CPU per interval (`instrument_self_cpu_pct_one_core`); Marionette's idle session inside the browser is identical in A and B and is not separately quantified. Reuse-trial pass rule (Ubuntu and Windows): with-minimize >= fresh-state control − 2 MiB and >= without-minimize; A/A pairs (both without add-on) over the real L10 600 s interval, B300 window and idle 600 s for R500 and R2000, plus repeated reuse trials with order alternation and a fresh-state control; instrument [calibration_probe.py](../../../qualification/ws-e01-f01/calibration_probe.py). Needs a multi-hour quiet visible-desktop window on the Ubuntu host. |
 | Windows add-on hard-peak instrument | **F01 OPEN**; [handoff](closure2-windows-handoff.md). |
 | Windows calibration, interval boundaries, short-lived PID identity coverage | **F01 OPEN**; same handoff. Job aggregate lifetime accounting is already qualified. |
 

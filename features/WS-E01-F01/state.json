@@ -16,6 +16,8 @@
     "features/WS-E01-F01/evidence/cleanup-verification.json",
     "features/WS-E01-F01/evidence/closure2-artifacts.json",
     "features/WS-E01-F01/evidence/closure2-calibration-smoke.json",
+    "features/WS-E01-F01/evidence/closure2-calibration-smoke2.json",
+    "features/WS-E01-F01/evidence/closure2-calibration-smoke3.json",
     "features/WS-E01-F01/evidence/closure2-ubuntu-run1.json",
     "features/WS-E01-F01/evidence/closure2-ubuntu-run2.json",
     "features/WS-E01-F01/evidence/closure2-ubuntu-run3.json",
@@ -64,6 +66,7 @@
     "features/WS-E01-F01/evidence/target-windows-build-locator.json",
     "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261002-01.md",
     "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261002-02.md",
+    "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261002-03.md",
     "features/WS-E01-F01/evidence/toolchain-check.md",
     "features/WS-E01-F01/evidence/toolchain-decision.md",
     "features/WS-E01-F01/evidence/ubuntu-cgroup-cleanup-attempt-samples.json",
@@ -145,8 +148,8 @@
     "MEASUREMENT_WINDOWS_CALIBRATION_INTERVALS_AND_PID_COVERAGE"
   ],
   "target_environments": {
-    "Ubuntu Desktop": "QUALIFIED_FOR_F01_SCOPE",
-    "Windows Desktop": "QUALIFIED_EXCEPT_ADDON_HARD_PEAK_INSTRUMENT"
+    "Ubuntu Desktop": "F01 scope qualified except calibration runs (instrument candidate ready)",
+    "Windows Desktop": "Hard-peak instrument, port of calibration instrument, calibration, intervals and PID coverage OPEN"
   },
   "end_candidate_binding": "Git commit containing this state; exact delivery Head/Tree and CI are verified externally in the terminal delivery report",
   "feature_changeset": "3bdd7439c221b8f8c83e7374c8bb29898891a4fd..7d66ca5b025c8f748d7f97b961c496ee450daaa7 (historical, PR #3) + f83845a1dd4b78bd010e6477612d95a99b1a8152..candidate (this continuation)",
@@ -185,7 +188,7 @@
   },
   "execution_authorization": "epics/WS-E01/evidence/broad-execution-authorization.json",
   "bound_obligations_for_later_features": {
-    "F03": "Qualify an unloaded and quiet restore order for grouped background tabs (closure2 (d)) or show the limitation; no silent mass loading",
+    "F03": "Before F03 restore implementation: qualify an unloaded and quiet restore order for grouped background tabs (closure2 (d)); if none exists, STOP for a user decision; no silent mass loading, no leaving the browser loaded",
     "F05": "A/B paired runs with the real add-on under METHOD-01/02 and the peak cross-check rule"
   }
 }

@@ -50,7 +50,12 @@ Reuse `closure_probe.py` (driver operations `map-cache`, `idb-fill`, `release`, 
 
 ## Windows calibration and intervals (same session)
 
-Run `calibration_probe.py` on Windows with the owned launch Job: A/A pairs (both without
+`calibration_probe.py` is Linux-only (cgroup v2, /proc, Wayland compositor). Port it for Windows
+before running it, keeping the protocol constants and invalidity rules unchanged: owned launch Job
+(`windows_job.py`) instead of the cgroup; Job basic accounting (`TotalUserTime+TotalKernelTime`) at
+exact interval boundaries instead of `cpu.stat`; parent-process CPU via `GetProcessTimes`; the
+desktop compositor (`dwm.exe`) reported separately instead of gnome-shell/Xwayland; foreign host load
+from `GetSystemTimes` over 5 s windows. Then run it: A/A pairs (both without
 add-on) for R500 and R2000 over L10 600 s, the B300 window and (R500) idle 600 s, at least five
 pairs each, alternating order, host load recorded. Record interval boundaries as Job counter
 reads (`QueryInformationJobObject` basic accounting) at exact start/end, and the lifetime vs
@@ -59,9 +64,11 @@ not dropped. Quiet visible desktop, no other user activity during runs.
 
 ## Discarded tabs in groups (platform finding check)
 
-Repeat the closure2 (d) observation on Windows: one window, one tab group of 9 tabs created with
-`tabs.create({discarded:true})`, 60 s rest, 10 s parent-process CPU; then quit and native
-session restore, 60 s rest, 10 s again. `calibration_probe.py` records both values per run.
+Repeat the closure2 (d) observation on Windows with the ported calibration instrument, which records
+whole-Job and parent-process CPU 60 s after API realization of R500 (discarded tabs, groups) and again
+after a normal quit and native session restore (fields `api_realized_settled_10s`,
+`native_restored_settled_10s`). Record the values; do not rely on the uncommitted Ubuntu isolation
+indications.
 
 ## Deliver
 

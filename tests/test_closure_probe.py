@@ -8,6 +8,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "qualification/ws-e01-f01"))
 import closure_probe as c
+import calibration_probe as cal
 
 ROWS = [
     {"process": "extension (pid 42)", "path": "explicit/js-non-window/zones/zone(0x1)/strings/x", "units": 0, "amount": 100},
@@ -64,6 +65,54 @@ class MeasurementConditionTests(unittest.TestCase):
         block = text[text.index("for kind in order:"):text.index("trials.append(")]
         self.assertIn("if kind == 'with-minimize':\n                        minimize()", block)
         self.assertLess(block.index("if kind == 'with-minimize'"), block.index("reset_high_water(ext)"))
+
+
+def run(name, l10=1.0, **overrides):
+    interval = {"cgroup_cpu_pct_one_core": l10, "other_host_max_window_pct_all_cores": 1.0,
+                "driver": {"scheduled": 1000, "delivered": 1000, "failed": 0, "late": 0}}
+    interval.update(overrides.pop("interval", {}))
+    record = {"run": name, "status": "COMPLETED", "intervals": {"L10": interval}}
+    record.update(overrides)
+    return record
+
+
+class CalibrationSummaryTests(unittest.TestCase):
+    """METHOD-01 invalidity rules of the A/A calibration summary."""
+
+    def summary(self, a, b):
+        return cal.summarize([a, b], 5.0)["L10"]
+
+    def test_valid_pair_difference(self):
+        out = self.summary(run("a", 25.0), run("b", 25.5))
+        self.assertEqual([0.5], out["valid_pair_diffs_pct_one_core"])
+        self.assertEqual([], out["invalid"])
+
+    def test_each_invalidity_rule_rejects_the_pair(self):
+        cases = {
+            "driver error": {"interval": {"driver": {"error": "boom"}}},
+            "lost workload events": {"interval": {"driver": {"scheduled": 1000, "delivered": 999, "failed": 0, "late": 0}}},
+            "late workload events": {"interval": {"driver": {"scheduled": 1000, "delivered": 1000, "failed": 0, "late": 2}}},
+            "foreign host load": {"interval": {"other_host_max_window_pct_all_cores": 6.0}},
+            "realize_mismatch": {"realize_mismatch": True},
+            "adopt_mismatch": {"adopt_mismatch": True},
+            "not_quiescent": {"not_quiescent": True},
+            "run status FAILED": {"status": "FAILED"},
+        }
+        for reason, overrides in cases.items():
+            with self.subTest(reason=reason):
+                out = self.summary(run("a"), run("b", **overrides))
+                self.assertEqual([], out["valid_pair_diffs_pct_one_core"])
+                self.assertIn(reason, out["invalid"][0]["reasons"]["b"])
+
+    def test_failed_run_without_intervals_is_listed_not_dropped(self):
+        failed = {"run": "b", "status": "FAILED", "intervals": {}}
+        out = self.summary(run("a"), failed)
+        self.assertEqual(1, len(out["invalid"]))
+        self.assertIsNone(out["invalid"][0]["diff"])
+
+    def test_late_tolerance_boundary(self):
+        ok = run("b", interval={"driver": {"scheduled": 1000, "delivered": 1000, "failed": 0, "late": 1}})
+        self.assertEqual(1, len(self.summary(run("a"), ok)["valid_pair_diffs_pct_one_core"]))
 
 
 if __name__ == "__main__":

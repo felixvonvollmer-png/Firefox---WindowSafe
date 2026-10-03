@@ -75,10 +75,21 @@ window.calibrationOperation = async (op, arg) => {
     const all = await browser.tabs.query({});
     window.workload = all.filter(t => /synthetic=/.test(t.url)).map(t => t.id);
     const groups = await browser.tabGroups.query({});
+    const containers = (await browser.contextualIdentities.query({})).length;
     const ids = all.map(t => (t.url.match(/synthetic=(\d+)/) || [])[1]).filter(Boolean).map(Number);
-    return {tabsTotal: all.length, workloadTabs: window.workload.length, groups: groups.length, syntheticIds: ids,
+    return {containers, tabsTotal: all.length, workloadTabs: window.workload.length, groups: groups.length, syntheticIds: ids,
             nonSynthetic: all.filter(t => !/synthetic=/.test(t.url)).map(t => t.url.slice(0, 60)),
             discarded: all.filter(t => t.discarded).length, windows: (await browser.windows.getAll()).length};
+  }
+  if (op === 'front') {
+    // Deterministic stacking: on Wayland all windows overlap at the same position, and the
+    // visible window decides how much tab-strip repainting the workload costs.
+    const tabs = await browser.tabs.query({});
+    const anchor = tabs.find(t => /synthetic=000000/.test(t.url));
+    await browser.windows.update(anchor.windowId, {focused: true});
+    await wait(500);
+    const focused = (await browser.windows.getLastFocused()).id;
+    return {frontWindow: anchor.windowId, focusedWindow: focused, ok: focused === anchor.windowId};
   }
   if (op === 'run-schedule') {
     // arg: {kind, schedule:[{at_ms}]} executes relevant changes at their scheduled offsets.
@@ -151,23 +162,96 @@ def compositor_ticks():
     return total
 
 
-def interval(proc, seconds, during=None):
-    """CPU of the owned cgroup over a fixed wall interval; compositor and other host load reported separately."""
-    total0, idle0 = host_busy(); cpu0 = cpu_usec(proc.group); comp0 = compositor_ticks(); t0 = time.monotonic()
-    detail = during() if during else None
-    remaining = seconds - (time.monotonic() - t0)
-    if remaining > 0:
-        time.sleep(remaining)
-    wall = time.monotonic() - t0; cpu1 = cpu_usec(proc.group); comp1 = compositor_ticks(); total1, idle1 = host_busy()
-    host_total = total1 - total0
+# Declared protocol constants (METHOD-01/02 calibration); changing them is a method change.
+LATE_TOLERANCE = 0.001        # at most 0.1 % of scheduled events may start >100 ms late
+INTERFERENCE_WINDOW_S = 5     # foreign host load is judged over every 5 s window
+QUIESCENT_PCT = 3.0           # quiescence acknowledgement: owned cgroup below 3 % of one core over 10 s
+QUIESCENT_ATTEMPTS = 6
+
+
+def proc_ticks(pid):
+    try:
+        fields = Path('/proc', str(pid), 'stat').read_text().rsplit(')', 1)[1].split()
+        return int(fields[11]) + int(fields[12])
+    except (OSError, IndexError):
+        return None
+
+
+def interval(proc, seconds, during=None, parent_pid=None):
+    """Owned-cgroup CPU over a fixed wall interval with 1 s samples of cgroup, compositor, host and parent.
+
+    The workload call runs in a thread so sampling continues; its result or error is returned as driver.
+    """
+    holder = {}
+    thread = None
+    if during:
+        def run():
+            try:
+                holder['value'] = during()
+            except Exception as error:  # Recorded; makes the run invalid.
+                holder['value'] = {'error': repr(error)}
+        thread = threading.Thread(target=run, daemon=True)
+    tick = os.sysconf('SC_CLK_TCK'); cpus = os.cpu_count()
+    snap = lambda: (time.monotonic(), *host_busy(), cpu_usec(proc.group), compositor_ticks(),
+                    proc_ticks(parent_pid) if parent_pid else None)
+    self0 = time.process_time()
+    samples = [snap()]
+    if thread: thread.start()
+    while True:
+        time.sleep(1)
+        samples.append(snap())
+        elapsed = samples[-1][0] - samples[0][0]
+        if elapsed >= seconds and (not thread or not thread.is_alive()):
+            break
+        if thread and elapsed > seconds + 900:
+            holder['value'] = {'error': 'workload exceeded interval by 900 s'}
+            break
+    (t0, tot0, idl0, cpu0, cmp0, par0), (t1, tot1, idl1, cpu1, cmp1, par1) = samples[0], samples[-1]
+    wall = t1 - t0
+    def other(a, b):
+        host = b[1] - a[1]
+        busy = 100 * (host - (b[2] - a[2])) / host if host else 0
+        dt = b[0] - a[0]
+        return busy - (100 * (b[3] - a[3]) / 1e6 / dt + 100 * (b[4] - a[4]) / tick / dt) / cpus
+    window = [other(samples[i], samples[i + INTERFERENCE_WINDOW_S])
+              for i in range(len(samples) - INTERFERENCE_WINDOW_S)] or [other(samples[0], samples[-1])]
     cgroup_pct = 100 * (cpu1 - cpu0) / 1e6 / wall
-    compositor_pct = 100 * (comp1 - comp0) / os.sysconf('SC_CLK_TCK') / wall
-    host_pct = 100 * (host_total - (idle1 - idle0)) / host_total if host_total else None
-    return {'wall_s': wall, 'cgroup_cpu_s': (cpu1 - cpu0) / 1e6, 'cgroup_cpu_pct_one_core': cgroup_pct,
-            'compositor_cpu_pct_one_core': compositor_pct, 'host_busy_pct_all_cores': host_pct,
-            'other_host_pct_all_cores': None if host_pct is None else
-                host_pct - (cgroup_pct + compositor_pct) / os.cpu_count(),
-            'driver': detail}
+    compositor_pct = 100 * (cmp1 - cmp0) / tick / wall
+    host_pct = 100 * ((tot1 - tot0) - (idl1 - idl0)) / (tot1 - tot0) if tot1 - tot0 else None
+    return {'wall_s': wall, 'samples': len(samples), 'cgroup_cpu_s': (cpu1 - cpu0) / 1e6,
+            'cgroup_cpu_pct_one_core': cgroup_pct, 'compositor_cpu_pct_one_core': compositor_pct,
+            'parent_cpu_pct_one_core': None if par0 is None or par1 is None else 100 * (par1 - par0) / tick / wall,
+            'host_busy_pct_all_cores': host_pct,
+            'other_host_pct_all_cores': None if host_pct is None else host_pct - (cgroup_pct + compositor_pct) / cpus,
+            'other_host_max_window_pct_all_cores': max(window),
+            # The sampler runs outside the owned cgroup; its own CPU is the instrument's host overhead.
+            'instrument_self_cpu_pct_one_core': 100 * (time.process_time() - self0) / wall,
+            'driver': holder.get('value')}
+
+
+def run_invalid_reasons(record, name):
+    """Why a run cannot contribute the named interval to a valid A/A pair (empty list: valid)."""
+    reasons = []
+    if record.get('status') != 'COMPLETED':
+        reasons.append('run status ' + str(record.get('status')))
+    for flag in ('realize_mismatch', 'adopt_mismatch', 'not_quiescent'):
+        if record.get(flag):
+            reasons.append(flag)
+    i = record.get('intervals', {}).get(name)
+    if not i:
+        reasons.append('interval missing')
+        return reasons
+    d = i.get('driver')
+    if isinstance(d, dict) and 'error' in d:
+        reasons.append('driver error')
+    elif isinstance(d, dict) and d.get('scheduled'):
+        if d['delivered'] < d['scheduled'] or d.get('failed'):
+            reasons.append('lost workload events')
+        if d['late'] > LATE_TOLERANCE * d['scheduled']:
+            reasons.append('late workload events')
+    if (i.get('other_host_max_window_pct_all_cores') or 0) > record.get('interference_pct', 5.0):
+        reasons.append('foreign host load')
+    return reasons
 
 
 def one_run(binary, profile_name, settings, run_label, owned_root):
@@ -246,17 +330,32 @@ def one_run(binary, profile_name, settings, run_label, owned_root):
             record['realize_mismatch'] = True
         time.sleep(60)
         # F01 platform finding: API-created discarded tabs in groups load the parent process.
-        record['intervals']['api_realized_settled_10s'] = interval(proc, 10)
+        record['intervals']['api_realized_settled_10s'] = interval(proc, 10, parent_pid=proc.pid)
         client.command('Marionette:Quit', {'flags': ['eAttemptQuit']}); proc.wait(90); client.close(); client = None
         proc, client = launch('firefox.log'); record['cgroup'] = str(proc.group)
         time.sleep(15)
         record['adopted'] = api(client, 'adopt')
         record['adopted']['missingSyntheticIds'] = sorted(set(r['syntheticId'] for r in rows) - set(record['adopted'].pop('syntheticIds')))
-        if record['adopted']['missingSyntheticIds']:
+        expected_groups = len({(r['window'], r['group']) for r in rows if r['group'] is not None and not r['pinned']})
+        record['expected_groups'] = expected_groups
+        if (record['adopted']['missingSyntheticIds'] or record['adopted'].get('groups') != expected_groups
+                or record['adopted'].get('containers', 0) < 3):
             record['adopt_mismatch'] = True
         time.sleep(settings['warmup'])
-        record['intervals']['native_restored_settled_10s'] = interval(proc, 10)
+        record['intervals']['native_restored_settled_10s'] = interval(proc, 10, parent_pid=proc.pid)
+        record['front'] = api(client, 'front')
+        if not record['front'].get('ok'):
+            record['adopt_mismatch'] = True
+        # Declared measurement condition: minimize (GC/CC/purge) once before the CPU intervals,
+        # then a quiescence acknowledgement instead of a bare timer.
         execute(client, 'const done=arguments[arguments.length-1];Cc["@mozilla.org/memory-reporter-manager;1"].getService(Ci.nsIMemoryReporterManager).minimizeMemoryUsage(()=>done(true));', async_script=True)
+        record['quiescence'] = []
+        for _ in range(QUIESCENT_ATTEMPTS):
+            q = interval(proc, 10); record['quiescence'].append(q['cgroup_cpu_pct_one_core'])
+            if q['cgroup_cpu_pct_one_core'] < QUIESCENT_PCT:
+                break
+        else:
+            record['not_quiescent'] = True
         record['intervals']['pre_host_30s'] = interval(proc, 30)
         l10 = fixtures.schedule('L10'); l10 = [e for e in l10 if e['at_ms'] < settings['l10_seconds'] * 1000]
         record['intervals']['L10'] = interval(proc, settings['l10_seconds'] + 1,
@@ -298,28 +397,26 @@ def one_run(binary, profile_name, settings, run_label, owned_root):
 
 
 def summarize(runs, interference_pct):
-    """Pair differences (second minus first) per interval; invalid pairs are retained but excluded."""
+    """Pair differences (second minus first) per interval; every invalid pair is listed with reasons."""
     out = {}
+    for run in runs:
+        run.setdefault('interference_pct', interference_pct)
     for name in ('L10', 'B300', 'idle'):
         diffs, invalid = [], []
         for a, b in zip(runs[0::2], runs[1::2]):
-            ia, ib = a.get('intervals', {}).get(name), b.get('intervals', {}).get(name)
-            if not ia or not ib:
-                continue
-            # Interference: host load beyond the owned cgroup and the test-induced compositor work.
-            # Lost or late workload events (>1 % late by >100 ms) also invalidate a measurement run.
-            def late(i):
-                d = i.get('driver') or {}
-                return d.get('scheduled') and (d['delivered'] < d['scheduled'] or d['late'] > 0.01 * d['scheduled'])
-            bad = [r['run'] for r, i in ((a, ia), (b, ib)) if r['status'] != 'COMPLETED' or
-                   (i.get('other_host_pct_all_cores') or 0) > interference_pct or late(i)]
-            d = ib['cgroup_cpu_pct_one_core'] - ia['cgroup_cpu_pct_one_core']
-            (invalid if bad else diffs).append(d if not bad else {'diff': d, 'invalid_runs': bad})
-        if diffs or invalid:
-            out[name] = {'valid_pair_diffs_pct_one_core': diffs, 'invalid': invalid,
-                         'median': statistics.median(diffs) if diffs else None,
-                         'max_abs': max(abs(x) for x in diffs) if diffs else None,
-                         'stdev': statistics.stdev(diffs) if len(diffs) > 1 else None}
+            if all(r.get('status') == 'COMPLETED' and name not in r.get('intervals', {}) for r in (a, b)):
+                continue  # Interval not part of this calibration (e.g. idle disabled).
+            reasons = {r['run']: run_invalid_reasons(r, name) for r in (a, b)}
+            if any(reasons.values()):
+                ia, ib = (r.get('intervals', {}).get(name) for r in (a, b))
+                diff = ib['cgroup_cpu_pct_one_core'] - ia['cgroup_cpu_pct_one_core'] if ia and ib else None
+                invalid.append({'diff': diff, 'reasons': {k: v for k, v in reasons.items() if v}})
+            else:
+                diffs.append(b['intervals'][name]['cgroup_cpu_pct_one_core'] - a['intervals'][name]['cgroup_cpu_pct_one_core'])
+        out[name] = {'valid_pair_diffs_pct_one_core': diffs, 'invalid': invalid,
+                     'median': statistics.median(diffs) if diffs else None,
+                     'max_abs': max(abs(x) for x in diffs) if diffs else None,
+                     'stdev': statistics.stdev(diffs) if len(diffs) > 1 else None}
     return out
 
 
@@ -342,7 +439,7 @@ def main():
     ini = configparser.ConfigParser(); ini.read(binary.parent / 'application.ini')
     if ini['App']['Version'] != '156.0':
         raise ValueError('Firefox 156 required')
-    idle = args.idle_seconds if args.idle_seconds is not None else (600 if args.profile == 'R500' else 0)
+    idle = args.idle_seconds if args.idle_seconds is not None else 600  # Idle belongs to the protocol for both profiles.
     (ROOT / 'build/f01/runs').mkdir(parents=True, exist_ok=True)
     owned_root = Path(tempfile.mkdtemp(prefix='calibration-' + args.profile + '-', dir=ROOT / 'build/f01/runs')).resolve()
     orders = [['without-minimize', 'with-minimize', 'fresh-control'], ['fresh-control', 'with-minimize', 'without-minimize'],

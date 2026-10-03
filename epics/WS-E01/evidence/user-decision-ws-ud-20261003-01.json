@@ -1,0 +1,36 @@
+{
+  "DOCUMENT_TYPE": "USER_DECISION_RECORD",
+  "DECISION_ID": "WS-UD-20261003-01",
+  "DATE": "2026-10-03",
+  "AUTHORITY": "USER",
+  "STATUS": "RECORDED__NO_BINDING_EFFECT_UNTIL_TECHNICAL_FOUNDATION_DELTA_IS_PREPARED_REVIEWED_AND_BOUND",
+  "RECORDED_BY": "CODING_AGENT_WS_E01_EXECUTION_LEAD",
+  "RECORDING_LIMITATION": "Transcription of a direct chat decision in the Claude Code session; the user's reply is verbatim, the options are the agent's own wording as presented to the user.",
+  "CONTEXT": "During F01 the user asked whether Windows testing is needed at all for a Firefox add-on. The agent explained the technical position (mostly platform-neutral public APIs; observed platform differences in window geometry, WebApp/Taskbar Tab windows and resource behavior) and that the bound Technical Foundation (T01; r6 §§9.1/9.3, measurement 'je Lastprofil und Betriebssystem') requires both operating systems, so a change is a material Technical Foundation change. Three options were presented.",
+  "OPTIONS_PRESENTED": {
+    "1": "Keep as bound: Windows remains fully in V1 scope including performance evidence.",
+    "2": "Windows without performance evidence: Windows remains a supported V1 platform with functional tests; performance/resource measurements (calibration, R500/R2000) only on Ubuntu; the resource promise then applies to Ubuntu only.",
+    "3": "V1 Ubuntu only: Windows not promised or tested for V1."
+  },
+  "AGENT_RECOMMENDATION": "2",
+  "USER_REPLY_VERBATIM": "ja wir machen 2",
+  "DECISION": "OPTION_2",
+  "INTENDED_EFFECT_FOR_PREPARATION": [
+    "Windows 11 and Ubuntu Desktop remain the V1 supported and tested platforms for functional, restart/restore, special-window, privacy, container, group, backup/import and failure-boundary evidence (T01 functional scope unchanged).",
+    "Performance and resource evidence (r6 §9.1 targets, §9.3 T05-R2 L10/B300, the measurement-method binding including calibration and known uncertainty, and add-on memory/peak instruments) is required on Ubuntu Desktop only.",
+    "No resource or performance claim is made for Windows; where WindowSafe states its resource behavior, the Ubuntu-only verification is stated visibly.",
+    "F01 consequence once bound: the Windows add-on hard-peak instrument and the Windows calibration/interval/PID-coverage gates no longer apply; the Ubuntu calibration gate remains.",
+    "F05 consequence once bound: Windows native evidence remains functional; R500/R2000/H and L10/B300 measurements are Ubuntu-only."
+  ],
+  "OPEN_QUESTIONS_FOR_PREPARATION": [
+    "Whether the F03 obligation from F01 finding closure2 (d) (API-created discarded tabs in groups keep the browser above one core) must still be checked on Windows as a functional/quality sanity check of the restore path, without calibrated measurement.",
+    "Whether Product Truth WS-AC-11 or WS-QUALITY wording needs a visible-limitation note, or whether the Technical Foundation delta alone suffices."
+  ],
+  "REQUIRED_NEXT_STEPS": [
+    "Project-LLM prepares a Technical Foundation delta (and any Product Truth or Epic Preparation delta it finds necessary) with critical self-review.",
+    "Independent review and exact binding.",
+    "Coding agent then materializes the bound delta and adjusts F01/F05 gates; until then the current binding applies unchanged."
+  ],
+  "UNAFFECTED_WORK_MAY_CONTINUE": "Ubuntu calibration and the explanation of the two-mode workload cost (closure2 (e)) are required under both the current and the intended binding.",
+  "AFFECTED_WORK_PAUSED": "Windows hard-peak instrument run and Windows calibration under closure2-windows-handoff.md."
+}

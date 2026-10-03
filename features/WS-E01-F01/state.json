@@ -8,6 +8,7 @@
   "feature_acceptance_review": "NOT_READY",
   "evidence_paths": [
     "epics/WS-E01/binding.json",
+    "epics/WS-E01/evidence/user-decision-ws-ud-20261003-01.json",
     "features/WS-E01-F01/acceptance-criteria.md",
     "features/WS-E01-F01/evidence/audit-recovery-authorization.json",
     "features/WS-E01-F01/evidence/audit-recovery.json",
@@ -69,6 +70,7 @@
     "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261002-03.md",
     "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261003-04.md",
     "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr7-20261003-05.md",
+    "features/WS-E01-F01/evidence/technical-review-ws-e01-tr-pr8-20261003-01.md",
     "features/WS-E01-F01/evidence/toolchain-check.md",
     "features/WS-E01-F01/evidence/toolchain-decision.md",
     "features/WS-E01-F01/evidence/ubuntu-cgroup-cleanup-attempt-samples.json",
@@ -192,5 +194,10 @@
   "bound_obligations_for_later_features": {
     "F03": "Before F03 restore implementation: qualify an unloaded and quiet restore order for grouped background tabs (closure2 (d)); if none exists, STOP for a user decision; no silent mass loading, no leaving the browser loaded",
     "F05": "A/B paired runs with the real add-on under METHOD-01/02 and the peak cross-check rule"
+  },
+  "pending_user_decision_binding": {
+    "decision": "epics/WS-E01/evidence/user-decision-ws-ud-20261003-01.json",
+    "effect_once_bound": "Windows performance/resource gates (hard-peak instrument, Windows calibration/intervals/PID coverage) no longer apply; Ubuntu calibration remains",
+    "until_bound": "Windows measurement work paused; current binding unchanged"
   }
 }

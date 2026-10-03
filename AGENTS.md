@@ -25,7 +25,10 @@ und die nutzerautorisierte Ersatz-Evidence WS-E01-EPR-DELTA-20260930-04 **CORREC
 Pending-Binding und das historische WS-E01-Binding bleiben unverändert), integriert in main
 `714b440c26167f6411420fbbda4be69deb2e9670`. Separate breite WS-E01 Execution Authorization
 WS-EA-20261001-03: `epics/WS-E01/evidence/broad-execution-authorization.json` (autonom
-F01 -> F02 -> {F03,F04} -> F05 bis EPIC_CONVERGED, dann STOP; kein Folge-Epic).
+F01 -> F02 -> {F03,F04} -> F05 bis EPIC_CONVERGED, dann STOP; kein Folge-Epic). Ausstehend:
+Nutzerentscheidung WS-UD-20261003-01 (`epics/WS-E01/evidence/user-decision-ws-ud-20261003-01.json`,
+Windows ohne Performance-Nachweis) wirkt erst nach TF-Delta (ggf. Product-Delta), Epic-Preparation-Delta, unabhängigem Rereview und exaktem Rebinding; bis dahin sind die
+Windows-Messarbeiten pausiert und die bisherige Bindung gilt.
 
 WS-P05 ergänzt Product Truth und TF r6 durch exakt gebundene Originale im Kontextrouter.
 F01 / PR #3 bleibt ausschließlich externe Read-only-Evidence am Head

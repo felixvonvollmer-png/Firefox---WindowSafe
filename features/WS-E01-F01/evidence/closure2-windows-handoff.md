@@ -1,5 +1,11 @@
 # F01 closure — Windows add-on hard-peak instrument run (handoff)
 
+> **PAUSED (2026-10-03):** user decision WS-UD-20261003-01
+> (`epics/WS-E01/evidence/user-decision-ws-ud-20261003-01.json`, option 2) would remove Windows
+> performance/resource evidence if the resulting Technical Foundation delta, WS-E01 Epic Preparation
+> delta, independent rereview and exact rebinding complete. Until then, do not start any section of
+> this handoff (including the closure2 (d) platform check); it may be superseded afterwards.
+
 Purpose: close the F01 items that need the bound Windows Desktop target: an add-on-only
 hard-peak memory instrument, Windows calibration (known uncertainty), measurement interval
 boundaries and short-lived PID identity coverage. Status of all F01 items: [closure2.md](closure2.md). Authorization: WS-EA-20261001-03
@@ -70,7 +76,9 @@ not dropped. Quiet visible desktop, no other user activity during runs.
 
 ## Discarded tabs in groups (platform finding check)
 
-Repeat the closure2 (d) observation on Windows with the ported calibration instrument, which records
+Repeat the closure2 (d) observation on Windows with a Windows port of the current candidate (values
+count as platform observation only, not calibration; this check is not behind the calibration
+precondition), recording
 whole-Job and parent-process CPU 60 s after API realization of R500 (discarded tabs, groups) and again
 after a normal quit and native session restore (fields `api_realized_settled_10s`,
 `native_restored_settled_10s`). Record the values; do not rely on the uncommitted Ubuntu isolation
